@@ -1,2 +1,2 @@
-# cookbook
-A Collection of Recipes
+# Cook Book
+A Collection of Recipes.
