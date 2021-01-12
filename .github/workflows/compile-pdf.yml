@@ -1,0 +1,23 @@
+name: Cook Book
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  # workflow_dispatch:
+
+jobs:
+  build:
+    name: Compile and Push
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile LateX        
+        uses: vinay0410/tectonic-action@v1.1.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tex_path: cookbook.tex
+          push: yes
