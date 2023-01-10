@@ -3,7 +3,7 @@
     import NavigationTop from "$lib/components/NavigationTop.svelte";
 </script>
 
-<div data-theme="retro">
+<div>
     <NavigationTop homeLabel="Cookbook" homeRoute="/">
         <slot/>
     </NavigationTop>
