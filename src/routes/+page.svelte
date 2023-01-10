@@ -1,5 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<h1 class="text-3xl font-bold underline">
-    Hello world!
-</h1>
+<script>
+    import ContentNarrow from "$lib/components/ContentNarrow.svelte";
+</script>
+
+<ContentNarrow title="Cookbook">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, recusandae?</p>
+</ContentNarrow>
