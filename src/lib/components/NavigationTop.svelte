@@ -8,7 +8,7 @@
     export let subRoutes: NavSubLink[] = [];
 </script>
 
-<div class="navbar flex justify-between bg-base-100">
+<div class="navbar flex justify-between">
     <div class="">
         <div class="dropdown">
             <div class="btn btn-ghost sm:hidden" tabindex="-1">
@@ -72,6 +72,6 @@
     </div>
 </div>
 
-<div class="bg-base-200 min-h-content">
+<div class=" min-h-content">
     <slot></slot>
 </div>
