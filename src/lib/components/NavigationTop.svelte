@@ -10,7 +10,7 @@
 
 <div class="navbar flex justify-between">
     <div class="">
-        <div class="dropdown">
+        <div class="dropdown" class:hidden={!routes.length}>
             <div class="btn btn-ghost sm:hidden" tabindex="-1">
                 <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg">
