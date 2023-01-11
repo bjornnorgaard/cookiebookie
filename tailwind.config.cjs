@@ -16,8 +16,7 @@ module.exports = {
         require('@tailwindcss/typography'),
     ],
     daisyui: {
-        themes: ["retro", "halloween"],
-        darkTheme: "halloween",
+        themes: ["retro"],
         log: false
     }
 }
