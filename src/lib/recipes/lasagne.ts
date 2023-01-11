@@ -44,7 +44,10 @@ export const lasagne: Recipe = {
 			title: "Simre, slumre, simmer",
 			desc: "Lad det hele simre til det det ikke er for flydende, og egner sig til lasagne (45-50 minutter).",
 		},
-		{ title: "Beper og zalt", desc: "Smag til med salt og peber (og evt. lidt chili hvis du vil give det et pift)." },
+		{
+			title: "Beper og zalt",
+			desc: "Smag til med salt og peber (og evt. lidt chili hvis du vil give det et pift).",
+		},
 		{
 			title: "Bonus",
 			desc: "Evt. tilføj mørk balsamico eller en anden god eddike, hvis du synes saucen mangler syre.",

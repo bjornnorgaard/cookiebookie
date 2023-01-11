@@ -4,7 +4,7 @@
 	import { recipes } from "$lib/stores/recipes";
 
 	const slug = $page.params.slug;
-	const r = $recipes.get(slug)
+	const r = $recipes.get(slug);
 </script>
 
 <ContentNarrow title={r.title}>

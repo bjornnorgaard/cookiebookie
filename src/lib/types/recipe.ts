@@ -12,7 +12,7 @@ export interface Ingredient {
 	amount: string;
 }
 
-export interface Step{
+export interface Step {
 	title: string;
 	desc: string;
 }

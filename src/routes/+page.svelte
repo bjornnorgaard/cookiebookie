@@ -7,21 +7,14 @@
 <ContentNarrow title="Nyeste opskrifter">
 	<div class="gap-4 grid-list">
 		{#each [...$recipes] as [slug, recipe]}
-			<RecipeLinkCard slug={slug} />
+			<RecipeLinkCard {slug} />
 		{/each}
 	</div>
 </ContentNarrow>
 
 <style>
-    .grid-list {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-    }
+	.grid-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+	}
 </style>
-
-
-
-
-
-
-
