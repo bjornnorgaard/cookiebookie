@@ -4,7 +4,7 @@
 </script>
 
 <div>
-    <NavigationTop homeLabel="Cookbook" homeRoute="/">
+    <NavigationTop homeLabel="Cookie Boogie" homeRoute="/">
         <slot/>
     </NavigationTop>
 </div>
