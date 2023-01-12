@@ -4,7 +4,7 @@
 	import { recipes } from "$lib/stores/recipes.js";
 </script>
 
-<ContentNarrow title="Nyeste opskrifter">
+<ContentNarrow title="Seneste opskrifter">
 	<div class="gap-4 grid-list">
 		{#each [...$recipes] as [slug, recipe]}
 			<RecipeLinkCard {slug} />
