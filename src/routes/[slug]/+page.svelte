@@ -20,8 +20,9 @@
     })
 
     const toggleIngredient = (name: string) => {
+        name = name.trim();
         if ($ingredients.includes(name)) {
-            $ingredients = [...$ingredients.filter(i => i != name)]
+            $ingredients = $ingredients.filter(i => i != name);
             return
         }
         $ingredients = [name, ...$ingredients]
