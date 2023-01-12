@@ -5,7 +5,7 @@ export const lasagne: Recipe = {
     title: "Den første Lasagne",
     image: "https://picsum.photos/700/300",
     shortDesc: "Lasagne baseret på en kombination af alle opskrifter jeg kunne finde.",
-    longDesc: "Det er lagsagne... Smid det hele i en gryde i to timer - hvis det er for svært, så læs videre. Følg nu med. Jeg smider alt det her i min udgave, men drop endelig hvad du ikke kan lide. Vi gider ikke lave monay eller plader fra bunden. Så dem køber vi for at vinde tid. ",
+    longDesc: "Det er lagsagne... Smid det hele i en gryde i to timer. Hvis det er for svært, så læs videre - følg nu med. Jeg smider alt det her i min udgave, men drop endelig hvad du ikke kan lide. Vi gider ikke lave monay eller plader fra bunden. Så dem køber vi for at vinde tid. ",
     ingredients: [
         {name: "Løg", amount: "2"},
         {name: "Hvidløg ", amount: "4"},
