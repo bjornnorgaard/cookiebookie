@@ -7,6 +7,10 @@
     const r = $recipes.get(slug);
 </script>
 
+<svelte:head>
+    <title>Cookie Boogie - {r.title}</title>
+</svelte:head>
+
 <ContentNarrow title={r.title}>
     <img src={r.image} alt="placeholder" class="rounded-lg drop-shadow-lg">
     <p class="m-0">{r.longDesc}</p>
