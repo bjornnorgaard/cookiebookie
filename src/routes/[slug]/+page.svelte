@@ -12,7 +12,6 @@
     const ingredients = writable<string[]>([]);
     $: if (browser && $ingredients.length > 0) {
         localStorage.setItem(slug, JSON.stringify($ingredients))
-        console.log($ingredients)
     }
 
     onMount(() => {
