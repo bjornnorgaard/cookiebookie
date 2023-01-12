@@ -41,20 +41,21 @@
 
 <h2>Indkøbslisten</h2>
 
-<div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-neutral text-neutral-content">
+<div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-neutral-focus text-neutral-content">
     {#each recipe.ingredients as i (i.name)}
         <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 2000}}
              class="flex justify-between gap-4">
 
             <input type="checkbox"
+                   id={i.name}
                    checked={$have.includes(i.name) ? "checked" : ""}
                    on:click={() => onCheckChange(i.name)}
                    class="checkbox bg-neutral-content">
 
-            <span class="grow"
-                  class:line-through={$have.includes(i.name) ? "checked" : ""}>
+            <label class="grow" for={i.name}
+                   class:line-through={$have.includes(i.name) ? "checked" : ""}>
                 {i.name}{i.amount ? `, ${i.amount}` : ""}
-            </span>
+            </label>
         </div>
     {/each}
 </div>

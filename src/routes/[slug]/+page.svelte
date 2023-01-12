@@ -23,9 +23,9 @@
     <div class="flex flex-col gap-4 rounded-lg p-4 drop-shadow-lg bg-secondary text-secondary-content">
         {#each r.steps as s}
             <div class="flex gap-4">
-                <input type="checkbox" class="mt-1 checkbox bg-neutral-content text-neutral-content">
+                <input id={s.title} type="checkbox" class="mt-1 checkbox bg-neutral-content text-neutral-content">
                 <div class="flex flex-col">
-                    <h4 class="m-0">{s.title}</h4>
+                    <label for={s.title} class="font-bold text-base mt-1">{s.title}</label>
                     <p class="m-0">{s.desc}</p>
                 </div>
             </div>
