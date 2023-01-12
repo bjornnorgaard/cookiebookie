@@ -1,16 +1,23 @@
 import type { Recipe } from "$lib/types/recipe";
 
 export const tomatsalat: Recipe = {
-	slug: "tomatsalat",
-	title: "Tomatsalat",
-	image: "https://picsum.photos/600/500",
-	desc: "Det okay godt",
-	ingredients: [
-		{ name: "Hakkede tomater", amount: "tre dåser" },
-		{ name: "Salt og peber", amount: "en smule" },
-	],
-	steps: [
-		{ title: "Bland det hele", desc: "Bla bla. Åbn ting og hæld det i." },
-		{ title: "Smag det til", desc: "Herp smag" },
-	],
+    slug: "tomatsalat",
+    title: "Tomatsalat",
+    image: "https://picsum.photos/700/300",
+    shortDesc: "En farverig skål med tomat, mozzarella og alt hvad jeg ellers kunne finde på.",
+    longDesc: "Det kan være meget fristende at smide mere end ét rødløg i, men for første gang i historien skal man lige tæmme følelserne og forholde sig i ro. I denne opskrift smager det skidt virkelig igennem, så slap af med løgene.",
+    ingredients: [
+        {name: "Cherrytomater", amount: "600g"},
+        {name: "Mozzarrella", amount: "300g"},
+        {name: "Rødlæg", amount: "1"},
+        {name: "Fetaost", amount: "200g"},
+        {name: "Frisk basilikum", amount: ""},
+        {name: "Olivenolie", amount: ""},
+        {name: "Balsamico eddike", amount: ""},
+        {name: "Citronsaft", amount: ""},
+        {name: "Peber og salt", amount: ""},
+    ],
+    steps: [
+        {title: "Hak og nak", desc: "Det skal blandes. Du kan godt."},
+    ],
 };

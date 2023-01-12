@@ -2,9 +2,10 @@ import type { Recipe } from "$lib/types/recipe";
 
 export const lasagne: Recipe = {
 	slug: "lasagne",
-	title: "Verdens bedste lasagne",
-	image: "https://picsum.photos/600/200",
-	desc: "Første gang jeg nogensinde har lavet lasagne",
+	title: "Den første Lasagne",
+	image: "https://picsum.photos/700/300",
+	shortDesc: "Lasagne baseret på en kombination af alle opskrifter jeg kunne finde.",
+	longDesc: "Det er lagsagne... Smid det hele i en gryd i to timer - hvis det er for svært, så læs videre. Følg nu med. Jeg smider alt det her i min udgave, men drop endelig hvad du ikke kan lide. Vi gider ikke lave monay eller plader fra bunden. Så dem køber vi for at vinde tid. ",
 	ingredients: [
 		{ name: "Løg", amount: "2" },
 		{ name: "Hvidløg ", amount: "4" },
@@ -42,7 +43,7 @@ export const lasagne: Recipe = {
 		},
 		{
 			title: "Simre, slumre, simmer",
-			desc: "Lad det hele simre til det det ikke er for flydende, og egner sig til lasagne (45-50 minutter).",
+			desc: "Lad det hele simre til det det ikke er for flydende, og egner sig til lasagne (45-60 minutter).",
 		},
 		{
 			title: "Beper og zalt",
