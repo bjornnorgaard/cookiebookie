@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<meta name="description" content="Lister af hjemmelavede opskrifter af varierende kvalitet">
+	<meta name="description" content="Hjemmelavede opskrifter af kraftigt varierende kvalitet">
 </svelte:head>
 
 <ContentNarrow title="Seneste opskrifter">
