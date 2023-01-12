@@ -14,6 +14,7 @@ export const ristaffel: Recipe = {
         {name: "Bananer", amount: "mindst en pr. pers"},
         {name: "Mango Chutney", amount: ""},
         {name: "Et stort æble", amount: ""},
+        {name: "Løg", amount: "1-100 stk"},
         {name: "Peanuts", amount: ""},
         {name: "Karry", amount: ""},
         {name: "Ris", amount: ""},
