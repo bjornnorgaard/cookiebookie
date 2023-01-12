@@ -2,9 +2,31 @@
     import { page } from "$app/stores";
     import ContentNarrow from "$lib/components/ContentNarrow.svelte";
     import { recipes } from "$lib/stores/recipes";
+    import { writable } from "svelte/store";
+    import { onMount } from "svelte";
+    import { browser } from "$app/environment";
 
     const slug = $page.params.slug;
     const r = $recipes.get(slug);
+
+    const ingredients = writable<string[]>([]);
+    $: if (browser && $ingredients.length > 0) {
+        localStorage.setItem(slug, JSON.stringify($ingredients))
+        console.log($ingredients)
+    }
+
+    onMount(() => {
+        const stored = JSON.parse(localStorage.getItem(slug)) || [];
+        ingredients.set(stored)
+    })
+
+    const toggleIngredient = (name: string) => {
+        if ($ingredients.includes(name)) {
+            $ingredients = [...$ingredients.filter(i => i != name)]
+            return
+        }
+        $ingredients = [name, ...$ingredients]
+    };
 </script>
 
 <svelte:head>
@@ -20,7 +42,8 @@
     <div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-neutral text-neutral-content">
         {#each r.ingredients as i}
             <div class="flex justify-between gap-4">
-                <input type="checkbox" class="checkbox bg-neutral-content">
+                <input type="checkbox" checked={$ingredients.includes(i.name) ? 'checked' : ''}
+                       on:click={() => toggleIngredient(i.name)} class="checkbox bg-neutral-content">
                 <span class="grow">{i.name}{i.amount ? `, ${i.amount}` : ""}</span>
             </div>
         {/each}
