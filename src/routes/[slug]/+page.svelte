@@ -12,7 +12,7 @@
 </svelte:head>
 
 <ContentNarrow title={r.title}>
-    <img src={r.image} alt="placeholder" class="rounded-lg drop-shadow-lg">
+    <img src={r.image} width="700" height="300" alt="placeholder" class="rounded-lg drop-shadow-lg">
     <p class="m-0">{r.longDesc}</p>
 
     <h2>Indkøbslisten</h2>
