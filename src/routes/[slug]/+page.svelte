@@ -10,7 +10,7 @@
     const r = $recipes.get(slug);
 
     const ingredients = writable<string[]>([]);
-    $: if (browser && $ingredients.length > 0) {
+    $: if (browser && $ingredients.length >= 0) {
         localStorage.setItem(slug, JSON.stringify($ingredients))
     }
 
