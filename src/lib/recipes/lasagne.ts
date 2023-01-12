@@ -8,7 +8,7 @@ export const lasagne: Recipe = {
     longDesc: "Det er lagsagne... Smid det hele i en gryde i to timer. Hvis det er for svært, så læs videre - følg nu med. Jeg smider alt det her i min udgave, men drop endelig hvad du ikke kan lide. Vi gider ikke lave monay eller plader fra bunden. Så dem køber vi for at vinde tid. ",
     ingredients: [
         {name: "Løg", amount: "2"},
-        {name: "Hvidløg ", amount: "4"},
+        {name: "Hvidløg", amount: "4"},
         {name: "Olivenolie ", amount: "2 spsk"},
         {name: "Oregano", amount: "2 tsk"},
         {name: "Gulerødder", amount: "4"},
@@ -16,7 +16,7 @@ export const lasagne: Recipe = {
         {name: "Squash (revet)", amount: "1"},
         {name: "Aubergine (revet)", amount: "1"},
         {name: "Tomatpuré", amount: "1 dl"},
-        {name: "Hakkedetomater ", amount: "2 dåser"},
+        {name: "Hakkedetomater", amount: "2 dåser"},
         {name: "Rødvin", amount: "1 dl"},
         {name: "Hakketoksekød", amount: "500g"},
         {name: "Timian", amount: "1 tsk"},
