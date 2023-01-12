@@ -31,6 +31,7 @@
 
 <svelte:head>
     <title>Cookie Boogie - {r.title}</title>
+    <meta name="description" content={r.shortDesc}>
 </svelte:head>
 
 <ContentNarrow title={r.title}>
@@ -42,7 +43,7 @@
     <div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-neutral text-neutral-content">
         {#each r.ingredients as i}
             <div class="flex justify-between gap-4">
-                <input type="checkbox" checked={$ingredients.includes(i.name) ? 'checked' : ''}
+                <input type="checkbox" checked={$ingredients.includes(i.name) ? "checked" : ""}
                        on:click={() => toggleIngredient(i.name)} class="checkbox bg-neutral-content">
                 <span class="grow">{i.name}{i.amount ? `, ${i.amount}` : ""}</span>
             </div>
