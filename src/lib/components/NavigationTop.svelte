@@ -102,6 +102,6 @@
 	</div>
 </div>
 
-<div class=" min-h-content">
+<div class="min-h-content">
 	<slot />
 </div>

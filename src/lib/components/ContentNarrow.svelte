@@ -2,7 +2,7 @@
 	export let title = "Missing title 🔥";
 </script>
 
-<div class="m-auto prose py-nav sm:px-0 px-4">
+<div class="m-auto max-w-screen-sm px-4 prose py-nav">
 	<h1>{title}</h1>
 
 	<slot />
