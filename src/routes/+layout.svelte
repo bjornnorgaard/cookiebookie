@@ -11,7 +11,7 @@
     <slot/>
 </NavigationTop>
 
-<footer class="pb-8 sm:px-8 bg-neutral-content text-neutral">
+<footer class="pb-8 sm:px-8 bg-neutral-content">
     <div class="m-auto flex max-w-screen-sm flex-col justify-between gap-4 text-center sm:flex-row sm:px-8 sm:py-4 sm:text-left">
         <div>
             <p>Recipes by Bear<br/>Providing unreliable cooking aid since 2023</p>
