@@ -4,7 +4,11 @@
 	import { recipes } from "$lib/stores/recipes.js";
 </script>
 
-<ContentNarrow title="Nyeste opskrifter">
+<svelte:head>
+	<meta name="description" content="Hjemmelavede opskrifter af kraftigt varierende kvalitet">
+</svelte:head>
+
+<ContentNarrow title="Seneste opskrifter">
 	<div class="gap-4 grid-list">
 		{#each [...$recipes] as [slug, recipe]}
 			<RecipeLinkCard {slug} />

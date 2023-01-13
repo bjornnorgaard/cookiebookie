@@ -14,6 +14,7 @@ export const ristaffel: Recipe = {
         {name: "Bananer", amount: "mindst en pr. pers"},
         {name: "Mango Chutney", amount: ""},
         {name: "Et stort æble", amount: ""},
+        {name: "Løg", amount: "1-100 stk"},
         {name: "Peanuts", amount: ""},
         {name: "Karry", amount: ""},
         {name: "Ris", amount: ""},
@@ -21,7 +22,7 @@ export const ristaffel: Recipe = {
     steps: [
         {title: "Brus karryen af", desc: "Smid noget fedtstof i en stor gryde og brus karryen af (mere karry end du tror)."},
         {title: "Gør som hakkedyret", desc: "Hak løg og smid dem i når karryen er blevet lidt mørk."},
-        {title: "Kvadratisk, praktisk, æble", desc: "Hak æblet i stykker på cirka 1cm^3 (meget vigtigt) og smid det i når løgene er gule."},
+        {title: "Kvadratisk, praktisk, æble", desc: "Hak æblet i stykker på cirka en kubikcentimeter, (meget vigtigt) - og smid dem i når løgene er gule."},
         {title: "Nu sker der noget", desc: "Kokosmælken hældes i."},
         {title: "Tid til kylle", desc: "Kyllingen skæres i gode stykker og puttes i når kokosmælken ikke klumper mere."},
         {title: "Så skal der fraises noget creme", desc: "Når kyllingen ikke længere er rå, hældes creme fraisen i."},
