@@ -13,6 +13,19 @@ function cleanRecipe(r: Recipe): Recipe {
     if (!r.image.trim()) {
         r.image = `https://picsum.photos/700/300`;
     }
-
+    if (!r.slug) {
+        r.slug = createSlugFromTitle(r.title)
+    }
     return r;
+}
+
+const createSlugFromTitle = (str: string) => {
+    str = str
+        .replace("a", "ae")
+        .replace("ø", "o")
+        .replace("å", "a");
+
+    let parsedStr = str.replace(/[^a-zA-Z0-9-_]/g, ' ').trim();
+    parsedStr = parsedStr.replace(/\s+/g, '-');
+    return parsedStr.toLowerCase();
 }
