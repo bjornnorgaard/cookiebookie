@@ -16,7 +16,7 @@
         <div>
             <p>Recipes by Bear<br/>Providing unreliable cooking advice since 2023</p>
         </div>
-        <div class="flex items-center justify-center gap-4 sm:justify-end">
+        <div class="flex items-end justify-center gap-4 sm:justify-end">
             <a href="https://github.com/bjornnorgaard/cookieboogie">
                 <img width="24" height="24" src="/icons/github.svg" alt="github logo">
             </a>
