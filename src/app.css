@@ -1,6 +1,12 @@
+@import "@fontsource/montserrat";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    font-family:  "Montserrat", sans-serif;
+}
 
 .grid-list {
     display: grid;
