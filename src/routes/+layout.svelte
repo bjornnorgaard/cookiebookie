@@ -14,7 +14,7 @@
 <footer class="pb-8 bg-neutral-content sm:px-8">
     <div class="m-auto flex max-w-screen-sm flex-col justify-between gap-4 text-center sm:flex-row sm:px-8 sm:py-4 sm:text-left">
         <div>
-            <p>Recipes by Bear<br/>Providing unreliable cooking advice since 2023.</p>
+            <p>Recipes by Bear<br/>Providing unreliable cooking advice since 2023</p>
         </div>
         <div class="flex items-center justify-center gap-4 sm:justify-end">
             <a href="https://github.com/bjornnorgaard/cookieboogie">
