@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-    <title>{r.title} | cookieboogie.dk</title>
+    <title>{r.title} | Cookie Boogie</title>
     <meta content={r.shortDesc} name="description">
 </svelte:head>
 
