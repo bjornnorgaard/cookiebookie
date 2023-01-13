@@ -9,7 +9,7 @@ export const tomatsalat: Recipe = {
     ingredients: [
         {name: "Cherrytomater", amount: "600g"},
         {name: "Mozzarrella", amount: "300g"},
-        {name: "Rødlæg", amount: "1"},
+        {name: "Rødløg", amount: "1"},
         {name: "Fetaost", amount: "200g"},
         {name: "Frisk basilikum", amount: ""},
         {name: "Olivenolie", amount: ""},
