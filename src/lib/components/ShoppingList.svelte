@@ -43,7 +43,7 @@
 
 <div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-neutral-focus text-neutral-content">
     {#each recipe.ingredients as i (i.name)}
-        <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 2000}}
+        <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 3000}}
              class="flex justify-between gap-4">
 
             <input type="checkbox"
