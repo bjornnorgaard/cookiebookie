@@ -29,7 +29,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/montserrat": "^4.5.13",
 		"daisyui": "^2.46.1"
 	}
 }
