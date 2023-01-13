@@ -4,8 +4,6 @@ export const ristaffel: Recipe = {
     slug: "ristaffel",
     title: "Ristaffel",
     image: "",
-    shortDesc: "Ris, kokus, kylling og alle de goder sager!",
-    longDesc: "Det ender cirka i den mængde jeg plejer at lave. Så er der også til morgenmad næste dag. Så må du sjusse dig frem til en nogenlunde mængde.",
     ingredients: [
         {name: "Kylling", amount: "cirka 500 gram"},
         {name: "Creme Fraise", amount: "½ liter"},
