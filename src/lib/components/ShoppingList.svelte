@@ -11,7 +11,7 @@
 
     onMount(() => {
         have.set(JSON.parse(localStorage.getItem(recipe.slug)) || []);
-        setTimeout(() => sortIngredients(), 500);
+        sortIngredients();
     })
 
     const onCheckChange = (name: string) => {
@@ -43,7 +43,7 @@
 
 <div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-neutral-focus text-neutral-content">
     {#each recipe.ingredients as i (i.name)}
-        <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 3000}}
+        <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 2000}}
              class="flex justify-between gap-4">
 
             <input type="checkbox"

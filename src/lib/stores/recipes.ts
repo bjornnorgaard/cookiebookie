@@ -1,6 +1,6 @@
 import type { Recipe } from "$lib/types/recipe";
 import { readable } from "svelte/store";
-import { all } from "$lib/recipes/_all";
+import { all } from "../../recipes/_all";
 
 export const recipes = readable<Map<string, Recipe>>(new Map<string, Recipe>(), (set) => {
     all.map(r => cleanRecipe(r))

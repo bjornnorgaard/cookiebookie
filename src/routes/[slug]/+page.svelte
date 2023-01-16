@@ -11,6 +11,11 @@
 <svelte:head>
     <title>{r.title} | Cookie Boogie</title>
     <meta content={r.shortDesc} name="description">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content={r.title}>
+    <meta property="og:description" content={r.shortDesc}>
 </svelte:head>
 
 <ContentNarrow title={r.title}>
