@@ -1,22 +1,16 @@
-# create-svelte
+# Cookie Boogie
 
-Everything you need to build a Svelte project, powered
-by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Læs her hvordan du tilføjer nye opskrifter.
 
-## Creating a project
+- Opskrifterne findes i mappen ``src/recipes``
+- Tilføj en ny opskrift ved at oprette en fil i mappen
+- Overhold formatet vist i de andre opskrifter
+- Tilføje opskrifen til `_all.ts`
+- Opret et PR på GitHub.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+Så ruller det automatisk ud, når jeg engang godkender ændringen.
 
 ## Developing
-
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a
 development server:
 
@@ -28,7 +22,6 @@ npm run dev -- --open
 ```
 
 ## Building
-
 To create a production version of your app:
 
 ```bash
