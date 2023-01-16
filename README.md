@@ -1,6 +1,6 @@
 # Cookie Boogie
 
-Læs her hvordan du tilføjer nye opskrifter.
+Sådan her tilføjer du nye opskrifter.
 
 - Opskrifterne findes i mappen ``src/recipes``
 - Tilføj en ny opskrift ved at oprette en fil i mappen
