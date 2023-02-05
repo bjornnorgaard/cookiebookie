@@ -5,9 +5,10 @@ export const sorensPastaret: Recipe = {
     title: "Sørens Pastaret",
     image: "",
     shortDesc: "Lav indsats, pisse lækker pastaret.",
-    longDesc: "Nem ret. Smid det hele i et fad og bland. " +
-        "Tager ingen tid at forbedrede og skal bare " +
-        "glemmes i ovnen i alt mellem 30 minutter og 24 timer - bliver nice.",
+    longDesc: "Nem ret. Smid det hele i et fad og bland. Kan sagtens klare " +
+        "random grønsager - rosenkål og porre er ikke fjenden! " +
+        "Tager ingen tid at forbedrede og skal bare glemmes i ovnen i " +
+        "alt mellem 30 minutter og 24 timer - bliver nice.",
     ingredients: [
         {name: "Fyldt pasta", amount: "400g"},
         {name: "Hakkede tomater", amount: "2-3 dåser"},
