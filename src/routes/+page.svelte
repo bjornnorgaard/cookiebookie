@@ -10,7 +10,7 @@
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://www.cookieboogie.dk/">
-	<meta property="og:title" content="Cookie Boogie: Bedre opskriter, mindre pis">
+	<meta property="og:title" content="Cookie Boogie | Bedre opskriter, mindre pis">
 	<meta property="og:description" content="Hjemmelavede opskrifter af kraftigt varierende kvalitet">
 </svelte:head>
 
