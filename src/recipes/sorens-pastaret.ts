@@ -15,6 +15,7 @@ export const sorensPastaret: Recipe = {
         {name: "Fløde", amount: "1/4 liter fløde"},
         {name: "Havarti ost (revet)", amount: "200g"},
         {name: "Grønsag", amount: "Nok"},
+        {name: "Bacon", amount: "~200g"},
         {name: "Salt og peber", amount: ""},
     ],
     steps: [
