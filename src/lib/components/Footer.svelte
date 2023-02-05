@@ -4,7 +4,7 @@
             <p>Recipes by Bear<br/>Providing unreliable cooking advice since 2023</p>
         </div>
         <div class="flex items-end justify-center gap-4 sm:justify-end">
-            <a href="https://github.com/bjornnorgaard/cookieboogie">
+            <a href="https://github.com/bjornnorgaard/cookiebookie">
                 <img width="24" height="24" src="/icons/github.svg" alt="github logo">
             </a>
             <a href="https://www.linkedin.com/in/bjorn-norgaard">

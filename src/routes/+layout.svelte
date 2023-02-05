@@ -4,7 +4,7 @@
     import Footer from "$lib/components/Footer.svelte";
 </script>
 
-<NavigationTop homeLabel="Cookie Boogie" homeRoute="/">
+<NavigationTop homeLabel="Cookie Bookie" homeRoute="/">
     <slot/>
 </NavigationTop>
 

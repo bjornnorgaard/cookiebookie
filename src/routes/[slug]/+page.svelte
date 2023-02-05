@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-    <title>{r.title} | Cookie Boogie</title>
+    <title>{r.title} | Cookie Bookie</title>
     <meta content={r.shortDesc} name="description">
 
     <!-- Open Graph / Facebook -->
