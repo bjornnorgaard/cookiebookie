@@ -1,6 +1,6 @@
 import type { Recipe } from "$lib/types/recipe";
 
-export const pastaret: Recipe = {
+export const sorensPastaret: Recipe = {
     slug: "sorens-pastaret",
     title: "Sørens Pastaret",
     image: "",
@@ -34,7 +34,7 @@ export const pastaret: Recipe = {
         {
             title: "Du er der næsten!",
             desc: "Nu skal den bare have til du ikke tør mere. " +
-                "I stræberversionen kan man også røre i den under inspektionerne"
+                "I stræberversionen kan man også røre i den under inspektionerne."
         },
     ],
 };
