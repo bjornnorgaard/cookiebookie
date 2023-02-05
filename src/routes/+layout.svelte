@@ -5,6 +5,7 @@
 </script>
 
 <svelte:head>
+    <title>Cookie Bookie | Bedre opskriter, mindre pis</title>
     <meta name="description" content="Hjemmelavede opskrifter af kraftigt varierende kvalitet">
 
     <!-- Open Graph / Facebook -->
