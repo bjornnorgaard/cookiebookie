@@ -30,7 +30,7 @@ export const sorensPastaret: Recipe = {
         },
         {
             title: "Ovnen klarer resten",
-            desc: "Det skal næppe have mindre end 30 minutter, men nok mere." +
+            desc: "Det skal næppe have mindre end 30 minutter, men nok mere. " +
                 "Kig på den hver 20. minut og tænk dig om."
         },
         {
