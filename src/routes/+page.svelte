@@ -4,16 +4,6 @@
 	import { recipes } from "$lib/stores/recipes.js";
 </script>
 
-<svelte:head>
-	<meta name="description" content="Hjemmelavede opskrifter af kraftigt varierende kvalitet">
-
-	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="https://www.cookiebookie.dk/">
-	<meta property="og:title" content="Cookie Bookie | Bedre opskriter, mindre pis">
-	<meta property="og:description" content="Hjemmelavede opskrifter af kraftigt varierende kvalitet">
-</svelte:head>
-
 <ContentNarrow title="Seneste opskrifter">
 	<div class="gap-4 grid-list">
 		{#each [...$recipes] as [slug, recipe]}
