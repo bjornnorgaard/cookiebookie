@@ -31,7 +31,7 @@ export const lasagne: Recipe = {
     steps: [
         {
             title: "Løgløg, hvide løg og olie oliven",
-            desc: "Start med at pille og hakke løg og hvidløg fint og steg det i lidt olivenolie let på en pande uden at det tager farve.",
+            desc: "Først skal vi pille og hakke. Start med løg og hvidløg. Det skal være fint, og steges i lidt olivenolie. Kun let på en pande uden at det tager farve!",
         },
         {
             title: "Kød og vin",
