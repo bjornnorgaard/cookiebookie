@@ -3,7 +3,7 @@ import type { Recipe } from "$lib/types/recipe";
 export const sorensPastaret: Recipe = {
     slug: "sorens-pastaret",
     title: "Sørens Pastaret",
-    image: "",
+    image: "https://picsum.photos/id/98/700/300",
     shortDesc: "Lav indsats, pisse lækker pastaret.",
     longDesc: "Nem ret. Smid det hele i et fad og bland. Kan sagtens klare " +
         "random grønsager - rosenkål og porre er ikke fjenden! " +

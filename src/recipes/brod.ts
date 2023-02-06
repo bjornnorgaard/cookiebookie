@@ -3,7 +3,7 @@ import type { Recipe } from "$lib/types/recipe";
 export const brod: Recipe = {
     slug: "brod",
     title: "Uæltet brød",
-    image: "",
+    image: "https://picsum.photos/id/40/700/300",
     shortDesc: "Lækkert lyst, tæt og svampet brød, som ikke skal æltes. I hvert fald ikke særlig meget.",
     longDesc: "Efter at have konsulteret internettet lader dette til at være opskriften på sejr. Vi ælter ingenting, næsten, men tingene skal nu blandes alligevel - livet er hårdt. " +
         "Når det skal bages, forvarmer jeg en stor støbejernsgryde ved max ovn. Alternativt kan et bagestål bruges. " +
