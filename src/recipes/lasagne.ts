@@ -1,7 +1,7 @@
 import type { Recipe } from "$lib/types/recipe";
 
 export const lasagne: Recipe = {
-    slug: "",
+    slug: "lasagne",
     title: "Den første lasagne",
     image: "",
     shortDesc: "Lasagne baseret på en kombination af alle opskrifter jeg kunne finde.",
