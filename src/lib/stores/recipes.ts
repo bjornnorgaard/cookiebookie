@@ -11,7 +11,7 @@ export const recipes = readable<Map<string, Recipe>>(new Map<string, Recipe>(), 
 
 function cleanRecipe(r: Recipe): Recipe {
     if (!r.image.trim()) {
-        r.image = `https://picsum.photos/700/300`;
+        r.image = `https://picsum.photos/seed/${r.slug}/700/300`;
     }
     if (!r.slug) {
         r.slug = createSlugFromTitle(r.title)
