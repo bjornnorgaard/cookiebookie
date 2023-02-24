@@ -35,11 +35,11 @@ export const lasagne: Recipe = {
         },
         {
             title: "Kød og vin",
-            desc: "Tilsæt kødet og lad det stege med, til alt kødet har taget farve. Hæld rødvin ved og lad det boble med et par minutter.",
+            desc: "Tilsæt kødet og lad det stege med, til alt kødet har taget farve. Hæld rødvin ved og lad det boble med nogle minutter.",
         },
         {
             title: "Tomat, fond og urter",
-            desc: "Tilsæt hakket tomat og oksefond og rør det hele sammen. Bind dine krydderuderter sammen (du har nu lavet en bouquet garni) og læg ned i gryden.",
+            desc: "Tilsæt hakket tomat og oksefond. Rør det hele sammen. Bind dine krydderuderter sammen (du har nu lavet en bouquet garni) og læg dem ned i gryden.",
         },
         {
             title: "Simre, slumre, simmer",
@@ -47,11 +47,11 @@ export const lasagne: Recipe = {
         },
         {
             title: "Beper og zalt",
-            desc: "Smag til med salt og peber (og evt. lidt chili hvis du vil give det et pift).",
+            desc: "Smag til med salt og peber - og evt. lidt chili hvis bedstemor ikke spiser med.",
         },
         {
             title: "Bonus",
-            desc: "Evt. tilføj mørk balsamico eller en anden god eddike, hvis du synes saucen mangler syre.",
+            desc: "Du kan med fordel tilføje mørk balsamico eller en anden god eddike, hvis saucen mangler syre.",
         },
     ],
 };
