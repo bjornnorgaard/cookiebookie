@@ -25,6 +25,6 @@ export const brod: Recipe = {
         {title: "Brænd nu ikke dine små dumme fingre", desc: "Smid den på et stykke velmelet bagepapir og sprøjt den gavmildt til med vand. Sænk den så forsigtigt ned i din støbejernsgryde (pas nu på pølserne). Sæt låg på og efterlad i ovnen i 20 minutter før næste inspektion."},
         {title: "Tjekketid", desc: "Kig til brødet. Hvis den ikke er færdig, sættes du den tilbage i ovnen. Hvis du er i tvivl spørger du en voksen."},
         {title: "La' det lig'", desc: "I mindst en time før du fucker med brødet. Alt er spildt hvis du rør den før - det kan ikke diskuteres!"},
-        {title: "Skær den over på midten", desc: "Når du har ventet i en time, må du skære den over på midten og sende et billede til mor - det er vigtigt. Husk tandsmør, ost i tykke skiver og lidt salt - selv tak!"},
+        {title: "Skær den over på midten", desc: "Når du har ventet i en time, må du skære den over på midten og sender et billede til mor - det er vigtigt. Husk tandsmør, ost i tykke skiver og lidt salt - selv tak!"},
     ],
 };
