@@ -5,7 +5,7 @@ export const tomatsalat: Recipe = {
     title: "Tomatsalat",
     image: "https://picsum.photos/id/122/700/300",
     shortDesc: "En farverig skål med tomat, mozzarella og alt hvad jeg ellers kunne finde på.",
-    longDesc: "Det kan være meget fristende at smide mere end ét rødløg i, men for første gang i historien skal man lige tæmme følelserne og forholde sig i ro. I denne opskrift smager det skidt virkelig igennem, så slap af med løgene.",
+    longDesc: "Det kan være meget fristende at smide mere end ét rødløg i, men for første gang i historien skal vi lige tæmme følelserne og forholde os i ro. I denne opskrift smager det skidt virkelig igennem, så slap af med løgene.",
     ingredients: [
         {name: "Cherrytomater", amount: "600g"},
         {name: "Mozzarrella", amount: "300g"},
