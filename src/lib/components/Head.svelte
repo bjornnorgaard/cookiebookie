@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Recipe } from "../types/recipe";
-    import StructuredDataRecipe from "$lib/components/StructuredRecipe.svelte";
+    import StructuredDataRecipe from "$lib/components/StructuredDataRecipe.svelte";
     import { seoImgHeight, seoImgWidth } from "../constants/seo";
 
     const name = "Cookie Bookie";
