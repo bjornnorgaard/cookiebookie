@@ -9,11 +9,12 @@ const config = {
     kit: {
         adapter: adapter(),
         csp: {
-            mode: "hash",
+            mode: "auto",
             directives: {
-                "script-src": ["self", "unsafe-inline", "www.googletagmanager.com"],
+                "script-src": ["self", "unsafe-inline"],
                 "object-src": ["none"],
-            },
+                "base-uri": ["self"],
+            }
         },
     },
 };
