@@ -28,7 +28,7 @@
             "@type": "NutritionInformation",
             "calories": "270 calories"
         }, */
-        "recipeIngredient": recipe.ingredients.map(i => `${i.amount ?? ""}${i.name}`),
+        "recipeIngredient": recipe.ingredients.map(i => i.amount ? `${i.amount} ${i.name}` : i.name),
         "recipeInstructions": recipe.steps.map(s => ({
             "@type": "HowToStep",
             "name": s.title,
