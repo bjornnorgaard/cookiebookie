@@ -45,10 +45,8 @@
     <meta property="og:description" content={description}>
     <meta property="og:url" content={url}>
 
-    {#if image}
-        <meta property="og:image" content={image}>
-        <meta property="og:image:width" content={size}>
-        <meta property="og:image:height" content={size}>
-        <meta property="og:image:type" content="image/jpeg">
-    {/if}
+    <meta property="og:image" content={image}>
+    <meta property="og:image:width" content={size}>
+    <meta property="og:image:height" content={size}>
+    <meta property="og:image:type" content="image/jpeg">
 </svelte:head>
