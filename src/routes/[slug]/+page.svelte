@@ -13,7 +13,7 @@
 
 <ContentNarrow title={r.title}>
     <img class="rounded-lg drop-shadow-lg"
-         src={`${r.image}/700/300`} alt={r.title}
+         src={`${r.image}/1260/540`} alt={r.title}
          height="300" width="700">
     <p class="m-0">{r.longDesc}</p>
 
