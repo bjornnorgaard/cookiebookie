@@ -12,8 +12,9 @@
     let type = "website";
     let url = host;
 
-    const size = 512;
-    let image = `https://picsum.photos/id/292/${size}/${size}`;
+    const width = 1200;
+    const height = 630;
+    let image = `https://picsum.photos/id/292/${width}/${height}`;
 
     export let recipe: Recipe | undefined = undefined;
 
@@ -23,7 +24,7 @@
             description = recipe.shortDesc;
             type = "article";
             url = `${url}/${recipe.slug}`;
-            image = `${recipe.image}/${size}/${size}`;
+            image = `${recipe.image}/${width}/${height}`;
             return;
         }
     });
@@ -47,8 +48,8 @@
     <meta property="og:url" content={url}>
 
     <meta property="og:image" content={image}>
-    <meta property="og:image:width" content={size}>
-    <meta property="og:image:height" content={size}>
+    <meta property="og:image:width" content={width}>
+    <meta property="og:image:height" content={height}>
     <meta property="og:image:type" content="image/jpeg">
 
     <meta property="twitter:domain" content={domain}>
