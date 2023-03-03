@@ -11,7 +11,7 @@ const config = {
         csp: {
             mode: "hash",
             directives: {
-                "script-src": ["self", "unsafe-inline"],
+                "script-src": ["self", "unsafe-inline", "www.googletagmanager.com"],
                 "object-src": ["none"],
             },
         },
