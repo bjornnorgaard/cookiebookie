@@ -4,7 +4,7 @@ export const sorensPastaret: Recipe = {
     slug: "sorens-pastaret",
     title: "Sørens Pastaret",
     image: "https://picsum.photos/id/98",
-    shortDesc: "Lav indsats, pisse lækker pastaret.",
+    shortDesc: "Pastaret. Lav indsats. Super lækker. Mums.",
     longDesc: "Nem ret. Smid det hele i et fad og bland. Kan sagtens klare " +
         "random grønsager - rosenkål og porre er ikke fjenden! " +
         "Tager ingen tid at forberede og skal bare glemmes i ovnen i " +

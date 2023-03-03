@@ -4,7 +4,7 @@ export const brod: Recipe = {
     slug: "brod",
     title: "Uæltet brød",
     image: "https://picsum.photos/id/40",
-    shortDesc: "Lækkert lyst, tæt og svampet brød, som ikke skal æltes. I hvert fald ikke særlig meget.",
+    shortDesc: "Lækkert, tæt og svampet brød, som ikke skal æltes - særlig meget",
     longDesc: "Efter at have konsulteret internettet lader dette til at være opskriften på sejr. Vi ælter ingenting, næsten, men tingene skal nu blandes alligevel - livet er hårdt. " +
         "Når det skal bages, forvarmer jeg en stor støbejernsgryde ved max ovn. Alternativt kan et bagestål bruges. " +
         "Ellers kan den sikkert også ligge på en bageplade uden at gå i stykker - hvem ved.",

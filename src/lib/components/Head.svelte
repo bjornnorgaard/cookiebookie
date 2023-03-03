@@ -19,7 +19,7 @@
     export let recipe: Recipe | undefined;
 
     if (recipe) {
-        title = `${recipe.title} - ${recipe.shortDesc}`;
+        title = recipe.shortDesc;
         description = recipe.longDesc;
         type = "article";
         url = `${url}/${recipe.slug}`;
