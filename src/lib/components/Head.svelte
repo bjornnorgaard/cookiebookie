@@ -8,7 +8,8 @@
     const author = "Bjørn Nørgaard";
 
     let title = `${name} - bedre opskriter, mindre pis`;
-    let description = "Hjemmelavede opskrifter af kraftigt varierende kvalitet";
+    let description = "Hjemmelavede opskrifter af kraftigt varierende kvalitet. " +
+        "Skrevet i et uformelt, og forhåbentligt, morsomt sprog, som er let at følge.";
     let type = "website";
     let url = host;
 
