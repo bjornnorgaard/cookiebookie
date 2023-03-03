@@ -19,12 +19,11 @@
     export let recipe: Recipe | undefined;
 
     if (recipe) {
-        title = recipe.title;
+        title = `${recipe.title} - ${recipe.shortDesc}`;
         description = recipe.longDesc;
         type = "article";
         url = `${url}/${recipe.slug}`;
         image = `${recipe.image}/${width}/${height}`;
-
     }
 </script>
 
