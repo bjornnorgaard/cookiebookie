@@ -22,7 +22,7 @@
             description = recipe.shortDesc;
             type = "article";
             url = `${url}/${recipe.slug}`;
-            image = recipe.image;
+            image = `${recipe.image}/${size}/${size}`;
             return;
         }
     });
