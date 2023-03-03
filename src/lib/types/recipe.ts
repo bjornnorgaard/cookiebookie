@@ -1,8 +1,8 @@
 export interface Recipe {
 	slug: string;
-	title: string;
+	title: string; // 35-65
 	shortDesc: string;
-	longDesc: string;
+	longDesc: string; // 70-320
 	image: string;
 	ingredients: Ingredient[];
 	steps: Step[];
