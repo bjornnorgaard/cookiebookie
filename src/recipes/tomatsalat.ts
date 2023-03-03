@@ -3,7 +3,7 @@ import type { Recipe } from "$lib/types/recipe";
 export const tomatsalat: Recipe = {
     slug: "tomatsalat",
     title: "Tomatsalat",
-    image: "https://picsum.photos/id/122/700/300",
+    image: "https://picsum.photos/id/122",
     shortDesc: "En farverig skål med tomat, mozzarella og alt hvad jeg ellers kunne finde på.",
     longDesc: "Det kan være meget fristende at smide mere end ét rødløg i, men for første gang i historien skal vi lige tæmme følelserne og forholde os i ro. I denne opskrift smager det skidt virkelig igennem, så slap af med løgene.",
     ingredients: [

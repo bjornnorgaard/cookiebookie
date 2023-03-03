@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { Recipe } from "../types/recipe";
-    import messy_pots from "$lib/images/messy_pots.jpg";
     import { onMount } from "svelte";
 
     const name = "Cookie Bookie";
@@ -12,10 +11,8 @@
     let type = "website";
     let url = host;
 
-    let image = messy_pots;
-    const attribution = "Photo by Scott Umstattd on Unsplash"
-    let height = 427;
-    let width = 640;
+    const size = 512;
+    let image = `https://picsum.photos/id/292/${size}/${size}`;
 
     export let recipe: Recipe | undefined = undefined;
 
@@ -26,8 +23,6 @@
             type = "article";
             url = `${url}/${recipe.slug}`;
             image = recipe.image;
-            height = 300;
-            width = 700;
             return;
         }
     });
@@ -50,18 +45,10 @@
     <meta property="og:description" content={description}>
     <meta property="og:url" content={url}>
 
-    <!-- Photo by Scott Umstattd on Unsplash -->
-    <meta property="og:image" content={image}>
-    <meta property="og:image:photographer" content={attribution}>
-    <meta property="og:image:width" content={width}>
-    <meta property="og:image:height" content={height}>
-    <meta property="og:image:type" content="image/jpeg">
-
-    <!-- Ignored for now -->
-    <!-- <meta property="article:published_time" content=""> -->
-    <!-- <meta property="article:modified_time" content=""> -->
-    <!-- <meta name="twitter:label1" content=""> -->
-    <!-- <meta name="twitter:data1" content=""> -->
-    <!-- <meta name="twitter:label2" content=""> -->
-    <!-- <meta name="twitter:data2" content=""> -->
+    {#if image}
+        <meta property="og:image" content={image}>
+        <meta property="og:image:width" content={size}>
+        <meta property="og:image:height" content={size}>
+        <meta property="og:image:type" content="image/jpeg">
+    {/if}
 </svelte:head>

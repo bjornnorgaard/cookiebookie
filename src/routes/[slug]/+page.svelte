@@ -12,7 +12,9 @@
 <Head recipe={r}/>
 
 <ContentNarrow title={r.title}>
-    <img alt="placeholder" class="rounded-lg drop-shadow-lg" height="300" src={r.image} width="700">
+    <img class="rounded-lg drop-shadow-lg"
+         src={`${r.image}/700/300`} alt={r.title}
+         height="300" width="700">
     <p class="m-0">{r.longDesc}</p>
 
     <ShoppingList recipe={r}/>

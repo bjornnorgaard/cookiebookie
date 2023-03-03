@@ -3,7 +3,7 @@ import type { Recipe } from "$lib/types/recipe";
 export const ristaffel: Recipe = {
     slug: "ristaffel",
     title: "Ristaffel",
-    image: "https://picsum.photos/id/82/700/300",
+    image: "https://picsum.photos/id/82",
     shortDesc: "Ris, kokus, kylling og alle de goder sager!",
     longDesc: "Det ender cirka i den mængde jeg plejer at lave. Så er der også til morgenmad næste dag. Så må du sjusse dig frem til en nogenlunde mængde.",
     ingredients: [
