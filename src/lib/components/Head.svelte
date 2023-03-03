@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { Recipe } from "../types/recipe";
-    import { onMount } from "svelte";
 
     const name = "Cookie Bookie";
     const domain = "cookiebookie.dk"
@@ -9,7 +8,7 @@
 
     let title = `${name} - bedre opskriter, mindre pis`;
     let description = "Hjemmelavede opskrifter af kraftigt varierende kvalitet. " +
-        "Skrevet i et uformelt, og forhåbentligt, morsomt sprog, som er let at følge.";
+        "Skrevet i et uformelt og, forhåbentligt, morsomt sprog, som er let at følge.";
     let type = "website";
     let url = host;
 
@@ -17,18 +16,16 @@
     const height = 630;
     let image = `https://picsum.photos/id/292/${width}/${height}`;
 
-    export let recipe: Recipe | undefined = undefined;
+    export let recipe: Recipe | undefined;
 
-    onMount(() => {
-        if (recipe) {
-            title = recipe.title;
-            description = recipe.longDesc;
-            type = "article";
-            url = `${url}/${recipe.slug}`;
-            image = `${recipe.image}/${width}/${height}`;
-            return;
-        }
-    });
+    if (recipe) {
+        title = recipe.title;
+        description = recipe.longDesc;
+        type = "article";
+        url = `${url}/${recipe.slug}`;
+        image = `${recipe.image}/${width}/${height}`;
+
+    }
 </script>
 
 <svelte:head>
