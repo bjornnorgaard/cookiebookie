@@ -3,20 +3,13 @@
     import ContentNarrow from "$lib/components/ContentNarrow.svelte";
     import { recipes } from "$lib/stores/recipes";
     import ShoppingList from "$lib/components/ShoppingList.svelte";
+    import Head from "$lib/components/Head.svelte";
 
     const slug = $page.params.slug;
     const r = $recipes.get(slug);
 </script>
 
-<svelte:head>
-    <title>{r.title} | Cookie Bookie</title>
-    <meta content={r.shortDesc} name="description">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content={r.title}>
-    <meta property="og:description" content={r.shortDesc}>
-</svelte:head>
+<Head recipe={r}/>
 
 <ContentNarrow title={r.title}>
     <img alt="placeholder" class="rounded-lg drop-shadow-lg" height="300" src={r.image} width="700">
