@@ -1,2 +1,2 @@
-export const seoImgHeight = 630;
-export const seoImgWidth = 1200;
+export const seoImgHeight = 800;
+export const seoImgWidth = 1400;
