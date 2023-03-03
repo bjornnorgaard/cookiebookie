@@ -7,7 +7,7 @@ export const boller: Recipe = {
     shortDesc: "Kommer snart...",
     longDesc: "Vi er der ikke helt endnu!",
     ingredients: [
-        {name: "Mel", amount: "tjaa"},
+        {name: "Mel", amount: "tror jeg nok"},
     ],
     steps: [
         {title: "Første skridt", desc: "Ingen ide"},
