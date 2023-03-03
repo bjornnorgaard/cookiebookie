@@ -21,7 +21,7 @@
     onMount(() => {
         if (recipe) {
             title = recipe.title;
-            description = recipe.shortDesc;
+            description = recipe.longDesc;
             type = "article";
             url = `${url}/${recipe.slug}`;
             image = `${recipe.image}/${width}/${height}`;
