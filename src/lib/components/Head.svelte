@@ -60,8 +60,8 @@
     <meta name="twitter:image" content={image}>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZT1Z6X8C7F"></script>
-    <script>
+    <script nonce="%svelktekit.nonce%" async src="https://www.googletagmanager.com/gtag/js?id=G-ZT1Z6X8C7F"></script>
+    <script nonce="%svelktekit.nonce%">
         window.dataLayer = window.dataLayer || [];
 
         function gtag() {
