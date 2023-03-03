@@ -6,7 +6,7 @@
     const host = "https://www.cookiebookie.dk";
     const author = "Bjørn Nørgaard";
 
-    let title = `${name} | Bedre opskriter, mindre pis`;
+    let title = `${name} - bedre opskriter, mindre pis`;
     let description = "Hjemmelavede opskrifter af kraftigt varierende kvalitet";
     let type = "website";
     let url = host;
@@ -49,4 +49,25 @@
     <meta property="og:image:width" content={size}>
     <meta property="og:image:height" content={size}>
     <meta property="og:image:type" content="image/jpeg">
+
+
+    <!-- HTML Meta Tags -->
+    <title>Cookie Bookie | Bedre opskriter, mindre pis</title>
+    <meta name="description" content="Hjemmelavede opskrifter af kraftigt varierende kvalitet">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://cookiebookie.dk/ristaffel">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Cookie Bookie | Bedre opskriter, mindre pis">
+    <meta property="og:description" content="Hjemmelavede opskrifter af kraftigt varierende kvalitet">
+    <meta property="og:image" content="https://picsum.photos/id/292/512/512">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="cookiebookie.dk">
+    <meta property="twitter:url" content="https://cookiebookie.dk/ristaffel">
+    <meta name="twitter:title" content="Cookie Bookie | Bedre opskriter, mindre pis">
+    <meta name="twitter:description" content="Hjemmelavede opskrifter af kraftigt varierende kvalitet">
+    <meta name="twitter:image" content="https://picsum.photos/id/292/512/512">
+
 </svelte:head>
