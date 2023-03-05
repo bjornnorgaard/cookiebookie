@@ -8,7 +8,7 @@
     const host = `https://www.${domain}`;
     const author = "Bjørn Nørgaard";
 
-    let title = `${name} - bedre opskriter, mindre pis og ingen reklamer`;
+    let title = `${name} - Bedre opskriter, mindre pis og ingen reklamer`;
     let description = "Simple opskrifter og gode råd om madlavning. " +
         "Skrevet i et uformelt og, forhåbentligt, morsomt sprog, som er let at følge. " +
         "Ingen lange oprindelseshistorier - og naturligvis uden irriterende reklamer.";
