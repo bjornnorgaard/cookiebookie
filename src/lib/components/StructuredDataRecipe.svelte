@@ -21,9 +21,9 @@
         // "cookTime": "PT30M",
         // "totalTime": "PT50M",
         "keywords": recipe.title,
-        // "recipeYield": "4",
-        // "recipeCategory": "Dessert",
-        // "recipeCuisine": "Danish",
+        "recipeYield": "2",
+        "recipeCategory": "Dinner",
+        "recipeCuisine": "Danish",
         /* "nutrition": {
             "@type": "NutritionInformation",
             "calories": "270 calories"
@@ -34,7 +34,7 @@
             "name": s.title,
             "text": s.desc,
             // "url": "https://example.com/party-coffee-cake#step1",
-            "image": `${recipe.image}/${seoImgWidth}/${seoImgHeight}`,
+            // "image": `${recipe.image}/${seoImgWidth}/${seoImgHeight}`,
         })),
         /* "aggregateRating": {
             "@type": "AggregateRating",
