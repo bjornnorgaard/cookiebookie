@@ -1,9 +1,10 @@
 import type { Recipe } from "$lib/types/recipe";
+import { picsumHost } from "../lib/constants/picsum";
 
 export const risotto: Recipe = {
     slug: "risotto",
     title: "Risotto",
-    image: "https://picsum.photos/id/344",
+    image: `${picsumHost}/id/344`,
     shortDesc: "Kommer snart...",
     longDesc: "Vi er der ikke helt endnu!",
     ingredients: [

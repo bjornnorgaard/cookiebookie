@@ -2,6 +2,7 @@
     import type { Recipe } from "../types/recipe";
     import StructuredDataRecipe from "$lib/components/StructuredDataRecipe.svelte";
     import { seoImgHeight, seoImgWidth } from "../constants/seo";
+    import { picsumHost } from "../constants/picsum";
 
     const name = "Cookie Bookie";
     const domain = "cookiebookie.dk"
@@ -17,7 +18,7 @@
 
     const width = seoImgWidth;
     const height = seoImgHeight;
-    let image = `https://picsum.photos/id/292/${width}/${height}`;
+    let image = `${picsumHost}/id/292/${width}/${height}`;
 
     export let recipe: Recipe | undefined;
 

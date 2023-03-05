@@ -1,9 +1,10 @@
 import type { Recipe } from "$lib/types/recipe";
+import { picsumHost } from "../lib/constants/picsum";
 
 export const brod: Recipe = {
     slug: "brod",
     title: "Uæltet brød",
-    image: "https://picsum.photos/id/40",
+    image: `${picsumHost}/id/40`,
     shortDesc: "Lækkert, tæt og svampet brød, som ikke skal æltes - særlig meget",
     longDesc: "Efter at have konsulteret internettet lader dette til at være opskriften på sejr. Vi ælter ingenting, næsten, men tingene skal nu blandes alligevel - livet er hårdt. " +
         "Når det skal bages, forvarmer jeg en stor støbejernsgryde ved max ovn. Alternativt kan et bagestål bruges. " +
