@@ -8,6 +8,8 @@ import { sorensPastaret } from "./sorens-pastaret";
 // Recipes will appear in the listed order.
 export const all: Recipe[] = [
     ristaffel,
+    // boller,
+    // risotto,
     lasagne,
     sorensPastaret,
     brod,
