@@ -8,9 +8,10 @@
     const host = `https://www.${domain}`;
     const author = "Bjørn Nørgaard";
 
-    let title = `${name} - bedre opskriter, mindre pis`;
-    let description = "Hjemmelavede opskrifter af kraftigt varierende kvalitet. " +
-        "Skrevet i et uformelt og, forhåbentligt, morsomt sprog, som er let at følge.";
+    let title = `${name} - bedre opskriter, mindre pis og ingen reklamer`;
+    let description = "Simple opskrifter og gode råd om madlavning. " +
+        "Skrevet i et uformelt og, forhåbentligt, morsomt sprog, som er let at følge. " +
+        "Ingen lange oprindelseshistorier - og naturligvis uden irriterende reklamer.";
     let type = "website";
     let url = host;
 
