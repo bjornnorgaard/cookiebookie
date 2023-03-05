@@ -15,7 +15,7 @@
         </div>
         <div class="flex items-end justify-center gap-4 sm:justify-end">
             {#each links as link}
-                <a href={link.href}>
+                <a href={link.href} rel="nofollow">
                     <img width="24" height="24" src={link.svg} alt={link.alt}>
                 </a>
             {/each}
