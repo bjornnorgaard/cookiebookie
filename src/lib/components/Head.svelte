@@ -6,7 +6,6 @@
 
     const name = "Cookie Bookie";
     const domain = "cookiebookie.dk"
-    const host = `https://www.${domain}`;
     const author = "Bjørn Nørgaard";
 
     let title = `${name} - Bedre opskriter, mindre pis og ingen reklamer`;
@@ -14,7 +13,7 @@
         "Skrevet i et uformelt og, forhåbentligt, morsomt sprog, som er let at følge. " +
         "Ingen lange oprindelseshistorier - og naturligvis uden irriterende reklamer.";
     let type = "website";
-    let url = host;
+    let url = domain;
 
     const width = seoImgWidth;
     const height = seoImgHeight;
@@ -38,7 +37,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="description" content={description}>
     <meta name="author" content={author}>
-    <meta property="article:publisher" content={host}>
+    <meta property="article:publisher" content={domain}>
 
     <meta property="og:site_name" content={name}>
     <meta property="og:locale" content="da_DK">
