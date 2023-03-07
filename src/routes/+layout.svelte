@@ -22,7 +22,7 @@
             {#each footerLinks as link}
                 <a href={link.href} rel="noopener noreferrer nofollow external" target="_blank">
                     <img src={link.svg} alt={link.alt}
-                         title={link.alt} loading="lazy"
+                         title={link.alt} loading="eager"
                          width="24" height="24">
                 </a>
             {/each}
