@@ -19,14 +19,15 @@
     const height = seoImgHeight;
     let image = `${picsumHost}/id/292/${width}/${height}`;
 
-    export let recipe: Recipe | undefined;
+    export let recipe: Recipe | undefined = undefined;
 
     if (recipe) {
-        title = recipe.shortDesc;
-        description = recipe.longDesc;
+        const r = recipe as Recipe;
+        title = r.shortDesc;
+        description = r.longDesc;
         type = "article";
-        url = `${url}/${recipe.slug}`;
-        image = `${recipe.image}/${width}/${height}`;
+        url = `${url}/${r.slug}`;
+        image = `${r.image}/${width}/${height}`;
     }
 </script>
 
