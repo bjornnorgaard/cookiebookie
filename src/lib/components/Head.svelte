@@ -5,7 +5,7 @@
     import { picsumHost } from "../constants/picsum";
 
     const name = "Cookie Bookie";
-    const domain = "cookiebookie.dk"
+    const rootUrl = "https://cookiebookie.dk"
     const author = "Bjørn Nørgaard";
 
     let title = `${name} - Bedre opskriter, mindre pis og ingen reklamer`;
@@ -13,7 +13,7 @@
         "Skrevet i et uformelt og, forhåbentligt, morsomt sprog, som er let at følge. " +
         "Ingen lange oprindelseshistorier - og naturligvis uden irriterende reklamer.";
     let type = "website";
-    let url = domain;
+    let url = rootUrl;
 
     const width = seoImgWidth;
     const height = seoImgHeight;
@@ -38,7 +38,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="description" content={description}>
     <meta name="author" content={author}>
-    <meta property="article:publisher" content={domain}>
+    <meta property="article:publisher" content={rootUrl}>
 
     <meta property="og:site_name" content={name}>
     <meta property="og:locale" content="da_DK">
@@ -53,7 +53,7 @@
     <meta property="og:image:height" content={height}>
     <meta property="og:image:type" content="image/jpeg">
 
-    <meta property="twitter:domain" content={domain}>
+    <meta property="twitter:domain" content={rootUrl}>
     <meta property="twitter:url" content={url}>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content={title}>
