@@ -20,8 +20,10 @@
         </div>
         <div class="flex items-end justify-center gap-4 sm:justify-end">
             {#each footerLinks as link}
-                <a href={link.href} rel="nofollow">
-                    <img width="24" height="24" src={link.svg} alt={link.alt}>
+                <a href={link.href} rel="noopener noreferrer nofollow external" target="_blank">
+                    <img src={link.svg} alt={link.alt}
+                         title={link.alt} loading="lazy"
+                         width="24" height="24">
                 </a>
             {/each}
         </div>
