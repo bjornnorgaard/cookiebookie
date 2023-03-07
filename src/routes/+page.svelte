@@ -1,6 +1,6 @@
 <script lang="ts">
     import ContentNarrow from "$lib/components/ContentNarrow.svelte";
-    import { recipes } from "$lib/stores/recipes.js";
+    import { recipes } from "$lib/stores/recipes.ts";
     import Head from "$lib/components/Head.svelte";
 </script>
 
