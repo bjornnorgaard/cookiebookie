@@ -1,18 +1,17 @@
 <script lang="ts">
     import "../app.css";
-    import NavigationTop from "$lib/components/NavigationTop.svelte";
-    import { FooterLink } from "../lib/types/footer";
+    import Navigation from "./Navigation.svelte";
 
-    const footerLinks: FooterLink[] = [
+    const footerLinks = [
         {href: "https://github.com/bjornnorgaard/cookiebookie", svg: "/icons/github.svg", alt: "github logo",},
         {href: "https://www.linkedin.com/in/bjorn-norgaard", svg: "/icons/linkedin.svg", alt: "linkedin logo",},
         {href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", svg: "/icons/youtube.svg", alt: "youtube logo",},
     ];
 </script>
 
-<NavigationTop homeLabel="Cookie Bookie" homeRoute="/">
+<Navigation homeLabel="Cookie Bookie" homeRoute="/">
     <slot/>
-</NavigationTop>
+</Navigation>
 
 <footer class="pb-8 bg-neutral-content sm:px-8">
     <div class="m-auto flex max-w-screen-sm flex-col justify-between gap-4 text-center sm:flex-row sm:px-8 sm:py-4 sm:text-left">

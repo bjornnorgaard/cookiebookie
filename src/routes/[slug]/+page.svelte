@@ -2,8 +2,8 @@
     import { page } from "$app/stores";
     import ContentNarrow from "$lib/components/ContentNarrow.svelte";
     import { recipes } from "$lib/stores/recipes";
-    import ShoppingList from "$lib/components/ShoppingList.svelte";
     import Head from "$lib/components/Head.svelte";
+    import ShoppingList from "./ShoppingList.svelte";
 
     const slug = $page.params.slug;
     const r = $recipes.get(slug);
