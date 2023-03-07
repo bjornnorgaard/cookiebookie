@@ -12,6 +12,7 @@
             <a href={slug}
                class="overflow-hidden no-underline duration-500 ease-in-out card card-compact glass hover:scale-105">
                 <img class="m-0 rounded-t object-cover"
+                     title={recipe.title} loading="lazy"
                      src={`${recipe.image}/700/300`} alt={recipe.title}
                      height="300" width="700"/>
 
