@@ -35,7 +35,6 @@
     <title>{title}</title>
     <link rel="canonical" href={url}>
 
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="description" content={description}>
     <meta name="author" content={author}>
     <meta property="article:publisher" content={rootUrl}>
