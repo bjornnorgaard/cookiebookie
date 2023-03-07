@@ -46,9 +46,9 @@
         <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 2000}}
              class="flex justify-between gap-4">
 
-            <input type="checkbox"
-                   id={i.name}
-                   checked={$have.includes(i.name) ? "checked" : ""}
+            <input id={i.name}
+                   type="checkbox"
+                   checked={$have.includes(i.name)}
                    on:click={() => onCheckChange(i.name)}
                    class="checkbox bg-neutral-content">
 
