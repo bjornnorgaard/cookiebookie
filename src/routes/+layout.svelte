@@ -16,7 +16,7 @@
 <footer class="pb-8 bg-neutral-content sm:px-8">
     <div class="m-auto flex max-w-screen-sm flex-col justify-between gap-4 text-center sm:flex-row sm:px-8 sm:py-4 sm:text-left">
         <div>
-            <p>Recipes by Bear<br/>Rimelige opskrifter siden 2023</p>
+            <p>Opskrifter by Bear<br/>Rimelige opskrifter siden 2023</p>
         </div>
         <div class="flex items-end justify-center gap-4 sm:justify-end">
             {#each footerLinks as link}
