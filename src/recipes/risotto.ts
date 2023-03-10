@@ -6,7 +6,7 @@ export const risotto: Recipe = {
     title: "Risotto",
     image: `${picsumHost}/id/368`,
     shortDesc: "Risotto til billige penge, men italienerne kan nok alligvel ikke smage forskel.",
-    longDesc: "Vi er ikke millionære, så risottoris og pamesanost er udelukket. Grødris og en semi-hård ost. Jeg har lige sparet dig omkring 150 kroner - selv tak. Endeligt skal du også finde nogle grønsager - champignon skulle være godt. Sidste ting før vi starter: Du må ikke salte undervejs. Held og lykke.",
+    longDesc: "Vi er ikke millionære, så risottoris og pamesanost er udelukket. Grødris og en semi-hård ost er lige godt. Jeg har lige sparet dig omkring 150 kroner - selv tak. Endeligt skal du også finde nogle grønsager - champignon skulle være godt. Sidste ting før vi starter: Du må ikke salte undervejs. Held og lykke.",
     ingredients: [
         {name: "Grødris", amount: "200 gram"},
         {name: "Hvidvin", amount: "2 dl"},
