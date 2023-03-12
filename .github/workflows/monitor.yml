@@ -11,6 +11,8 @@ on:
     paths:
       - "monitor/**"
       - ".github/**/monitor.yml"
+  schedule:
+    - cron: "0 0,6,12,18 * * *"
 
 defaults:
   run:
