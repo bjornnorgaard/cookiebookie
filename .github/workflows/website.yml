@@ -18,6 +18,7 @@ defaults:
 
 jobs:
   build:
+    name: Build Svelte
     runs-on: ubuntu-latest
     strategy:
       matrix:
