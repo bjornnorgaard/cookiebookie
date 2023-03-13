@@ -11,7 +11,7 @@
     <div class="flex flex-col items-center text-center">
         <h3 class="m-0">Det skal nok gå</h3>
 
-        <p>Jeg har naturligvis forudset at du kunne komme ud hvor du ikke kan bunde.
+        <p>Jeg har naturligvis forudset, at du ville gå ud hvor du ikke kunne bunde.
             Har endda lavet en lille knap til dig. Så kan du komme tilbage i sikkerhed.</p>
 
         <a href="/" class="no-underline btn btn-primary btn-wide">Gå til Forsiden</a>
