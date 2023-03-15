@@ -9,5 +9,13 @@ updates:
     directory: "/website"
     schedule:
       interval: "daily"
-      time: "16:00"
+      time: "23:00"
       timezone: "Europe/Copenhagen"
+      
+  - package-ecosystem: "gomod"
+    directory: "/monitor"
+    schedule:
+      interval: "daily"
+      time: "23:00"
+      timezone: "Europe/Copenhagen"
+
