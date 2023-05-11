@@ -1,11 +1,11 @@
 import type { Recipe } from "$lib/types/recipe";
-import { picsumHost } from "../lib/constants/picsum";
+import { picsumHost } from "$lib/constants/picsum";
 
 export const ristaffel: Recipe = {
     slug: "ristaffel",
     title: "Ristaffel",
     image: `${picsumHost}/id/82`,
-    shortDesc: "Ristaffel med ris, kokus, kylling og alle de gode sager!",
+    shortDesc: "Ris, kokus, kylling og alle de gode sager!",
     longDesc: "Det ender cirka i den mængde jeg plejer at lave. Så er der også til morgenmad næste dag. Så må du sjusse dig frem til en nogenlunde mængde.",
     ingredients: [
         {name: "Kylling", amount: "cirka 500 gram"},

@@ -1,11 +1,11 @@
 import type { Recipe } from "$lib/types/recipe";
-import { picsumHost } from "../lib/constants/picsum";
+import { picsumHost } from "$lib/constants/picsum";
 
 export const sorensPastaret: Recipe = {
     slug: "sorens-pastaret",
     title: "Sørens Pastaret",
     image: `${picsumHost}/id/98`,
-    shortDesc: "Pastaret. Lav indsats. Super lækker. Mums.",
+    shortDesc: "Lav indsats. Super lækker. Mums. God dagen før løbeturen.",
     longDesc: "Nem ret. Smid det hele i et fad og bland. Kan sagtens klare " +
         "random grønsager - rosenkål og porre er ikke fjenden! " +
         "Tager ingen tid at forberede og skal bare glemmes i ovnen i " +

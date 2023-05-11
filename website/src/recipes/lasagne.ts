@@ -1,11 +1,11 @@
 import type { Recipe } from "$lib/types/recipe";
-import { picsumHost } from "../lib/constants/picsum";
+import { picsumHost } from "$lib/constants/picsum";
 
 export const lasagne: Recipe = {
     slug: "lasagne",
     title: "Den første Lasagne",
     image: `${picsumHost}/id/21`,
-    shortDesc: "Lasagne baseret på kombination af alle opskrifter jeg kunne finde.",
+    shortDesc: "Baseret på kombination af de millioner opskrifter, jeg kunne finde.",
     longDesc: "Det er lagsagne... Smid det hele i en gryde i to timer. Hvis det er for svært, så læs videre - følg nu med. Jeg smider alt det her i min udgave, men drop endelig hvad du ikke kan lide. Vi gider ikke lave monay eller plader fra bunden. Så dem køber vi for at vinde tid. ",
     ingredients: [
         {name: "Løg", amount: "2 stk."},
