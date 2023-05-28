@@ -18,7 +18,7 @@ export const brod: Recipe = {
         "Når det skal bages, forvarmer jeg en stor støbejernsgryde ved max ovn. Alternativt kan et bagestål bruges. " +
         "Ellers kan den sikkert også ligge på en bageplade uden at gå i stykker - hvem ved.",
     steps: [
-        {title: "Skål!", desc: "Find din største stål, som forhåbentligt har et låg - ellers bruger du et rent viskestykke"},
+        {title: "Skål!", desc: "Find din største stål, som forhåbentligt har et låg - ellers bruger du et rent viskestykke."},
         {title: "Bland de våde sager", desc: "Der er ikke så meget andet at sige. Gær, salt, sukker og tempereret vand. Brug 10 sekunder og værdsæt at du næsten er færdig."},
         {title: "Tilsæt de tørre sager", desc: "Bland det hele indtil det hænger sammen og der ikke meget mel på siderne af skålen. Hvis det tager dig mere end to minutter prøver du for hårdt."},
         {title: "Hævetid er sovetid", desc: "Smid låg på. Det skal hvile i 12 til 24 timer, eller indtil det er fordoblet i størrelse. Tak for i dag - vi ses i morgen."},
