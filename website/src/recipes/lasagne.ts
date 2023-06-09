@@ -10,8 +10,8 @@ export const lasagne: Recipe = {
     ingredients: [
         {name: "Løg", amount: "2 stk."},
         {name: "Hvidløg", amount: "4 fed"},
-        {name: "Olivenolie", amount: "2 spsk"},
-        {name: "Oregano", amount: "2 tsk"},
+        {name: "Olivenolie", amount: "2 spsk."},
+        {name: "Oregano", amount: "2 spsk."},
         {name: "Gulerødder", amount: "4 stk."},
         {name: "Bladselleri", amount: "5 stænger"},
         {name: "Squash (revet)", amount: "1 stk."},
