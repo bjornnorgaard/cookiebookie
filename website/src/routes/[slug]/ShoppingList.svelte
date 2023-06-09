@@ -54,7 +54,7 @@
 
             <label class="grow" for={i.name}
                    class:line-through={$have.includes(i.name) ? "checked" : ""}>
-                {i.name}{i.amount ? `, ${i.amount}` : ""}
+                <span class="font-bold">{i.name}</span>{i.amount ? `, ${i.amount}` : ""}
             </label>
         </div>
     {/each}
