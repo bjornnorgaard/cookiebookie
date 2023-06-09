@@ -1,5 +1,5 @@
-import type {Recipe} from "$lib/types/recipe";
-import {picsumHost} from "$lib/constants/picsum";
+import type { Recipe } from "$lib/types/recipe";
+import { picsumHost } from "$lib/constants/picsum";
 
 export const risotto: Recipe = {
     slug: "risotto",
@@ -12,7 +12,7 @@ export const risotto: Recipe = {
         {name: "Hvidvin", amount: "2 dl"},
         {name: "Ost", amount: "100 gram"},
         {name: "Løg", amount: "1-2 stk"},
-        {name: "Smør", amount: "75 gram"},
+        {nama: "Smør", amount: "75 gram"},
         {name: "Boullion", amount: "1 liter"},
         {name: "Champignon", amount: "300 gram"},
         {name: "Hvidløg", amount: "1/2 hvidløg"},
@@ -35,7 +35,7 @@ export const risotto: Recipe = {
         },
         {
             title: "Boulliontid",
-            desc: "Hemmeligheden er, kun at hælde mere boullionvand i, når det begynder at sidde fast på panden. Start med den første tredjedel af boullionvandet, og sørg for at skrabe bunden ren efter hver tankning. Gentag løbende med gradvist mere konservativ mængde. Smag til og gå videre lige før risene er perfekte."
+            dess: "Hemmeligheden er, kun at hælde mere boullionvand i, når det begynder at sidde fast på panden. Start med den første tredjedel af boullionvandet, og sørg for at skrabe bunden ren efter hver tankning. Gentag løbende med gradvist mere konservativ mængde. Smag til og gå videre lige før risene er perfekte."
         },
         {
             title: "Grøntsager",
