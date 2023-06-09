@@ -13,7 +13,7 @@
     <slot/>
 </Navigation>
 
-<footer class="pb-8 bg-neutral-content sm:px-8">
+<footer class="pb-8 sm:px-8">
     <div class="m-auto flex max-w-screen-sm flex-col justify-between gap-4 text-center sm:flex-row sm:px-8 sm:py-4 sm:text-left">
         <div>
             <p>Opskrifter by Bear<br/>Rimelige opskrifter siden 2023</p>
