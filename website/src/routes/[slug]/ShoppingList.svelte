@@ -41,7 +41,7 @@
 
 <h2>Indkøbslisten</h2>
 
-<div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-neutral-focus text-neutral-content">
+<div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-accent text-accent-content">
     {#each recipe.ingredients as i (i.name)}
         <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 2000}}
              class="flex justify-between gap-4">
