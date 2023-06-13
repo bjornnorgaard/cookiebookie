@@ -13,7 +13,7 @@ export const brod: Recipe = {
         {name: "Vand", amount: "300g"},
     ],
     longDesc: "Efter at have konsulteret internettet lader dette til at være opskriften på sejr. Vi ælter ingenting, næsten, men tingene skal nu blandes alligevel - livet er hårdt. " +
-        "Her finder du ingen mål i te- eller spiseskeer, som i konventionel madlavning. Bagning er alkemi og har intet at gøre med madlavning - så her bruger vi gram og liter! " +
+        "Her finder du ingen mål i te- eller spiseskeer, som ved konventionel madlavning. Bagning er alkemi og har intet at gøre med madlavning - så her bruger vi gram og liter! " +
         "Når det skal bages, forvarmer jeg en stor støbejernsgryde ved max ovn. Alternativt kan et bagestål bruges. " +
         "Ellers kan den sikkert også ligge på en bageplade uden at gå i stykker - hvem ved.",
     steps: [
