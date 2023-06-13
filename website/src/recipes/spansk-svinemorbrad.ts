@@ -3,7 +3,7 @@ import {picsumHost} from "$lib/constants/picsum";
 
 export const svinemorbrad: Recipe = {
     slug: "svinemorbrad",
-    title: "Spansk Svinemørbrad",
+    title: "Spansk Svinemørbrad i Svøb",
     image: `${picsumHost}/id/15`,
     shortDesc: "Svinemørbrad tilberedt som den bør",
     longDesc: "Dress to impress, dette svin er svøbt i sine spanske artsfæller og derefter klædt på med butterdej. Aldrig mere vil du forbinde ordene tør med svinemørbrad. Advarsel, tilfælde af kronisk løbende mundvand er hændt efter indtagelse.",
@@ -36,7 +36,7 @@ export const svinemorbrad: Recipe = {
         },
         {
             title: "Be square",
-            desc: "Nu kommer det svære. Placer film på køkkenbordet og læg nøjsomt jamon iberico ud så der ligger stykker side om side og fylder en firkant så bred som dit svin. Fordel herefter svampe og løb ensartet på firkanten. til sidst drysses ost jævnt udover."
+            desc: "Nu kommer det svære. Placer film på køkkenbordet og læg nøjsomt jamon iberico ud så der ligger stykker side om side og fylder en firkant så bred som dit svin. Fordel herefter svampe og løb ensartet på firkanten. Til sidst drysses ost jævnt udover."
         },
         {
             title: "Svøb svinet",
