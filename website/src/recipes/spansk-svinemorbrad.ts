@@ -6,25 +6,25 @@ export const svinemorbrad: Recipe = {
     title: "Svinemørbrad i Svøb",
     image: `${picsumHost}/id/15`,
     shortDesc: "Svinemørbrad tilberedt som den bør",
-    longDesc: "Dress to impress, dette svin er svøbt i sine spanske artsfæller og derefter klædt på med butterdej. Aldrig mere vil du forbinde ordene tør med svinemørbrad. Advarsel, tilfælde af kronisk løbende mundvand er hændt efter indtagelse.",
+    longDesc: "Dress to impress! Dette svin er svøbt i sine spanske artsfæller og derefter klædt på med butterdej. Aldrig mere vil du forbinde ordet tør med svinemørbrad. Advarsel, tilfælde af kronisk løbende mundvand er hændt efter indtagelse.",
     ingredients: [
         {name: "Svinemørbrad", amount: "1 stk."},
         {name: "Butterdej", amount: "1 rulle"},
         {name: "Ost", amount: "120 gram"},
-        {name: "Løg", amount: "2 stk"},
+        {name: "Løg", amount: "2 stk."},
         {name: "Svampe", amount: "250 gram"},
         {name: "Jamon iberico", amount: "100 gram" },
-        {name: "Dijonsennep", amount: "2-3 spsk" },
+        {name: "Dijonsennep", amount: "2-3 spsk." },
         {name: "Æg", amount: "1 (kan undværes)" },
         {name: "Øl", amount: "2 stk." },
         {name: "Olivenolie", amount: ""},
         {name: "Timian", amount: ""},
-        {name: "Peber og salt", amount: ""},
+        {name: "Salt og peber", amount: ""},
     ],
     steps: [
         {
             title: "Forberedelse",
-            desc: "Put øl i køleskabet. Hak løg og svampe i ca. 0.735 cm tykke skiver - riv osten."
+            desc: "Put øl i køleskabet. Hak løg og svampe i ca. 0.732 cm tykke skiver - riv osten."
         },
         {
             title: "Svits svinet",
@@ -36,7 +36,7 @@ export const svinemorbrad: Recipe = {
         },
         {
             title: "Be square",
-            desc: "Nu kommer det svære. Placer film på køkkenbordet og læg nøjsomt jamon iberico ud så der ligger stykker side om side og fylder en firkant så bred som dit svin. Fordel herefter svampe og løb ensartet på firkanten. Til sidst drysses ost jævnt udover."
+            desc: "Nu kommer det svære. Placer film på køkkenbordet og læg nøjsomt jamon iberico ud så der ligger skiver side om side og fylder en firkant så bred som dit svin. Fordel herefter svampe og løg ensartet på firkanten. Til sidst drysses ost jævnt udover."
         },
         {
             title: "Svøb svinet",
@@ -48,7 +48,7 @@ export const svinemorbrad: Recipe = {
         },
         {
             title: "Nu er du klar",
-            desc: "Rul butterdej ud. Tag dit svøbte svin og af ovnen og placer svinet midtpå. Fjern filmen med en rullende bevægelse og rul derefter butterdej om svin og luk den ved at pensle med det piskede æg og presse dejen sammen."
+            desc: "Rul butterdej ud. Tag dit svøbte svin ud af ovnen og placer svinet midtpå. Fjern filmen med en rullende bevægelse og rul derefter butterdej om svin og luk den ved at pensle med lidt pisket æg og presse dejen sammen."
         },
         {
             title: "Nu er ovnen klar",
