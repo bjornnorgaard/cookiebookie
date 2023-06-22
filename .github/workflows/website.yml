@@ -8,9 +8,6 @@ on:
       - ".github/**/website.yml"
   pull_request:
     branches: [ "main" ]
-    paths:
-      - "website/**"
-      - ".github/**/website.yml"
 
 defaults:
   run:
