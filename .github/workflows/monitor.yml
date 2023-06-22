@@ -17,8 +17,8 @@ env:
   HOST: https://cookiebookie.dk/
 
 jobs:
-  build:
-    name: Check Site
+  check-site-status:
+    name: Check Site Status
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
