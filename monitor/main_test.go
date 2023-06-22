@@ -48,7 +48,7 @@ func TestSite(t *testing.T) {
 		c := colly.NewCollector(colly.AllowedDomains(domain))
 
 		c.OnHTML("a[href]", func(e *colly.HTMLElement) {
-			e.Request.Visit(e.Attr("href"))
+			_ = e.Request.Visit(e.Attr("href"))
 		})
 
 		c.OnRequest(func(r *colly.Request) {
