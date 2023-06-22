@@ -2,12 +2,10 @@ name: Website
 
 on:
   push:
-    branches: [ "main" ]
     paths:
       - "website/**"
       - ".github/**/website.yml"
   pull_request:
-    branches: [ "main" ]
 
 defaults:
   run:
