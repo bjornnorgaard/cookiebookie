@@ -18,12 +18,12 @@ func TestSite(t *testing.T) {
 
 	host := os.Getenv("HOST")
 	if len(host) == 0 {
-		t.Errorf("DOMAIN environment variable not set")
+		t.Errorf("HOST environment variable not set")
 	}
 
 	split := strings.Split(host, "//")
 	if len(split) != 2 {
-		t.Errorf("DOMAIN environment variable is invalid")
+		t.Errorf("HOST environment variable is invalid")
 	}
 
 	domain := split[1]

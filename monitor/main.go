@@ -16,12 +16,12 @@ func main() {
 
 	host := os.Getenv("HOST")
 	if len(host) == 0 {
-		log.Fatalln("DOMAIN environment variable not set")
+		log.Fatalln("HOST environment variable not set")
 	}
 
 	split := strings.Split(host, "//")
 	if len(split) != 2 {
-		log.Fatalln("DOMAIN environment variable is invalid")
+		log.Fatalln("HOST environment variable is invalid")
 	}
 
 	domain := split[1]
@@ -29,7 +29,7 @@ func main() {
 	c := colly.NewCollector(colly.AllowedDomains(domain))
 
 	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
-		e.Request.Visit(e.Attr("href"))
+		_ = e.Request.Visit(e.Attr("href"))
 	})
 
 	c.OnRequest(func(r *colly.Request) {
