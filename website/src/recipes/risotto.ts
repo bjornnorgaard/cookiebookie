@@ -43,7 +43,7 @@ export const risotto: Recipe = {
         },
         {
             title: "Kan du mærke kærligheden?",
-            desc: "Risene spiller, men fuglene synger ikke endnu. Tag grøden af varmen og rør smøret i. Gentag med osten. Nu synger de små kræ sgu."
+            desc: "Risene spiller, men fuglene synger ikke endnu. Tag grøden af varmen og rør smøret i. Gentag med osten. Nu synger de små kræ."
         },
         {
             title: "Sidste finjustering",
