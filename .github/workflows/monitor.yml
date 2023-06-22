@@ -2,12 +2,6 @@ name: Monitor
 
 on:
   push:
-    branches: [ "main" ]
-    paths:
-      - "monitor/**"
-      - ".github/**/monitor.yml"
-  pull_request:
-    branches: [ "main" ]
     paths:
       - "monitor/**"
       - ".github/**/monitor.yml"
@@ -19,11 +13,11 @@ defaults:
     working-directory: ./monitor
 
 env:
-  SITE_HOST: https://cookiebookie.dk/
+  HOST: https://cookiebookie.dk/
 
 jobs:
-  build:
-    name: Check Site
+  check-site-status:
+    name: Check Site Status
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
