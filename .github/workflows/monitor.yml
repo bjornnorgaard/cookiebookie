@@ -2,6 +2,7 @@ name: Monitor
 
 on:
   push:
+    branches: [main]
     paths:
       - "monitor/**"
       - ".github/**/monitor.yml"
