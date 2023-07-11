@@ -25,6 +25,9 @@ func main() {
 	}
 
 	domain := split[1]
+	if domain[len(domain)-1] == '/' {
+		domain = domain[:len(domain)-1]
+	}
 
 	c := colly.NewCollector(colly.AllowedDomains(domain))
 
