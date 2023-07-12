@@ -17,6 +17,6 @@ module.exports = {
     ],
     daisyui: {
         themes: ["retro"],
-        log: false,
+        logs: false,
     },
 };
