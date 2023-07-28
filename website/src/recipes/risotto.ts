@@ -47,7 +47,7 @@ export const risotto: Recipe = {
         },
         {
             title: "Sidste finjustering",
-            desc: "Nu smager vi endeligt til. Den mangler nok peber, men træd varsomt med salten. Ost og smør indeholder en del."
+            desc: "Nu smager vi endeligt til. Den mangler nok peber, men træd varsomt med salten - ost og smør indeholder en del."
         }
     ],
 };
