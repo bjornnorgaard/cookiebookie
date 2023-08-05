@@ -2,7 +2,7 @@
 
 Sådan her tilføjes nye opskrifter.
 
-- Opskrifterne findes i mappen ``src/recipes``
+- Opskrifterne findes i mappen ``website/src/recipes``
 - Tilføj en ny opskrift ved at oprette en fil i mappen
 - Overhold formatet vist i de andre opskrifter
 - Tilføje opskrifen til `_all.ts`
