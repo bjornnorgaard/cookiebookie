@@ -11,11 +11,9 @@ const config = {
         csp: {
             mode: "auto",
             directives: {
-                'script-src': [
-                    'self',
-                    'https://www.googletagmanager.com',
-                    'sha256-VRJyNfT3gVq5KIUtisltIhZcOVQFEu1WDXZF3iJBKlY=',
-                ],
+                'script-src': ['self', 'https://www.googletagmanager.com', 'sha256-VRJyNfT3gVq5KIUtisltIhZcOVQFEu1WDXZF3iJBKlY='],
+                "object-src": ["none"],
+                "base-uri": ["self"],
             },
         },
     },
