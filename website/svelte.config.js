@@ -1,5 +1,5 @@
 import adapter from "@sveltejs/adapter-vercel";
-import { vitePreprocess } from "@sveltejs/kit/vite";
+import {vitePreprocess} from "@sveltejs/kit/vite";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,10 +11,12 @@ const config = {
         csp: {
             mode: "auto",
             directives: {
-                "script-src": ["self", "unsafe-inline"],
-                "object-src": ["none"],
-                "base-uri": ["self"],
-            }
+                'script-src': [
+                    'self',
+                    'https://www.googletagmanager.com',
+                    'sha256-VRJyNfT3gVq5KIUtisltIhZcOVQFEu1WDXZF3iJBKlY=',
+                ],
+            },
         },
     },
 };
