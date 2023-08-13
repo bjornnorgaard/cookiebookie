@@ -2,6 +2,8 @@ import {recipes} from "../../recipes/_recipes";
 import type {PageLoad} from "./$types";
 import {error} from "@sveltejs/kit";
 
+export const prerender = true;
+
 export const load: PageLoad = ({params}) => {
     const r = recipes.filter(r => r.slug === params.slug)[0];
     if (!r) {
