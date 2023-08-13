@@ -9,11 +9,11 @@
         "@type": "Recipe",
         "name": recipe.shortDesc,
         "image": [
-            `${recipe.image}/${seoImgWidth}/${seoImgHeight}`,
+            `${recipe.image}/${seoImgWidth}/${seoImgHeight}`
         ],
         "author": {
             "@type": "Person",
-            "name": "Bjørn Nørgaard",
+            "name": "Bjørn Nørgaard"
         },
         // "datePublished": "2018-03-10",
         "description": recipe.longDesc,
@@ -25,9 +25,9 @@
         "recipeCategory": "Dinner",
         "recipeCuisine": "Danish",
         /* "nutrition": {
-         "@type": "NutritionInformation",
-         "calories": "270 calories"
-         }, */
+            "@type": "NutritionInformation",
+            "calories": "270 calories"
+        }, */
         "recipeIngredient": recipe.ingredients.map(i => i.amount ? `${i.amount} ${i.name}` : i.name),
         "recipeInstructions": recipe.steps.map(s => ({
             "@type": "HowToStep",
@@ -37,30 +37,30 @@
             // "image": `${recipe.image}/${seoImgWidth}/${seoImgHeight}`,
         })),
         /* "aggregateRating": {
-         "@type": "AggregateRating",
-         "ratingValue": "5",
-         "ratingCount": "18"
-         }, */
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "18"
+        }, */
         /* "video": {
-         "@type": "VideoObject",
-         "name": "How to make a Party Coffee Cake",
-         "description": "This is how you make a Party Coffee Cake.",
-         "thumbnailUrl": [
-         "https://example.com/photos/1x1/photo.jpg",
-         "https://example.com/photos/4x3/photo.jpg",
-         "https://example.com/photos/16x9/photo.jpg"
-         ],
-         "contentUrl": "https://www.example.com/video123.mp4",
-         "embedUrl": "https://www.example.com/videoplayer?video=123",
-         "uploadDate": "2018-02-05T08:00:00+08:00",
-         "duration": "PT1M33S",
-         "interactionStatistic": {
-         "@type": "InteractionCounter",
-         "interactionType": {"@type": "WatchAction"},
-         "userInteractionCount": 2347
-         },
-         "expires": "2019-02-05T08:00:00+08:00"
-         } */
+            "@type": "VideoObject",
+            "name": "How to make a Party Coffee Cake",
+            "description": "This is how you make a Party Coffee Cake.",
+            "thumbnailUrl": [
+                "https://example.com/photos/1x1/photo.jpg",
+                "https://example.com/photos/4x3/photo.jpg",
+                "https://example.com/photos/16x9/photo.jpg"
+            ],
+            "contentUrl": "https://www.example.com/video123.mp4",
+            "embedUrl": "https://www.example.com/videoplayer?video=123",
+            "uploadDate": "2018-02-05T08:00:00+08:00",
+            "duration": "PT1M33S",
+            "interactionStatistic": {
+                "@type": "InteractionCounter",
+                "interactionType": {"@type": "WatchAction"},
+                "userInteractionCount": 2347
+            },
+            "expires": "2019-02-05T08:00:00+08:00"
+        } */
     };
 </script>
 

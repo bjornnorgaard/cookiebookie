@@ -33,31 +33,31 @@
 
 <svelte:head>
     <title>{title}</title>
-    <link href={url} rel="canonical">
+    <link rel="canonical" href={url}>
 
-    <meta content={description} name="description">
-    <meta content={author} name="author">
-    <meta content={rootUrl} property="article:publisher">
+    <meta name="description" content={description}>
+    <meta name="author" content={author}>
+    <meta property="article:publisher" content={rootUrl}>
 
-    <meta content={name} property="og:site_name">
-    <meta content="da_DK" property="og:locale">
-    <meta content={type} property="og:type">
-    <meta content={url} property="og:url">
-    <meta content={title} property="og:title">
-    <meta content={description} property="og:description">
-    <meta content={url} property="og:url">
+    <meta property="og:site_name" content={name}>
+    <meta property="og:locale" content="da_DK">
+    <meta property="og:type" content={type}>
+    <meta property="og:url" content={url}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:url" content={url}>
 
-    <meta content={image} property="og:image">
-    <meta content={width.toString()} property="og:image:width">
-    <meta content={height.toString()} property="og:image:height">
-    <meta content="image/jpeg" property="og:image:type">
+    <meta property="og:image" content={image}>
+    <meta property="og:image:width" content={width.toString()}>
+    <meta property="og:image:height" content={height.toString()}>
+    <meta property="og:image:type" content="image/jpeg">
 
-    <meta content={rootUrl} property="twitter:domain">
-    <meta content={url} property="twitter:url">
-    <meta content="summary_large_image" name="twitter:card">
-    <meta content={title} name="twitter:title">
-    <meta content={description} name="twitter:description">
-    <meta content={image} name="twitter:image">
+    <meta property="twitter:domain" content={rootUrl}>
+    <meta property="twitter:url" content={url}>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={image}>
 
     {#if recipe}
         <StructuredDataRecipe recipe={recipe}/>

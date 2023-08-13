@@ -10,7 +10,7 @@
     const have = writable<string[]>([]);
 
     onMount(() => {
-        have.set(JSON.parse(localStorage.getItem(recipe.slug) ?? "[]") || []);
+        have.set(JSON.parse(localStorage.getItem(recipe.slug)) || []);
         sortIngredients();
     })
 

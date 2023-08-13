@@ -8,7 +8,7 @@ import {risotto} from "./risotto";
 import {svinemorbrad} from "./spansk-svinemorbrad";
 
 // Recipes will appear in the listed order.
-export const recipes: Recipe[] = [
+export const all: Recipe[] = [
     ristaffel,
     // boller,
     // frittata,
