@@ -8,7 +8,7 @@
 
 <ContentNarrow title="Seneste opskrifter">
     <div class="gap-4 grid-list">
-        {#each [...$recipes] as [slug, recipe]}
+        {#each $recipes as [slug, recipe]}
             <a href={slug}
                class="overflow-hidden no-underline duration-500 ease-in-out card card-compact glass hover:scale-105">
                 <img class="m-0 rounded-t object-cover"
