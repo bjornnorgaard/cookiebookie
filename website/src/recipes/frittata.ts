@@ -1,5 +1,5 @@
-import type { Recipe } from "$lib/types/recipe";
-import { picsumHost } from "$lib/constants/picsum";
+import type {Recipe} from "$lib/types/recipe";
+import {picsumHost} from "$lib/constants/picsum";
 
 export const frittata: Recipe = {
     slug: "frittata",

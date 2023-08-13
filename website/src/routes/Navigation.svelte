@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { page } from "$app/stores";
-    import type { NavLink, NavSubLink } from "$lib/types/navigation";
+    import {page} from "$app/stores";
+    import type {NavLink, NavSubLink} from "$lib/types/navigation";
 
     export let homeLabel = "Fuuuuck 🔥";
     export let homeRoute = "/";

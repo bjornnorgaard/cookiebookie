@@ -1,15 +1,17 @@
 <script lang="ts">
     import ContentNarrow from "$lib/components/ContentNarrow.svelte";
-    import {recipes} from "$lib/stores/recipes";
     import Head from "$lib/components/Head.svelte";
+    import type {PageData} from "./$types";
+
+    export let data: PageData;
 </script>
 
 <Head/>
 
 <ContentNarrow title="Seneste opskrifter">
     <div class="gap-4 grid-list">
-        {#each $recipes as [slug, recipe]}
-            <a href={slug}
+        {#each data.recipes as recipe}
+            <a href={recipe.slug}
                class="overflow-hidden no-underline duration-500 ease-in-out card card-compact glass hover:scale-105">
                 <img class="m-0 rounded-t object-cover"
                      title={recipe.title} loading="eager"

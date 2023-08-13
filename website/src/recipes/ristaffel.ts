@@ -1,5 +1,5 @@
-import type { Recipe } from "$lib/types/recipe";
-import { picsumHost } from "$lib/constants/picsum";
+import type {Recipe} from "$lib/types/recipe";
+import {picsumHost} from "$lib/constants/picsum";
 
 export const ristaffel: Recipe = {
     slug: "ristaffel",
@@ -29,5 +29,5 @@ export const ristaffel: Recipe = {
         {title: "Så skal der fraises noget creme", desc: "Når kyllingen ikke længere er rå, hældes creme fraisen i."},
         {title: "Forårsløg!", desc: "Hak forårsløgene i stykker og smid dem i. Husk at gemme nogle til toppings!"},
         {title: "Vi er der næsten", desc: "Nu mangler vi bare at smage det til med salt og peber. Cirka 5-10 min efter forårsløgene."},
-    ]
+    ],
 };
