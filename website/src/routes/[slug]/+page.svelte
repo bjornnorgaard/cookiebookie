@@ -1,7 +1,7 @@
 <script lang="ts">
     import ContentNarrow from "$lib/components/ContentNarrow.svelte";
     import Head from "$lib/components/Head.svelte";
-    import ShoppingList from "./ShoppingList.svelte";
+    import ShoppingList from "$lib/components/ShoppingList.svelte";
     import type {PageData} from "./$types";
 
     export let data: PageData

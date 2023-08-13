@@ -1,6 +1,6 @@
 <script lang="ts">
     import "../app.css";
-    import Navigation from "./Navigation.svelte";
+    import Navigation from "$lib/components/Navigation.svelte";
 
     const footerLinks = [
         {href: "https://github.com/bjornnorgaard/cookiebookie", svg: "/icons/github.svg", alt: "github"},
