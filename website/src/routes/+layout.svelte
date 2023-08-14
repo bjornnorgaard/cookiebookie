@@ -9,11 +9,11 @@
     ];
 </script>
 
-<nav class="navbar flex justify-between">
-    <a class="btn btn-ghost normal-case text-xl" href="/">Cookie Bookie</a>
+<nav class="flex justify-between navbar">
+    <a class="text-xl normal-case btn btn-ghost" href="/">Cookie Bookie</a>
 </nav>
 
-<div class="m-auto min-h-content max-w-screen-sm px-4 prose py-nav">
+<div class="m-auto max-w-screen-sm px-4 min-h-content prose py-nav">
     <h1>{$page.data.title}</h1>
     <slot/>
 </div>

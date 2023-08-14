@@ -26,7 +26,7 @@
                    class="mt-1 checkbox bg-neutral-content text-neutral-content">
             <div class="flex flex-col">
                 <label for={s.title}
-                       class="font-bold text-base mt-1 transition-opacity"
+                       class="mt-1 text-base font-bold transition-opacity"
                        class:line-through={completedSteps[id]}
                        class:opacity-50={completedSteps[id]}>
                     {s.title}
