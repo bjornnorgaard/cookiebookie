@@ -1,9 +1,8 @@
 import type { PageLoad } from './$types';
-import type { Recipe } from "$lib/types/recipe";
+import { recipes } from "$lib/stores/recipes";
 
 export const load: PageLoad = ({ params }) => {
-    const list: Recipe[] = [];
     return {
-        recipes: list,
+        recipes: recipes,
     };
 };
