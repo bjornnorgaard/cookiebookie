@@ -28,6 +28,9 @@ $ cd website
 $ pwd
     .../cookiebookie/website
 
+$ node -v
+    v18.x.x
+
 $ npm i
     changed 42 packages, and audited 1337 packages in 123ms
 
