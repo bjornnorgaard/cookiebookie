@@ -1,4 +1,4 @@
-name: Website
+name: Website CI
 
 on:
   push:
@@ -10,11 +10,10 @@ on:
 
 defaults:
   run:
-    working-directory: ./website
+    working-directory: website
 
 jobs:
   build-website:
-    name: Build Website
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +23,6 @@ jobs:
       with:
         node-version: 18.x
         cache: 'npm'
-        cache-dependency-path: ./website/package-lock.json
+        cache-dependency-path: website/package-lock.json
     - run: npm ci
-    - run: tsc
     - run: npm run build

@@ -1,8 +1,10 @@
 <script lang="ts">
-    import type {Recipe} from "../types/recipe";
-    import StructuredDataRecipe from "$lib/components/StructuredDataRecipe.svelte";
-    import {seoImgHeight, seoImgWidth} from "../constants/seo";
-    import {picsumHost} from "../constants/picsum";
+    import HeadRecipe from "$lib/components/HeadRecipe.svelte";
+    import { seoImgHeight, seoImgWidth } from "$lib/constants/seo";
+    import type { Recipe } from "$lib/types/recipe";
+    import { picsumHost } from "$lib/constants/picsum";
+
+    export let recipe: Recipe | undefined = undefined;
 
     const name = "Cookie Bookie";
     const rootUrl = "https://cookiebookie.dk"
@@ -18,8 +20,6 @@
     const width = seoImgWidth;
     const height = seoImgHeight;
     let image = `${picsumHost}/id/292/${width}/${height}`;
-
-    export let recipe: Recipe | undefined = undefined;
 
     if (recipe) {
         const r = recipe as Recipe;
@@ -60,6 +60,6 @@
     <meta name="twitter:image" content={image}>
 
     {#if recipe}
-        <StructuredDataRecipe recipe={recipe}/>
+        <HeadRecipe recipe={recipe}/>
     {/if}
 </svelte:head>

@@ -10,7 +10,7 @@
     const have = writable<string[]>([]);
 
     onMount(() => {
-        have.set(JSON.parse(localStorage.getItem(recipe.slug)) || []);
+        have.set(JSON.parse(localStorage.getItem(recipe.slug) ?? "[]") || []);
         sortIngredients();
     })
 
@@ -22,16 +22,16 @@
 
     function toggle(name: string) {
         if ($have.includes(name)) {
-            have.update(list => [...list.filter(i => i != name)])
+            have.update(list => [ ...list.filter(i => i != name) ])
         } else {
-            have.update(list => [...list, name])
+            have.update(list => [ ...list, name ])
         }
     }
 
     function sortIngredients() {
         const h = recipe.ingredients.filter(i => $have.includes(i.name));
         const n = recipe.ingredients.filter(i => !$have.includes(i.name));
-        recipe.ingredients = [...n, ...h];
+        recipe.ingredients = [ ...n, ...h ];
     }
 
     function save() {
