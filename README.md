@@ -1,34 +1,42 @@
 # Cookie Bookie
+En lille opskriftsamling og SEO legeplads.
 
+## Tilføj opskrift
 Sådan her tilføjes nye opskrifter.
 
-- Opskrifterne findes i mappen ``website/src/recipes``
-- Tilføj en ny opskrift ved at oprette en fil i mappen
-- Overhold formatet vist i de andre opskrifter
-- Tilføje opskrifen til `_all.ts`
+- Opskrifterne findes i mappen [website/src/recipes](website/src/recipes).
+- Tilføj en ny opskrift ved at oprette en fil i mappen.
+- Overhold formatet vist i de andre opskrifter.
+- Tilføje opskrifen til [website/src/lib/data/recipes.ts](website/src/lib/data/recipes.ts).
 - Opret et PR på GitHub.
 
 Så ruller det automatisk ud, når jeg engang godkender ændringen.
-
 ## Developing
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a
-development server:
+How to get setup and going.
 
-```bash
-npm run dev
+```sh
+$ git clone <method>/bjornnorgaard/cookiebookie.git
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+$ pwd
+    .../cookiebookie
+
+$ ls
+    README.md	monitor		website
+
+$ cd website
+
+$ pwd
+    .../cookiebookie/website
+
+$ npm i
+    changed 42 packages, and audited 1337 packages in 123ms
+
+$ npm run dev
+
+    VITE v4.x.x  ready in 321 ms
+
+    ➜  Local:   http://localhost:5173/
+    ➜  Network: use --host to expose
+    ➜  press h to show help
+
 ```
-
-## Building
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target
-> environment.
