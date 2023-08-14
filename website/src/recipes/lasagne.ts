@@ -1,5 +1,6 @@
-import type { Recipe } from "$lib/types/recipe";
-import { picsumHost } from "$lib/constants/picsum";
+import type {Recipe} from "$lib/types/recipe";
+import {picsumHost} from "$lib/constants/picsum";
+import {recipes} from "$lib/stores/recipes";
 
 export const lasagne: Recipe = {
     slug: "lasagne",
@@ -30,29 +31,11 @@ export const lasagne: Recipe = {
         {name: "Peber og salt", amount: ""},
     ],
     steps: [
-        {
-            title: "Løgløg, hvide løg og olie oliven",
-            desc: "Først skal vi pille og hakke. Start med løg og hvidløg. Det skal være fint, og steges i lidt olivenolie. Kun let på en pande uden at det tager farve!",
-        },
-        {
-            title: "Kød og vin",
-            desc: "Tilsæt kødet og lad det stege med, til alt kødet har taget farve. Hæld rødvin ved og lad det boble med nogle minutter.",
-        },
-        {
-            title: "Tomat, fond og urter",
-            desc: "Tilsæt hakket tomat og oksefond. Rør det hele sammen. Bind dine krydderuderter sammen (du har nu lavet en bouquet garni) og læg dem ned i gryden.",
-        },
-        {
-            title: "Simre, slumre, simmer",
-            desc: "Lad det hele simre til det det ikke er for flydende, og egner sig til lasagne (45-60 minutter).",
-        },
-        {
-            title: "Beper og zalt",
-            desc: "Smag til med salt og peber - og evt. lidt chili hvis bedstemor ikke spiser med.",
-        },
-        {
-            title: "Bonus",
-            desc: "Du kan med fordel tilføje mørk balsamico eller en anden god eddike, hvis saucen mangler syre.",
-        },
+        {title: "Løgløg, hvide løg og olie oliven", desc: "Først skal vi pille og hakke. Start med løg og hvidløg. Det skal være fint, og steges i lidt olivenolie. Kun let på en pande uden at det tager farve!"},
+        {title: "Kød og vin", desc: "Tilsæt kødet og lad det stege med, til alt kødet har taget farve. Hæld rødvin ved og lad det boble med nogle minutter."},
+        {title: "Tomat, fond og urter", desc: "Tilsæt hakket tomat og oksefond. Rør det hele sammen. Bind dine krydderuderter sammen (du har nu lavet en bouquet garni) og læg dem ned i gryden."},
+        {title: "Simre, slumre, simmer", desc: "Lad det hele simre til det det ikke er for flydende, og egner sig til lasagne (45-60 minutter)."},
+        {title: "Beper og zalt", desc: "Smag til med salt og peber - og evt. lidt chili hvis bedstemor ikke spiser med."},
+        {title: "Bonus", desc: "Du kan med fordel tilføje mørk balsamico eller en anden god eddike, hvis saucen mangler syre."},
     ],
 };

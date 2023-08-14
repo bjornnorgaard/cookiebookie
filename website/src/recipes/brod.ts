@@ -1,5 +1,6 @@
 import type {Recipe} from "$lib/types/recipe";
-import {picsumHost} from "../lib/constants/picsum";
+import {picsumHost} from "$lib/constants/picsum";
+import {recipes} from "$lib/stores/recipes";
 
 export const brod: Recipe = {
     slug: "brod",

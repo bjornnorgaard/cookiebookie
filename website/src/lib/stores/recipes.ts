@@ -1,9 +1,20 @@
-import type { Recipe } from "$lib/types/recipe";
-import { readable } from "svelte/store";
-import { all } from "../../recipes/_all";
+import type {Recipe} from "$lib/types/recipe";
+import { brod } from "../../recipes/brod";
+import { lasagne } from "../../recipes/lasagne";
+import { risotto } from "../../recipes/risotto";
+import { ristaffel } from "../../recipes/ristaffel";
+import { sorensPastaret } from "../../recipes/sorens-pastaret";
+import { svinemorbrad } from "../../recipes/spansk-svinemorbrad";
+import { tomatsalat } from "../../recipes/tomatsalat";
 
-export const recipes = readable<Map<string, Recipe>>(new Map<string, Recipe>(), (set) => {
-    const list = new Map<string, Recipe>();
-    all.forEach(r => list.set(r.slug, r))
-    set(list)
-});
+export const recipes: Recipe[] = [
+    ristaffel,
+    lasagne,
+    sorensPastaret,
+    risotto,
+    brod,
+    tomatsalat,
+    svinemorbrad,
+    // boller,
+    // frittata,
+];

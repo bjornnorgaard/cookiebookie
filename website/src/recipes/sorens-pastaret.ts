@@ -1,5 +1,6 @@
-import type { Recipe } from "$lib/types/recipe";
-import { picsumHost } from "$lib/constants/picsum";
+import type {Recipe} from "$lib/types/recipe";
+import {picsumHost} from "$lib/constants/picsum";
+import {recipes} from "$lib/stores/recipes";
 
 export const sorensPastaret: Recipe = {
     slug: "sorens-pastaret",
@@ -21,25 +22,9 @@ export const sorensPastaret: Recipe = {
         {name: "Salt og peber", amount: ""},
     ],
     steps: [
-        {
-            title: "Åbn, hak og bland",
-            desc: "Hak grønsager og riv osten. Bland grønsager og pasta. " +
-                "Gem osten til sidst. Hæld tomaterne i så det kun lige dækker."
-        },
-        {
-            title: "Ost - selvfølgelig",
-            desc: "Osten fordeles nøjsomt ovenpå. Når osten er fordelt, " +
-                "smider du fingerne i fadet og begynder skødesløst at blande det hele."
-        },
-        {
-            title: "Ovnen klarer resten",
-            desc: "Det skal næppe have mindre end 30 minutter, lander normalt et sted omkring 45-60 min. " +
-                "Kig på den hver 20. minut og tænk dig om."
-        },
-        {
-            title: "Du er der næsten!",
-            desc: "Nu skal den bare have til du ikke tør mere. " +
-                "I stræberversionen kan man også røre i den under inspektionerne."
-        },
+        {title: "Åbn, hak og bland", desc: "Hak grønsager og riv osten. Bland grønsager og pasta. Gem osten til sidst. Hæld tomaterne i så det kun lige dækker."},
+        {title: "Ost - selvfølgelig", desc: "Osten fordeles nøjsomt ovenpå. Når osten er fordelt, smider du fingerne i fadet og begynder skødesløst at blande det hele."},
+        {title: "Ovnen klarer resten", desc: "Det skal næppe have mindre end 30 minutter, lander normalt et sted omkring 45-60 min. Kig på den hver 20. minut og tænk dig om."},
+        {title: "Du er der næsten!", desc: "Nu skal den bare have til du ikke tør mere. I stræberversionen kan man også røre i den under inspektionerne."},
     ],
 };
