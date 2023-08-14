@@ -12,7 +12,6 @@ export const load: PageLoad = ({ params }) => {
     const recipe: Recipe = maybeRecipe as Recipe;
 
     return {
-        title: recipe.title,
         recipe: recipe,
     };
 };

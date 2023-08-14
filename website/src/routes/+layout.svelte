@@ -1,6 +1,5 @@
 <script lang="ts">
     import "../app.css";
-    import { page } from '$app/stores';
 
     const footerLinks = [
         { href: "https://github.com/bjornnorgaard/cookiebookie", svg: "/icons/github.svg", alt: "github" },
@@ -13,10 +12,7 @@
     <a class="text-xl normal-case btn btn-ghost" href="/">Cookie Bookie</a>
 </nav>
 
-<div class="m-auto max-w-screen-sm px-4 min-h-content prose py-nav">
-    <h1>{$page.data.title}</h1>
-    <slot/>
-</div>
+<slot/>
 
 <footer class="pb-8 sm:px-8">
     <div class="m-auto flex max-w-screen-sm flex-col justify-between gap-4 text-center sm:flex-row sm:px-8 sm:py-4 sm:text-left">
