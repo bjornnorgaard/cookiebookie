@@ -1,30 +1,35 @@
-name: Website
+
+name: Website CI
 
 on:
   push:
-    branches: [main]
     paths:
       - "website/**"
       - ".github/**/website.yml"
   pull_request:
+    paths:
+      - "website/**"
+      - ".github/**/website.yml"
 
 defaults:
   run:
-    working-directory: ./website
+    working-directory: website
 
 jobs:
   build-website:
-    name: Build Website
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
 
     steps:
     - uses: actions/checkout@v3
-    - name: Setup Node.js
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version: 18.x
+        node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: ./website/package-lock.json
     - run: npm ci
     - run: tsc
     - run: npm run build
+    - run: npm test --if-present
