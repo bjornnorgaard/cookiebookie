@@ -1,9 +1,11 @@
 <script lang="ts">
     import ContentNarrow from "$lib/components/ContentNarrow.svelte";
     import Head from "$lib/components/Head.svelte";
-    import type { PageData } from "./$types";
+    import { recipes } from "$lib/stores/recipes";
 
-    export let data: PageData;
+    const data = {
+        recipes: recipes,
+    };
 </script>
 
 <Head/>
