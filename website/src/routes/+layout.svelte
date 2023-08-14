@@ -13,7 +13,7 @@
     <a class="btn btn-ghost normal-case text-xl" href="/">Cookie Bookie</a>
 </nav>
 
-<div class="m-auto minh-content max-w-screen-sm px-4 prose py-nav">
+<div class="m-auto min-h-content max-w-screen-sm px-4 prose py-nav">
     <h1>{$page.data.title}</h1>
     <slot/>
 </div>

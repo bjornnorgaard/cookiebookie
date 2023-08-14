@@ -23,3 +23,10 @@
         </a>
     {/each}
 </div>
+
+<style>
+    .grid-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    }
+</style>
