@@ -1,7 +1,8 @@
 <script lang="ts">
     import Head from "$lib/components/Head.svelte";
-    import ShoppingList from "./ShoppingList.svelte";
+    import ShoppingList from "$lib/components/ShoppingList.svelte";
     import type { PageData } from './$types';
+    import MainContent from "$lib/components/MainContent.svelte";
 
     export let data: PageData;
 
@@ -10,34 +11,36 @@
 
 <Head recipe={data.recipe}/>
 
-<img class="rounded-lg drop-shadow-lg"
-     title={data.recipe.title} loading="eager"
-     src={`${data.recipe.image}/1260/540`} alt={data.recipe.title}
-     height="300" width="700">
-<p class="m-0">{data.recipe.longDesc}</p>
+<MainContent title={data.recipe.title}>
+    <img class="rounded-lg drop-shadow-lg"
+         title={data.recipe.title} loading="eager"
+         src={`${data.recipe.image}/1260/540`} alt={data.recipe.title}
+         height="300" width="700">
+    <p class="m-0">{data.recipe.longDesc}</p>
 
-<ShoppingList recipe={data.recipe}/>
+    <ShoppingList recipe={data.recipe}/>
 
-<h2>Planen</h2>
-<div class="flex flex-col gap-4 rounded-lg p-4 drop-shadow-lg bg-secondary text-secondary-content">
-    {#each data.recipe.steps as s,id}
-        <div class="flex gap-4">
-            <input id={s.title} type="checkbox" bind:checked={completedSteps[id]}
-                   class="mt-1 checkbox bg-neutral-content text-neutral-content">
-            <div class="flex flex-col">
-                <label for={s.title}
-                       class="mt-1 text-base font-bold transition-opacity"
+    <h2>Planen</h2>
+    <div class="flex flex-col gap-4 rounded-lg p-4 drop-shadow-lg bg-secondary text-secondary-content">
+        {#each data.recipe.steps as s,id}
+            <div class="flex gap-4">
+                <input id={s.title} type="checkbox" bind:checked={completedSteps[id]}
+                       class="mt-1 checkbox bg-neutral-content text-neutral-content">
+                <div class="flex flex-col">
+                    <label for={s.title}
+                           class="mt-1 text-base font-bold transition-opacity"
+                           class:line-through={completedSteps[id]}
+                           class:opacity-50={completedSteps[id]}>
+                        {s.title}
+                    </label>
+
+                    <p class="m-0 transition-opacity"
                        class:line-through={completedSteps[id]}
                        class:opacity-50={completedSteps[id]}>
-                    {s.title}
-                </label>
-
-                <p class="m-0 transition-opacity"
-                   class:line-through={completedSteps[id]}
-                   class:opacity-50={completedSteps[id]}>
-                    {s.desc}
-                </p>
+                        {s.desc}
+                    </p>
+                </div>
             </div>
-        </div>
-    {/each}
-</div>
+        {/each}
+    </div>
+</MainContent>

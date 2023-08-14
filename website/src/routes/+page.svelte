@@ -1,25 +1,28 @@
 <script lang="ts">
     import Head from "$lib/components/Head.svelte";
     import type { PageData } from './$types';
+    import MainContent from "$lib/components/MainContent.svelte";
 
     export let data: PageData;
 </script>
 
 <Head/>
 
-<div class="gap-4 grid-list">
-    {#each data.recipes as recipe}
-        <a href={recipe.slug}
-           class="overflow-hidden no-underline duration-500 ease-in-out card card-compact glass hover:scale-105">
-            <img class="m-0 rounded-t object-cover"
-                 title={recipe.title} loading="eager"
-                 src={`${recipe.image}/700/300`} alt={recipe.title}
-                 height="300" width="700"/>
+<MainContent title="Seneste Opskrifter">
+    <div class="gap-4 grid-list">
+        {#each data.recipes as recipe}
+            <a href={recipe.slug}
+               class="overflow-hidden no-underline duration-500 ease-in-out card card-compact glass hover:scale-105">
+                <img class="m-0 rounded-t object-cover"
+                     title={recipe.title} loading="eager"
+                     src={`${recipe.image}/700/300`} alt={recipe.title}
+                     height="300" width="700"/>
 
-            <div class="card-body prose">
-                <h2 class="m-0 card-title">{recipe.title}</h2>
-                <p>{recipe.shortDesc}</p>
-            </div>
-        </a>
-    {/each}
-</div>
+                <div class="card-body prose">
+                    <h2 class="m-0 card-title">{recipe.title}</h2>
+                    <p>{recipe.shortDesc}</p>
+                </div>
+            </a>
+        {/each}
+    </div>
+</MainContent>

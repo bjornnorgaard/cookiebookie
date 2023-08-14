@@ -10,7 +10,6 @@ export const load: PageLoad = ({ params }) => {
     }
 
     return {
-        title: "Seneste opskrifter",
         recipes: list,
     };
 };

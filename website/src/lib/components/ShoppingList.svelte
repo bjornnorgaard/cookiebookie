@@ -1,24 +1,14 @@
 <script lang="ts">
     import type { Recipe } from "$lib/types/recipe";
-    import { writable } from "svelte/store";
     import { onMount } from "svelte";
     import { flip } from "svelte/animate";
     import { cubicInOut } from "svelte/easing";
+    import { localStorageStore } from "$lib/stores/localStorageStore";
 
-    export let recipe: Recipe = {} as Recipe;
+    export let recipe: Recipe;
+    const have = localStorageStore<string[]>("shopping_list", []);
 
-    const have = writable<string[]>([]);
-
-    onMount(() => {
-        have.set(JSON.parse(localStorage.getItem(recipe.slug) ?? "[]") || []);
-        sortIngredients();
-    })
-
-    const onCheckChange = (name: string) => {
-        toggle(name);
-        sortIngredients();
-        save();
-    };
+    onMount(() => sortIngredients());
 
     function toggle(name: string) {
         if ($have.includes(name)) {
@@ -26,16 +16,13 @@
         } else {
             have.update(list => [ ...list, name ])
         }
+        sortIngredients();
     }
 
     function sortIngredients() {
         const h = recipe.ingredients.filter(i => $have.includes(i.name));
         const n = recipe.ingredients.filter(i => !$have.includes(i.name));
         recipe.ingredients = [ ...n, ...h ];
-    }
-
-    function save() {
-        localStorage.setItem(recipe.slug, JSON.stringify($have))
     }
 </script>
 
@@ -44,12 +31,12 @@
 <div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-accent text-accent-content">
     {#each recipe.ingredients as i (i.name)}
         <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 2000}}
-             class="flex justify-between gap-4">
+             class="flex cursor-pointer items-center justify-between gap-4">
 
             <input id={i.name}
                    type="checkbox"
                    checked={$have.includes(i.name)}
-                   on:click={() => onCheckChange(i.name)}
+                   on:click={() => toggle(i.name)}
                    class="checkbox bg-neutral-content">
 
             <label class="grow" for={i.name}
