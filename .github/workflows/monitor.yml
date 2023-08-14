@@ -1,4 +1,4 @@
-name: Monitor
+name: Monitor CI
 
 on:
   push:
@@ -11,14 +11,13 @@ on:
 
 defaults:
   run:
-    working-directory: ./monitor
+    working-directory: monitor
 
 env:
   HOST: https://cookiebookie.dk/
 
 jobs:
-  check-site-status:
-    name: Check Site Status
+  run-monitor:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,7 +27,7 @@ jobs:
         with:
           go-version: "1.21"
           cache: true
-          cache-dependency-path: ./monitor/go.sum
+          cache-dependency-path: monitor/go.sum
 
       - name: Build
         run: go build -v ./...

@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { Recipe } from "../types/recipe";
-    import { seoImgHeight, seoImgWidth } from "../constants/seo";
+    import type { Recipe } from "$lib/types/recipe";
+    import { seoImgHeight, seoImgWidth } from "$lib/constants/seo";
 
     export let recipe: Recipe;
 
@@ -9,11 +9,11 @@
         "@type": "Recipe",
         "name": recipe.shortDesc,
         "image": [
-            `${recipe.image}/${seoImgWidth}/${seoImgHeight}`
+            `${recipe.image}/${seoImgWidth}/${seoImgHeight}`,
         ],
         "author": {
             "@type": "Person",
-            "name": "Bjørn Nørgaard"
+            "name": "Bjørn Nørgaard",
         },
         // "datePublished": "2018-03-10",
         "description": recipe.longDesc,

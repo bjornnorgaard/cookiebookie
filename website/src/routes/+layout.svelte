@@ -1,10 +1,11 @@
 <script lang="ts">
     import "../app.css";
+    import { page } from '$app/stores';
 
     const footerLinks = [
-        {href: "https://github.com/bjornnorgaard/cookiebookie", svg: "/icons/github.svg", alt: "github",},
-        {href: "https://www.linkedin.com/in/bjorn-norgaard", svg: "/icons/linkedin.svg", alt: "linkedin",},
-        {href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", svg: "/icons/youtube.svg", alt: "youtube",},
+        { href: "https://github.com/bjornnorgaard/cookiebookie", svg: "/icons/github.svg", alt: "github" },
+        { href: "https://www.linkedin.com/in/bjorn-norgaard", svg: "/icons/linkedin.svg", alt: "linkedin" },
+        { href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", svg: "/icons/youtube.svg", alt: "youtube" },
     ];
 </script>
 
@@ -12,9 +13,10 @@
     <a class="btn btn-ghost normal-case text-xl" href="/">Cookie Bookie</a>
 </nav>
 
-<main class="min-h-content">
+<div class="m-auto min-h-content max-w-screen-sm px-4 prose py-nav">
+    <h1>{$page.data.title}</h1>
     <slot/>
-</main>
+</div>
 
 <footer class="pb-8 sm:px-8">
     <div class="m-auto flex max-w-screen-sm flex-col justify-between gap-4 text-center sm:flex-row sm:px-8 sm:py-4 sm:text-left">
