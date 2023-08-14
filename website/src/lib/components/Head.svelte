@@ -1,8 +1,8 @@
 <script lang="ts">
-    import type { Recipe } from "../types/recipe";
+    import type {Recipe} from "../types/recipe";
     import StructuredDataRecipe from "$lib/components/StructuredDataRecipe.svelte";
-    import { seoImgHeight, seoImgWidth } from "../constants/seo";
-    import { picsumHost } from "../constants/picsum";
+    import {seoImgHeight, seoImgWidth} from "../constants/seo";
+    import {picsumHost} from "../constants/picsum";
 
     const name = "Cookie Bookie";
     const rootUrl = "https://cookiebookie.dk"
@@ -48,8 +48,8 @@
     <meta property="og:url" content={url}>
 
     <meta property="og:image" content={image}>
-    <meta property="og:image:width" content={width}>
-    <meta property="og:image:height" content={height}>
+    <meta property="og:image:width" content={width.toString()}>
+    <meta property="og:image:height" content={height.toString()}>
     <meta property="og:image:type" content="image/jpeg">
 
     <meta property="twitter:domain" content={rootUrl}>
