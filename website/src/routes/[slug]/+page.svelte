@@ -1,10 +1,15 @@
 <script lang="ts">
     import ContentNarrow from "$lib/components/ContentNarrow.svelte";
     import Head from "$lib/components/Head.svelte";
-    import type { PageData } from "./$types";
     import ShoppingList from "./ShoppingList.svelte";
+    import { page } from "$app/stores";
+    import { recipes } from "$lib/stores/recipes";
+    import type { Recipe } from "$lib/types/recipe";
 
-    export let data: PageData;
+    const data = {
+        recipe: recipes.find(r => r.slug === $page.params.slug) || {} as Recipe,
+    };
+
     const planCheckmarks: boolean[] = [];
 </script>
 
