@@ -64,4 +64,6 @@
     };
 </script>
 
+<link rel="preload" as="image" href="{recipe.image}"/>
+
 {@html `<script type="application/ld+json">${JSON.stringify(data, null, 2)}</script>`}
