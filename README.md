@@ -8,7 +8,7 @@ Sådan her tilføjes nye opskrifter.
 - Tilføj en ny opskrift ved at oprette en fil i mappen.
 - Overhold formatet vist i de andre opskrifter.
 - Tilføje opskrifen til [website/src/lib/data/recipes.ts](website/src/lib/data/recipes.ts).
-- Opret et PR på GitHub.
+- Opret et pull request.
 
 Så ruller det automatisk ud, når jeg engang godkender ændringen.
 ## Developing
