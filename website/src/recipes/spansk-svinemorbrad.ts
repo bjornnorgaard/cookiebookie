@@ -1,11 +1,21 @@
 import type { Recipe } from "$lib/types/recipe";
+import { Category, Cuisine } from "$lib/types/recipe";
 import { picsumHost } from "$lib/constants/picsum";
+import { Months } from "$lib/types/months";
 
 export const svinemorbrad: Recipe = {
     slug: "svinemorbrad",
     title: "Svinemørbrad i Svøb",
     image: `${picsumHost}/id/15`,
     shortDesc: "Svinemørbrad tilberedt som den bør",
+    author: "Nikolaj Matzen",
+    prepTime: "PT20M",
+    cookTime: "PT30M",
+    totalTime: "PT50M",
+    cuisine: Cuisine.Spanish,
+    yield: 4,
+    categories: [Category.Hovedretter, Category.Aftensmad],
+    datePublished: new Date(2023, Months.June, 14),
     longDesc: "Dress to impress! Dette svin er svøbt i sine spanske artsfæller og derefter klædt på med butterdej. Aldrig mere vil du forbinde ordet tør med svinemørbrad. Advarsel, tilfælde af kronisk løbende mundvand er hændt efter indtagelse.",
     ingredients: [
         { name: "Svinemørbrad", amount: "1 stk." },

@@ -1,11 +1,21 @@
 import type { Recipe } from "$lib/types/recipe";
+import { Category, Cuisine } from "$lib/types/recipe";
 import { picsumHost } from "$lib/constants/picsum";
+import { Months } from "$lib/types/months";
 
 export const sorensPastaret: Recipe = {
     slug: "sorens-pastaret",
     title: "Sørens Pastaret",
     image: `${picsumHost}/id/98`,
     shortDesc: "Lav indsats. Super lækker. Mums. God dagen før løbeturen.",
+    author: "Bjørn Nørgaard",
+    prepTime: "PT10M",
+    cookTime: "PT40M",
+    totalTime: "PT50M",
+    cuisine: Cuisine.Danish,
+    yield: 2,
+    categories: [Category.Hovedretter, Category.Aftensmad],
+    datePublished: new Date(2023, Months.February, 5),
     longDesc: "Nem ret. Smid det hele i et fad og bland. Kan sagtens klare " +
         "random grønsager - rosenkål og porre er ikke fjenden! " +
         "Tager ingen tid at forberede og skal bare glemmes i ovnen i " +

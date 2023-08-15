@@ -1,16 +1,16 @@
 <script lang="ts">
     import Head from "$lib/components/Head.svelte";
-    import type { PageData } from './$types';
     import MainContent from "$lib/components/MainContent.svelte";
+    import { page } from "$app/stores";
 
-    export let data: PageData;
+    $: recipes = $page.data.recipes;
 </script>
 
 <Head/>
 
 <MainContent title="Seneste opskrifter">
     <div class="gap-4 grid-list">
-        {#each data.recipes as recipe}
+        {#each recipes as recipe}
             <a href={recipe.slug}
                class="overflow-hidden no-underline duration-500 ease-in-out card card-compact glass hover:scale-105">
                 <img class="m-0 rounded-t object-cover"

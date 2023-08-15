@@ -1,11 +1,21 @@
 import type { Recipe } from "$lib/types/recipe";
+import { Category, Cuisine } from "$lib/types/recipe";
 import { picsumHost } from "$lib/constants/picsum";
+import { Months } from "$lib/types/months";
 
 export const boller: Recipe = {
     slug: "boller",
     title: "Fødselsdagsboller",
     image: `${picsumHost}/id/244`,
     shortDesc: "Kommer snart...",
+    author: "Bjørn Nørgaard",
+    prepTime: "PT10M",
+    cookTime: "PT40M",
+    totalTime: "PT50M",
+    cuisine: Cuisine.Danish,
+    yield: 4,
+    categories: [Category.Fodselsdag, Category.Bagning],
+    datePublished: new Date(2023, Months.March, 3),
     longDesc: "Vi er der ikke helt endnu!",
     ingredients: [
         { name: "Mel", amount: "1200 gram" },
