@@ -1,9 +1,7 @@
-<script lang="ts">
-    import type { Recipe } from "$lib/types/recipe";
-    import { seoImgHeight, seoImgWidth } from "$lib/constants/seo";
+import type { Recipe } from "$lib/types/recipe";
+import { seoImgHeight, seoImgWidth } from "$lib/constants/seo";
 
-    export let recipe: Recipe;
-
+export function buildRecipeHead(recipe: Recipe, rootUrl: string): any {
     const data = {
         "@context": "https://schema.org/",
         "@type": "Recipe",
@@ -13,27 +11,27 @@
         ],
         "author": {
             "@type": "Person",
-            "name": "Bjørn Nørgaard",
+            "name": recipe.author,
         },
-        // "datePublished": "2018-03-10",
+        "datePublished": recipe.datePublished,
         "description": recipe.longDesc,
-        // "prepTime": "PT20M",
-        // "cookTime": "PT30M",
-        // "totalTime": "PT50M",
+        "prepTime": recipe.prepTime,
+        "cookTime": recipe.cookTime,
+        "totalTime": recipe.totalTime,
         "keywords": recipe.title,
-        "recipeYield": "2",
-        "recipeCategory": "Dinner",
-        "recipeCuisine": "Danish",
+        "recipeYield": recipe.yield.toString(),
+        "recipeCategory": recipe.categories.toString(),
+        "recipeCuisine": recipe.cuisine.toString(),
         /* "nutrition": {
             "@type": "NutritionInformation",
             "calories": "270 calories"
         }, */
         "recipeIngredient": recipe.ingredients.map(i => i.amount ? `${i.amount} ${i.name}` : i.name),
-        "recipeInstructions": recipe.steps.map(s => ({
+        "recipeInstructions": recipe.steps.map((s, i) => ({
             "@type": "HowToStep",
             "name": s.title,
             "text": s.desc,
-            // "url": "https://example.com/party-coffee-cake#step1",
+            "url": `${rootUrl}/${recipe.slug}#step${i + 1}`,
             // "image": `${recipe.image}/${seoImgWidth}/${seoImgHeight}`,
         })),
         /* "aggregateRating": {
@@ -62,8 +60,6 @@
             "expires": "2019-02-05T08:00:00+08:00"
         } */
     };
-</script>
 
-<link rel="preload" as="image" href="{recipe.image}"/>
-
-{@html `<script type="application/ld+json">${JSON.stringify(data, null, 2)}</script>`}
+    return data;
+}

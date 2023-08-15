@@ -1,11 +1,21 @@
 import type { Recipe } from "$lib/types/recipe";
+import { Category, Cuisine } from "$lib/types/recipe";
 import { picsumHost } from "$lib/constants/picsum";
+import { Months } from "$lib/types/months";
 
 export const lasagne: Recipe = {
     slug: "lasagne",
     title: "Den første Lasagne",
     image: `${picsumHost}/id/21`,
     shortDesc: "Baseret på kombination af de millioner opskrifter, jeg kunne finde.",
+    author: "Bjørn Nørgaard",
+    prepTime: "PT50M",
+    cookTime: "PT40M",
+    totalTime: "PT90M",
+    cuisine: Cuisine.Indian,
+    yield: 8,
+    categories: [Category.Hovedretter, Category.Aftensmad],
+    datePublished: new Date(2023, Months.January, 11),
     longDesc: "Det er lagsagne... Smid det hele i en gryde i to timer. Hvis det er for svært, så læs videre - følg nu med. Jeg smider alt det her i min udgave, men drop endelig hvad du ikke kan lide. Vi gider ikke lave monay eller plader fra bunden. Så dem køber vi for at vinde tid. ",
     ingredients: [
         { name: "Løg", amount: "2 stk." },

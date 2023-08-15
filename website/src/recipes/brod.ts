@@ -1,11 +1,21 @@
 import type { Recipe } from "$lib/types/recipe";
+import { Category, Cuisine } from "$lib/types/recipe";
 import { picsumHost } from "$lib/constants/picsum";
+import { Months } from "$lib/types/months";
 
 export const brod: Recipe = {
     slug: "brod",
     title: "Uæltet Brød",
     image: `${picsumHost}/id/40`,
     shortDesc: "Lækkert, tæt og svampet brød, som ikke skal æltes - særlig meget",
+    author: "Bjørn Nørgaard",
+    prepTime: "PT10M",
+    cookTime: "PT45M",
+    totalTime: "PT55M",
+    cuisine: Cuisine.Danish,
+    yield: 4,
+    categories: [Category.Bagning],
+    datePublished: new Date(2023, Months.January, 12),
     ingredients: [
         { name: "Hvedemel", amount: "400g" },
         { name: "Salt", amount: "10g" },

@@ -1,8 +1,8 @@
 <script lang="ts">
-    import HeadRecipe from "$lib/components/HeadRecipe.svelte";
     import { seoImgHeight, seoImgWidth } from "$lib/constants/seo";
     import type { Recipe } from "$lib/types/recipe";
     import { picsumHost } from "$lib/constants/picsum";
+    import { buildRecipeHead } from "$lib/seo/builder";
 
     export let recipe: Recipe | undefined = undefined;
 
@@ -23,8 +23,8 @@
 
     if (recipe) {
         const r = recipe as Recipe;
-        title = r.shortDesc;
-        description = r.longDesc;
+        title = `${recipe.title} | ${r.shortDesc}`;
+        description = `Opskriften på ${recipe.title.toLowerCase()} - ${recipe.shortDesc} ${r.longDesc}`;
         type = "article";
         url = `${url}/${r.slug}`;
         image = `${r.image}/${width}/${height}`;
@@ -60,6 +60,6 @@
     <meta name="twitter:image" content={image}>
 
     {#if recipe}
-        <HeadRecipe recipe={recipe}/>
+        {@html `<script type="application/ld+json">${JSON.stringify(buildRecipeHead(recipe, rootUrl), null, 2)}</script>`}
     {/if}
 </svelte:head>

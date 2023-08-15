@@ -1,11 +1,21 @@
 import type { Recipe } from "$lib/types/recipe";
+import { Category, Cuisine } from "$lib/types/recipe";
 import { picsumHost } from "$lib/constants/picsum";
+import { Months } from "$lib/types/months";
 
 export const risotto: Recipe = {
     slug: "risotto",
     title: "Risotto",
     image: `${picsumHost}/id/368`,
     shortDesc: "Fancy risgrød til billige penge, men italienerne kan nok ikke smage forskel.",
+    author: "Bjørn Nørgaard",
+    prepTime: "PT10M",
+    cookTime: "PT30M",
+    totalTime: "PT40M",
+    cuisine: Cuisine.Italian,
+    yield: 2,
+    categories: [Category.Hovedretter, Category.Aftensmad],
+    datePublished: new Date(2023, Months.March, 5),
     longDesc: "Vi er ikke millionærer, så risottoris og pamesanost er udelukket. Grødris og en semi-hård ost er lige så godt. Jeg har lige sparet dig omkring 150 kroner - selv tak. Endeligt skal du også finde nogle grønsager - champignon skulle være godt. Sidste ting før vi starter: Du må ikke salte undervejs. Held og lykke.",
     ingredients: [
         { name: "Grødris", amount: "200 gram" },

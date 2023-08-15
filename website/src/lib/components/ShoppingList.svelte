@@ -26,7 +26,7 @@
     }
 </script>
 
-<div class="gap-2 grid-list p-3">
+<div class="gap-2 grid-list p-4">
     {#each recipe.ingredients as i (i.name)}
         <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 2000}}
              class="flex items-center justify-between gap-4 p-1 hover:line-through">
