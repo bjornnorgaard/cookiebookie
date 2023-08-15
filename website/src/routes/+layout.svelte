@@ -8,11 +8,15 @@
     ];
 </script>
 
-<nav class="flex justify-between navbar">
-    <a class="text-xl normal-case btn btn-ghost" href="/">Cookie Bookie</a>
-</nav>
+<header>
+    <nav class="navbar">
+        <a class="text-2xl normal-case btn btn-ghost" href="/">Cookie Bookie</a>
+    </nav>
+</header>
 
-<slot/>
+<main>
+    <slot/>
+</main>
 
 <footer class="pb-8 sm:px-8">
     <div class="m-auto flex max-w-screen-sm flex-col justify-between gap-4 text-center sm:flex-row sm:px-8 sm:py-4 sm:text-left">
