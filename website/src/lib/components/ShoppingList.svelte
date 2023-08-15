@@ -26,12 +26,10 @@
     }
 </script>
 
-<h2>Indkøbslisten</h2>
-
-<div class="gap-4 rounded-lg p-4 drop-shadow-lg grid-list bg-accent text-accent-content">
+<div class="gap-2 grid-list p-3">
     {#each recipe.ingredients as i (i.name)}
         <div animate:flip={{duration: 1000, easing: cubicInOut, delay: 2000}}
-             class="flex cursor-pointer items-center justify-between gap-4">
+             class="flex items-center justify-between gap-4 p-1 hover:line-through">
 
             <input id={i.name}
                    type="checkbox"
@@ -39,7 +37,7 @@
                    on:click={() => toggle(i.name)}
                    class="checkbox bg-neutral-content">
 
-            <label class="grow" for={i.name}
+            <label class="grow cursor-pointer" for={i.name}
                    class:line-through={$have.includes(i.name) ? "checked" : ""}>
                 <span class="font-bold">{i.name}</span>{i.amount ? `, ${i.amount}` : ""}
             </label>
