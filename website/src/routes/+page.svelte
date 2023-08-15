@@ -8,7 +8,7 @@
 
 <Head/>
 
-<MainContent title="Seneste Opskrifter">
+<MainContent title="Seneste opskrifter">
     <div class="gap-4 grid-list">
         {#each data.recipes as recipe}
             <a href={recipe.slug}
