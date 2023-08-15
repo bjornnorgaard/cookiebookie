@@ -13,7 +13,7 @@ export function buildRecipeHead(recipe: Recipe, rootUrl: string): any {
             "@type": "Person",
             "name": recipe.author,
         },
-        "datePublished": recipe.datePublished,
+        "datePublished": recipe.datePublished.toISOString().split("T")[0],
         "description": recipe.longDesc,
         "prepTime": recipe.prepTime,
         "cookTime": recipe.cookTime,
