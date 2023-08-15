@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Raleway';
+    src: url("fonts/Raleway-VariableFont_wght.ttf");
+}
+
+:root{
+    font-family: 'Raleway', sans-serif;
+}
+
 .grid-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
