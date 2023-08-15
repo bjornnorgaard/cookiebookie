@@ -20,7 +20,7 @@
 
                 <div class="card-body prose">
                     <h2 class="m-0 card-title">{recipe.title}</h2>
-                    <p>{recipe.shortDesc}</p>
+                    <p class="line-clamp-2">{recipe.shortDesc}</p>
                 </div>
             </a>
         {/each}
