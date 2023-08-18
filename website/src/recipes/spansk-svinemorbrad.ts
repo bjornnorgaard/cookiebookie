@@ -34,7 +34,7 @@ export const svinemorbrad: Recipe = {
     steps: [
         {
             title: "Forberedelse",
-            desc: "Put øl i køleskabet. Hak løg og svampe i ca. 0.732 cm tykke skiver - riv osten.",
+            desc: "Put øl i køleskabet. Hak løg og svampe i ca. 0,732 cm tykke skiver - riv osten.",
         },
         {
             title: "Svits svinet",
