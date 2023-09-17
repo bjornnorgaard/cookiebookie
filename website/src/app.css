@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Montserrat';
-    src: url("/fonts/Montserrat-VariableFont_wght.ttf") format('truetype');
+    font-family: 'Nunito';
+    src: url("/fonts/Nunito-VariableFont_wght.ttf") format('truetype');
     font-display: swap;
 }
 
 :root{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 .grid-list {
