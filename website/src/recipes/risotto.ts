@@ -23,7 +23,7 @@ export const risotto: Recipe = {
         { name: "Ost", amount: "100 gram" },
         { name: "Løg", amount: "1-2 stk" },
         { name: "Smør", amount: "75 gram" },
-        { name: "Boullion", amount: "1 liter" },
+        { name: "Bouillon", amount: "1 liter" },
         { name: "Champignon", amount: "300 gram" },
         { name: "Ærter", amount: "200 gram" },
         { name: "Hvidløg", amount: "1/2 hvidløg" },
