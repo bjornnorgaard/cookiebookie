@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Raleway';
-    src: url("/fonts/Raleway-VariableFont_wght.ttf") format('truetype');
+    font-family: 'Montserrat';
+    src: url("/fonts/Montserrat-VariableFont_wght.ttf") format('truetype');
     font-display: swap;
 }
 
 :root{
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .grid-list {
