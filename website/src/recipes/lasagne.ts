@@ -50,7 +50,7 @@ export const lasagne: Recipe = {
         },
         {
             title: "Tomat, fond og urter",
-            desc: "Tilsæt hakket tomat og oksefond. Rør det hele sammen. Bind dine krydderuderter sammen (du har nu lavet en bouquet garni) og læg dem ned i gryden.",
+            desc: "Tilsæt hakket tomat og oksefond. Rør det hele sammen. Bind dine krydderurterne sammen (du har nu lavet en bouquet garni) og læg dem ned i gryden.",
         },
         {
             title: "Simre, slumre, simmer",
