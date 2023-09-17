@@ -34,7 +34,7 @@ export const risotto: Recipe = {
     steps: [
         {
             title: "Forberedelse",
-            desc: "Hak løg og hvidløg - riv osten nu, hvis du laver det alene. Lav lige under en liter boullion og sæt det ved konfuret.",
+            desc: "Hak løg og hvidløg - riv osten nu, hvis du laver det alene. Lav lige under en liter bouillon og sæt det ved komfuret.",
         },
         {
             title: "Turbosvits",
@@ -45,8 +45,8 @@ export const risotto: Recipe = {
             desc: "Når løgene spiller, tilføjes ris og timian. Risene skal præcis nå at blive lidt solbrune. Når det er blevet for sent til after-sun, skal hvidvinen i. Vi forsætter når den næsten er kogt væk.",
         },
         {
-            title: "Boulliontid",
-            desc: "Hemmeligheden er, kun at hælde mere boullionvand i, når det begynder at sidde fast på panden. Start med den første tredjedel af boullionvandet, og sørg for at skrabe bunden ren efter hver tankning. Gentag løbende med gradvist mere konservativ mængde. Smag til og gå videre lige før risene er perfekte.",
+            title: "Bouillontid",
+            desc: "Hemmeligheden er, kun at hælde mere bouillonvand i, når det begynder at sidde fast på panden. Start med den første tredjedel af bouillonvandet, og sørg for at skrabe bunden ren efter hver tankning. Gentag løbende med gradvist mere konservativ mængde. Smag til og gå videre lige før risene er perfekte.",
         },
         {
             title: "Grønsager og svampe",
