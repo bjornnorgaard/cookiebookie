@@ -16,7 +16,7 @@ export const risotto: Recipe = {
     yield: 2,
     categories: [Category.Hovedretter, Category.Aftensmad],
     datePublished: new Date(2023, Months.March, 5),
-    longDesc: "Vi er ikke millionærer, så risottoris og pamesanost er udelukket. Grødris og en semi-hård ost er lige så godt. Jeg har lige sparet dig omkring 150 kroner - selv tak. Endeligt skal du også finde nogle grønsager - champignon skulle være godt. Sidste ting før vi starter: Du må ikke salte undervejs. Held og lykke.",
+    longDesc: "Vi er ikke millionærer, så risottoris og pamesanost er udelukket. Grødris og en semi-hård ost er lige så godt. Jeg har lige sparet dig omkring 150 kroner - selv tak. Endeligt skal du også vælge nogle grønsager eller svampe - i dag bruger vi champignon og ærter. Sidste ting før vi starter: Du må ikke salte undervejs. Held og lykke.",
     ingredients: [
         { name: "Grødris", amount: "200 gram" },
         { name: "Hvidvin", amount: "2 dl" },
@@ -25,6 +25,7 @@ export const risotto: Recipe = {
         { name: "Smør", amount: "75 gram" },
         { name: "Boullion", amount: "1 liter" },
         { name: "Champignon", amount: "300 gram" },
+        { name: "Ærter", amount: "200 gram" },
         { name: "Hvidløg", amount: "1/2 hvidløg" },
         { name: "Olivenolie", amount: "" },
         { name: "Timian", amount: "" },
@@ -48,8 +49,8 @@ export const risotto: Recipe = {
             desc: "Hemmeligheden er, kun at hælde mere boullionvand i, når det begynder at sidde fast på panden. Start med den første tredjedel af boullionvandet, og sørg for at skrabe bunden ren efter hver tankning. Gentag løbende med gradvist mere konservativ mængde. Smag til og gå videre lige før risene er perfekte.",
         },
         {
-            title: "Grøntsager",
-            desc: "Jeg glemmer ofte helt at købe grøntsager. Hvis du har været så forudseende, kan de enten steges lidt på en pande eller bare hakkes og smides i. Du er chefen.",
+            title: "Grønsager og svampe",
+            desc: "Jeg glemmer ofte helt at købe grønsager. Hvis du har været så forudseende, kan de enten steges lidt på en pande eller bare hakkes og smides i. Du er chefen.",
         },
         {
             title: "Kan du mærke kærligheden?",
