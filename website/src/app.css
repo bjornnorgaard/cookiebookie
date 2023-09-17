@@ -2,16 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: 'Nunito';
-    src: url("/fonts/Nunito-VariableFont_wght.ttf") format('truetype');
-    font-display: swap;
-}
-
-:root{
-    font-family: 'Nunito', sans-serif;
-}
-
 .grid-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
