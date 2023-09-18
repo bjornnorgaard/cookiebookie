@@ -25,7 +25,7 @@ export const risotto: Recipe = {
         { name: "Smør", amount: "75 gram" },
         { name: "Bouillon", amount: "1 liter" },
         { name: "Champignon", amount: "250 gram" },
-        { name: "Ærter", amount: "150 gram" },
+        { name: "Ærter", amount: "100 gram" },
         { name: "Hvidløg", amount: "1/2 hvidløg" },
         { name: "Olivenolie", amount: "" },
         { name: "Timian", amount: "" },
@@ -46,7 +46,7 @@ export const risotto: Recipe = {
         },
         {
             title: "Bouillontid",
-            desc: "Hemmeligheden er, kun at hælde mere bouillonvand i, når det begynder at sidde fast på panden. Start med den første tredjedel af bouillonvandet, og sørg for at skrabe bunden ren efter hver tankning. Gentag løbende med gradvist mere konservativ mængde. Smag til og gå videre lige før risene er perfekte.",
+            desc: "Hemmeligheden er, kun at hælde mere bouillonvand i, når det begynder at sidde fast på panden. Start med den første tredjedel af bouillonvandet, og sørg for at skrabe bunden ren efter hver tankning. Gentag løbende med gradvist mere konservativ mængde. Smag på det og gå videre lige før risene er perfekte.",
         },
         {
             title: "Grønsager og svampe",
