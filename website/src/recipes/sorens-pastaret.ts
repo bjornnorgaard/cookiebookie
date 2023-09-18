@@ -25,7 +25,7 @@ export const sorensPastaret: Recipe = {
         { name: "Hakkede tomater", amount: "2-3 dåser" },
         { name: "Løg", amount: "2-20 stk" },
         { name: "Fløde", amount: "1/4 liter fløde" },
-        { name: "Havarti ost (revet)", amount: "200g" },
+        { name: "Havarti ost", amount: "200g" },
         { name: "Bacon", amount: "~200g" },
         { name: "Grønsager", amount: "" },
         { name: "Salt og peber", amount: "" },
