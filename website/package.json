@@ -15,7 +15,7 @@
 		"@sveltejs/kit": "^1.25.1",
 		"@tailwindcss/typography": "^0.5.10",
 		"autoprefixer": "^10.4.16",
-		"daisyui": "^3.7.7",
+		"daisyui": "^3.8.0",
 		"postcss": "^8.4.30",
 		"svelte": "^4.2.1",
 		"svelte-check": "^3.5.2",
