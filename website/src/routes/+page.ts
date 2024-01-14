@@ -6,7 +6,7 @@ import type { Recipe } from "$lib/types/recipe";
 export const load: PageLoad = ({ params }) => {
     const list: Recipe[] = recipes;
     if (!list.length) {
-        throw error(500, "No list found");
+        error(500, "No list found");
     }
 
     return {
