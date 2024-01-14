@@ -3,7 +3,7 @@ import { error } from "@sveltejs/kit";
 import { recipes } from "$lib/data/recipes";
 import type { Recipe } from "$lib/types/recipe";
 
-export const load: PageLoad = ({ params }) => {
+export const load: PageLoad = () => {
     const list: Recipe[] = recipes;
     if (!list.length) {
         error(500, "No list found");
