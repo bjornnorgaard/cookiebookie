@@ -14,7 +14,7 @@ export const brod: Recipe = {
     totalTime: "PT55M",
     cuisine: Cuisine.Danish,
     yield: 4,
-    categories: [Category.Bagning],
+    categories: [ Category.Bagning ],
     datePublished: new Date(2023, Months.January, 12),
     ingredients: [
         { name: "Hvedemel", amount: "400g" },

@@ -14,7 +14,7 @@ export const risotto: Recipe = {
     totalTime: "PT40M",
     cuisine: Cuisine.Italian,
     yield: 2,
-    categories: [Category.Hovedretter, Category.Aftensmad],
+    categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2023, Months.March, 5),
     longDesc: "Vi er ikke millionærer, så risottoris og parmesanost er udelukket. Grødris og en semi-hård ost er lige så godt. Jeg har lige sparet dig omkring 150 kroner - selv tak. Endeligt skal du også vælge nogle grønsager eller svampe - i dag bruger vi champignon og ærter. Sidste ting før vi starter: Du må ikke salte undervejs. Held og lykke.",
     ingredients: [

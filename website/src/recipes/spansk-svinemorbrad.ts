@@ -14,7 +14,7 @@ export const svinemorbrad: Recipe = {
     totalTime: "PT50M",
     cuisine: Cuisine.Spanish,
     yield: 4,
-    categories: [Category.Hovedretter, Category.Aftensmad],
+    categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2023, Months.June, 14),
     longDesc: "Dress to impress! Dette svin er svøbt i sine spanske artsfæller og derefter klædt på med butterdej. Aldrig mere vil du forbinde ordet tør med svinemørbrad. Advarsel, tilfælde af kronisk løbende mundvand er hændt efter indtagelse.",
     ingredients: [

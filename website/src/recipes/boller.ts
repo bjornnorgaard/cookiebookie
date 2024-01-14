@@ -14,7 +14,7 @@ export const boller: Recipe = {
     totalTime: "PT50M",
     cuisine: Cuisine.Danish,
     yield: 4,
-    categories: [Category.Fodselsdag, Category.Bagning],
+    categories: [ Category.Fodselsdag, Category.Bagning ],
     datePublished: new Date(2023, Months.March, 3),
     longDesc: "Vi er der ikke helt endnu!",
     ingredients: [

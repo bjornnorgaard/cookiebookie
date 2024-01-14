@@ -64,7 +64,7 @@ export function localStorageStore<T>(key: string, initialValue: T, options?: Opt
                 updateStorage(key, value);
                 set(value);
             },
-            subscribe
+            subscribe,
         };
     }
 

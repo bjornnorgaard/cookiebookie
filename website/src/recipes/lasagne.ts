@@ -14,7 +14,7 @@ export const lasagne: Recipe = {
     totalTime: "PT90M",
     cuisine: Cuisine.Indian,
     yield: 8,
-    categories: [Category.Hovedretter, Category.Aftensmad],
+    categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2023, Months.January, 11),
     longDesc: "Det er lagsagne... Smid det hele i en gryde i to timer. Hvis det er for svært, så læs videre - følg nu med. Jeg smider alt det her i min udgave, men drop endelig hvad du ikke kan lide. Vi gider ikke lave monay eller plader fra bunden. Så dem køber vi for at vinde tid. ",
     ingredients: [

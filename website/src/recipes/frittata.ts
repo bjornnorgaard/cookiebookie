@@ -14,7 +14,7 @@ export const frittata: Recipe = {
     totalTime: "PT50M",
     cuisine: Cuisine.Italian,
     yield: 2,
-    categories: [Category.Hovedretter, Category.Aftensmad],
+    categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2023, Months.May, 11),
     longDesc: "Den idelle frittata har alle regnbuens farver - hvis du ikke bliver glad af at se på den, har du gjort det forkert.",
     ingredients: [
