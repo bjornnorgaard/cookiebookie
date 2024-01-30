@@ -1,6 +1,11 @@
 <script lang="ts">
     import "../app.css";
     import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit"
+    import {onMount} from "svelte";
+
+    onMount(() => {
+        injectSpeedInsights();
+    });
 
     const footerLinks = [
         { href: "https://github.com/bjornnorgaard/cookiebookie", svg: "/icons/github.svg", alt: "github" },
