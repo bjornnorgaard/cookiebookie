@@ -17,7 +17,7 @@
 		"@tailwindcss/typography": "^0.5.13",
 		"@vercel/speed-insights": "^1.0.10",
 		"autoprefixer": "^10.4.19",
-		"daisyui": "^4.10.2",
+		"daisyui": "^4.10.3",
 		"postcss": "^8.4.38",
 		"svelte": "^4.2.15",
 		"svelte-check": "^3.7.0",
