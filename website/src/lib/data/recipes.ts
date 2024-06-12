@@ -6,6 +6,7 @@ import { sorensPastaret } from "$recipes/sorens-pastaret";
 import { brod } from "$recipes/brod";
 import { tomatsalat } from "$recipes/tomatsalat";
 import { svinemorbrad } from "$recipes/spansk-svinemorbrad";
+import { rasmusKlumpPandekager } from "$recipes/rasmus-klump-pandekager";
 
 // Recipes will appear in the listed order.
 export const recipes: Recipe[] = [
@@ -18,4 +19,5 @@ export const recipes: Recipe[] = [
     brod,
     tomatsalat,
     svinemorbrad,
+    rasmusKlumpPandekager,
 ];

@@ -39,4 +39,5 @@ export enum Category {
     Fodselsdag = 'Fødselsdag',
     Bagning = 'Bagning',
     Sides = 'Tilbehør',
+    Dessert = 'Dessert',
 }
