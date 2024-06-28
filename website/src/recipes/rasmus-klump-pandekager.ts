@@ -28,7 +28,7 @@ export const rasmusKlumpPandekager: Recipe = {
     steps: [
         {
             title: "Pisketid",
-            desc: "Bland det hele i en skål og pisk det sammen - med undtagelse af smørret",
+            desc: "Bland det hele i en skål og pisk det sammen - med undtagelse af smøret.",
         },
         {
             title: "Pandetid",
