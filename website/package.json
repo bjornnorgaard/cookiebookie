@@ -12,11 +12,11 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^5.4.1",
-		"@sveltejs/kit": "^2.5.18",
+		"@sveltejs/kit": "^2.5.20",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
 		"@tailwindcss/typography": "^0.5.13",
 		"@vercel/speed-insights": "^1.0.12",
-		"autoprefixer": "^10.4.19",
+		"autoprefixer": "^10.4.20",
 		"daisyui": "^4.12.10",
 		"postcss": "^8.4.40",
 		"svelte": "^4.2.18",
