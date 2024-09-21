@@ -29,6 +29,8 @@ export const risotto: Recipe = {
         { name: "Hvidløg", amount: "1/2 hvidløg" },
         { name: "Olivenolie", amount: "" },
         { name: "Timian", amount: "" },
+        { name: "Balsamicoeddike", amount: "" },
+        { name: "Citronsaft", amount: "" },
         { name: "Peber og salt", amount: "" },
     ],
     steps: [
@@ -58,7 +60,7 @@ export const risotto: Recipe = {
         },
         {
             title: "Sidste finjustering",
-            desc: "Nu smager vi endeligt til. Den mangler nok peber, men træd varsomt med salten - ost og smør indeholder en del.",
+            desc: "Nu smager vi endeligt til. Tilføj langsomt citronsaft og balsamicoeddike - det skal ikke smage syret, men bare have et pift. Den mangler nok også peber, men træd varsomt med salten - ost og smør indeholder en del.",
         },
     ],
 };
