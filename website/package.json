@@ -11,13 +11,13 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-vercel": "^5.7.0",
-		"@sveltejs/kit": "^2.20.7",
+		"@sveltejs/adapter-vercel": "^5.7.1",
+		"@sveltejs/kit": "^2.20.8",
 		"@sveltejs/vite-plugin-svelte": "^3.1.2",
 		"@tailwindcss/typography": "^0.5.16",
 		"@vercel/speed-insights": "^1.2.0",
 		"autoprefixer": "^10.4.21",
-		"daisyui": "^5.0.27",
+		"daisyui": "^5.0.32",
 		"postcss": "^8.5.3",
 		"svelte": "^5.28.2",
 		"svelte-check": "^4.1.6",
