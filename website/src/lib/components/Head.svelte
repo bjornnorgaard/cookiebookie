@@ -4,29 +4,33 @@
     import { picsumHost } from "$lib/constants/picsum";
     import { buildRecipeHead } from "$lib/seo/builder";
 
-    export let recipe: Recipe | undefined = undefined;
+    interface Props {
+        recipe?: Recipe | undefined;
+    }
+
+    let { recipe = undefined }: Props = $props();
 
     const name = "Cookie Bookie";
     const rootUrl = "https://cookiebookie.dk"
     const author = "Bjørn Nørgaard";
 
-    let title = `${name} - Bedre opskriter, mindre pis og ingen reklamer`;
-    let description = "Simple opskrifter og gode råd om madlavning. " +
+    let title = $state(`${name} - Bedre opskriter, mindre pis og ingen reklamer`);
+    let description = $state("Simple opskrifter og gode råd om madlavning. " +
         "Skrevet i et uformelt og, forhåbentligt, morsomt sprog, som er let at følge. " +
-        "Ingen lange oprindelseshistorier - og naturligvis uden irriterende reklamer.";
-    let type = "website";
-    let url = rootUrl;
+        "Ingen lange oprindelseshistorier - og naturligvis uden irriterende reklamer.");
+    let type = $state("website");
+    let url = $state(rootUrl);
 
     const width = seoImgWidth;
     const height = seoImgHeight;
-    let image = `${picsumHost}/id/292/${width}/${height}`;
+    let image = $state(`${picsumHost}/id/292/${width}/${height}`);
 
     if (recipe) {
         const r = recipe as Recipe;
         title = `${recipe.title} | ${r.shortDesc}`;
         description = `Opskriften på ${recipe.title.toLowerCase()} - ${recipe.shortDesc} ${r.longDesc}`;
         type = "article";
-        url = `${url}/${r.slug}`;
+        url = `${rootUrl}/${r.slug}`;
         image = `${r.image}/${width}/${height}`;
     }
 </script>

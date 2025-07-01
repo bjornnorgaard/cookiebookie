@@ -5,7 +5,11 @@
     import { cubicInOut } from "svelte/easing";
     import { localStorageStore } from "$lib/stores/localStorageStore";
 
-    export let recipe: Recipe;
+    interface Props {
+        recipe: Recipe;
+    }
+
+    let { recipe = $bindable() }: Props = $props();
     const have = localStorageStore<string[]>("shopping_list", []);
 
     onMount(() => sortIngredients());
@@ -34,7 +38,7 @@
             <input id={i.name}
                    type="checkbox"
                    checked={$have.includes(i.name)}
-                   on:click={() => toggle(i.name)}
+                   onclick={() => toggle(i.name)}
                    class="checkbox bg-neutral-content">
 
             <label class="grow cursor-pointer" for={i.name}

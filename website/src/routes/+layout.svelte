@@ -2,6 +2,11 @@
     import "../app.css";
     import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit"
     import {onMount} from "svelte";
+    interface Props {
+        children?: import('svelte').Snippet;
+    }
+
+    let { children }: Props = $props();
 
     onMount(() => {
         injectSpeedInsights();
@@ -21,7 +26,7 @@
 </header>
 
 <main>
-    <slot/>
+    {@render children?.()}
 </main>
 
 <footer class="pb-8 sm:px-8">
