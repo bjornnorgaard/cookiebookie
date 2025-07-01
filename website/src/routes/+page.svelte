@@ -3,7 +3,7 @@
     import MainContent from "$lib/components/MainContent.svelte";
     import { page } from "$app/stores";
 
-    $: recipes = $page.data.recipes;
+    let recipes = $derived($page.data.recipes);
 </script>
 
 <Head/>

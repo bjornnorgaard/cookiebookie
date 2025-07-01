@@ -4,8 +4,8 @@
     import MainContent from "$lib/components/MainContent.svelte";
     import { page } from "$app/stores";
 
-    $: recipe = $page.data.recipe;
-    const completedSteps: boolean[] = [];
+    let recipe = $derived($page.data.recipe);
+    const completedSteps: boolean[] = $state([]);
 </script>
 
 <Head recipe={recipe}/>
