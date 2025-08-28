@@ -14,6 +14,6 @@
         <p>Jeg har naturligvis forudset, at du ville gå ud hvor du ikke kunne bunde.
            Har endda lavet en lille knap til dig. Så kan du komme tilbage i sikkerhed.</p>
 
-        <a href="/" class="no-underline btn btn-primary btn-wide">Gå til Forsiden</a>
+        <a href="/static" class="no-underline btn btn-primary btn-wide">Gå til Forsiden</a>
     </div>
 </MainContent>

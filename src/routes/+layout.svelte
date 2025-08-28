@@ -21,7 +21,7 @@
 
 <header>
     <nav class="navbar">
-        <a class="text-2xl normal-case btn btn-ghost" href="/">Cookie Bookie</a>
+        <a class="text-2xl normal-case btn btn-ghost" href="/static">Cookie Bookie</a>
     </nav>
 </header>
 
