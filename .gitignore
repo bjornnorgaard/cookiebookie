@@ -1,5 +1,5 @@
-.idea
 node_modules
+.idea
 .vercel
 .svelte-kit
 vite.config.js.timestamp-*
