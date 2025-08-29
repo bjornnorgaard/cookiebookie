@@ -1,21 +1,16 @@
 <script lang="ts">
     import "../app.css";
-    import { injectSpeedInsights } from "@vercel/speed-insights/sveltekit"
-    import {onMount} from "svelte";
+
     interface Props {
         children?: import('svelte').Snippet;
     }
 
-    let { children }: Props = $props();
-
-    onMount(() => {
-        injectSpeedInsights();
-    });
+    let {children}: Props = $props();
 
     const footerLinks = [
-        { href: "https://github.com/bjornnorgaard/cookiebookie", svg: "/icons/github.svg", alt: "github" },
-        { href: "https://www.linkedin.com/in/bjorn-norgaard", svg: "/icons/linkedin.svg", alt: "linkedin" },
-        { href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", svg: "/icons/youtube.svg", alt: "youtube" },
+        {href: "https://github.com/bjornnorgaard/cookiebookie", svg: "/icons/github.svg", alt: "github"},
+        {href: "https://www.linkedin.com/in/bjorn-norgaard", svg: "/icons/linkedin.svg", alt: "linkedin"},
+        {href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", svg: "/icons/youtube.svg", alt: "youtube"},
     ];
 </script>
 
