@@ -20,8 +20,8 @@
 </script>
 
 <header>
-    <nav class="navbar">
-        <a class="text-2xl normal-case btn btn-ghost" href="/static">Cookie Bookie</a>
+    <nav class="">
+        <a class="text-2xl normal-case" href="/">Cookie Bookie</a>
     </nav>
 </header>
 

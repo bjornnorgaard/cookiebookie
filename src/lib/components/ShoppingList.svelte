@@ -39,7 +39,7 @@
                    type="checkbox"
                    checked={$have.includes(i.name)}
                    onclick={() => toggle(i.name)}
-                   class="checkbox bg-neutral-content">
+                   class="">
 
             <label class="grow cursor-pointer" for={i.name}
                    class:line-through={$have.includes(i.name) ? "checked" : ""}>
