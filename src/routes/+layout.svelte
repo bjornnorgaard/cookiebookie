@@ -15,8 +15,8 @@
 </script>
 
 <header>
-    <nav class="">
-        <a class="text-2xl normal-case" href="/">Cookie Bookie</a>
+    <nav class="p-4">
+        <a class="text-2xl" href="/">Cookie Bookie</a>
     </nav>
 </header>
 
