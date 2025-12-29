@@ -15,7 +15,10 @@
          src={`${data.recipe.image}/1260/540`} alt={data.recipe.title}
          height="300" width="700">
 
-    <p class="py-4">{data.recipe.longDesc}</p>
+    <p class="py-4">
+        {data.recipe.shortDesc}
+        {data.recipe.longDesc}
+    </p>
 
     <section>
         <div class="relative">

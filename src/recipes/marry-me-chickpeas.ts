@@ -16,7 +16,7 @@ export const marryMeChickpeas: Recipe = {
     yield: 4,
     categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2025, Months.December, 29),
-    longDesc: "Den varme ret til den kolde måned - kan også laves uden chili, hvis mor spiser med. Her skulle være nok til 4 personer.",
+    longDesc: "Den varme ret til den kolde måned - hvis mor spiser med, kan den også laves uden chili. Her skulle være nok til 4 personer.",
     ingredients: [
         { name: "Løg", amount: "2-10 stk" },
         { name: "Hvidløg", amount: "8 fed" },
