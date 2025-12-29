@@ -6,7 +6,7 @@ import { Months } from "$lib/types/months";
 export const marryMeChickpeas: Recipe = {
     slug: "camillas-kikgryde",
     title: "Camillas Kikgryde",
-    image: `${picsumHost}/id/521`, // 508, 517, 521, 522, 525, 529, 530, 533, 535, 537, 546
+    image: `${picsumHost}/id/546`, // 508, 517, 521, 530, 546
     shortDesc: "Vegetarisk bud på en favorit fra den sociale del af internettet. Der hedder den Marry Me Chickpeas, men jeg har givet den et jysk navn. Der findes vist også en version med kylling.",
     longDesc: "Den varme ret til den kolde måned - hvis mor spiser med, kan den også laves uden chili. Her skulle være nok til 4 personer.",
     author: "Camilla Bøgelund",
