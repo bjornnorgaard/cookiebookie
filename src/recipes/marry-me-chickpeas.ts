@@ -33,9 +33,9 @@ export const marryMeChickpeas: Recipe = {
         { name: "Oregano", amount: "" },
     ],
     steps: [
-        { title: "Hak og steg", desc: "" },
-        { title: "Hak og tilsæt", desc: "" },
-        { title: "De våde sager", desc: "" },
-        { title: "Så trækker vi!", desc: "" },
+        { title: "Hak og steg", desc: "Nærmere beskrivelse" },
+        { title: "Hak og tilsæt", desc: "Nærmere beskrivelse" },
+        { title: "De våde sager", desc: "Nærmere beskrivelse" },
+        { title: "Så trækker vi!", desc: "Nærmere beskrivelse" },
     ],
 }
