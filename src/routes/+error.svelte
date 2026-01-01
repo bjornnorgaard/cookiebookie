@@ -6,7 +6,7 @@
 <MainContent title="Du er vist faret vild">
     <img class="rounded-lg drop-shadow-lg"
          src={`${picsumHost}/id/404//1400/600`}
-         fetchpriority="high" loading="eager"
+         fetchpriority="high"
          alt="havet der støder mod store klipper"
          height="300"
          width="700">
