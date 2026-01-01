@@ -12,7 +12,7 @@
 <MainContent title={data.recipe.title}>
     <img class="rounded-lg drop-shadow-lg"
          title={data.recipe.title}
-         loading="eager" fetchpriority="high"
+         fetchpriority="high"
          src={`${data.recipe.image}/1260/540`} alt={data.recipe.title}
          height="300" width="700">
 

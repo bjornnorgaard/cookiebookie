@@ -14,7 +14,7 @@
                class="overflow-hidden card rounded-lg preset-tonal no-underline duration-500 ease-in-out hover:scale-105">
                 <img class="m-0 object-cover"
                      title={recipe.title}
-                     loading="eager" fetchpriority="high"
+                     fetchpriority="high"
                      src={`${recipe.image}/700/300`} alt={recipe.title}
                      height="300" width="700"/>
 
