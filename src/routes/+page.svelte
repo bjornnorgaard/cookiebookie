@@ -9,11 +9,12 @@
 
 <MainContent title="Seneste opskrifter">
     <div class="gap-4 grid-list">
-        {#each data.recipes as recipe}
+        {#each data.recipes as recipe, i}
             <a href={recipe.slug}
                class="overflow-hidden card rounded-lg preset-tonal no-underline duration-500 ease-in-out hover:scale-105">
                 <img class="m-0 object-cover"
-                     title={recipe.title} loading="eager"
+                     title={recipe.title}
+                     loading="eager" fetchpriority={i < 4 ? 'high' : 'low'}
                      src={`${recipe.image}/700/300`} alt={recipe.title}
                      height="300" width="700"/>
 
