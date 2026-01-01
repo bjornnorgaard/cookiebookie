@@ -1,7 +1,7 @@
-import type { Recipe } from "$lib/types/recipe";
-import { Category, Cuisine } from "$lib/types/recipe";
-import { picsumHost } from "$lib/constants/picsum";
-import { Months } from "$lib/types/months";
+import type {Recipe} from "$lib/types/recipe";
+import {Category, Cuisine} from "$lib/types/recipe";
+import {picsumHost} from "$lib/constants/picsum";
+import {Months} from "$lib/types/months";
 
 export const marryMeChickpeas: Recipe = {
     slug: "camillas-kikgryde",
@@ -27,13 +27,13 @@ export const marryMeChickpeas: Recipe = {
         { name: "Soltørrede tomater", amount: "1/2 glas" },
         { name: "Pasta", amount: "400 g" },
         { name: "Frisk Basilikum", amount: "" },
-        { name: "Chiliflager, 1 tsk", amount: "" },
-        { name: "Citronsaft, 2 spsk", amount: "" },
-        { name: "Soya, 1 spsk", amount: "" },
-        { name: "Timian, 1 tsk", amount: "" },
-        { name: "Oregano, 1 tsk", amount: "" },
-        { name: "Boullionterninger, 2 stk", amount: "" },
-        { name: "Lidt salt og peber", amount: "" },
+        {name: "Chiliflager", amount: "1 tsk"},
+        {name: "Citronsaft", amount: "2 spsk"},
+        {name: "Soya", amount: "1 spsk"},
+        {name: "Timian", amount: "1 tsk"},
+        {name: "Oregano", amount: "1 tsk"},
+        {name: "Boullionterning", amount: "2 stk"},
+        {name: "Salt og peber", amount: ""},
     ],
     steps: [
         { title: "Hak og steg", desc: "Hak og steg løg, hvidløg og alle krydderier og lad det stege til det dufter himmmelsk. Tilføj derefter de soltørrede tomater og tomoatpuré og steg i yderligere 3 minutter." },
