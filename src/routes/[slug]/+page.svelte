@@ -23,7 +23,7 @@
 
     <section>
         <div class="relative">
-            <h4 class="h4">Indkøbslisten</h4>
+            <h2 class="h4">Indkøbslisten</h2>
             <div class="absolute bottom-0 bg-primary-500 left-0 h-1 w-10 rounded-2xl"></div>
         </div>
 
@@ -34,7 +34,7 @@
 
     <section>
         <div class="relative">
-            <h4 class="h4">Planen</h4>
+            <h2 class="h4">Planen</h2>
             <div class="absolute bottom-0 bg-secondary-500 left-0 h-1 w-10 rounded-2xl"></div>
         </div>
 
