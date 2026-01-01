@@ -34,7 +34,7 @@
                 <a href={link.href} rel="noopener noreferrer nofollow external" target="_blank">
                     <img src={link.svg} alt={link.alt}
                          title={link.alt}
-                         loading="lazy" fetchpriority="low"
+                         fetchpriority="high" loading="eager"
                          class="dark:invert"
                          width="24" height="24">
                 </a>
