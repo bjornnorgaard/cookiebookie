@@ -15,8 +15,8 @@
                 <img class="m-0 object-cover"
                      title={recipe.title}
                      fetchpriority="high" loading="eager"
-                     src={`${recipe.image}/700/300`} alt={recipe.title}
-                     height="300" width="700"/>
+                     src={`${recipe.image}/300/125`} alt={recipe.title}
+                     height="125" width="300"/>
 
                 <div class="prose p-4">
                     <h2 class="m-0 font-bold text-xl">{recipe.title}</h2>
