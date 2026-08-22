@@ -7,10 +7,13 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "npm run build && vite preview",
+		"preview:serve": "vite preview --host 127.0.0.1 --port 4173",
+		"audit:seo": "lhci autorun",
 		"check": "svelte-kit sync && svelte-check --tsconfig tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@lhci/cli": "^0.15.1",
 		"@skeletonlabs/skeleton": "^5.0.1",
 		"@skeletonlabs/skeleton-svelte": "^5.0.1",
 		"@sveltejs/adapter-vercel": "^6.3.4",
