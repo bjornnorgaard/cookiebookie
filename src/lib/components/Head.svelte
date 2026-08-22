@@ -14,25 +14,28 @@
     const rootUrl = "https://cookiebookie.dk"
     const author = "Bjørn Nørgaard";
 
-    let title = $state(`${name} - Bedre opskriter, mindre pis og ingen reklamer`);
-    let description = $state("Simple opskrifter og gode råd om madlavning. " +
-        "Skrevet i et uformelt og, forhåbentligt, morsomt sprog, som er let at følge. " +
-        "Ingen lange oprindelseshistorier - og naturligvis uden irriterende reklamer.");
-    let type = $state("website");
-    let url = $state(rootUrl);
+    let title = $derived(
+        recipe
+            ? `${recipe.title} | ${recipe.shortDesc}`
+            : `${name} - Bedre opskriter, mindre pis og ingen reklamer`
+    );
+    let description = $derived(
+        recipe
+            ? `Opskriften på ${recipe.title.toLowerCase()} - ${recipe.shortDesc} ${recipe.longDesc}`
+            : "Simple opskrifter og gode råd om madlavning. " +
+                "Skrevet i et uformelt og, forhåbentligt, morsomt sprog, som er let at følge. " +
+                "Ingen lange oprindelseshistorier - og naturligvis uden irriterende reklamer."
+    );
+    let type = $derived(recipe ? "article" : "website");
+    let url = $derived(recipe ? `${rootUrl}/${recipe.slug}` : rootUrl);
 
     const width = seoImgWidth;
     const height = seoImgHeight;
-    let image = $state(`${picsumHost}/id/292/${width}/${height}`);
-
-    if (recipe) {
-        const r = recipe as Recipe;
-        title = `${recipe.title} | ${r.shortDesc}`;
-        description = `Opskriften på ${recipe.title.toLowerCase()} - ${recipe.shortDesc} ${r.longDesc}`;
-        type = "article";
-        url = `${rootUrl}/${r.slug}`;
-        image = `${r.image}/${width}/${height}`;
-    }
+    let image = $derived(
+        recipe
+            ? `${recipe.image}/${width}/${height}`
+            : `${picsumHost}/id/292/${width}/${height}`
+    );
 </script>
 
 <svelte:head>
