@@ -8,7 +8,7 @@
     let { title = "Missing title", children }: Props = $props();
 </script>
 
-<div class="m-auto max-w-screen-sm px-4 min-h-content prose">
+<div class="m-auto max-w-screen-sm px-4 min-h-content prose dark:prose-invert">
     <h1 class="tracking-wide font-bold text-3xl py-4">{title}</h1>
     {@render children?.()}
 </div>
