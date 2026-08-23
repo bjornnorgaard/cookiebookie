@@ -33,12 +33,12 @@ jobs:
 
       - name: Bump image tag
         run: |
-          sed -i "s/tag: .*/tag: \"${{ github.sha }}\"/" deploy/mimir/image.yaml
+          sed -i '/^  web:/,/^    ports:/ s/^      tag: .*/      tag: "${{ github.sha }}"/' deploy/mimir/services.yaml
 
       - name: Commit and push tag bump
         run: |
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@users.noreply.github.com
-          git add deploy/mimir/image.yaml
-          git diff --staged --quiet || git commit -m "chore: bump image tag to ${{ github.sha }} [skip ci]"
+          git add deploy/mimir/services.yaml
+          git diff --staged --quiet || git commit -m "chore: bump web image tag to ${{ github.sha }} [skip ci]"
           git push
