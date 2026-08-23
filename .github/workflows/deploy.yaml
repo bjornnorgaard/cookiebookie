@@ -32,7 +32,8 @@ jobs:
           tags: ${{ env.IMAGE }}:${{ github.sha }}
 
       - name: Bump image tag
-        run: sed -i 's/tag: .*/tag: "${{ github.sha }}"/' deploy/mimir/image.yaml
+        run: |
+          sed -i "s/tag: .*/tag: \"${{ github.sha }}\"/" deploy/mimir/image.yaml
 
       - name: Commit and push tag bump
         run: |
