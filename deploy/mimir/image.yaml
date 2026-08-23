@@ -1,5 +1,5 @@
 image:
-  tag: "c276f31de129c26637e6a924e97f7960d58df5d3"
+  tag: "d8260a80932b112ef8d59448f83f4cbcb4e97dd9"
 
 containerPort: 3000   # port your app listens on inside the container
 
