@@ -15,10 +15,10 @@ services:
         path: /
     env:
       - name: NODE_ENV
-        value: production
+        value: test
       - name: HOST
         value: "0.0.0.0"
       - name: PORT
         value: "3000"
       - name: ORIGIN
-        value: https://cookiebookie.bybear.dk
+        value: https://cookiebookie-test.bybear.dk
