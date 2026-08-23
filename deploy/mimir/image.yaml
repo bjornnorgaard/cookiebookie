@@ -1,2 +1,15 @@
 image:
   tag: "c276f31de129c26637e6a924e97f7960d58df5d3"
+
+containerPort: 3000   # port your app listens on inside the container
+
+service:
+  port: 3000          # ClusterIP port (same as containerPort for single-port HTTP apps)
+
+env:
+  - name: HOST
+    value: "0.0.0.0"
+  - name: PORT
+    value: "3000"
+  - name: ORIGIN
+    value: https://cookiebookie.bybear.dk
