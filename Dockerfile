@@ -17,8 +17,10 @@ ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=3000
 
-COPY --from=build /app/build ./build
-COPY --from=build /app/package.json ./package.json
+COPY --from=build --chown=node:node /app/build ./build
+COPY --from=build --chown=node:node /app/package.json ./package.json
+
+USER node
 
 EXPOSE 3000
 CMD ["node", "build"]
