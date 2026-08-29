@@ -8,18 +8,18 @@
 <Head/>
 
 <MainContent title="Seneste opskrifter">
-    <div class="gap-4 grid-list">
+    <div class="not-prose gap-4 grid-list">
         {#each data.recipes as recipe, i}
             <a href={recipe.slug}
                class="overflow-hidden card rounded-lg preset-tonal no-underline duration-500 ease-in-out hover:scale-105">
-                <img class="m-0 object-cover"
+                <img class="block m-0 aspect-[16/5] w-full object-cover"
                      title={recipe.title}
                      fetchpriority={i < 6 ? "high" : "auto"} loading={i < 6 ? "eager" : "lazy"}
                      src={`${recipe.image}/400/125`} alt={recipe.title}
                      width="400" height="125"
                 />
 
-                <div class="prose p-4">
+                <div class="prose dark:prose-invert p-4">
                     <h2 class="m-0 font-bold text-xl">{recipe.title}</h2>
                     <p class="line-clamp-2">{recipe.shortDesc}</p>
                 </div>
