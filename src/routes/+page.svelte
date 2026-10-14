@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Head from "$lib/components/Head.svelte";
-    import MainContent from "$lib/components/MainContent.svelte";
+    import Head from "#lib/components/Head.svelte";
+    import MainContent from "#lib/components/MainContent.svelte";
 
     let {data} = $props();
 </script>

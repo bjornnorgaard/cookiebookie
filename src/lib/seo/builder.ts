@@ -1,6 +1,6 @@
-import type { Recipe } from '$lib/types/recipe';
-import { seoImgHeight, seoImgWidth } from '$lib/constants/seo';
-import { siteAuthor, siteLanguage, siteName, siteUrl } from '$lib/constants/site';
+import type { Recipe } from '#lib/types/recipe.ts';
+import { seoImgHeight, seoImgWidth } from '#lib/constants/seo.ts';
+import { siteAuthor, siteLanguage, siteName, siteUrl } from '#lib/constants/site.ts';
 
 const homepageDescription =
 	'Simple opskrifter og gode råd om madlavning. ' +

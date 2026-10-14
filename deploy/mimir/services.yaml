@@ -20,5 +20,3 @@ services:
         value: "0.0.0.0"
       - name: PORT
         value: "3000"
-      - name: ORIGIN
-        value: https://cookiebookie.bybear.dk

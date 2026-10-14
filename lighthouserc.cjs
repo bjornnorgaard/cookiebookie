@@ -1,10 +1,11 @@
-/** @type {import('@lhci/cli').Config} */
+const port = Number(process.env.LHCI_PORT || 4173);
+
 module.exports = {
 	ci: {
 		collect: {
-			startServerCommand: 'npx vite preview --host 127.0.0.1 --port 4173',
+			startServerCommand: `npx vite preview --host 127.0.0.1 --port ${port} --strictPort`,
 			startServerReadyPattern: 'Local:',
-			url: ['http://127.0.0.1:4173/', 'http://127.0.0.1:4173/lasagne'],
+			url: [`http://127.0.0.1:${port}/`, `http://127.0.0.1:${port}/lasagne`],
 			numberOfRuns: 1,
 			settings: {
 				onlyCategories: ['seo'],

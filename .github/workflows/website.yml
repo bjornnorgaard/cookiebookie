@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22, 24]
+        node-version: [22, 24, 26]
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
@@ -25,10 +25,33 @@ jobs:
         run: npm ci
 
       - name: Type check
-        run: npm run check || true
+        run: npm run check
 
       - name: Build
         run: npm run build
 
-      - name: Test
-        run: npm test || true
+      - name: Install test browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Test Node production server and browser interactions
+        run: npm test
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/setup-buildx-action@v4
+      - uses: docker/build-push-action@v7
+        with:
+          context: .
+          load: true
+          tags: cookiebookie:test
+      - name: Smoke test production container
+        run: |
+          docker run -d --name website -p 3000:3000 cookiebookie:test
+          trap 'docker logs website; docker rm -f website' EXIT
+          curl --fail --retry 10 --retry-connrefused --retry-delay 1 http://localhost:3000/ > /dev/null
+          curl --fail http://localhost:3000/lasagne > /dev/null
+          curl --fail http://localhost:3000/sitemap.xml > /dev/null
+          curl --fail http://localhost:3000/robots.txt > /dev/null
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/missing-recipe)" = 404

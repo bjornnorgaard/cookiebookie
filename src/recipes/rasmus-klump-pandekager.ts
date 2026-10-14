@@ -1,7 +1,7 @@
-import type { Recipe } from "$lib/types/recipe";
-import { Category, Cuisine } from "$lib/types/recipe";
-import { picsumHost } from "$lib/constants/picsum";
-import { Months } from "$lib/types/months";
+import type { Recipe } from "#lib/types/recipe.ts";
+import { Category, Cuisine } from "#lib/types/recipe.ts";
+import { picsumHost } from "#lib/constants/picsum.ts";
+import { Months } from "#lib/types/months.ts";
 
 export const rasmusKlumpPandekager: Recipe = {
     slug: "rasmus-klump-pandekager",

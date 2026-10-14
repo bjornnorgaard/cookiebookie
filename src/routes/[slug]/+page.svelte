@@ -1,7 +1,7 @@
 <script lang="ts">
-    import Head from "$lib/components/Head.svelte";
-    import ShoppingList from "$lib/components/ShoppingList.svelte";
-    import MainContent from "$lib/components/MainContent.svelte";
+    import Head from "#lib/components/Head.svelte";
+    import ShoppingList from "#lib/components/ShoppingList.svelte";
+    import MainContent from "#lib/components/MainContent.svelte";
 
     let {data} = $props();
     const completedSteps: boolean[] = $state([]);

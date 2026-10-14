@@ -1,5 +1,5 @@
 import { get, writable as internal, type Writable } from 'svelte/store';
-import { browser } from "$app/environment";
+import { browser } from "$app/env";
 
 declare type Updater<T> = (value: T) => T;
 declare type StoreDict<T> = { [key: string]: Writable<T> };
