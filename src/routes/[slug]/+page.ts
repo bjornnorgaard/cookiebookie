@@ -1,7 +1,7 @@
 import type { PageLoad } from './$types';
-import type { Recipe } from "$lib/types/recipe";
+import type { Recipe } from "#lib/types/recipe.ts";
 import { error } from "@sveltejs/kit";
-import { recipes } from "$lib/data/recipes";
+import { recipes } from "#lib/data/recipes.ts";
 
 export const load: PageLoad = ({ params }) => {
     const maybeRecipe: Recipe | undefined = recipes.find(r => r.slug === params.slug);

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import Head from '$lib/components/Head.svelte';
-	import MainContent from '$lib/components/MainContent.svelte';
-	import { picsumHost } from '$lib/constants/picsum';
+	import Head from '#lib/components/Head.svelte';
+	import MainContent from '#lib/components/MainContent.svelte';
+	import { picsumHost } from '#lib/constants/picsum.ts';
 
 	const status = $derived(page.status);
 	const isNotFound = $derived(status === 404);

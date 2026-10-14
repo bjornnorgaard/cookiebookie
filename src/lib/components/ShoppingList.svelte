@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { Recipe } from "$lib/types/recipe";
+    import type { Recipe } from "#lib/types/recipe.ts";
     import { onMount } from "svelte";
     import { flip } from "svelte/animate";
     import { cubicInOut } from "svelte/easing";
-    import { localStorageStore } from "$lib/stores/localStorageStore";
+    import { localStorageStore } from "#lib/stores/localStorageStore.ts";
 
     interface Props {
         recipe: Recipe;

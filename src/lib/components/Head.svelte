@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { seoImgHeight, seoImgWidth } from '$lib/constants/seo';
-	import { siteAuthor, siteLocale, siteName, siteUrl } from '$lib/constants/site';
-	import type { Recipe } from '$lib/types/recipe';
-	import { picsumHost } from '$lib/constants/picsum';
-	import { buildRecipeHead, buildWebsiteHead } from '$lib/seo/builder';
+	import { seoImgHeight, seoImgWidth } from '#lib/constants/seo.ts';
+	import { siteAuthor, siteLocale, siteName, siteUrl } from '#lib/constants/site.ts';
+	import type { Recipe } from '#lib/types/recipe.ts';
+	import { picsumHost } from '#lib/constants/picsum.ts';
+	import { buildRecipeHead, buildWebsiteHead } from '#lib/seo/builder.ts';
 
 	interface Props {
 		recipe?: Recipe | undefined;

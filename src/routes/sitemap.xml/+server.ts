@@ -1,5 +1,5 @@
-import { recipes } from '$lib/data/recipes';
-import { siteUrl } from '$lib/constants/site';
+import { recipes } from '#lib/data/recipes.ts';
+import { siteUrl } from '#lib/constants/site.ts';
 import type { RequestHandler } from './$types';
 
 function formatDate(date: Date): string {
