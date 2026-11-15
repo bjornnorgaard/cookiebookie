@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const rasmusKlumpPandekager: Recipe = {
     slug: "rasmus-klump-pandekager",
     title: "Pandekager á la Klump",
-    image: `${picsumHost}/id/380`,
+    image: "/images/recipes/rasmus-klump-pandekager.jpg",
     shortDesc: "Den klassiske opskrift - så hut jeg visker.",
     author: "Bjørn Nørgaard",
     prepTime: "PT5M",

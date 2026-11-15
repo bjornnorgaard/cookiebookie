@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const ristaffel: Recipe = {
     slug: "ristaffel",
     title: "Ristaffel",
-    image: `${picsumHost}/id/82`,
+    image: "/images/recipes/ristaffel.jpg",
     shortDesc: "Ris, kokos, kylling og alle de gode sager!",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

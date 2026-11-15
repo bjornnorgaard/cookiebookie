@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const brod: Recipe = {
     slug: "brod",
     title: "Uæltet Brød",
-    image: `${picsumHost}/id/40`,
+    image: "/images/recipes/brod.jpg",
     shortDesc: "Lækkert, tæt og svampet brød, som ikke skal æltes - særlig meget",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

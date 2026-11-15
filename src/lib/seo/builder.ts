@@ -1,5 +1,4 @@
 import type { Recipe } from '#lib/types/recipe.ts';
-import { seoImgHeight, seoImgWidth } from '#lib/constants/seo.ts';
 import { siteAuthor, siteLanguage, siteName, siteUrl } from '#lib/constants/site.ts';
 
 const homepageDescription =
@@ -27,7 +26,7 @@ export function buildRecipeHead(recipe: Recipe, rootUrl: string) {
 		'@context': 'https://schema.org/',
 		'@type': 'Recipe',
 		name: recipe.title,
-		image: [`${recipe.image}/${seoImgWidth}/${seoImgHeight}`],
+		image: [`${rootUrl}${recipe.image}`],
 		author: {
 			'@type': 'Person',
 			name: recipe.author

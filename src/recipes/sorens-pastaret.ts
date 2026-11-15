@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const sorensPastaret: Recipe = {
     slug: "sorens-pastaret",
     title: "Sørens Pastaret",
-    image: `${picsumHost}/id/98`,
+    image: "/images/recipes/sorens-pastaret.jpg",
     shortDesc: "Lav indsats. Super lækker. Mums. God dagen før løbeturen.",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

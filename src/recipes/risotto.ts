@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const risotto: Recipe = {
     slug: "risotto",
     title: "Risotto",
-    image: `${picsumHost}/id/368`,
+    image: "/images/recipes/risotto.jpg",
     shortDesc: "Fancy risgrød til billige penge, men italienerne kan nok ikke smage forskel.",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

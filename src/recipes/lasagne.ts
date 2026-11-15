@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const lasagne: Recipe = {
     slug: "lasagne",
     title: "Den første Lasagne",
-    image: `${picsumHost}/id/21`,
+    image: "/images/recipes/lasagne.jpg",
     shortDesc: "Baseret på kombination af de millioner opskrifter, jeg kunne finde.",
     author: "Bjørn Nørgaard",
     prepTime: "PT50M",

@@ -2,7 +2,6 @@
 	import { page } from '$app/state';
 	import Head from '#lib/components/Head.svelte';
 	import MainContent from '#lib/components/MainContent.svelte';
-	import { picsumHost } from '#lib/constants/picsum.ts';
 
 	const status = $derived(page.status);
 	const isNotFound = $derived(status === 404);
@@ -18,11 +17,11 @@
 
 <MainContent title="Du er vist faret vild">
 	<img
-		class="rounded-lg drop-shadow-lg"
-		src={`${picsumHost}/id/404//1400/600`}
+		class="rounded-lg drop-shadow-lg aspect-[7/3] w-full object-cover"
+		src="/images/not-found.jpg"
 		fetchpriority="high"
 		loading="eager"
-		alt="havet der støder mod store klipper"
+		alt="Du er faret vild"
 		height="300"
 		width="700"
 	/>

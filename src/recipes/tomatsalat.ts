@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const tomatsalat: Recipe = {
     slug: "tomatsalat",
     title: "Tomatsalat",
-    image: `${picsumHost}/id/122`,
+    image: "/images/recipes/tomatsalat.jpg",
     shortDesc: "Farverig tomatsalat med mozzarella og alt jeg ellers kunne finde.",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

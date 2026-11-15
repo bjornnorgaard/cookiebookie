@@ -10,10 +10,10 @@
 <Head recipe={data.recipe}/>
 
 <MainContent title={data.recipe.title}>
-    <img class="rounded-lg drop-shadow-lg"
+    <img class="rounded-lg drop-shadow-lg aspect-[7/3] w-full object-cover"
          title={data.recipe.title}
          fetchpriority="high" loading="eager"
-         src={`${data.recipe.image}/1260/540`} alt={data.recipe.title}
+         src={data.recipe.image} alt={data.recipe.title}
          height="300" width="700">
 
     <p class="py-4">
