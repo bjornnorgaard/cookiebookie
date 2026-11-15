@@ -14,7 +14,7 @@
 		"test": "playwright test"
 	},
 	"devDependencies": {
-		"@lhci/cli": "^0.15.1",
+		"@lhci/cli": "^0.16.1",
 		"@playwright/test": "^1.64.0",
 		"@skeletonlabs/skeleton": "^5.0.1",
 		"@skeletonlabs/skeleton-svelte": "^5.0.1",
@@ -39,16 +39,10 @@
 		"node": ">=22.19.0"
 	},
 	"overrides": {
-		"postcss-selector-parser": "^7.1.6",
+		"postcss-selector-parser": "^7.2.1",
 		"tmp": "^0.2.7",
-		"basic-ftp": "^6.2.3",
+		"basic-ftp": "^6.2.6",
 		"uuid": "^14.0.3",
-		"@lhci/cli": {
-			"lighthouse": "^13.5.0"
-		},
-		"@lhci/utils": {
-			"lighthouse": "^13.5.0"
-		},
 		"proxy-agent": "^8.0.2",
 		"sprintf-js": "^1.1.3"
 	}

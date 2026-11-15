@@ -9,7 +9,7 @@ export default defineConfig({
 	plugins: [tailwindcss(), sveltekit({
 		preprocess: vitePreprocess(),
 		adapter: process.env.ADAPTER === "node" ? adapterNode() : adapterVercel({ runtime: 'nodejs24.x' }),
-		paths: { origin: "https://cookiebookie.bybear.dk" },
+		paths: { origin: "https://cookiebookie.dk" },
 		csp: {
 			mode: "auto",
 			directives: {

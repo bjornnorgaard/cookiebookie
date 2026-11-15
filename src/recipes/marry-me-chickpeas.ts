@@ -1,12 +1,11 @@
 import type {Recipe} from "#lib/types/recipe.ts";
 import {Category, Cuisine} from "#lib/types/recipe.ts";
-import {picsumHost} from "#lib/constants/picsum.ts";
 import {Months} from "#lib/types/months.ts";
 
 export const marryMeChickpeas: Recipe = {
     slug: "camillas-kikgryde",
     title: "Camillas Kikgryde",
-    image: `${picsumHost}/id/546`, // 508, 517, 521, 530, 546
+    image: "/images/recipes/marry-me-chickpeas.jpg",
     shortDesc: "Vegetarisk bud på en favorit fra den sociale del af internettet. Der hedder den Marry Me Chickpeas, men jeg har givet den et jysk navn. Der findes vist også en version med kylling.",
     longDesc: "Den varme ret til den kolde måned - hvis mor spiser med, kan den også laves uden chili. Her skulle være nok til 4 personer.",
     author: "Camilla Bøgelund",

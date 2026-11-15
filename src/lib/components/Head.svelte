@@ -2,7 +2,6 @@
 	import { seoImgHeight, seoImgWidth } from '#lib/constants/seo.ts';
 	import { siteAuthor, siteLocale, siteName, siteUrl } from '#lib/constants/site.ts';
 	import type { Recipe } from '#lib/types/recipe.ts';
-	import { picsumHost } from '#lib/constants/picsum.ts';
 	import { buildRecipeHead, buildWebsiteHead } from '#lib/seo/builder.ts';
 
 	interface Props {
@@ -35,9 +34,7 @@
 
 	const width = seoImgWidth;
 	const height = seoImgHeight;
-	let image = $derived(
-		recipe ? `${recipe.image}/${width}/${height}` : `${picsumHost}/id/292/${width}/${height}`
-	);
+	let image = $derived(`${siteUrl}${recipe ? recipe.image : '/images/site-default.jpg'}`);
 
 	let structuredData = $derived(
 		recipe ? buildRecipeHead(recipe, siteUrl) : buildWebsiteHead()

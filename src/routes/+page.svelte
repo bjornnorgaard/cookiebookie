@@ -15,7 +15,7 @@
                 <img class="block m-0 aspect-[16/5] w-full object-cover"
                      title={recipe.title}
                      fetchpriority={i < 6 ? "high" : "auto"} loading={i < 6 ? "eager" : "lazy"}
-                     src={`${recipe.image}/400/125`} alt={recipe.title}
+                     src={recipe.image} alt={recipe.title}
                      width="400" height="125"
                 />
 

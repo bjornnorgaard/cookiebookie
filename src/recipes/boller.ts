@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const boller: Recipe = {
     slug: "boller",
     title: "Fødselsdagsboller",
-    image: `${picsumHost}/id/244`,
+    image: "/images/recipes/boller.jpg",
     shortDesc: "Kommer snart...",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

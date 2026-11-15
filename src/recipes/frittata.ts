@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const frittata: Recipe = {
     slug: "frittata",
     title: "Frittata",
-    image: `${picsumHost}/id/505`,
+    image: "/images/recipes/frittata.jpg",
     shortDesc: "Retten der går sig fint til alle dagens måltider. Frittata.",
     author: "Bjørn Nørgaard",
     prepTime: "PT20M",

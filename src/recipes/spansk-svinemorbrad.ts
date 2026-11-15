@@ -1,12 +1,11 @@
 import type { Recipe } from "#lib/types/recipe.ts";
 import { Category, Cuisine } from "#lib/types/recipe.ts";
-import { picsumHost } from "#lib/constants/picsum.ts";
 import { Months } from "#lib/types/months.ts";
 
 export const svinemorbrad: Recipe = {
     slug: "svinemorbrad",
     title: "Svinemørbrad i Svøb",
-    image: `${picsumHost}/id/15`,
+    image: "/images/recipes/spansk-svinemorbrad.jpg",
     shortDesc: "Svinemørbrad tilberedt som den bør",
     author: "Nikolaj Matzen",
     prepTime: "PT20M",

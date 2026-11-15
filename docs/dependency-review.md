@@ -1,43 +1,49 @@
-# Dependency review — 2026-10-14
+# Dependency review — 2026-11-15
 
-Reviewed all 437 distinct npm packages in the lockfile, including optional platform packages, against the npm registry's latest stable tags. Updated direct packages and refreshed transitive versions within their parents' supported ranges. The tables below record exceptions instead of forcing unrelated breaking APIs into upstream packages.
+Reviewed all direct and transitive npm packages in the lockfile against the npm registry's latest stable tags, one month after the 2026-10-14 review. Updated direct packages within their existing semver ranges via `npm update`, bumped `@lhci/cli` past its old 0.x range, and refreshed override pins. The tables below record exceptions instead of forcing unrelated breaking APIs into upstream packages.
 
 ## Direct packages
 
 | Package | Locked | Latest stable |
 | --- | --- | --- |
-| @lhci/cli | 0.15.1 | 0.15.1 |
-| @playwright/test | 1.64.0 | 1.64.0 |
-| @skeletonlabs/skeleton | 5.0.1 | 5.0.1 |
-| @skeletonlabs/skeleton-svelte | 5.0.1 | 5.0.1 |
-| @sveltejs/adapter-node | 6.0.0 | 6.0.0 |
-| @sveltejs/adapter-vercel | 7.0.0 | 7.0.0 |
-| @sveltejs/kit | 3.0.1 | 3.0.1 |
+| @lhci/cli | 0.16.1 | 0.16.1 |
+| @playwright/test | 1.65.1 | 1.65.1 |
+| @skeletonlabs/skeleton | 5.0.4 | 5.0.4 |
+| @skeletonlabs/skeleton-svelte | 5.0.4 | 5.0.4 |
+| @sveltejs/adapter-node | 6.0.2 | 6.0.2 |
+| @sveltejs/adapter-vercel | 7.0.3 | 7.0.3 |
+| @sveltejs/kit | 3.2.0 | 3.2.0 |
 | @sveltejs/vite-plugin-svelte | 7.3.1 | 7.3.1 |
 | @tailwindcss/typography | 0.5.20 | 0.5.20 |
-| @tailwindcss/vite | 4.3.3 | 4.3.3 |
-| svelte | 5.57.2 | 5.57.2 |
-| svelte-check | 4.7.6 | 4.7.6 |
-| tailwindcss | 4.3.3 | 4.3.3 |
-| tslib | 2.8.1 | 2.8.1 |
+| @tailwindcss/vite | 4.3.5 | 4.3.5 |
+| svelte | 5.57.3 | 5.57.3 |
+| svelte-check | 4.7.8 | 4.7.8 |
+| tailwindcss | 4.3.5 | 4.3.5 |
+| tslib | 2.9.1 | 2.9.1 |
 | typescript | 6.0.3 | 7.0.2 |
-| vite | 8.3.4 | 8.3.4 |
+| vite | 8.3.8 | 8.3.8 |
 
-TypeScript 7.0.2 was attempted, but SvelteKit 3.0.1 requires TypeScript ^6 and svelte-check 4.7.6 accepts only ^5 or ^6. TypeScript 7 also replaces the compiler API these tools consume. Keep 6.0.3 until both tools support 7; no force or legacy-peer-deps is used.
+TypeScript 7.0.2 was re-attempted this pass and is still blocked: SvelteKit 3.2.0 requires TypeScript ^6 and svelte-check 4.7.8 accepts only ^5 or ^6. Keep 6.0.3 (already the latest 6.x release) until both tools support 7; no force or legacy-peer-deps is used.
+
+`@lhci/cli` carried a `^0.15.1` range, which npm's caret rules pin to patch-only below 1.0 — it needed a manual bump to `^0.16.1` (released 2026-11-11) rather than `npm update` picking it up.
 
 ## Security updates beyond upstream ranges
 
-Overrides upgrade Lighthouse to 13.5.0, postcss-selector-parser to 7.1.6, tmp to 0.2.7, basic-ftp to 6.2.3, uuid to 14.0.3, proxy-agent to 8.0.2 and sprintf-js to 1.1.3. Lighthouse collection and assertions exercise these updates. Remove overrides when parent packages adopt the versions.
+Overrides upgrade postcss-selector-parser to 7.2.1, tmp to 0.2.7, basic-ftp to 6.2.6, uuid to 14.0.3, proxy-agent to 8.0.2 and sprintf-js to 1.1.3. Remove each override when its parent package adopts that version on its own.
 
-The remaining npm audit finding is the unbounded precision issue in sprintf-js (the latest release remains affected). It appears as five moderate findings through argparse, js-yaml, @lhci/utils and @lhci/cli. LHCI calls js-yaml.safeLoad, which js-yaml 4 removed; upgrading that parent requires upstream code changes. This tooling is absent from the deployed container, which contains the bundled Node adapter output and package manifest.
+The `@lhci/cli`/`@lhci/utils` Lighthouse override from the previous review was dropped: 0.16.1 now ships Lighthouse 13.6.0 natively (ahead of the 13.5.0 we were forcing), and its `js-yaml` dependency jumped from 3.15.2 to ^5.5.0, which dropped the `js-yaml.safeLoad` call that js-yaml 4+ removed. That resolved the five moderate `npm audit` findings (through argparse, js-yaml, @lhci/utils, @lhci/cli) that the previous review tracked as unfixable — they're gone now with no override needed.
+
+One new low-severity finding replaced them: `deepmerge` (prototype poisoning in `mergeObject()`, [GHSA-gcqx-w48m-w2h4](https://github.com/advisories/GHSA-gcqx-w48m-w2h4)) via `@sveltejs/vite-plugin-svelte` → `@sveltejs/kit` → both adapters. 4.3.1 is deepmerge's latest release and is still affected — there is no patched version to upgrade to yet. `npm audit fix --force` only offers to downgrade `@sveltejs/kit` to a pre-1.0 release, which is not a real fix. This dependency chain is a Vite build-time tool; it is absent from the deployed container, which contains only the bundled `@sveltejs/adapter-node` output and `package.json` (no `node_modules`, see the Dockerfile).
 
 ## Runtime and workflow dependencies
 
-Docker uses the latest stable Node major, 26. CI builds both adapters and runs production browser tests on Node 22, 24 and 26, and builds/smoke-tests the Docker image. Vercel supports Node 22/24, so its adapter explicitly targets nodejs24.x. Node >=22.19 is required by the upgraded Lighthouse.
+Re-checked and still current: Docker's Node 26 base is still the latest stable major (27 is alpha-only as of this review). CI builds both adapters and runs production browser tests on Node 22, 24 and 26, and builds/smoke-tests the Docker image. Vercel supports Node 22/24, so its adapter explicitly targets nodejs24.x. Node >=22.19 is required by Lighthouse.
 
-GitHub Actions were checked against their latest releases: checkout v7, setup-node v7, upload-artifact v7, setup-buildx-action v4, login-action v4 and build-push-action v7.
+GitHub Actions are pinned to floating major tags (checkout@v7, setup-node@v7, setup-buildx-action@v4, login-action@v4, build-push-action@v7), so they already track each action's latest v7/v4 patch release without edits.
 
 ## Transitive packages with newer stable tags
+
+Re-run this pass: the constraints below are unchanged from 2026-10-14 (still blocked by the same upstream major-version ranges), aside from the `@lhci` chain documented above, which is no longer forced and no longer flagged.
 
 These versions are constrained by upstream ranges or exact pins. Major releases often change ESM/CommonJS exports or APIs (for example Express, yargs, rimraf and js-yaml), so replacing them globally would require changing their callers. All packages below were considered; security overrides above are the deliberate exceptions. A newer stable tag can also be older than an upstream-required prerelease; those upstream choices are retained.
 
@@ -114,7 +120,6 @@ These versions are constrained by upstream ranges or exact pins. Major releases 
 | ansi-escapes | 3.2.0 | 7.3.0 |
 | ansi-regex | 3.0.1, 4.1.1, 5.0.1, 6.4.0 | 6.4.0 |
 | ansi-styles | 3.2.1, 4.3.0, 6.2.3 | 7.0.0 |
-| argparse | 1.0.10 | 3.0.2 |
 | aria-query | 5.3.1 | 5.3.2 |
 | array-flatten | 1.1.1 | 3.0.0 |
 | ast-types | 0.13.4 | 0.16.3 |
@@ -163,7 +168,6 @@ These versions are constrained by upstream ranges or exact pins. Major releases 
 | is-docker | 2.2.1 | 4.0.0 |
 | is-fullwidth-code-point | 2.0.0, 3.0.0 | 5.1.0 |
 | is-wsl | 2.2.0 | 3.1.1 |
-| js-yaml | 3.15.2 | 5.4.3 |
 | lighthouse-logger | 1.2.0, 2.0.2 | 2.0.2 |
 | lightningcss | 1.32.0, 1.33.0 | 1.33.0 |
 | lightningcss-android-arm64 | 1.32.0, 1.33.0 | 1.33.0 |
