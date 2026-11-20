@@ -5,7 +5,6 @@ import { Months } from "#lib/types/months.ts";
 export const boller: Recipe = {
     slug: "boller",
     title: "Fødselsdagsboller",
-    image: "/images/recipes/boller.jpg",
     shortDesc: "Kommer snart...",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

@@ -5,7 +5,6 @@ import { Months } from "#lib/types/months.ts";
 export const brod: Recipe = {
     slug: "brod",
     title: "Uæltet Brød",
-    image: "/images/recipes/brod.jpg",
     shortDesc: "Lækkert, tæt og svampet brød, som ikke skal æltes - særlig meget",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

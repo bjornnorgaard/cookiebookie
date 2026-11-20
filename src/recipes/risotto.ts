@@ -5,7 +5,6 @@ import { Months } from "#lib/types/months.ts";
 export const risotto: Recipe = {
     slug: "risotto",
     title: "Risotto",
-    image: "/images/recipes/risotto.jpg",
     shortDesc: "Fancy risgrød til billige penge, men italienerne kan nok ikke smage forskel.",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

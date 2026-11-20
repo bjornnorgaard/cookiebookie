@@ -5,7 +5,6 @@ import { Months } from "#lib/types/months.ts";
 export const tomatsalat: Recipe = {
     slug: "tomatsalat",
     title: "Tomatsalat",
-    image: "/images/recipes/tomatsalat.jpg",
     shortDesc: "Farverig tomatsalat med mozzarella og alt jeg ellers kunne finde.",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

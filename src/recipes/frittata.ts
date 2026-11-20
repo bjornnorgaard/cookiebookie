@@ -5,7 +5,6 @@ import { Months } from "#lib/types/months.ts";
 export const frittata: Recipe = {
     slug: "frittata",
     title: "Frittata",
-    image: "/images/recipes/frittata.jpg",
     shortDesc: "Retten der går sig fint til alle dagens måltider. Frittata.",
     author: "Bjørn Nørgaard",
     prepTime: "PT20M",

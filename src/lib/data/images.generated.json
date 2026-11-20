@@ -1,0 +1,691 @@
+{
+	"lasagne": {
+		"hash": "a8443fabf1a1e965",
+		"width": 5223,
+		"height": 2253,
+		"ratio": 2.3182,
+		"wide": {
+			"avif": [
+				{
+					"src": "/images/recipes/lasagne/wide-480.avif",
+					"w": 480,
+					"h": 207
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-800.avif",
+					"w": 800,
+					"h": 345
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-1200.avif",
+					"w": 1200,
+					"h": 518
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-1600.avif",
+					"w": 1600,
+					"h": 690
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-2400.avif",
+					"w": 2400,
+					"h": 1035
+				}
+			],
+			"webp": [
+				{
+					"src": "/images/recipes/lasagne/wide-480.webp",
+					"w": 480,
+					"h": 207
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-800.webp",
+					"w": 800,
+					"h": 345
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-1200.webp",
+					"w": 1200,
+					"h": 518
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-1600.webp",
+					"w": 1600,
+					"h": 690
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-2400.webp",
+					"w": 2400,
+					"h": 1035
+				}
+			],
+			"jpg": [
+				{
+					"src": "/images/recipes/lasagne/wide-480.jpg",
+					"w": 480,
+					"h": 207
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-800.jpg",
+					"w": 800,
+					"h": 345
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-1200.jpg",
+					"w": 1200,
+					"h": 518
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-1600.jpg",
+					"w": 1600,
+					"h": 690
+				},
+				{
+					"src": "/images/recipes/lasagne/wide-2400.jpg",
+					"w": 2400,
+					"h": 1035
+				}
+			]
+		},
+		"card": {
+			"avif": [
+				{
+					"src": "/images/recipes/lasagne/card-400.avif",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/lasagne/card-640.avif",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/lasagne/card-960.avif",
+					"w": 960,
+					"h": 640
+				}
+			],
+			"webp": [
+				{
+					"src": "/images/recipes/lasagne/card-400.webp",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/lasagne/card-640.webp",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/lasagne/card-960.webp",
+					"w": 960,
+					"h": 640
+				}
+			],
+			"jpg": [
+				{
+					"src": "/images/recipes/lasagne/card-400.jpg",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/lasagne/card-640.jpg",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/lasagne/card-960.jpg",
+					"w": 960,
+					"h": 640
+				}
+			]
+		},
+		"social": {
+			"og": {
+				"src": "/images/recipes/lasagne/og.jpg",
+				"w": 1200,
+				"h": 630
+			},
+			"16x9": {
+				"src": "/images/recipes/lasagne/16x9.jpg",
+				"w": 1600,
+				"h": 900
+			},
+			"4x3": {
+				"src": "/images/recipes/lasagne/4x3.jpg",
+				"w": 1200,
+				"h": 900
+			},
+			"1x1": {
+				"src": "/images/recipes/lasagne/1x1.jpg",
+				"w": 1200,
+				"h": 1200
+			}
+		},
+		"blur": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAAAwBACdASoYAAoAPu1iqU2ppaQiMAgBMB2JZgCdMoADgBzCQPiqqEnjJwAA94Jvn9IAM/AqCuP+vqckE5bDKViwLL29VWuZj1fEySNu/16ujdvI4+msUHtyYwFDbZt+/OrNppDrfi5u8TUK+oO+H/QBKKNPp4HemCzHPxe7uZAx8Fs2EAMBIm2FyS1zvwAA",
+		"color": "#481808"
+	},
+	"risotto": {
+		"hash": "1f504f725422025f",
+		"width": 6000,
+		"height": 2571,
+		"ratio": 2.3337,
+		"wide": {
+			"avif": [
+				{
+					"src": "/images/recipes/risotto/wide-480.avif",
+					"w": 480,
+					"h": 206
+				},
+				{
+					"src": "/images/recipes/risotto/wide-800.avif",
+					"w": 800,
+					"h": 343
+				},
+				{
+					"src": "/images/recipes/risotto/wide-1200.avif",
+					"w": 1200,
+					"h": 514
+				},
+				{
+					"src": "/images/recipes/risotto/wide-1600.avif",
+					"w": 1600,
+					"h": 686
+				},
+				{
+					"src": "/images/recipes/risotto/wide-2400.avif",
+					"w": 2400,
+					"h": 1028
+				}
+			],
+			"webp": [
+				{
+					"src": "/images/recipes/risotto/wide-480.webp",
+					"w": 480,
+					"h": 206
+				},
+				{
+					"src": "/images/recipes/risotto/wide-800.webp",
+					"w": 800,
+					"h": 343
+				},
+				{
+					"src": "/images/recipes/risotto/wide-1200.webp",
+					"w": 1200,
+					"h": 514
+				},
+				{
+					"src": "/images/recipes/risotto/wide-1600.webp",
+					"w": 1600,
+					"h": 686
+				},
+				{
+					"src": "/images/recipes/risotto/wide-2400.webp",
+					"w": 2400,
+					"h": 1028
+				}
+			],
+			"jpg": [
+				{
+					"src": "/images/recipes/risotto/wide-480.jpg",
+					"w": 480,
+					"h": 206
+				},
+				{
+					"src": "/images/recipes/risotto/wide-800.jpg",
+					"w": 800,
+					"h": 343
+				},
+				{
+					"src": "/images/recipes/risotto/wide-1200.jpg",
+					"w": 1200,
+					"h": 514
+				},
+				{
+					"src": "/images/recipes/risotto/wide-1600.jpg",
+					"w": 1600,
+					"h": 686
+				},
+				{
+					"src": "/images/recipes/risotto/wide-2400.jpg",
+					"w": 2400,
+					"h": 1028
+				}
+			]
+		},
+		"card": {
+			"avif": [
+				{
+					"src": "/images/recipes/risotto/card-400.avif",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/risotto/card-640.avif",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/risotto/card-960.avif",
+					"w": 960,
+					"h": 640
+				}
+			],
+			"webp": [
+				{
+					"src": "/images/recipes/risotto/card-400.webp",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/risotto/card-640.webp",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/risotto/card-960.webp",
+					"w": 960,
+					"h": 640
+				}
+			],
+			"jpg": [
+				{
+					"src": "/images/recipes/risotto/card-400.jpg",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/risotto/card-640.jpg",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/risotto/card-960.jpg",
+					"w": 960,
+					"h": 640
+				}
+			]
+		},
+		"social": {
+			"og": {
+				"src": "/images/recipes/risotto/og.jpg",
+				"w": 1200,
+				"h": 630
+			},
+			"16x9": {
+				"src": "/images/recipes/risotto/16x9.jpg",
+				"w": 1600,
+				"h": 900
+			},
+			"4x3": {
+				"src": "/images/recipes/risotto/4x3.jpg",
+				"w": 1200,
+				"h": 900
+			},
+			"1x1": {
+				"src": "/images/recipes/risotto/1x1.jpg",
+				"w": 1200,
+				"h": 1200
+			}
+		},
+		"blur": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAABwBACdASoYAAoAPu1iqU2ppaOiMAgBMB2JbACdMoR3AdB89CL/Wdki/OcvQAD9lSkh2QTc20qmR3bZ7AK1Ndrla4cfegIcAiak0oFSdvtgeQ61p5mge6PlGTf2ilcDdfpiMj7mwkOaanPF+cRwLKmfLK1Y8gQXV14DqNqA64OnIKoUA8iK/fXI5duKijhwd+cMg6ua1Ex0AAAA",
+		"color": "#c89868"
+	},
+	"ristaffel": {
+		"hash": "f86f056a6e773e8f",
+		"width": 6000,
+		"height": 2571,
+		"ratio": 2.3337,
+		"wide": {
+			"avif": [
+				{
+					"src": "/images/recipes/ristaffel/wide-480.avif",
+					"w": 480,
+					"h": 206
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-800.avif",
+					"w": 800,
+					"h": 343
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-1200.avif",
+					"w": 1200,
+					"h": 514
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-1600.avif",
+					"w": 1600,
+					"h": 686
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-2400.avif",
+					"w": 2400,
+					"h": 1028
+				}
+			],
+			"webp": [
+				{
+					"src": "/images/recipes/ristaffel/wide-480.webp",
+					"w": 480,
+					"h": 206
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-800.webp",
+					"w": 800,
+					"h": 343
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-1200.webp",
+					"w": 1200,
+					"h": 514
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-1600.webp",
+					"w": 1600,
+					"h": 686
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-2400.webp",
+					"w": 2400,
+					"h": 1028
+				}
+			],
+			"jpg": [
+				{
+					"src": "/images/recipes/ristaffel/wide-480.jpg",
+					"w": 480,
+					"h": 206
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-800.jpg",
+					"w": 800,
+					"h": 343
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-1200.jpg",
+					"w": 1200,
+					"h": 514
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-1600.jpg",
+					"w": 1600,
+					"h": 686
+				},
+				{
+					"src": "/images/recipes/ristaffel/wide-2400.jpg",
+					"w": 2400,
+					"h": 1028
+				}
+			]
+		},
+		"card": {
+			"avif": [
+				{
+					"src": "/images/recipes/ristaffel/card-400.avif",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/ristaffel/card-640.avif",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/ristaffel/card-960.avif",
+					"w": 960,
+					"h": 640
+				}
+			],
+			"webp": [
+				{
+					"src": "/images/recipes/ristaffel/card-400.webp",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/ristaffel/card-640.webp",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/ristaffel/card-960.webp",
+					"w": 960,
+					"h": 640
+				}
+			],
+			"jpg": [
+				{
+					"src": "/images/recipes/ristaffel/card-400.jpg",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/ristaffel/card-640.jpg",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/ristaffel/card-960.jpg",
+					"w": 960,
+					"h": 640
+				}
+			]
+		},
+		"social": {
+			"og": {
+				"src": "/images/recipes/ristaffel/og.jpg",
+				"w": 1200,
+				"h": 630
+			},
+			"16x9": {
+				"src": "/images/recipes/ristaffel/16x9.jpg",
+				"w": 1600,
+				"h": 900
+			},
+			"4x3": {
+				"src": "/images/recipes/ristaffel/4x3.jpg",
+				"w": 1200,
+				"h": 900
+			},
+			"1x1": {
+				"src": "/images/recipes/ristaffel/1x1.jpg",
+				"w": 1200,
+				"h": 1200
+			}
+		},
+		"blur": "data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAACQBACdASoYAAoAPu1iqU2ppaOiMAgBMB2JaACdMoR3ACINJ/UjqfDwarfTeAAA/k0VYy/Mib7i/XSHKybUu3L77DGGinel2jEd20DO4gvpezSREgbGxGi18IYfqbhzS4vAC3KW8B+6rqh481jFP4fQcdAg2UeClE3vWBMpSOaAoQZN7DzK2NH1cxvMRMoJYNDducJ8bkv2ct0UBueksjI11pKuSDhfQAA=",
+		"color": "#080808"
+	},
+	"sorens-pastaret": {
+		"hash": "45a174cf0dfe4f17",
+		"width": 6000,
+		"height": 2571,
+		"ratio": 2.3337,
+		"wide": {
+			"avif": [
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-480.avif",
+					"w": 480,
+					"h": 206
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-800.avif",
+					"w": 800,
+					"h": 343
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-1200.avif",
+					"w": 1200,
+					"h": 514
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-1600.avif",
+					"w": 1600,
+					"h": 686
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-2400.avif",
+					"w": 2400,
+					"h": 1028
+				}
+			],
+			"webp": [
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-480.webp",
+					"w": 480,
+					"h": 206
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-800.webp",
+					"w": 800,
+					"h": 343
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-1200.webp",
+					"w": 1200,
+					"h": 514
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-1600.webp",
+					"w": 1600,
+					"h": 686
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-2400.webp",
+					"w": 2400,
+					"h": 1028
+				}
+			],
+			"jpg": [
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-480.jpg",
+					"w": 480,
+					"h": 206
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-800.jpg",
+					"w": 800,
+					"h": 343
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-1200.jpg",
+					"w": 1200,
+					"h": 514
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-1600.jpg",
+					"w": 1600,
+					"h": 686
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/wide-2400.jpg",
+					"w": 2400,
+					"h": 1028
+				}
+			]
+		},
+		"card": {
+			"avif": [
+				{
+					"src": "/images/recipes/sorens-pastaret/card-400.avif",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/card-640.avif",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/card-960.avif",
+					"w": 960,
+					"h": 640
+				}
+			],
+			"webp": [
+				{
+					"src": "/images/recipes/sorens-pastaret/card-400.webp",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/card-640.webp",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/card-960.webp",
+					"w": 960,
+					"h": 640
+				}
+			],
+			"jpg": [
+				{
+					"src": "/images/recipes/sorens-pastaret/card-400.jpg",
+					"w": 400,
+					"h": 267
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/card-640.jpg",
+					"w": 640,
+					"h": 427
+				},
+				{
+					"src": "/images/recipes/sorens-pastaret/card-960.jpg",
+					"w": 960,
+					"h": 640
+				}
+			]
+		},
+		"social": {
+			"og": {
+				"src": "/images/recipes/sorens-pastaret/og.jpg",
+				"w": 1200,
+				"h": 630
+			},
+			"16x9": {
+				"src": "/images/recipes/sorens-pastaret/16x9.jpg",
+				"w": 1600,
+				"h": 900
+			},
+			"4x3": {
+				"src": "/images/recipes/sorens-pastaret/4x3.jpg",
+				"w": 1200,
+				"h": 900
+			},
+			"1x1": {
+				"src": "/images/recipes/sorens-pastaret/1x1.jpg",
+				"w": 1200,
+				"h": 1200
+			}
+		},
+		"blur": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACwBACdASoYAAoAPu1kqU2ppaQiMAgBMB2JbACdMoMYJn/LsAShDQuDKjpo7xgAAP6/CCxUuwSaMgo5uD79Vj40P9wqXkNWY0lwuq8Qh0Vfg3NPKAc8CWHko3m5et9vMe7SBC01yvV6TYLjKNl1VDZBjr2jtWqCRr4ysRWmiJVsRLvtUGwzb29APmnku0KHQXvEXiAA",
+		"color": "#180808"
+	},
+	"placeholder": {
+		"placeholder": true,
+		"social": {
+			"og": {
+				"src": "/images/recipes/placeholder/og.jpg",
+				"w": 1200,
+				"h": 630
+			},
+			"16x9": {
+				"src": "/images/recipes/placeholder/16x9.jpg",
+				"w": 1600,
+				"h": 900
+			},
+			"4x3": {
+				"src": "/images/recipes/placeholder/4x3.jpg",
+				"w": 1200,
+				"h": 900
+			},
+			"1x1": {
+				"src": "/images/recipes/placeholder/1x1.jpg",
+				"w": 1200,
+				"h": 1200
+			}
+		}
+	}
+}

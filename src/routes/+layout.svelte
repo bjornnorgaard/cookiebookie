@@ -1,44 +1,71 @@
 <script lang="ts">
-    import "../app.css";
+	import '../app.css';
+	import { onNavigate } from '$app/navigation';
 
-    interface Props {
-        children?: import('svelte').Snippet;
-    }
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-    let {children}: Props = $props();
+	let { children }: Props = $props();
 
-    const footerLinks = [
-        {href: "https://github.com/bjornnorgaard/cookiebookie", svg: "/icons/github.svg", alt: "github"},
-        {href: "https://www.linkedin.com/in/bjorn-norgaard", svg: "/icons/linkedin.svg", alt: "linkedin"},
-        {href: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", svg: "/icons/youtube.svg", alt: "youtube"},
-    ];
+	const footerLinks = [
+		{ href: 'https://github.com/bjornnorgaard/cookiebookie', svg: '/icons/github.svg', alt: 'GitHub' },
+		{ href: 'https://www.linkedin.com/in/bjorn-norgaard', svg: '/icons/linkedin.svg', alt: 'LinkedIn' },
+		{ href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', svg: '/icons/youtube.svg', alt: 'YouTube' }
+	];
+
+	// Cross-fade pages and morph shared elements (recipe photo + title) with the View Transitions API.
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 </script>
 
-<header>
-    <nav class="p-4">
-        <a class="text-2xl" href="/">Cookie Bookie</a>
-    </nav>
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<header class="sticky top-0 z-50">
+	<div
+		class="header-bg pointer-events-none absolute inset-0 border-b border-surface-300-700 bg-surface-50/80 opacity-0 backdrop-blur-xl dark:bg-surface-950/80"
+		aria-hidden="true"
+	></div>
+	<nav class="relative mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6" aria-label="Hovednavigation">
+		<a href="/" class="group flex items-center gap-2 font-display text-xl font-semibold tracking-tight no-underline sm:text-2xl">
+			<span class="inline-block transition-transform duration-500 ease-out group-hover:rotate-[-18deg] group-hover:scale-125" aria-hidden="true">🍪</span>
+			Cookie Bookie
+		</a>
+		<span class="hidden text-sm opacity-70 sm:block">Rimelige opskrifter, uden reklamer</span>
+	</nav>
 </header>
 
-<main>
-    {@render children?.()}
+<main class="min-h-[70vh]">
+	{@render children?.()}
 </main>
 
-<footer class="pb-8 sm:px-8">
-    <div class="m-auto flex max-w-screen-sm flex-col justify-between gap-4 text-center sm:flex-row sm:px-8 sm:py-4 sm:text-left">
-        <div>
-            <p>Opskrifter by Bear<br/>Rimelige opskrifter siden 2023</p>
-        </div>
-        <div class="flex items-end justify-center gap-4 sm:justify-end">
-            {#each footerLinks as link}
-                <a href={link.href} rel="noopener noreferrer nofollow external" target="_blank">
-                    <img src={link.svg} alt={link.alt}
-                         title={link.alt}
-                         fetchpriority="high" loading="eager"
-                         class="dark:invert"
-                         width="24" height="24">
-                </a>
-            {/each}
-        </div>
-    </div>
+<footer class="mt-24 border-t border-surface-300-700 pb-[max(2rem,env(safe-area-inset-bottom))] pt-10">
+	<div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 text-center sm:flex-row sm:px-6 sm:text-left">
+		<p class="text-sm opacity-80">
+			<span class="font-display text-base font-semibold">Cookie Bookie</span><br />
+			Opskrifter af Bear · Rimelige opskrifter siden 2023
+		</p>
+		<div class="flex items-center gap-2">
+			{#each footerLinks as link}
+				<a
+					href={link.href}
+					rel="noopener noreferrer nofollow external"
+					target="_blank"
+					class="rounded-full p-3 transition duration-300 hover:-translate-y-1 hover:bg-surface-200-800"
+					aria-label={link.alt}
+				>
+					<img src={link.svg} alt="" loading="lazy" class="dark:invert" width="24" height="24" />
+				</a>
+			{/each}
+		</div>
+	</div>
 </footer>
