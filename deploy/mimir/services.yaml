@@ -1,7 +1,7 @@
 services:
   web:
     image:
-      tag: "8c45f40f7383dd6cdc7495b6698a5c5b0adec430"
+      tag: "2f13ade930854b0f3d1db8a6ce188d79c2b23b7c"
     ports:
       - name: http
         containerPort: 3000
