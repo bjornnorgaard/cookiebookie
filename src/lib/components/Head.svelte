@@ -10,9 +10,11 @@
 		noindex?: boolean;
 		titleOverride?: string;
 		descriptionOverride?: string;
+		/** Canonical path for pages that are neither the home page nor a recipe, e.g. `/privatliv`. */
+		path?: string;
 	}
 
-	let { recipe = undefined, noindex = false, titleOverride, descriptionOverride }: Props = $props();
+	let { recipe = undefined, noindex = false, titleOverride, descriptionOverride, path }: Props = $props();
 
 	const homepageTitle = `${siteName} - Bedre opskriter, mindre pis og ingen reklamer`;
 	const homepageDescription =
@@ -31,7 +33,7 @@
 				: homepageDescription)
 	);
 	let type = $derived(recipe ? 'article' : 'website');
-	let url = $derived(recipe ? `${siteUrl}/${recipe.slug}` : siteUrl);
+	let url = $derived(recipe ? `${siteUrl}/${recipe.slug}` : path ? `${siteUrl}${path}` : siteUrl);
 
 	let og = $derived(recipe ? getPhoto(recipe.slug).social.og : getPhoto('placeholder').social.og);
 	let image = $derived(`${siteUrl}${og.src}`);

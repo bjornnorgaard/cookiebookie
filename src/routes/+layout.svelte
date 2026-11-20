@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { onNavigate } from '$app/navigation';
+	import ConsentNotice from '#lib/components/ConsentNotice.svelte';
+	import { openConsent } from '#lib/stores/consent.svelte.ts';
 	import { initWake, setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 
 	interface Props {
@@ -75,7 +77,9 @@
 	<div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 text-center sm:flex-row sm:px-6 sm:text-left">
 		<p class="text-sm opacity-80">
 			<span class="font-display text-base font-semibold">Cookie Bookie</span><br />
-			Opskrifter by Bear · Rimelige opskrifter siden 2023
+			Opskrifter by Bear · Rimelige opskrifter siden 2023<br />
+			<a href="/privatliv" class="underline underline-offset-2">Privatliv</a> ·
+			<button type="button" class="underline underline-offset-2" onclick={openConsent}>Privatlivsindstillinger</button>
 		</p>
 		<div class="flex items-center gap-2">
 			{#each footerLinks as link}
@@ -92,6 +96,8 @@
 		</div>
 	</div>
 </footer>
+
+<ConsentNotice />
 
 <style>
 	.awake-pill {
