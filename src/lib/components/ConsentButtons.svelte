@@ -1,7 +1,7 @@
 <script lang="ts">
 	// Two equal-weight buttons: refusing is exactly as easy as accepting. Neither is pre-selected.
 	// A gentle visual nudge towards YES (filled primary vs. quiet outline), but both are same-size, fully legible,
-	// real buttons, and NO is never guilt-tripped (a shrug, not a sad face).
+	// real buttons, and NO is never guilt-tripped (owner's call: a small crying face; the button itself stays plain and legible).
 	interface Props {
 		onchoose: (analytics: boolean) => void;
 	}
@@ -10,7 +10,7 @@
 
 <div class="flex gap-3">
 	<button type="button" class="choice no" onclick={() => onchoose(false)}>
-		Nej tak <span class="emoji" aria-hidden="true">🤷</span>
+		Nej tak <span class="emoji" aria-hidden="true">😢</span>
 	</button>
 	<button type="button" class="choice yes" onclick={() => onchoose(true)}>
 		Det er fint <span class="emoji wink" aria-hidden="true">👍</span>
@@ -47,10 +47,6 @@
 	}
 	.no:hover {
 		background: color-mix(in oklab, currentColor 10%, transparent);
-	}
-	.no .emoji {
-		filter: grayscale(0.75);
-		opacity: 0.85;
 	}
 	.wink {
 		display: inline-block;
