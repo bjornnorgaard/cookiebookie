@@ -1,6 +1,6 @@
 # 01 · Light / dark mode toggle
 
-Status: **spec, awaiting answers** · Size: **S** (about 1.5-2 h) · Depends on: nothing
+Status: **Done** · Size: **S** (about 1.5-2 h) · Depends on: nothing
 
 ## Summary
 
@@ -91,3 +91,19 @@ States and behaviour:
    "Følg enheden".
 2. Should the choice also apply to the 404 page and print view? **Recommendation:** yes for 404; print is always light.
 3. Is the circular-reveal animation wanted, or would a simple cross-fade be calmer?
+
+## Implementation notes / deviations
+
+- Open questions resolved per the recommendations: tap toggles; "Følg enheden" is a separate small footer button
+  (`ThemeFollowDevice.svelte`, "Tema: Følg enheden", keyboard accessible) rather than a long-press or popover; 404 uses
+  the same layout so it follows the theme; the circular reveal is kept (instant under reduced motion).
+- `data-mode` on `<html>` is always the resolved mode (`light`/`dark`); the stored preference is only in
+  `localStorage["theme"]`. Without JS, no `data-mode` is present and CSS falls back to `prefers-color-scheme`.
+- `theme-color` metas: when a mode is forced, the matching tag gets `media="all"` and the other `not all`; following the
+  device restores the original media queries.
+- `.tile`, `.panel` and step styles already used `light-dark()`, so they only needed `color-scheme`; only the glow
+  variables and the Tailwind `dark:` variant needed explicit conversion.
+- Print is not specially forced to light (no print stylesheet exists yet; see spec 07).
+- Files: `src/lib/stores/theme.svelte.ts`, `src/lib/components/ThemeToggle.svelte`, `ThemeFollowDevice.svelte`,
+  `tests/theme.spec.ts`; small edits in `src/app.html`, `src/app.css`, `src/routes/+layout.svelte`.
+- axe scans are left to spec 03.

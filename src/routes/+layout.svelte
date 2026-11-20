@@ -5,6 +5,9 @@
 	import { onNavigate } from '$app/navigation';
 	import ConsentNotice from '#lib/components/ConsentNotice.svelte';
 	import { openConsent } from '#lib/stores/consent.svelte.ts';
+	import ThemeToggle from '#lib/components/ThemeToggle.svelte';
+	import ThemeFollowDevice from '#lib/components/ThemeFollowDevice.svelte';
+	import { initTheme } from '#lib/stores/theme.svelte.ts';
 	import { initWake, setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 
 	interface Props {
@@ -20,6 +23,7 @@
 	];
 
 	onMount(initWake);
+	onMount(initTheme);
 
 	// Cross-fade pages and morph shared elements (recipe photo + title) with the View Transitions API.
 	onNavigate((navigation) => {
@@ -65,6 +69,7 @@
 				<span class="h-px w-8 bg-primary-500/60" aria-hidden="true"></span>
 				Rimelige opskrifter, uden reklamer
 			</p>
+			<ThemeToggle />
 		</div>
 	</nav>
 </header>
@@ -81,6 +86,7 @@
 			<a href="/privatliv" class="underline underline-offset-2">Privatliv</a> ·
 			<button type="button" class="underline underline-offset-2" onclick={openConsent}>Privatlivsindstillinger</button>
 		</p>
+		<ThemeFollowDevice />
 		<div class="flex items-center gap-2">
 			{#each footerLinks as link}
 				<a
