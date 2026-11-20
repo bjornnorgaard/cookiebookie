@@ -31,7 +31,9 @@ body {
 	text-rendering: optimizeLegibility;
 	overflow-x: clip;
 	/* Soft warm glow behind the page, so surfaces never feel flat. */
-	background-color: var(--color-surface-50-950);
+	/* Warm cocoa brown in dark mode instead of near-black. */
+	background-color: light-dark(var(--color-surface-50), oklch(22% 0.028 55));
+	background-attachment: fixed;
 	background-image:
 		radial-gradient(60rem 30rem at 85% -10%, color-mix(in oklab, var(--color-primary-500) var(--glow-a, 14%), transparent), transparent),
 		radial-gradient(50rem 30rem at -10% 10%, color-mix(in oklab, var(--color-secondary-500) var(--glow-b, 10%), transparent), transparent);
@@ -40,22 +42,27 @@ body {
 @media (prefers-color-scheme: light) {
 	body { --glow-a: 30%; --glow-b: 18%; }
 }
+@media (prefers-color-scheme: dark) {
+	body { --glow-a: 26%; --glow-b: 14%; }
+}
 
 /* Recipe tiles: bright warm paper in light mode, the quiet tonal look in dark mode. */
 .tile {
-	background-color: light-dark(
-		oklch(99.5% 0.008 88),
-		color-mix(in oklab, var(--color-primary-500) 7%, var(--color-surface-800))
+	background-image: linear-gradient(
+		150deg,
+		light-dark(oklch(99.8% 0.006 88), color-mix(in oklab, var(--color-primary-500) 17%, oklch(30% 0.03 55))),
+		light-dark(oklch(96% 0.045 72), color-mix(in oklab, var(--color-primary-500) 5%, oklch(24% 0.025 55)))
 	);
 	border: 1px solid light-dark(
-		color-mix(in oklab, var(--color-primary-500) 28%, transparent),
-		color-mix(in oklab, var(--color-primary-500) 30%, transparent)
+		color-mix(in oklab, var(--color-primary-500) 30%, transparent),
+		color-mix(in oklab, var(--color-primary-500) 32%, transparent)
 	);
 	box-shadow:
-		inset 0 1px 0 light-dark(transparent, rgb(255 255 255 / 0.07)),
+		inset 0 1px 0 light-dark(rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.08)),
 		0 1px 2px light-dark(rgb(120 70 20 / 0.06), transparent),
 		0 18px 36px -18px light-dark(rgb(190 100 20 / 0.5), rgb(0 0 0 / 0.8));
 }
+
 
 h1, h2, h3, .font-display {
 	font-family: var(--font-display);
