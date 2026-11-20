@@ -2,14 +2,15 @@ import { recipes } from '#lib/data/recipes.ts';
 import { siteName, siteUrl } from '#lib/constants/site.ts';
 import { isoDate } from '#lib/format.ts';
 import { getPhoto } from '#lib/images.ts';
+import { modifiedDate } from '#lib/seo/builder.ts';
 import type { RequestHandler } from './$types';
 
 const formatDate = isoDate;
 
 function latestRecipeDate(): string {
 	const latest = recipes.reduce(
-		(max, recipe) => (recipe.datePublished > max ? recipe.datePublished : max),
-		recipes[0].datePublished
+		(max, recipe) => (modifiedDate(recipe) > max ? modifiedDate(recipe) : max),
+		modifiedDate(recipes[0])
 	);
 	return formatDate(latest);
 }
@@ -21,7 +22,7 @@ export const GET: RequestHandler = () => {
 		{ loc: siteUrl, lastmod: latestRecipeDate(), image: undefined as string | undefined, title: siteName },
 		...recipes.map((recipe) => ({
 			loc: `${siteUrl}/${recipe.slug}`,
-			lastmod: formatDate(recipe.datePublished),
+			lastmod: formatDate(modifiedDate(recipe)),
 			image: getPhoto(recipe.slug).isPlaceholder ? undefined : getPhoto(recipe.slug).social['16x9'].src,
 			title: recipe.title
 		}))

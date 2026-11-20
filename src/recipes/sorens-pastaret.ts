@@ -14,6 +14,7 @@ export const sorensPastaret: Recipe = {
     yield: 2,
     categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2023, Months.February, 5),
+    dateModified: new Date(2023, Months.March, 3),
     longDesc: "Nem ret. Smid det hele i et fad og bland. Kan sagtens klare " +
         "random grønsager - rosenkål og porre er ikke fjenden! " +
         "Tager ingen tid at forberede og skal bare glemmes i ovnen i " +

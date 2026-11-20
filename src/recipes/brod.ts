@@ -14,6 +14,8 @@ export const brod: Recipe = {
     yield: 4,
     categories: [ Category.Bagning ],
     datePublished: new Date(2023, Months.January, 12),
+    dateModified: new Date(2023, Months.March, 3),
+    diets: ['vegan', 'lactoseFree'],
     ingredients: [
         { name: "Hvedemel", amount: "400g" },
         { name: "Salt", amount: "10g" },

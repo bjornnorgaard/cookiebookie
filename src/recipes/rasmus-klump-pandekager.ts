@@ -14,6 +14,8 @@ export const rasmusKlumpPandekager: Recipe = {
     yield: 4,
     categories: [ Category.Sides, Category.Dessert ],
     datePublished: new Date(2024, Months.June, 12),
+    dateModified: new Date(2024, Months.June, 12),
+    diets: ['vegetarian'],
     longDesc: "Pandekager efter opskriften på forklædet - ligesom vi lavede dem i gamle dage. Dengang vi skulle læse opskriften på hovedet, fordi vi var for dumme til at tage forklædet af først - eller var det kun mig?",
     ingredients: [
         { name: "Hvedemel", amount: "200 gram" },

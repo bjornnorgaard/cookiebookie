@@ -3,16 +3,25 @@
 	import { siteAuthor, siteLocale, siteName, siteUrl } from '#lib/constants/site.ts';
 	import type { Recipe } from '#lib/types/recipe.ts';
 	import { isoDate } from '#lib/format.ts';
-	import { buildBreadcrumbs, buildRecipeHead, buildWebsiteHead } from '#lib/seo/builder.ts';
+	import {
+		buildBreadcrumbs,
+		buildItemList,
+		buildOrganization,
+		buildRecipeHead,
+		buildWebsiteHead,
+		modifiedDate
+	} from '#lib/seo/builder.ts';
+	import { recipes } from '#lib/data/recipes.ts';
 
 	interface Props {
 		recipe?: Recipe | undefined;
 		noindex?: boolean;
+		home?: boolean;
 		titleOverride?: string;
 		descriptionOverride?: string;
 	}
 
-	let { recipe = undefined, noindex = false, titleOverride, descriptionOverride }: Props = $props();
+	let { recipe = undefined, noindex = false, home = false, titleOverride, descriptionOverride }: Props = $props();
 
 	const homepageTitle = `${siteName} - Bedre opskriter, mindre pis og ingen reklamer`;
 	const homepageDescription =
@@ -39,7 +48,11 @@
 	let height = $derived(og.h);
 
 	let structuredData = $derived(
-		recipe ? [buildRecipeHead(recipe, siteUrl), buildBreadcrumbs(recipe, siteUrl)] : [buildWebsiteHead()]
+		recipe
+			? [buildRecipeHead(recipe, siteUrl), buildBreadcrumbs(recipe, siteUrl)]
+			: home
+				? [buildWebsiteHead(), buildOrganization(), buildItemList(recipes, siteUrl)]
+				: [buildWebsiteHead()]
 	);
 </script>
 
@@ -51,7 +64,10 @@
 	<meta name="author" content={siteAuthor} />
 	{#if noindex}
 		<meta name="robots" content="noindex, follow" />
+	{:else}
+		<meta name="robots" content="max-image-preview:large" />
 	{/if}
+	<link rel="alternate" type="application/rss+xml" title={siteName} href="{siteUrl}/rss.xml" />
 	{#if recipe}
 		<meta property="article:publisher" content={siteUrl} />
 	{/if}
@@ -70,6 +86,7 @@
 	<meta property="og:image:alt" content={recipe ? recipe.title : siteName} />
 	{#if recipe}
 		<meta property="article:published_time" content={isoDate(recipe.datePublished)} />
+		<meta property="article:modified_time" content={isoDate(modifiedDate(recipe))} />
 		<meta property="article:author" content={recipe.author} />
 		<meta property="article:section" content={recipe.categories[0]} />
 	{/if}

@@ -5,6 +5,7 @@ export interface Recipe {
     shortDesc: string;
     longDesc: string; // 70-320
     datePublished: Date; // "2018-03-10"
+    dateModified?: Date; // last content edit; falls back to datePublished
     prepTime: string; // PT20M
     cookTime: string; // PT30M
     totalTime: string; // PT50M
@@ -13,6 +14,18 @@ export interface Recipe {
     yield: number;
     ingredients: Ingredient[];
     steps: Step[];
+    estimatedCostDKK?: number; // total, for the stated yield
+    diets?: Diet[];
+    nutrition?: Nutrition;
+}
+
+export type Diet = 'vegetarian' | 'vegan' | 'glutenFree' | 'lactoseFree';
+
+export interface Nutrition {
+    kcalPerServing: number;
+    proteinG?: number;
+    carbsG?: number;
+    fatG?: number;
 }
 
 export interface Ingredient {
