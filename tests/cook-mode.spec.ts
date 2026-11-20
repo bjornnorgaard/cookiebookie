@@ -137,7 +137,7 @@ test('timers started in cook mode keep running after it closes', async ({ page }
 	await page.getByTestId('cook-next').click();
 	await page.getByTestId('cook-next').click();
 	await expect(heading(page)).toHaveAccessibleName(/^Trin 4 af 6/);
-	await cook(page).getByRole('button', { name: /Start timer: Simre, 45 min/ }).click();
+	await cook(page).getByRole('button', { name: /Start 45 min, Simre/ }).click();
 	await expect(page.getByTestId('cook-timers')).toContainText('Simre');
 	await page.keyboard.press('Escape');
 	await expect(cook(page)).toHaveCount(0);

@@ -77,7 +77,7 @@ test('a range gives two chips; steps without durations have none', async ({ page
 
 test('start, count down, pause/resume, +1 and remove; the step is not auto-ticked', async ({ page }) => {
 	await open(page);
-	await page.locator('#step4').getByRole('button', { name: /Start timer: Simre, 45 min/ }).click();
+	await page.locator('#step4').getByRole('button', { name: /Start 45 min, Simre/ }).click();
 	await expect(rows(page)).toHaveCount(1);
 	await expect(rows(page).first().locator('time')).toHaveText('45:00');
 	await expect(page.locator('#step-check-3')).not.toBeChecked();
@@ -93,7 +93,7 @@ test('start, count down, pause/resume, +1 and remove; the step is not auto-ticke
 	await page.clock.runFor(10_000);
 	await expect(rows(page).first().locator('time')).toHaveText('44:20');
 
-	await rows(page).first().getByRole('button', { name: 'Læg et minut til Simre' }).click();
+	await rows(page).first().getByRole('button', { name: '+1 minut, Simre' }).click();
 	await expect(rows(page).first().locator('time')).toHaveText('45:20');
 
 	// The chip on the step mirrors the dock.
@@ -106,7 +106,7 @@ test('start, count down, pause/resume, +1 and remove; the step is not auto-ticke
 
 test('survives a reload with an absolute end time', async ({ page }) => {
 	await open(page);
-	await page.locator('#step4').getByRole('button', { name: /Start timer: Simre, 45 min/ }).click();
+	await page.locator('#step4').getByRole('button', { name: /Start 45 min, Simre/ }).click();
 	await page.clock.runFor(60_000);
 	await page.reload();
 	await expect(rows(page).first().locator('time')).toHaveText('44:00');
@@ -117,7 +117,7 @@ test('survives a reload with an absolute end time', async ({ page }) => {
 test('finish: chime twice, vibration, notification, title, done row; dismiss restores the title', async ({ page }) => {
 	await open(page, 'camillas-kikgryde', 'granted');
 	const title = await page.title();
-	await page.locator('#step2').getByRole('button', { name: /Start timer: Simre, 10 min/ }).click();
+	await page.locator('#step2').getByRole('button', { name: /Start 10 min, Simre/ }).click();
 	await page.clock.runFor(9 * 60_000 + 5_000);
 	await expect(page.getByTestId('timer-announcer')).toContainText('Simre: 1 minut tilbage');
 	await expect(rows(page).first()).toHaveClass(/last/);
@@ -139,7 +139,7 @@ test('finish: chime twice, vibration, notification, title, done row; dismiss res
 
 test('mute silences the chime but not the visual alert', async ({ page }) => {
 	await open(page, 'camillas-kikgryde');
-	await page.locator('#step1').getByRole('button', { name: /Start timer: Steg, 3 min/ }).click();
+	await page.locator('#step1').getByRole('button', { name: /Start 3 min, Steg/ }).click();
 	await dock(page).getByRole('switch', { name: /Lyd/ }).click();
 	await expect(dock(page).getByRole('switch', { name: /Lyd/ })).toHaveAttribute('aria-checked', 'false');
 	await page.clock.runFor(181_000);
@@ -149,10 +149,10 @@ test('mute silences the chime but not the visual alert', async ({ page }) => {
 
 test('several timers, soonest first, max 3 rows then "+N mere"', async ({ page }) => {
 	await open(page, 'brod');
-	await page.locator('#step4').getByRole('button', { name: /Start timer: Hævning, 12 t\./ }).click();
-	await page.locator('#step7').getByRole('button', { name: /Start timer: Forvarm/ }).click();
-	await page.locator('#step8').getByRole('button', { name: /Start timer: Bagning/ }).click();
-	await page.locator('#step10').getByRole('button', { name: /Start timer: Afkøling/ }).click();
+	await page.locator('#step4').getByRole('button', { name: /Start 12 t\., Hævning/ }).click();
+	await page.locator('#step7').getByRole('button', { name: /Start .*, Forvarm/ }).click();
+	await page.locator('#step8').getByRole('button', { name: /Start .*, Bagning/ }).click();
+	await page.locator('#step10').getByRole('button', { name: /Start .*, Afkøling/ }).click();
 	await expect(rows(page)).toHaveCount(3);
 	await expect(rows(page).first().locator('time')).toHaveText('30:00');
 	await dock(page).getByRole('button', { name: '+1 mere' }).click();
@@ -161,7 +161,7 @@ test('several timers, soonest first, max 3 rows then "+N mere"', async ({ page }
 
 test('timers from another recipe keep running and show the recipe name; tapping scrolls to the step', async ({ page }) => {
 	await open(page);
-	await page.locator('#step4').getByRole('button', { name: /Start timer: Simre, 45 min/ }).click();
+	await page.locator('#step4').getByRole('button', { name: /Start 45 min, Simre/ }).click();
 	await page.getByRole('link', { name: 'Forside' }).first().click();
 	await page.clock.runFor(1000); // client navigation and view transitions need clock ticks
 	await expect(page).toHaveURL(/\/$/);
@@ -179,7 +179,7 @@ test('timers from another recipe keep running and show the recipe name; tapping 
 test('offers: notification explained once on first start, never on load; keep-awake offered', async ({ page }) => {
 	await open(page, 'lasagne', 'default', true);
 	expect((await alerts(page)).asked).toBe(0);
-	await page.locator('#step4').getByRole('button', { name: /Start timer: Simre, 45 min/ }).click();
+	await page.locator('#step4').getByRole('button', { name: /Start 45 min, Simre/ }).click();
 	await expect(dock(page)).toContainText('Vil du have en besked');
 	await expect(dock(page)).toContainText('Skal skærmen holdes tændt');
 	expect((await alerts(page)).asked).toBe(0);
@@ -191,7 +191,7 @@ test('offers: notification explained once on first start, never on load; keep-aw
 
 test('a second tab does not ring again', async ({ context, page }) => {
 	await open(page);
-	await page.locator('#step4').getByRole('button', { name: /Start timer: Simre, 45 min/ }).click();
+	await page.locator('#step4').getByRole('button', { name: /Start 45 min, Simre/ }).click();
 	const other = await context.newPage();
 	await stubAlerts(other);
 	await other.clock.install({ time: T0 });

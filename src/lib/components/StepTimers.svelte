@@ -33,7 +33,7 @@
 				type="button"
 				class="chip"
 				data-testid="timer-start"
-				aria-label="Start timer: {chip.label}, {formatMinutes(chip.minutes)}"
+				aria-label="Start {formatMinutes(chip.minutes)}, {chip.label}"
 				onclick={() => startTimer({ recipeSlug: recipe.slug, recipeTitle: recipe.title, stepIndex, stepTitle, label: chip.label, minutes: chip.minutes })}
 			>
 				<span aria-hidden="true">⏱</span> Start {formatMinutes(chip.minutes)}
@@ -54,7 +54,7 @@
 					>
 						{status === 'running' ? '⏸' : '▶'}
 					</button>
-					<button type="button" class="mini" aria-label="Læg et minut til {chip.label}" onclick={() => addMinute(live.id)}>+1</button>
+					<button type="button" class="mini" aria-label="+1 minut, {chip.label}" onclick={() => addMinute(live.id)}>+1</button>
 				{/if}
 				<button type="button" class="mini" aria-label="{status === 'done' ? 'Fjern' : 'Nulstil'} timer {chip.label}" onclick={() => removeTimer(live.id)}>
 					{status === 'done' ? '✕' : '↺'}

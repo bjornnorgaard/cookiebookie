@@ -79,7 +79,7 @@
 						<button type="button" class="ctl" aria-label="{status === 'running' ? 'Pause' : 'Genoptag'} {t.label}" onclick={() => (status === 'running' ? pauseTimer(t.id) : resumeTimer(t.id))}>
 							<span aria-hidden="true">{status === 'running' ? '⏸' : '▶'}</span>
 						</button>
-						<button type="button" class="ctl" aria-label="Læg et minut til {t.label}" onclick={() => addMinute(t.id)}>+1</button>
+						<button type="button" class="ctl" aria-label="+1 minut, {t.label}" onclick={() => addMinute(t.id)}>+1</button>
 					{/if}
 					<button type="button" class="ctl" aria-label="Fjern timer {t.label}" onclick={() => removeTimer(t.id)}><span aria-hidden="true">✕</span></button>
 					<span class="bar" aria-hidden="true"><span style="width: {Math.round(progressAt(t, timerState.now) * 100)}%"></span></span>
