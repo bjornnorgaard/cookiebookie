@@ -44,16 +44,15 @@
 {#if consent.open}
 	<div class="consent panel" role="region" aria-label="Privatliv" transition:fly={{ y: 24, duration: dur }}>
 		<h2 class="m-0 flex items-center gap-2 font-display text-lg font-semibold leading-tight">
-			<span aria-hidden="true">🍪</span> Må jeg kigge med?
+			<span aria-hidden="true">🍪</span> Er der nogen derude?
 		</h2>
 		<p class="mb-3 mt-2 text-sm leading-relaxed">
-			Jeg bruger Google Analytics til at se, hvilke opskrifter der bliver læst. Ikke fordi jeg er nysgerrig på dig, men
-			jeg vil gerne vide, om nogen overhovedet laver den lasagne. Ingen reklamer, intet salg af data.
+			Må jeg bruge Google Analytics til at se, om nogen overhovedet laver den lasagne? Ingen reklamer, intet salg af data.
 			<a href="/privatliv" class="font-semibold underline underline-offset-2">Det med småt</a>
 		</p>
 		<ConsentButtons onchoose={setConsent} />
 		<p class="mb-0 mt-3 text-xs leading-snug opacity-80">
-			Det betyder faktisk en del for mig, hvis du siger ja. Siger du nej, er vi stadig gode venner.
+			Det betyder meget for mig. Men siger du nej, er vi stadig venner.
 		</p>
 	</div>
 {:else if pill}
