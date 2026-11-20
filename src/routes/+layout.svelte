@@ -3,6 +3,9 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { onNavigate } from '$app/navigation';
+	import ThemeToggle from '#lib/components/ThemeToggle.svelte';
+	import ThemeFollowDevice from '#lib/components/ThemeFollowDevice.svelte';
+	import { initTheme } from '#lib/stores/theme.svelte.ts';
 	import { initWake, setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 
 	interface Props {
@@ -18,6 +21,7 @@
 	];
 
 	onMount(initWake);
+	onMount(initTheme);
 
 	// Cross-fade pages and morph shared elements (recipe photo + title) with the View Transitions API.
 	onNavigate((navigation) => {
@@ -63,6 +67,7 @@
 				<span class="h-px w-8 bg-primary-500/60" aria-hidden="true"></span>
 				Rimelige opskrifter, uden reklamer
 			</p>
+			<ThemeToggle />
 		</div>
 	</nav>
 </header>
@@ -77,6 +82,7 @@
 			<span class="font-display text-base font-semibold">Cookie Bookie</span><br />
 			Opskrifter by Bear · Rimelige opskrifter siden 2023
 		</p>
+		<ThemeFollowDevice />
 		<div class="flex items-center gap-2">
 			{#each footerLinks as link}
 				<a
