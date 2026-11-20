@@ -81,3 +81,14 @@ test('recipe photos are responsive, modern formats and fall back to the placehol
 	const real = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent())!);
 	expect(real.image).toHaveLength(3);
 });
+
+test('ticking a step ticks earlier steps; unticking clears later steps', async ({ page }) => {
+	await page.goto('/ristaffel');
+	const box = (n: number) => page.locator(`#step${n} input`);
+	await box(4).check();
+	for (const n of [1, 2, 3, 4]) await expect(box(n)).toBeChecked();
+	await expect(box(5)).not.toBeChecked();
+	await box(2).uncheck();
+	await expect(box(1)).toBeChecked();
+	for (const n of [2, 3, 4]) await expect(box(n)).not.toBeChecked();
+});

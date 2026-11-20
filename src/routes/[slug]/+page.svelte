@@ -18,8 +18,29 @@
 	// Reset checks when navigating from one recipe to another.
 	$effect(() => {
 		recipe.slug;
+		rippleTimers.forEach(clearTimeout);
 		completedSteps = [];
 	});
+
+	// Ticking a step means everything before it is done; unticking means everything after it is not.
+	// The change ripples outwards one step at a time so the user sees what happened.
+	let rippleTimers: ReturnType<typeof setTimeout>[] = [];
+
+	function setStep(i: number, checked: boolean) {
+		rippleTimers.forEach(clearTimeout);
+		rippleTimers = [];
+		completedSteps[i] = checked;
+
+		const targets = checked
+			? Array.from({ length: i }, (_, k) => i - 1 - k) // i-1, i-2, ... 0
+			: Array.from({ length: recipe.steps.length - i - 1 }, (_, k) => i + 1 + k); // i+1 ... last
+		targets.forEach((idx, n) => {
+			if (!!completedSteps[idx] === checked) return;
+			rippleTimers.push(setTimeout(() => (completedSteps[idx] = checked), (n + 1) * 70));
+		});
+
+		nudge(i);
+	}
 
 	// After ticking a step, bring the next one into view if it is below the fold.
 	function nudge(i: number) {
@@ -136,8 +157,8 @@
 							<input
 								id="step-check-{i}"
 								type="checkbox"
-								bind:checked={completedSteps[i]}
-								onchange={() => nudge(i)}
+								checked={!!done}
+								onchange={(e) => setStep(i, e.currentTarget.checked)}
 								class="tick round mt-0.5"
 								style="--tick: var(--color-secondary-500)"
 							/>
