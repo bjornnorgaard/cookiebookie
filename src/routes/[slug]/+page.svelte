@@ -13,6 +13,9 @@
 	import { formatDuration, isoDate, longDate } from '#lib/format.ts';
 	import { renderStepText } from '#lib/scale.ts';
 	import { Portions, setPortions } from '#lib/stores/portions.svelte.ts';
+	import { page } from '$app/state';
+	import { pushState } from '$app/navigation';
+	import { Steps, setSteps } from '#lib/stores/steps.svelte.ts';
 
 	let { data } = $props();
 	const recipe = $derived(data.recipe);
@@ -23,47 +26,38 @@
 		return () => setViewingRecipe(false);
 	});
 
-	let completedSteps: boolean[] = $state([]);
-	const doneCount = $derived(completedSteps.filter(Boolean).length);
-	// First unchecked step = what to do next.
-	const current = $derived(Array.from({ length: recipe.steps.length }, (_, i) => completedSteps[i]).findIndex((c) => !c));
-	const allDone = $derived(doneCount === recipe.steps.length && doneCount > 0);
-
-	// Reset checks when navigating from one recipe to another.
-	$effect(() => {
-		recipe.slug;
-		rippleTimers.forEach(clearTimeout);
-		completedSteps = [];
-	});
-
-	// Ticking a step means everything before it is done; unticking means everything after it is not.
-	// The change ripples outwards one step at a time so the user sees what happened.
-	let rippleTimers: ReturnType<typeof setTimeout>[] = [];
+	const steps = setSteps(new Steps(() => recipe));
+	const doneCount = $derived(steps.doneCount);
+	const current = $derived(steps.current);
+	const allDone = $derived(steps.allDone);
 
 	function setStep(i: number, checked: boolean) {
-		rippleTimers.forEach(clearTimeout);
-		rippleTimers = [];
-		completedSteps[i] = checked;
-
-		const targets = checked
-			? Array.from({ length: i }, (_, k) => i - 1 - k) // i-1, i-2, ... 0
-			: Array.from({ length: recipe.steps.length - i - 1 }, (_, k) => i + 1 + k); // i+1 ... last
-		targets.forEach((idx, n) => {
-			if (!!completedSteps[idx] === checked) return;
-			rippleTimers.push(setTimeout(() => (completedSteps[idx] = checked), (n + 1) * 70));
-		});
-
+		steps.set(i, checked);
 		nudge(i);
 	}
 
 	// After ticking a step, bring the next one into view if it is below the fold.
 	function nudge(i: number) {
 		const next = document.getElementById(`step${i + 2}`);
-		if (!next || !completedSteps[i]) return;
+		if (!next || !steps.done[i]) return;
 		const rect = next.getBoundingClientRect();
 		if (rect.bottom > window.innerHeight - 24) {
 			next.scrollIntoView({ behavior: 'smooth', block: 'center' });
 		}
+	}
+
+	// Cook mode is code-split: the component is fetched the first time it is wanted. Open state lives in the
+	// shallow history entry (`#cook`), so the browser's Back button closes it.
+	let CookMode: typeof import('#lib/components/CookMode.svelte').default | undefined = $state();
+	const cookOpen = $derived(!!page.state.cook);
+
+	async function startCook() {
+		CookMode ??= (await import('#lib/components/CookMode.svelte')).default;
+		pushState('#cook', { cook: true });
+	}
+
+	function closeCook() {
+		if (page.state.cook) history.back();
 	}
 
 	const facts = $derived([
@@ -131,6 +125,12 @@
 		<p class="text-inherit!">{recipe.longDesc}</p>
 	</div>
 
+	<div class="mt-10 text-center">
+		<button type="button" class="btn btn-lg preset-filled-primary-500" data-testid="start-cook" onclick={startCook}>
+			<span aria-hidden="true">🍳</span> Start madlavning
+		</button>
+	</div>
+
 	<div class="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
 		<section class="reveal-on-scroll lg:sticky lg:top-24" aria-labelledby="indkoeb">
 			<h2 id="indkoeb" class="font-display text-3xl font-semibold">
@@ -168,7 +168,7 @@
 
 			<ol class="m-0 mt-5 flex list-none flex-col gap-3 p-0" style="--panel-accent: var(--color-secondary-500)">
 				{#each recipe.steps as s, i}
-					{@const done = completedSteps[i]}
+					{@const done = steps.done[i]}
 					<li
 						id={'step' + (i + 1)}
 						class="panel step scroll-mt-24 rounded-2xl transition duration-500 {done ? 'opacity-60' : 'hover:-translate-y-0.5'}"
@@ -219,3 +219,7 @@
 		<a href="/" class="btn preset-tonal no-underline transition duration-300 hover:-translate-x-1">← Flere opskrifter</a>
 	</div>
 </article>
+
+{#if CookMode && cookOpen}
+	<CookMode {recipe} onclose={closeCook} />
+{/if}

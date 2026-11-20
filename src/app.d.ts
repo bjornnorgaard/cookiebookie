@@ -6,4 +6,8 @@ declare namespace App {
     // interface Locals {}
     // interface PageData {}
     // interface Platform {}
+    interface PageState {
+        /** Set while cook mode is open (shallow history entry `#cook`), so Back closes it. */
+        cook?: boolean;
+    }
 }
