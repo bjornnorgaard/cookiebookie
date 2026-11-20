@@ -39,7 +39,7 @@
 </script>
 
 <div class="px-5 pt-4" role="group" aria-labelledby="portions-label">
-	<div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+	<div class="flex items-center justify-between gap-4">
 		<span id="portions-label" class="text-sm font-semibold">Portioner</span>
 
 		<div class="flex items-center gap-1">
@@ -81,11 +81,12 @@
 			>
 		</div>
 
-		<div class="flex flex-wrap gap-1" role="group" aria-label="Hurtigvalg">
-			{#each presets as n}
-				<button type="button" class="preset" aria-pressed={portions.count === n} onclick={() => portions.set(n)}>{n}</button>
-			{/each}
-		</div>
+	</div>
+
+	<div class="presets mt-3" role="group" aria-label="Hurtigvalg">
+		{#each presets as n}
+			<button type="button" class="preset" aria-pressed={portions.count === n} onclick={() => portions.set(n)}>{n}</button>
+		{/each}
 	</div>
 
 	<p class="mt-2 flex h-6 items-center gap-1 text-sm opacity-75" class:invisible={!portions.scaled}>
@@ -139,8 +140,14 @@
 		appearance: none;
 		margin: 0;
 	}
+	.presets {
+		display: grid;
+		grid-auto-flow: column;
+		grid-auto-columns: minmax(0, 1fr);
+		gap: 0.5rem;
+	}
 	.preset {
-		min-width: 2.75rem;
+		min-width: 0;
 		min-height: 2.75rem;
 		padding: 0 0.6rem;
 		border-radius: 9999px;
