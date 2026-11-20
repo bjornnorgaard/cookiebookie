@@ -40,7 +40,8 @@
 		<h2>Hvem står bag</h2>
 		<p>
 			Det er mig: Bjørn Nørgaard (by Bear). Jeg er dataansvarlig for cookiebookie.dk, hvilket lyder federe, end det er. Du
-			kan finde mig via linkene nederst på siden (LinkedIn eller GitHub).
+			kan skrive til mig på <a href="mailto:bjornsnorgaard@gmail.com">bjornsnorgaard@gmail.com</a>, eller finde mig via
+			linkene nederst på siden (LinkedIn eller GitHub).
 		</p>
 
 		<h2>Hvad jeg samler ind</h2>
