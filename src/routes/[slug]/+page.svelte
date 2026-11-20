@@ -106,7 +106,7 @@
 		transitionName="hero-{recipe.slug}"
 	/>
 
-	<dl class="reveal not-prose mx-auto -mt-8 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl bg-surface-300-700 shadow-xl ring-1 ring-surface-300-700 sm:grid-cols-4 relative" style="--i:4">
+	<dl class="reveal not-prose mx-auto -mt-8 grid w-[calc(100%-2rem)] max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl bg-surface-300-700 shadow-xl ring-1 ring-surface-300-700 sm:grid-cols-4 relative" style="--i:4">
 		{#each facts as f}
 			<div class="bg-surface-50-950 px-4 py-4 text-center">
 				<dt class="text-xs uppercase tracking-wider opacity-60">{f.label}</dt>
@@ -152,7 +152,6 @@
 
 			<div class="mt-5"><KeepAwake /></div>
 
-			<p class="mt-5 text-sm opacity-70">Tryk på et trin, når du er færdig med det</p>
 
 			<div class="mt-4">
 				<Progress value={doneCount} max={recipe.steps.length}>

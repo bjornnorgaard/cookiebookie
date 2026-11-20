@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { consent } from '#lib/stores/consent.svelte.ts';
-	import { TITLE_DONE, addMinute, answerAwake, answerNotify, initTimers, pauseTimer, removeTimer, resumeTimer, setMuted, timerState } from '#lib/stores/timers.svelte.ts';
+	import { setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
+	import { TITLE_DONE, addMinute, answerNotify, initTimers, pauseTimer, removeTimer, resumeTimer, setMuted, timerState } from '#lib/stores/timers.svelte.ts';
 	import { formatRemaining, isLastMinute, progressAt, remainingAt, timerStatus } from '#lib/timerMath.ts';
 
 	const MAX_ROWS = 3;
@@ -47,19 +48,12 @@
 <p class="sr-only" aria-live="polite" data-testid="timer-announcer">{timerState.announcement}</p>
 
 {#if timerState.list.length > 0}
-	<div class="dock panel" class:lifted={consent.open} class:calm={reduced} role="region" aria-label="Timere" data-testid="timer-dock" style="--panel-accent: var(--color-secondary-500); --panel-tint: 22%">
+	<div class="dock" class:lifted={consent.open} class:calm={reduced} role="region" aria-label="Timere" data-testid="timer-dock">
 		{#if timerState.askNotify}
 			<div class="ask">
 				<p>Vil du have en besked, når en timer er færdig, også hvis du er i en anden fane?</p>
 				<button type="button" class="btn-sm" onclick={() => answerNotify(true)}>Ja tak</button>
 				<button type="button" class="btn-sm quiet" onclick={() => answerNotify(false)}>Nej tak</button>
-			</div>
-		{/if}
-		{#if timerState.askAwake}
-			<div class="ask">
-				<p>Skal skærmen holdes tændt, mens du venter?</p>
-				<button type="button" class="btn-sm" onclick={() => answerAwake(true)}>Ja tak</button>
-				<button type="button" class="btn-sm quiet" onclick={() => answerAwake(false)}>Nej tak</button>
 			</div>
 		{/if}
 
@@ -76,26 +70,37 @@
 						{status === 'done' ? 'Færdig!' : formatRemaining(left)}
 					</time>
 					{#if status !== 'done'}
-						<button type="button" class="ctl" aria-label="{status === 'running' ? 'Pause' : 'Genoptag'} {t.label}" onclick={() => (status === 'running' ? pauseTimer(t.id) : resumeTimer(t.id))}>
+						<button type="button" class="ctl" title="{status === 'running' ? 'Pause' : 'Genoptag'}" aria-label="{status === 'running' ? 'Pause' : 'Genoptag'} {t.label}" onclick={() => (status === 'running' ? pauseTimer(t.id) : resumeTimer(t.id))}>
 							<span aria-hidden="true">{status === 'running' ? '⏸' : '▶'}</span>
 						</button>
-						<button type="button" class="ctl" aria-label="+1 minut, {t.label}" onclick={() => addMinute(t.id)}>+1</button>
+						<button type="button" class="ctl" title="Læg et minut til" aria-label="+1 minut, {t.label}" onclick={() => addMinute(t.id)}>+1</button>
 					{/if}
-					<button type="button" class="ctl" aria-label="Fjern timer {t.label}" onclick={() => removeTimer(t.id)}><span aria-hidden="true">✕</span></button>
+					<button type="button" class="ctl" title="Fjern timer" aria-label="Fjern timer {t.label}" onclick={() => removeTimer(t.id)}><span aria-hidden="true">✕</span></button>
 					<span class="bar" aria-hidden="true"><span style="width: {Math.round(progressAt(t, timerState.now) * 100)}%"></span></span>
 				</li>
 			{/each}
 		</ul>
 
-		<div class="foot">
-			{#if hidden > 0}
-				<button type="button" class="btn-sm quiet" onclick={() => (expanded = true)}>+{hidden} mere</button>
-			{:else if expanded && sorted.length > MAX_ROWS}
-				<button type="button" class="btn-sm quiet" onclick={() => (expanded = false)}>Vis færre</button>
+		{#if hidden > 0 || (expanded && sorted.length > MAX_ROWS)}
+			<div class="more">
+				{#if hidden > 0}
+					<button type="button" class="btn-sm quiet" onclick={() => (expanded = true)}>+{hidden} mere</button>
+				{:else}
+					<button type="button" class="btn-sm quiet" onclick={() => (expanded = false)}>Vis færre</button>
+				{/if}
+			</div>
+		{/if}
+
+		<div class="opts">
+			{#if wake.supported}
+				<button type="button" class="opt" role="switch" aria-checked={wake.enabled} onclick={() => setKeepAwake(!wake.enabled)}>
+					<span class="sw" aria-hidden="true"><span class="knob"></span></span>
+					Hold skærmen tændt
+				</button>
 			{/if}
-			<button type="button" class="btn-sm quiet mute" role="switch" aria-checked={!timerState.muted} onclick={() => setMuted(!timerState.muted)}>
-				<span aria-hidden="true">{timerState.muted ? '🔇' : '🔔'}</span>
-				Lyd {timerState.muted ? 'fra' : 'til'}
+			<button type="button" class="opt" role="switch" aria-checked={!timerState.muted} onclick={() => setMuted(!timerState.muted)}>
+				<span class="sw" aria-hidden="true"><span class="knob"></span></span>
+				Lyd
 			</button>
 		</div>
 	</div>
@@ -104,7 +109,7 @@
 <style>
 	.dock {
 		position: fixed;
-		z-index: 45; /* above the consent card (40), below the sticky header (50) */
+		z-index: 70; /* floats above everything on the page: sticky header (50), progress bar (60), consent card (40) */
 		left: max(0.75rem, env(safe-area-inset-left));
 		right: max(0.75rem, env(safe-area-inset-right));
 		bottom: max(0.75rem, env(safe-area-inset-bottom));
@@ -112,7 +117,11 @@
 		border-radius: 1.25rem;
 		max-height: 60vh;
 		overflow-y: auto;
-		backdrop-filter: blur(10px);
+		/* A solid, lighter surface so it reads as a layer above the step cards, not part of them. */
+		background: light-dark(oklch(99.5% 0.006 88), oklch(34% 0.018 60));
+		color: light-dark(oklch(25% 0.02 55), oklch(96% 0.01 85));
+		border: 1px solid light-dark(color-mix(in oklab, var(--color-secondary-500) 45%, transparent), oklch(52% 0.03 70));
+		box-shadow: 0 24px 60px -12px rgb(0 0 0 / 0.55), 0 8px 20px -8px rgb(0 0 0 / 0.4);
 	}
 	@media (min-width: 640px) {
 		.dock {
@@ -243,10 +252,61 @@
 		margin: 0;
 		flex: 1 1 14rem;
 	}
-	.foot {
+	.more {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: center;
+		padding-bottom: 0.25rem;
+	}
+	.opts {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.75rem;
+		padding-top: 0.5rem;
+		border-top: 1px solid color-mix(in oklab, currentColor 14%, transparent);
+	}
+	.opt {
+		display: inline-flex;
+		align-items: center;
 		gap: 0.5rem;
+		min-height: 2.5rem;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		cursor: pointer;
+		color: inherit;
+	}
+	.sw {
+		position: relative;
+		flex: none;
+		width: 2.25rem;
+		height: 1.3rem;
+		border-radius: 9999px;
+		border: 2px solid color-mix(in oklab, currentColor 40%, transparent);
+		transition: background-color 250ms, border-color 250ms;
+	}
+	.knob {
+		position: absolute;
+		top: 50%;
+		left: 0.15rem;
+		width: 0.7rem;
+		height: 0.7rem;
+		border-radius: 9999px;
+		background: currentColor;
+		transform: translateY(-50%);
+		transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), background-color 250ms;
+	}
+	.opt[aria-checked='true'] .sw {
+		background: var(--color-secondary-500);
+		border-color: var(--color-secondary-500);
+	}
+	.opt[aria-checked='true'] .knob {
+		transform: translate(0.95rem, -50%);
+		background: white;
+	}
+	.opt:focus-visible {
+		outline: 2px solid var(--color-secondary-500);
+		outline-offset: 2px;
+		border-radius: 0.5rem;
 	}
 	.btn-sm {
 		min-height: 2.25rem;
@@ -263,9 +323,6 @@
 	}
 	.btn-sm:hover {
 		background: color-mix(in oklab, var(--color-secondary-500) 50%, transparent);
-	}
-	.mute {
-		margin-left: auto;
 	}
 	:is(.ctl, .btn-sm, .name):focus-visible {
 		outline: 2px solid var(--color-secondary-500);

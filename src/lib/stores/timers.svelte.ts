@@ -30,7 +30,6 @@ let ready = false;
 let interval: ReturnType<typeof setInterval> | undefined;
 let timeout: ReturnType<typeof setTimeout> | undefined;
 let audio: AudioContext | undefined;
-let awakeOffered = false;
 
 export interface StartInput {
 	recipeSlug: string;
@@ -179,10 +178,6 @@ export function startTimer(input: StartInput) {
 
 function offerExtras() {
 	if ('Notification' in window && Notification.permission === 'default' && !flag(NOTIFY_KEY)) timerState.askNotify = true;
-	if (wake.supported && !wake.enabled && !awakeOffered) {
-		awakeOffered = true;
-		timerState.askAwake = true;
-	}
 }
 
 function flag(key: string): boolean {

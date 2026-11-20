@@ -181,11 +181,11 @@ test('offers: notification explained once on first start, never on load; keep-aw
 	expect((await alerts(page)).asked).toBe(0);
 	await page.locator('#step4').getByRole('button', { name: /Start 45 min, Simre/ }).click();
 	await expect(dock(page)).toContainText('Vil du have en besked');
-	await expect(dock(page)).toContainText('Skal skærmen holdes tændt');
+	await expect(dock(page).getByRole('switch', { name: 'Hold skærmen tændt' })).toBeVisible();
 	expect((await alerts(page)).asked).toBe(0);
 	await dock(page).getByRole('button', { name: 'Ja tak' }).first().click();
 	expect((await alerts(page)).asked).toBe(1);
-	await dock(page).getByRole('button', { name: 'Ja tak' }).click();
+	await dock(page).getByRole('switch', { name: 'Hold skærmen tændt' }).click();
 	expect(await page.evaluate(() => localStorage.getItem('keep_awake'))).toBe('1');
 });
 

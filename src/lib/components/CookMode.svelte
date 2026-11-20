@@ -176,15 +176,15 @@
 	<header class="bar">
 		<p class="m-0 min-w-0 grow truncate font-display text-lg font-semibold">{recipe.title}</p>
 		<div class="flex items-center gap-1" role="group" aria-label="Tekststørrelse" data-testid="cook-size">
-			<button type="button" class="ctl" aria-label="A−, mindre tekst" disabled={sizeIdx === 0} onclick={() => setSize(SIZES[sizeIdx - 1])}>A−</button>
-			<button type="button" class="ctl" aria-label="A+, større tekst" disabled={sizeIdx === SIZES.length - 1} onclick={() => setSize(SIZES[sizeIdx + 1])}>A+</button>
+			<button type="button" class="ctl" title="Mindre tekst" aria-label="A−, mindre tekst" disabled={sizeIdx === 0} onclick={() => setSize(SIZES[sizeIdx - 1])}>A−</button>
+			<button type="button" class="ctl" title="Større tekst" aria-label="A+, større tekst" disabled={sizeIdx === SIZES.length - 1} onclick={() => setSize(SIZES[sizeIdx + 1])}>A+</button>
 		</div>
 		{#if !wide}
-			<button type="button" class="ctl" aria-expanded={drawer} aria-controls="cook-ingredients" onclick={() => (drawer = !drawer)} data-testid="cook-drawer-toggle">
+			<button type="button" class="ctl" title="Ingredienser" aria-expanded={drawer} aria-controls="cook-ingredients" onclick={() => (drawer = !drawer)} data-testid="cook-drawer-toggle">
 				<span aria-hidden="true">🧺</span> <span class="sr-only sm:not-sr-only">Ingredienser</span>
 			</button>
 		{/if}
-		<button type="button" class="ctl" aria-label="Luk madlavning" onclick={onclose} data-testid="cook-close">✕</button>
+		<button type="button" class="ctl" title="Luk madlavning" aria-label="Luk madlavning" onclick={onclose} data-testid="cook-close">✕</button>
 	</header>
 
 	<div class="dots" role="group" aria-label="Trin">
@@ -192,6 +192,7 @@
 			<button
 				type="button"
 				class="dot-btn"
+				title="Trin {i + 1}: {s.title}"
 				aria-label="Gå til trin {i + 1}: {s.title}"
 				aria-current={i === idx ? 'step' : undefined}
 				onclick={() => go(i, i > idx ? 1 : -1)}
@@ -425,6 +426,12 @@
 		padding: 0.5rem 1rem;
 		padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
 		touch-action: pan-y;
+		/* A distinct, raised bar so it reads as floating over the content scrolling behind it. */
+		position: relative;
+		z-index: 2;
+		background: light-dark(oklch(97% 0.02 85), oklch(30% 0.02 58));
+		border-top: 1px solid light-dark(color-mix(in oklab, var(--color-primary-500) 35%, transparent), oklch(48% 0.04 70));
+		box-shadow: 0 -16px 28px -10px rgb(0 0 0 / 0.45);
 	}
 	.nav-btn {
 		min-height: 64px;
