@@ -40,7 +40,10 @@
 			<span class="inline-block transition-transform duration-500 ease-out group-hover:rotate-[-18deg] group-hover:scale-125" aria-hidden="true">🍪</span>
 			Cookie Bookie
 		</a>
-		<span class="hidden text-sm opacity-70 sm:block">Rimelige opskrifter, uden reklamer</span>
+		<p class="m-0 hidden items-center gap-3 font-display text-base italic text-primary-700-300 sm:flex">
+			<span class="h-px w-8 bg-primary-500/60" aria-hidden="true"></span>
+			Rimelige opskrifter, uden reklamer
+		</p>
 	</nav>
 </header>
 
@@ -52,7 +55,7 @@
 	<div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 text-center sm:flex-row sm:px-6 sm:text-left">
 		<p class="text-sm opacity-80">
 			<span class="font-display text-base font-semibold">Cookie Bookie</span><br />
-			Opskrifter af Bear · Rimelige opskrifter siden 2023
+			Opskrifter by Bear · Rimelige opskrifter siden 2023
 		</p>
 		<div class="flex items-center gap-2">
 			{#each footerLinks as link}
