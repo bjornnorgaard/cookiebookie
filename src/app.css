@@ -43,9 +43,18 @@ body {
 
 /* Recipe tiles: bright warm paper in light mode, the quiet tonal look in dark mode. */
 .tile {
-	background-color: light-dark(oklch(99.5% 0.008 88), color-mix(in oklab, var(--color-surface-500) 10%, transparent));
-	border: 1px solid light-dark(color-mix(in oklab, var(--color-primary-500) 28%, transparent), transparent);
-	box-shadow: 0 1px 2px light-dark(rgb(120 70 20 / 0.06), transparent), 0 14px 30px -18px light-dark(rgb(190 100 20 / 0.5), rgb(0 0 0 / 0.4));
+	background-color: light-dark(
+		oklch(99.5% 0.008 88),
+		color-mix(in oklab, var(--color-primary-500) 7%, var(--color-surface-800))
+	);
+	border: 1px solid light-dark(
+		color-mix(in oklab, var(--color-primary-500) 28%, transparent),
+		color-mix(in oklab, var(--color-primary-500) 30%, transparent)
+	);
+	box-shadow:
+		inset 0 1px 0 light-dark(transparent, rgb(255 255 255 / 0.07)),
+		0 1px 2px light-dark(rgb(120 70 20 / 0.06), transparent),
+		0 18px 36px -18px light-dark(rgb(190 100 20 / 0.5), rgb(0 0 0 / 0.8));
 }
 
 h1, h2, h3, .font-display {
