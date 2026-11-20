@@ -47,7 +47,7 @@
 			<span aria-hidden="true">🍪</span> Er der nogen derude?
 		</h2>
 		<p class="mb-3 mt-2 text-sm leading-relaxed">
-			Må jeg bruge Google Analytics til at se, om nogen overhovedet laver den lasagne? Ingen reklamer, intet salg af data.
+			Må jeg bruge Google Analytics til at se, om nogen overhovedet bruger mine opskrifter? Ingen reklamer, intet salg af data.
 			<a href="/privatliv" class="font-semibold underline underline-offset-2">Det med småt</a>
 		</p>
 		<ConsentButtons onchoose={setConsent} />
