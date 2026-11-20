@@ -97,7 +97,7 @@
 				class:line-through={checked}
 							>
 				<input id="ing-{i.idx}" type="checkbox" class="tick" {checked} onchange={() => toggle(i.name)} />
-				<span class="flex grow items-baseline justify-between gap-3 transition-opacity duration-300" class:opacity-50={checked}>
+				<span class="flex grow items-baseline justify-between gap-3 transition-opacity duration-300" class:opacity-90={checked}>
 					<span class="font-semibold">{i.name}</span>{#if amountText(i)}{#key amountText(i)}<span
 								class="amount whitespace-nowrap text-right tabular-nums opacity-75"
 								class:flash={portions.changed}
@@ -130,7 +130,7 @@
 		font-weight: 600;
 		padding: 0.25rem 0.6rem;
 		border-radius: 9999px;
-		color: var(--color-primary-700-300);
+		color: light-dark(var(--color-primary-950), var(--color-primary-300));
 		background: transparent;
 		cursor: pointer;
 		transition: background-color 200ms;

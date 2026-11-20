@@ -10,13 +10,16 @@
 		"build": "vite build",
 		"preview": "npm run build && vite preview",
 		"preview:serve": "vite preview --host 127.0.0.1 --port 4173",
-		"audit:seo": "lhci autorun",
+		"audit:lighthouse": "node scripts/audit-lighthouse.mjs",
+		"audit:seo": "npm run audit:lighthouse",
 		"check": "svelte-kit sync && svelte-check --tsconfig tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig tsconfig.json --watch",
 		"test": "playwright test",
-		"images": "node scripts/optimize-images.mjs"
+		"images": "node scripts/optimize-images.mjs",
+		"images:check": "node scripts/check-image-budgets.mjs"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.14.0",
 		"@lhci/cli": "^0.16.1",
 		"@playwright/test": "^1.64.0",
 		"@skeletonlabs/skeleton": "^5.0.1",

@@ -164,3 +164,14 @@ for (const [slug, entry] of Object.entries(manifest)) {
 await mkdir(dirname(manifestPath), { recursive: true });
 await writeFile(manifestPath, JSON.stringify(next, null, '\t') + '\n');
 console.log(`\nManifest: ${manifestPath}`);
+
+// Size budgets (docs/specs/03-quality-gates.md): fail the build step if a generated file is too heavy.
+{
+	const { checkImageBudgets } = await import('./check-image-budgets.mjs');
+	const { failures, checked } = await checkImageBudgets();
+	if (failures.length) {
+		console.error(`\n${failures.length} image(s) over budget:\n  ${failures.join('\n  ')}`);
+		process.exit(1);
+	}
+	console.log(`\nOK: ${checked} generated images within budget.`);
+}
