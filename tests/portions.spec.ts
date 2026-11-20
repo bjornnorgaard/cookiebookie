@@ -58,8 +58,11 @@ test('presets, typed input and limits', async ({ page }) => {
 
 test('long-press keeps stepping', async ({ page }) => {
 	await page.goto('/ristaffel');
+	// Raw mouse events do not auto-wait for hydration the way locator clicks do.
 	const more = page.getByRole('button', { name: 'Flere portioner' });
 	await more.scrollIntoViewIfNeeded();
+	// The section's scroll-driven entrance animation moves it a few px while it scrolls into view; let it settle.
+	await page.waitForTimeout(700);
 	const box = (await more.boundingBox())!;
 	await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
 	await page.mouse.down();
