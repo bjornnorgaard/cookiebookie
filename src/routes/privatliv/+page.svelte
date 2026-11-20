@@ -31,7 +31,7 @@
 		<p class="mb-4 mt-2" aria-live="polite">{consent.ready ? statusText : ''}</p>
 		<ConsentButtons onchoose={setConsent} />
 		<p class="mb-0 mt-3 text-sm opacity-80">
-			Det gør rigtig meget for mig, hvis du siger ja. Men siger du nej, er det helt fint. Du kan altid skifte mening her
+			Jeg er bare nysgerrig, og det er hyggeligt at vide, at nogen er derude. Men siger du nej, er det helt fint. Du kan altid skifte mening her
 			eller via "Privatlivsindstillinger" nederst på siden.
 		</p>
 	</section>

@@ -52,7 +52,7 @@
 		</p>
 		<ConsentButtons onchoose={setConsent} />
 		<p class="mb-0 mt-3 text-xs leading-snug opacity-80">
-			Det betyder meget for mig. Men siger du nej, er vi stadig venner.
+			Jeg er bare nysgerrig, og det er hyggeligt at vide, at nogen er derude. Men siger du nej, er vi stadig venner.
 		</p>
 	</div>
 {:else if pill}
