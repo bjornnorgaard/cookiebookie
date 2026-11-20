@@ -16,12 +16,12 @@ export const boller: Recipe = {
     datePublished: new Date(2023, Months.March, 3),
     longDesc: "Vi er der ikke helt endnu!",
     ingredients: [
-        { name: "Mel", amount: "1200 gram" },
-        { name: "Mælk", amount: "½ liter" },
-        { name: "Gær", amount: "90 gram" },
-        { name: "Sukker", amount: "48 gram" },
-        { name: "Salt", amount: "3 tsk" },
-        { name: "Fedtstof", amount: "120 gram" },
+        { name: "Mel", amount: { qty: 1200, unit: "gram" } },
+        { name: "Mælk", amount: { qty: 0.5, unit: "liter" } },
+        { name: "Gær", amount: { qty: 90, unit: "gram" } },
+        { name: "Sukker", amount: { qty: 48, unit: "gram" } },
+        { name: "Salt", amount: { qty: 3, unit: "tsk" } },
+        { name: "Fedtstof", amount: { qty: 120, unit: "gram" } },
     ],
     steps: [
         { title: "Første skridt", desc: "Ingen ide" },

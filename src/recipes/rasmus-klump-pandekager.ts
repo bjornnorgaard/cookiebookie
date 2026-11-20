@@ -18,12 +18,12 @@ export const rasmusKlumpPandekager: Recipe = {
     diets: ['vegetarian'],
     longDesc: "Pandekager efter opskriften på forklædet - ligesom vi lavede dem i gamle dage. Dengang vi skulle læse opskriften på hovedet, fordi vi var for dumme til at tage forklædet af først - eller var det kun mig?",
     ingredients: [
-        { name: "Hvedemel", amount: "200 gram" },
-        { name: "Mælk", amount: "½ liter" },
-        { name: "Æg", amount: "3 stk." },
-        { name: "Sukker", amount: "1 spsk." },
-        { name: "Salt", amount: "1 teske" },
-        { name: "Smør", amount: "" },
+        { name: "Hvedemel", amount: { qty: 200, unit: "gram" } },
+        { name: "Mælk", amount: { qty: 0.5, unit: "liter" } },
+        { name: "Æg", amount: { qty: 3, unit: "stk." }, scale: "round-up" },
+        { name: "Sukker", amount: { qty: 1, unit: "spsk." } },
+        { name: "Salt", amount: { qty: 1, unit: "teske" } },
+        { name: "Smør" },
     ],
     steps: [
         {

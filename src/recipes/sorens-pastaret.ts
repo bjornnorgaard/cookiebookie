@@ -20,14 +20,14 @@ export const sorensPastaret: Recipe = {
         "Tager ingen tid at forberede og skal bare glemmes i ovnen i " +
         "alt mellem 30 minutter og 24 timer - bliver nice.",
     ingredients: [
-        { name: "Fyldt pasta", amount: "400g" },
-        { name: "Hakkede tomater", amount: "2-3 dåser" },
-        { name: "Løg", amount: "2-20 stk" },
-        { name: "Fløde", amount: "1/4 liter fløde" },
-        { name: "Havarti ost", amount: "200g" },
-        { name: "Bacon", amount: "~200g" },
-        { name: "Grønsager", amount: "" },
-        { name: "Salt og peber", amount: "" },
+        { name: "Fyldt pasta", amount: { qty: 400, unit: "g", display: "400g" } },
+        { name: "Hakkede tomater", amount: { qty: [2, 3], unit: "dåse", plural: "dåser" }, scale: "round-up" },
+        { name: "Løg", amount: { qty: [2, 20], unit: "stk" } },
+        { name: "Fløde", amount: { qty: 0.25, unit: "liter", display: "1/4 liter fløde" } },
+        { name: "Havarti ost", amount: { qty: 200, unit: "g", display: "200g" } },
+        { name: "Bacon", amount: { qty: 200, unit: "g", display: "~200g" } },
+        { name: "Grønsager" },
+        { name: "Salt og peber" },
     ],
     steps: [
         {
