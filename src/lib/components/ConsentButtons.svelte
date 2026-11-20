@@ -1,32 +1,56 @@
 <script lang="ts">
 	// Two equal-weight buttons: refusing is exactly as easy as accepting. Neither is pre-selected.
-	// The friendly nudge lives on the YES side (a small wink); the NO side is never guilt-tripped.
+	// A gentle visual nudge towards YES (filled primary vs. quiet outline), but both are same-size, fully legible,
+	// real buttons, and NO is never guilt-tripped (a shrug, not a sad face).
 	interface Props {
 		onchoose: (analytics: boolean) => void;
 	}
 	let { onchoose }: Props = $props();
 </script>
 
-<div class="flex flex-wrap gap-3">
-	<button type="button" class="choice" onclick={() => onchoose(false)}>Nej tak, helt i orden</button>
-	<button type="button" class="choice" onclick={() => onchoose(true)}>
-		Det er fint, kig med <span class="wink" aria-hidden="true">😋</span>
+<div class="flex gap-3">
+	<button type="button" class="choice no" onclick={() => onchoose(false)}>
+		Nej tak <span class="emoji" aria-hidden="true">🤷</span>
+	</button>
+	<button type="button" class="choice yes" onclick={() => onchoose(true)}>
+		Det er fint <span class="emoji wink" aria-hidden="true">👍</span>
 	</button>
 </div>
 
 <style>
 	.choice {
-		flex: 1 1 8rem;
+		flex: 1 1 0;
 		min-height: 2.75rem;
 		padding: 0.5rem 1rem;
 		border-radius: 9999px;
 		font-weight: 600;
 		font-size: 0.9375rem;
+		white-space: nowrap;
 		cursor: pointer;
-		color: var(--color-surface-950-50, inherit);
-		background: var(--color-surface-50-950);
-		border: 1.5px solid var(--color-primary-700-300, currentColor);
-		transition: background-color 200ms, transform 200ms;
+		border: 1.5px solid transparent;
+		transition: background-color 200ms, transform 200ms, box-shadow 200ms;
+	}
+	.yes {
+		background: var(--color-primary-500);
+		color: var(--color-primary-contrast-500);
+		border-color: var(--color-primary-500);
+		box-shadow: 0 6px 16px -8px color-mix(in oklab, var(--color-primary-500) 90%, transparent);
+	}
+	.yes:hover {
+		background: var(--color-primary-400);
+		box-shadow: 0 10px 22px -8px color-mix(in oklab, var(--color-primary-500) 95%, transparent);
+	}
+	.no {
+		background: transparent;
+		color: inherit;
+		border-color: color-mix(in oklab, currentColor 40%, transparent);
+	}
+	.no:hover {
+		background: color-mix(in oklab, currentColor 10%, transparent);
+	}
+	.no .emoji {
+		filter: grayscale(0.75);
+		opacity: 0.85;
 	}
 	.wink {
 		display: inline-block;
@@ -39,9 +63,6 @@
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.wink { animation: none; }
-	}
-	.choice:hover {
-		background: color-mix(in oklab, var(--color-primary-500) 22%, var(--color-surface-50-950));
 	}
 	.choice:active {
 		transform: scale(0.97);
