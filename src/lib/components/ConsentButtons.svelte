@@ -1,5 +1,6 @@
 <script lang="ts">
 	// Two equal-weight buttons: refusing is exactly as easy as accepting. Neither is pre-selected.
+	// The friendly nudge lives on the YES side (a small wink); the NO side is never guilt-tripped.
 	interface Props {
 		onchoose: (analytics: boolean) => void;
 	}
@@ -7,8 +8,10 @@
 </script>
 
 <div class="flex flex-wrap gap-3">
-	<button type="button" class="choice" onclick={() => onchoose(false)}>Nej tak</button>
-	<button type="button" class="choice" onclick={() => onchoose(true)}>Det er fint</button>
+	<button type="button" class="choice" onclick={() => onchoose(false)}>Nej tak, helt i orden</button>
+	<button type="button" class="choice" onclick={() => onchoose(true)}>
+		Det er fint, kig med <span class="wink" aria-hidden="true">😋</span>
+	</button>
 </div>
 
 <style>
@@ -24,6 +27,18 @@
 		background: var(--color-surface-50-950);
 		border: 1.5px solid var(--color-primary-700-300, currentColor);
 		transition: background-color 200ms, transform 200ms;
+	}
+	.wink {
+		display: inline-block;
+		animation: wink 3.2s ease-in-out 1.5s infinite;
+	}
+	@keyframes wink {
+		0%, 88%, 100% { transform: none; }
+		92% { transform: rotate(-14deg) scale(1.25); }
+		96% { transform: rotate(10deg) scale(1.15); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.wink { animation: none; }
 	}
 	.choice:hover {
 		background: color-mix(in oklab, var(--color-primary-500) 22%, var(--color-surface-50-950));

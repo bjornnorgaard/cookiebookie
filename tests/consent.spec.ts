@@ -19,7 +19,7 @@ test('fresh visit: notice appears, nothing is requested or stored until a choice
 	const hits = await stubGoogle(page);
 	await page.goto('/');
 	await expect(notice(page)).toBeVisible({ timeout: 5000 });
-	await expect(notice(page).getByRole('button')).toHaveText(['Nej tak', 'Det er fint']);
+	await expect(notice(page).getByRole('button')).toHaveText([/^Nej tak/, /^Det er fint/]);
 	expect(hits).toEqual([]);
 	expect(await gaCookies(page)).toEqual([]);
 });
