@@ -27,6 +27,8 @@ const PAGES: PageCase[] = [
 
 interface State {
 	name: string;
+	/** The consent notice appears 1.5 s after load and would pollute other scans, so it is pre-answered unless a state wants it. */
+	keepConsent?: boolean;
 	/** Which page kinds this state exists on. */
 	on: PageCase['kind'][];
 	setup?: (page: Page) => Promise<void>;
@@ -63,8 +65,70 @@ const STATES: State[] = [
 		act: async page => {
 			await page.locator('#ingredients input[type="checkbox"]').first().check();
 		}
+	},
+	{
+		name: 'consent notice open',
+		on: ['home', 'photo'],
+		keepConsent: true,
+		act: async page => {
+			await expect(page.getByRole('region', { name: 'Privatliv' })).toBeVisible({ timeout: 6000 });
+		}
+	},
+	{
+		name: 'portions scaled',
+		on: ['photo'],
+		act: async page => {
+			await page.getByRole('button', { name: '8', exact: true }).click();
+			await expect(page.getByLabel('Antal portioner')).toHaveValue('8');
+		}
+	},
+	{
+		name: 'timer dock running',
+		on: ['photo'],
+		act: async page => {
+			await page.getByRole('button', { name: /^Start 45 min/ }).first().click();
+			await expect(page.getByTestId('timer-dock')).toBeVisible();
+		}
+	},
+	{
+		name: 'share menu open',
+		on: ['photo'],
+		setup: async page => {
+			// No native share sheet, so the popover is what users see.
+			await page.addInitScript(() => Object.defineProperty(navigator, 'share', { value: undefined, configurable: true }));
+		},
+		act: async page => {
+			await page.getByRole('button', { name: 'Del', exact: true }).click();
+			await expect(page.getByRole('dialog', { name: 'Del opskriften' })).toBeVisible();
+		}
+	},
+	{
+		name: 'cook mode open',
+		on: ['photo'],
+		act: async page => {
+			await page.getByRole('button', { name: /Start madlavning/ }).click();
+			await expect(page.getByTestId('cook-mode')).toBeVisible();
+		}
+	},
+	{
+		name: 'cook mode with ingredients drawer',
+		on: ['photo'],
+		act: async page => {
+			await page.getByRole('button', { name: /Start madlavning/ }).click();
+			// On wide screens the ingredients are always shown (two columns), so there is no toggle.
+			const toggle = page.getByTestId('cook-drawer-toggle');
+			if (await toggle.isVisible()) await toggle.click();
+			await expect(page.getByTestId('cook-ingredients')).toBeVisible();
+		}
+	},
+	{
+		name: 'theme toggled by hand',
+		on: ['home', 'photo'],
+		act: async page => {
+			await page.getByRole('button', { name: /Skift til (mørk|lys) tilstand/ }).click();
+			await page.waitForTimeout(600);
+		}
 	}
-	// Later: { name: 'consent notice open', ... }, { name: 'timer dock', ... }, { name: 'cook mode', ... }, { name: 'share menu', ... }
 ];
 
 const VIEWPORTS = [
@@ -85,6 +149,11 @@ test.describe('axe WCAG 2.2 A/AA', () => {
 				for (const pageCase of PAGES) {
 					for (const state of STATES.filter(s => s.on.includes(pageCase.kind))) {
 						test(`${pageCase.name} / ${state.name}`, async ({ page }) => {
+							if (!state.keepConsent) {
+								await page.addInitScript(() =>
+									localStorage.setItem('consent', JSON.stringify({ analytics: false, decidedAt: new Date().toISOString(), version: 1 }))
+								);
+							}
 							await state.setup?.(page);
 							await page.goto(pageCase.path);
 							// Hydrated and entrance animations finished, so colours are final (contrast is measured live).

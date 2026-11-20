@@ -68,7 +68,7 @@
 					<span aria-hidden="true" class="opacity-60">✕</span>
 				</button>
 			{/if}
-			<p class="m-0 hidden items-center gap-3 font-display text-base italic text-primary-700-300 sm:flex">
+			<p class="m-0 hidden items-center gap-3 font-display text-base italic text-primary-800-200 sm:flex">
 				<span class="h-px w-8 bg-primary-500/60" aria-hidden="true"></span>
 				Rimelige opskrifter, uden reklamer
 			</p>

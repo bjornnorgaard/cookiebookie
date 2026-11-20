@@ -171,7 +171,7 @@
 				<li>
 					<button type="button" class="menu-item" onclick={() => copy('list')} data-testid="copy-list">
 						<span>{copied === 'list' ? 'Kopieret ✓' : 'Del indkøbslisten'}</span>
-						<small class="opacity-60">kopierer med mængder til {portions.count}</small>
+						<small class="opacity-75">kopierer med mængder til {portions.count}</small>
 					</button>
 				</li>
 				<li><a class="menu-item" href={mailto}>Send på e-mail</a></li>

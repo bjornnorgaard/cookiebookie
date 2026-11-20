@@ -176,8 +176,8 @@
 	<header class="bar">
 		<p class="m-0 min-w-0 grow truncate font-display text-lg font-semibold">{recipe.title}</p>
 		<div class="flex items-center gap-1" role="group" aria-label="Tekststørrelse" data-testid="cook-size">
-			<button type="button" class="ctl" aria-label="Mindre tekst" disabled={sizeIdx === 0} onclick={() => setSize(SIZES[sizeIdx - 1])}>A−</button>
-			<button type="button" class="ctl" aria-label="Større tekst" disabled={sizeIdx === SIZES.length - 1} onclick={() => setSize(SIZES[sizeIdx + 1])}>A+</button>
+			<button type="button" class="ctl" aria-label="A−, mindre tekst" disabled={sizeIdx === 0} onclick={() => setSize(SIZES[sizeIdx - 1])}>A−</button>
+			<button type="button" class="ctl" aria-label="A+, større tekst" disabled={sizeIdx === SIZES.length - 1} onclick={() => setSize(SIZES[sizeIdx + 1])}>A+</button>
 		</div>
 		{#if !wide}
 			<button type="button" class="ctl" aria-expanded={drawer} aria-controls="cook-ingredients" onclick={() => (drawer = !drawer)} data-testid="cook-drawer-toggle">
@@ -326,27 +326,29 @@
 
 	.dots {
 		display: flex;
-		padding: 0 0.75rem;
+		gap: 0.375rem;
+		padding: 0 1rem;
 	}
 	.dot-btn {
 		flex: 1 1 0;
-		min-width: 1.5rem;
-		max-width: 3rem;
+		min-width: 0;
 		min-height: 48px;
-		display: grid;
-		place-items: center;
+		display: flex;
+		align-items: center;
 		cursor: pointer;
 		color: inherit;
 	}
+	/* Segmented progress bar: every step is a segment sharing the full width. */
 	.dot {
-		width: 0.75rem;
-		height: 0.75rem;
+		display: block;
+		width: 100%;
+		height: 0.55rem;
 		border-radius: 9999px;
-		border: 2px solid currentColor;
-		transition: width 200ms, background-color 200ms;
+		border: 2px solid color-mix(in oklab, currentColor 55%, transparent);
+		transition: background-color 250ms, border-color 250ms, transform 250ms;
 	}
-	.dot.done { background: currentColor; }
-	.dot.now { width: 1.6rem; border-color: var(--color-primary-500); background: var(--color-primary-500); }
+	.dot.done { background: color-mix(in oklab, currentColor 70%, transparent); border-color: transparent; }
+	.dot.now { border-color: var(--color-primary-500); background: var(--color-primary-500); transform: scaleY(1.35); }
 
 	.body {
 		position: relative;
