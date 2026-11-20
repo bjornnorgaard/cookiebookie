@@ -5,7 +5,6 @@ import { Months } from "#lib/types/months.ts";
 export const svinemorbrad: Recipe = {
     slug: "svinemorbrad",
     title: "Svinemørbrad i Svøb",
-    image: "/images/recipes/spansk-svinemorbrad.jpg",
     shortDesc: "Svinemørbrad tilberedt som den bør",
     author: "Nikolaj Matzen",
     prepTime: "PT20M",

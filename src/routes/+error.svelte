@@ -15,9 +15,10 @@
 		: undefined}
 />
 
-<MainContent title="Du er vist faret vild">
+<MainContent title="Du er vist faret vild" width="narrow">
 	<img
-		class="rounded-lg drop-shadow-lg aspect-[7/3] w-full object-cover"
+		class="reveal aspect-[7/3] w-full rounded-3xl object-cover shadow-2xl"
+		style="--i:1"
 		src="/images/not-found.jpg"
 		fetchpriority="high"
 		loading="eager"
@@ -26,14 +27,14 @@
 		width="700"
 	/>
 
-	<div class="flex flex-col py-4 gap-4 items-center text-center">
-		<h3 class="m-0">Det skal nok gå.</h3>
+	<div class="reveal flex flex-col items-center gap-4 py-8 text-center" style="--i:2">
+		<h2 class="m-0 font-display text-2xl font-semibold">Det skal nok gå.</h2>
 
-		<p>
-			Jeg har naturligvis forudset, at du ville gå ud hvor du ikke kunne bunde. Har endda lavet en
-			lille knap til dig. Så kan du komme tilbage i sikkerhed.
+		<p class="max-w-xl">
+			Jeg har naturligvis forudset, at du ville gå ud hvor du ikke kunne bunde. Har endda lavet en lille knap til dig.
+			Så kan du komme tilbage i sikkerhed.
 		</p>
 
-		<a href="/" class="no-underline btn my-4 preset-filled-primary-500">Gå til Forsiden</a>
+		<a href="/" class="btn my-4 preset-filled-primary-500 no-underline transition duration-300 hover:scale-105">Gå til Forsiden</a>
 	</div>
 </MainContent>

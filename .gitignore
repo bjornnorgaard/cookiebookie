@@ -9,3 +9,4 @@ vite.config.ts.timestamp-*
 .lighthouseci
 playwright-report
 test-results
+photos

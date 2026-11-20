@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { seoImgHeight, seoImgWidth } from '#lib/constants/seo.ts';
+	import { getPhoto } from '#lib/images.ts';
 	import { siteAuthor, siteLocale, siteName, siteUrl } from '#lib/constants/site.ts';
 	import type { Recipe } from '#lib/types/recipe.ts';
-	import { buildRecipeHead, buildWebsiteHead } from '#lib/seo/builder.ts';
+	import { isoDate } from '#lib/format.ts';
+	import { buildBreadcrumbs, buildRecipeHead, buildWebsiteHead } from '#lib/seo/builder.ts';
 
 	interface Props {
 		recipe?: Recipe | undefined;
@@ -32,12 +33,13 @@
 	let type = $derived(recipe ? 'article' : 'website');
 	let url = $derived(recipe ? `${siteUrl}/${recipe.slug}` : siteUrl);
 
-	const width = seoImgWidth;
-	const height = seoImgHeight;
-	let image = $derived(`${siteUrl}${recipe ? recipe.image : '/images/site-default.jpg'}`);
+	let og = $derived(recipe ? getPhoto(recipe.slug).social.og : getPhoto('placeholder').social.og);
+	let image = $derived(`${siteUrl}${og.src}`);
+	let width = $derived(og.w);
+	let height = $derived(og.h);
 
 	let structuredData = $derived(
-		recipe ? buildRecipeHead(recipe, siteUrl) : buildWebsiteHead()
+		recipe ? [buildRecipeHead(recipe, siteUrl), buildBreadcrumbs(recipe, siteUrl)] : [buildWebsiteHead()]
 	);
 </script>
 
@@ -64,12 +66,21 @@
 	<meta property="og:image" content={image} />
 	<meta property="og:image:width" content={width.toString()} />
 	<meta property="og:image:height" content={height.toString()} />
-	<meta property="og:image:alt" content={title} />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta property="og:image:alt" content={recipe ? recipe.title : siteName} />
+	{#if recipe}
+		<meta property="article:published_time" content={isoDate(recipe.datePublished)} />
+		<meta property="article:author" content={recipe.author} />
+		<meta property="article:section" content={recipe.categories[0]} />
+	{/if}
 
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content={image} />
+	<meta name="twitter:image:alt" content={recipe ? recipe.title : siteName} />
 
-	{@html `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`}
+	{#each structuredData as data}
+		{@html `<script type="application/ld+json">${JSON.stringify(data)}</script>`}
+	{/each}
 </svelte:head>

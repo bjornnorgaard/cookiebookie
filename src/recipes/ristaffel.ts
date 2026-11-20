@@ -5,7 +5,6 @@ import { Months } from "#lib/types/months.ts";
 export const ristaffel: Recipe = {
     slug: "ristaffel",
     title: "Ristaffel",
-    image: "/images/recipes/ristaffel.jpg",
     shortDesc: "Ris, kokos, kylling og alle de gode sager!",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",

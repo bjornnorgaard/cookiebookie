@@ -5,7 +5,6 @@ export interface Recipe {
     shortDesc: string;
     longDesc: string; // 70-320
     datePublished: Date; // "2018-03-10"
-    image: string;
     prepTime: string; // PT20M
     cookTime: string; // PT30M
     totalTime: string; // PT50M

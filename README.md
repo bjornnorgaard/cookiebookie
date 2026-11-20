@@ -12,6 +12,23 @@ Sådan her tilføjes nye opskrifter.
 
 Så ruller det automatisk ud, når jeg engang godkender ændringen.
 
+## Billeder
+
+Originale fotos lægges i [photos](photos) som `<slug>.jpg` (fx `sørens pastaret.jpg` bliver til `sorens-pastaret`).
+De originale filer bliver aldrig ændret. Kør:
+
+```sh
+npm run images            # genererer kun nye/ændrede fotos
+npm run images -- --force # genererer alt igen
+```
+
+Det laver AVIF/WebP/JPEG i flere størrelser i `static/images/recipes/<slug>/` samt manifestet
+`src/lib/data/images.generated.json`. Commit de genererede filer. Opskrifter uden eget foto bruger `placeholder.jpg`.
+
+## Lokal udvikling
+
+`npm run dev` starter på http://127.0.0.1:5173.
+
 ## Validering
 
 Brug Node 22.19 eller nyere. Installer med `npm ci`, og kør `npm run check`

@@ -5,7 +5,6 @@ import { Months } from "#lib/types/months.ts";
 export const rasmusKlumpPandekager: Recipe = {
     slug: "rasmus-klump-pandekager",
     title: "Pandekager á la Klump",
-    image: "/images/recipes/rasmus-klump-pandekager.jpg",
     shortDesc: "Den klassiske opskrift - så hut jeg visker.",
     author: "Bjørn Nørgaard",
     prepTime: "PT5M",

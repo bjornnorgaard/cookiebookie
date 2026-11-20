@@ -1,5 +1,7 @@
 import type { Recipe } from '#lib/types/recipe.ts';
 import { siteAuthor, siteLanguage, siteName, siteUrl } from '#lib/constants/site.ts';
+import { isoDate } from '#lib/format.ts';
+import { getPhoto } from '#lib/images.ts';
 
 const homepageDescription =
 	'Simple opskrifter og gode råd om madlavning. ' +
@@ -21,22 +23,35 @@ export function buildWebsiteHead() {
 	};
 }
 
+export function buildBreadcrumbs(recipe: Recipe, rootUrl: string) {
+	return {
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: siteName, item: rootUrl },
+			{ '@type': 'ListItem', position: 2, name: recipe.title, item: `${rootUrl}/${recipe.slug}` }
+		]
+	};
+}
+
 export function buildRecipeHead(recipe: Recipe, rootUrl: string) {
+	// Google asks for several aspect ratios of the same photo for rich results.
+	const { social } = getPhoto(recipe.slug);
 	return {
 		'@context': 'https://schema.org/',
 		'@type': 'Recipe',
 		name: recipe.title,
-		image: [`${rootUrl}${recipe.image}`],
+		image: [social['1x1'], social['4x3'], social['16x9']].map((v) => `${rootUrl}${v.src}`),
 		author: {
 			'@type': 'Person',
 			name: recipe.author
 		},
-		datePublished: recipe.datePublished.toISOString().split('T')[0],
+		datePublished: isoDate(recipe.datePublished),
 		description: recipe.longDesc,
 		prepTime: recipe.prepTime,
 		cookTime: recipe.cookTime,
 		totalTime: recipe.totalTime,
-		keywords: recipe.title,
+		keywords: [recipe.title, recipe.cuisine, ...recipe.categories].join(', '),
 		recipeYield: recipe.yield.toString(),
 		recipeCategory: recipe.categories,
 		recipeCuisine: recipe.cuisine,

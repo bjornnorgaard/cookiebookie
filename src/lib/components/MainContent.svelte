@@ -1,14 +1,15 @@
 <script lang="ts">
+	interface Props {
+		title?: string;
+		/** Max width tier. */
+		width?: 'narrow' | 'wide';
+		children?: import('svelte').Snippet;
+	}
 
-    interface Props {
-        title?: string;
-        children?: import('svelte').Snippet;
-    }
-
-    let { title = "Missing title", children }: Props = $props();
+	let { title = 'Missing title', width = 'wide', children }: Props = $props();
 </script>
 
-<div class="m-auto max-w-screen-sm px-4 min-h-content prose dark:prose-invert">
-    <h1 class="tracking-wide font-bold text-3xl py-4">{title}</h1>
-    {@render children?.()}
+<div class="mx-auto px-4 sm:px-6 {width === 'wide' ? 'max-w-6xl' : 'max-w-3xl'}">
+	<h1 class="reveal py-6 font-display text-4xl font-semibold leading-tight sm:py-10 sm:text-6xl">{title}</h1>
+	{@render children?.()}
 </div>

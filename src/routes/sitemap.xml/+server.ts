@@ -1,10 +1,10 @@
 import { recipes } from '#lib/data/recipes.ts';
-import { siteUrl } from '#lib/constants/site.ts';
+import { siteName, siteUrl } from '#lib/constants/site.ts';
+import { isoDate } from '#lib/format.ts';
+import { getPhoto } from '#lib/images.ts';
 import type { RequestHandler } from './$types';
 
-function formatDate(date: Date): string {
-	return date.toISOString().split('T')[0];
-}
+const formatDate = isoDate;
 
 function latestRecipeDate(): string {
 	const latest = recipes.reduce(
@@ -14,22 +14,34 @@ function latestRecipeDate(): string {
 	return formatDate(latest);
 }
 
+const escapeXml = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
 export const GET: RequestHandler = () => {
 	const pages = [
-		{ loc: siteUrl, lastmod: latestRecipeDate() },
+		{ loc: siteUrl, lastmod: latestRecipeDate(), image: undefined as string | undefined, title: siteName },
 		...recipes.map((recipe) => ({
 			loc: `${siteUrl}/${recipe.slug}`,
-			lastmod: formatDate(recipe.datePublished)
+			lastmod: formatDate(recipe.datePublished),
+			image: getPhoto(recipe.slug).social['16x9'].src,
+			title: recipe.title
 		}))
 	];
 
 	const body = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${pages
 	.map(
 		(page) => `  <url>
     <loc>${page.loc}</loc>
-    <lastmod>${page.lastmod}</lastmod>
+    <lastmod>${page.lastmod}</lastmod>${
+		page.image
+			? `
+    <image:image>
+      <image:loc>${siteUrl}${page.image}</image:loc>
+      <image:title>${escapeXml(page.title)}</image:title>
+    </image:image>`
+			: ''
+	}
   </url>`
 	)
 	.join('\n')}

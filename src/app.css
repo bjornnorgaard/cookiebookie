@@ -3,9 +3,174 @@
 
 @import '@skeletonlabs/skeleton';
 @import '@skeletonlabs/skeleton-svelte';
-@import '@skeletonlabs/skeleton/themes/cerberus';
+@import '@skeletonlabs/skeleton/themes/vintage';
+
+@import '@fontsource-variable/inter/wght.css';
+@import '@fontsource-variable/fraunces/standard.css';
+
+@theme {
+	--font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+	scroll-behavior: smooth;
+	-webkit-text-size-adjust: 100%;
+}
+body {
+	font-family: var(--font-sans);
+	text-rendering: optimizeLegibility;
+	/* Soft warm glow behind the page, so surfaces never feel flat. */
+	background-image:
+		radial-gradient(60rem 30rem at 85% -10%, color-mix(in oklab, var(--color-primary-500) 14%, transparent), transparent),
+		radial-gradient(50rem 30rem at -10% 10%, color-mix(in oklab, var(--color-secondary-500) 10%, transparent), transparent);
+	background-repeat: no-repeat;
+}
+h1, h2, h3, .font-display {
+	font-family: var(--font-display);
+	font-optical-sizing: auto;
+	letter-spacing: -0.015em;
+	text-wrap: balance;
+}
+p { text-wrap: pretty; }
+::selection { background: color-mix(in oklab, var(--color-primary-500) 35%, transparent); }
+:focus-visible { outline: 2px solid var(--color-primary-500); outline-offset: 3px; border-radius: 6px; }
 
 .grid-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes rise {
+	from { opacity: 0; transform: translateY(24px) scale(0.985); }
+	to { opacity: 1; transform: none; }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes grow-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes pop {
+	0% { transform: scale(0.6); opacity: 0; }
+	60% { transform: scale(1.08); opacity: 1; }
+	100% { transform: scale(1); }
+}
+@keyframes drift {
+	from { transform: translateY(0) scale(1.08); }
+	to { transform: translateY(8%) scale(1.08); }
+}
+
+/* Staggered entrance. --i is set per element. */
+.reveal {
+	animation: rise 800ms var(--ease-out-expo) backwards;
+	animation-delay: calc(var(--i, 0) * 70ms);
+}
+/* Below the fold: animate as each item scrolls into view instead. */
+@supports (animation-timeline: view()) {
+	.reveal-on-scroll {
+		animation: rise linear backwards;
+		animation-timeline: view();
+		animation-range: entry 5% entry 45%;
+		animation-delay: 0s;
+	}
+}
+
+/* Reading progress bar + header shadow, driven by scroll position (no JS). */
+.scroll-progress {
+	position: fixed;
+	inset: 0 0 auto 0;
+	height: 3px;
+	z-index: 60;
+	transform-origin: left;
+	background: linear-gradient(90deg, var(--color-primary-400), var(--color-secondary-500));
+}
+@supports (animation-timeline: scroll()) {
+	.scroll-progress {
+		animation: grow-x linear both;
+		animation-timeline: scroll(root block);
+	}
+	.header-bg {
+		animation: fade-in linear both;
+		animation-timeline: scroll(root block);
+		animation-range: 0 120px;
+	}
+	.parallax img.loaded {
+		animation: drift linear both;
+		animation-timeline: view();
+		animation-range: exit 0% exit 100%;
+	}
+}
+@supports not (animation-timeline: scroll()) {
+	.scroll-progress { display: none; }
+}
+
+/* Page transitions (View Transitions API, wired up in +layout.svelte). */
+@keyframes vt-out { to { opacity: 0; transform: translateY(-10px); } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(14px); } }
+::view-transition-old(root) { animation: 260ms ease both vt-out; }
+::view-transition-new(root) { animation: 420ms var(--ease-out-expo) 120ms both vt-in; }
+::view-transition-group(*) { animation-duration: 650ms; animation-timing-function: var(--ease-out-expo); }
+::view-transition-image-pair(*) { isolation: auto; }
+::view-transition-old(*), ::view-transition-new(*) { mix-blend-mode: normal; }
+
+/* Custom checkbox: a real <input>, so keyboard + screen readers work; drawn as a clear empty box that fills on check. */
+.tick {
+	--tick: var(--color-primary-500);
+	appearance: none;
+	-webkit-appearance: none;
+	flex: none;
+	width: 1.6rem;
+	height: 1.6rem;
+	margin: 0;
+	cursor: pointer;
+	border-radius: 0.5rem;
+	border: 2px solid color-mix(in oklab, currentColor 40%, transparent);
+	background: transparent center / 72% no-repeat;
+	transition: transform 200ms var(--ease-out-expo), background-color 250ms, border-color 250ms, box-shadow 250ms;
+}
+.tick.round { border-radius: 9999px; width: 1.75rem; height: 1.75rem; }
+.tick:hover { border-color: var(--tick); box-shadow: 0 0 0 5px color-mix(in oklab, var(--tick) 18%, transparent); }
+.tick:active { transform: scale(0.85); }
+.tick:focus-visible { box-shadow: 0 0 0 3px var(--color-surface-50), 0 0 0 5px var(--tick); }
+.tick:checked {
+	background-color: var(--tick);
+	border-color: var(--tick);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7'/%3E%3C/svg%3E");
+	animation: pop 380ms var(--ease-out-expo);
+}
+
+/* Soft surface used by the ingredient + step cards. */
+.panel {
+	background: color-mix(in oklab, var(--panel-accent, var(--color-primary-500)) 10%, var(--color-surface-50-950));
+	border: 1px solid color-mix(in oklab, var(--panel-accent, var(--color-primary-500)) 38%, transparent);
+	box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 12px 32px -16px color-mix(in oklab, var(--panel-accent, var(--color-primary-500)) 55%, transparent);
+}
+
+.panel.step { position: relative; }
+.panel.step.is-current {
+	background: color-mix(in oklab, var(--color-secondary-500) 20%, var(--color-surface-50-950));
+	border-color: var(--color-secondary-500);
+	box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-secondary-500) 22%, transparent), 0 18px 40px -16px color-mix(in oklab, var(--color-secondary-500) 75%, transparent);
+	transform: translateX(6px);
+}
+.panel.step.is-current .tick:not(:checked) {
+	border-color: var(--color-secondary-500);
+	animation: ring 2.2s ease-out infinite;
+}
+@keyframes ring {
+	0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-secondary-500) 55%, transparent); }
+	70%, 100% { box-shadow: 0 0 0 10px transparent; }
+}
+
+.pop-in { animation: pop 500ms var(--ease-out-expo) both; }
+
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		animation-delay: 0s !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+	::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }

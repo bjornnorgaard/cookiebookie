@@ -5,7 +5,6 @@ import { Months } from "#lib/types/months.ts";
 export const sorensPastaret: Recipe = {
     slug: "sorens-pastaret",
     title: "Sørens Pastaret",
-    image: "/images/recipes/sorens-pastaret.jpg",
     shortDesc: "Lav indsats. Super lækker. Mums. God dagen før løbeturen.",
     author: "Bjørn Nørgaard",
     prepTime: "PT10M",
