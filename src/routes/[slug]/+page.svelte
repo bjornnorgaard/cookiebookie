@@ -6,6 +6,7 @@
 	import { Progress } from '@skeletonlabs/skeleton-svelte';
 	import Head from '#lib/components/Head.svelte';
 	import RecipeImage from '#lib/components/RecipeImage.svelte';
+	import StepTimers from '#lib/components/StepTimers.svelte';
 	import ShoppingList from '#lib/components/ShoppingList.svelte';
 	import { formatDuration, isoDate, longDate } from '#lib/format.ts';
 
@@ -185,6 +186,9 @@
 								<span class="font-normal opacity-85">{s.desc}</span>
 							</span>
 						</label>
+						{#if s.timers?.length}
+							<StepTimers {recipe} stepIndex={i} stepTitle={s.title} timers={s.timers} />
+						{/if}
 					</li>
 				{/each}
 			</ol>

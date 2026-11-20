@@ -44,6 +44,7 @@ export const sorensPastaret: Recipe = {
             title: "Ovnen klarer resten",
             desc: "Det skal næppe have mindre end 30 minutter, lander normalt et sted omkring 45-60 min. " +
                 "Kig på den hver 20. minut og tænk dig om.",
+            timers: [{ label: "Ovn", minutes: 45, maxMinutes: 60 }],
         },
         {
             title: "Du er der næsten!",

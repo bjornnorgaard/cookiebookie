@@ -54,6 +54,7 @@ export const lasagne: Recipe = {
         {
             title: "Simre, slumre, simmer",
             desc: "Lad det hele simre til det det ikke er for flydende, og egner sig til lasagne (45-60 minutter).",
+            timers: [{ label: "Simre", minutes: 45, maxMinutes: 60 }],
         },
         {
             title: "Beper og zalt",
