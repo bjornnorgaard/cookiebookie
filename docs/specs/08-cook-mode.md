@@ -1,6 +1,6 @@
 # 08 · Cook mode
 
-Status: **spec, awaiting answers** · Size: **L** (about 6-10 h) · Depends on: keep-awake (done); needs 05 portion scaler and 06 step timers first
+Status: **Done** · Size: **L** (about 6-10 h) · Depends on: keep-awake (done); needs 05 portion scaler and 06 step timers first
 
 ## Summary
 
@@ -102,3 +102,22 @@ Tablet / desktop landscape: two columns. Left: current step. Right: ingredients 
    nicer result. Could be done later.
 4. Landscape/tablet two-column layout: include in the first version, or phone-first and add later?
 5. Should cook mode be offered automatically when a visitor ticks the first step, or only via the button?
+
+## Decisions on the open questions
+
+1. Næste auto-ticks the current step with the page's ripple rule; Forrige un-ticks the step it returns to and all later ones.
+2. Three text sizes (A− A+), default medium, remembered in `localStorage` (`cook_text_size`).
+3. Per-step `uses` highlighting skipped for now.
+4. Landscape/tablet two-column layout is included.
+5. Entry only via the "Start madlavning" button; no auto-offer.
+
+## Implementation notes / deviations
+
+- Step state moved out of the page into `src/lib/stores/steps.svelte.ts` (context, one instance per recipe page); the page and cook mode share it.
+- `CookMode.svelte` is dynamically imported on first use. Open state is the shallow history entry (`pushState('#cook', { cook: true })`, `page.state.cook`), so Back closes it. Esc closes the ingredient drawer first, then cook mode. Focus returns to the opener on unmount.
+- Keep-awake: `setForceAwake` in the wake store holds the lock while open (`wake.forced`) and never writes the saved preference.
+- Wide layout is `min-width: 900px` and landscape; otherwise the ingredients are a bottom drawer (button, or swipe up on the bottom bar).
+- Not done: the View Transition grow from the button (a short scale/fade is used), the header pill menu entry (decision 5), the "Indkøbsliste" link in the drawer (the drawer is the list), `uses` highlighting.
+- Progress dots are 48 px tall but only 24-48 px wide (they share the row, so 12+ steps still fit on a phone).
+- Swipes ignore buttons, links and inputs; swipes were tested with mouse-driven pointer events, not on a real touch screen.
+- Axe scan is not in this branch; ARIA was checked by hand in tests (dialog name, aria-modal, heading name "Trin N af M", focus return, focus stays inside the dialog).

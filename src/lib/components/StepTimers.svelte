@@ -8,9 +8,11 @@
 		stepIndex: number;
 		stepTitle: string;
 		timers: StepTimer[];
+		/** Cook mode: no indent, bigger touch targets. */
+		large?: boolean;
 	}
 
-	let { recipe, stepIndex, stepTitle, timers }: Props = $props();
+	let { recipe, stepIndex, stepTitle, timers, large = false }: Props = $props();
 
 	const chips = $derived(
 		timers.flatMap((def) =>
@@ -23,7 +25,7 @@
 	);
 </script>
 
-<div class="step-timers" role="group" aria-label="Timere til trin {stepIndex + 1}">
+<div class="step-timers" class:large role="group" aria-label="Timere til trin {stepIndex + 1}">
 	{#each chips as chip (chip.key)}
 		{@const live = timerState.list.find((t) => t.key === chip.key)}
 		{#if !live}
@@ -73,6 +75,20 @@
 		.step-timers {
 			padding: 0 1.25rem 1.25rem 4rem;
 		}
+	}
+	.step-timers.large {
+		padding: 0;
+		gap: 0.75rem;
+	}
+	.large .chip {
+		min-height: 48px;
+		padding: 0.5rem 1.1rem;
+		font-size: 1.0625rem;
+	}
+	.large .mini {
+		min-width: 48px;
+		min-height: 48px;
+		font-size: 1rem;
 	}
 	.chip {
 		display: inline-flex;
