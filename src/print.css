@@ -1,0 +1,218 @@
+/* Print layout for recipe pages (spec 07). Imported once from +layout.svelte.
+   Strategy: when printing, everything on the page is hidden except <section class="print-sheet">, a dedicated
+   paper layout rendered by PrintSheet.svelte from the same data (and portion count) as the screen. It uses fixed
+   black-on-white colours, so the dark theme (html[data-mode='dark']) prints exactly like the light one. */
+
+/* On screen the sheet does not exist. */
+.print-sheet {
+	display: none;
+}
+
+@media print {
+	@page {
+		size: A4 portrait;
+		margin: 14mm;
+	}
+
+	/* Always light, whatever the theme or device preference says. */
+	html,
+	html[data-mode='dark'],
+	html[data-mode='light'] {
+		color-scheme: light !important;
+		background: #fff !important;
+	}
+	body {
+		background: #fff !important;
+		background-image: none !important;
+		color: #000 !important;
+		overflow: visible !important;
+	}
+
+	/* No animations, no transitions, no scroll effects. */
+	*,
+	*::before,
+	*::after {
+		animation: none !important;
+		transition: none !important;
+	}
+
+	/* Hide app chrome: progress bar, header, footer, consent notice, timer dock and any other overlay
+	   (everything the layout puts next to <main>). */
+	body > div > :not(main) {
+		display: none !important;
+	}
+	/* Inside the recipe page, keep only the print host (share/print row is hidden, the sheet is shown). */
+	main {
+		min-height: 0 !important;
+	}
+	main > article {
+		max-width: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+	main > article > :not(.print-host) {
+		display: none !important;
+	}
+	.print-host > :not(.print-sheet) {
+		display: none !important;
+	}
+
+	/* ---------- the sheet ---------- */
+	.print-sheet {
+		display: block;
+		font-family: var(--font-sans);
+		font-size: 10pt;
+		line-height: 1.35;
+		color: #000;
+		background: #fff;
+	}
+	.print-sheet *,
+	.print-sheet *::before {
+		color: #000 !important;
+		background: transparent !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+
+	.ps-top {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 2mm;
+		margin-bottom: 4mm;
+		border-bottom: 0.4mm solid #000;
+		font-size: 8.5pt;
+		letter-spacing: 0.04em;
+	}
+	.ps-brand {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: 10pt;
+	}
+	.ps-title {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 24pt;
+		font-weight: 600;
+		line-height: 1.1;
+		letter-spacing: -0.015em;
+		text-wrap: balance;
+	}
+	.ps-lead {
+		margin: 2mm 0 0;
+		font-size: 11pt;
+		font-style: italic;
+	}
+	.ps-meta {
+		margin: 2mm 0 5mm;
+		font-size: 9.5pt;
+	}
+
+	.print-sheet h2 {
+		margin: 0 0 2.5mm;
+		padding-bottom: 1mm;
+		border-bottom: 0.3mm solid #000;
+		font-family: var(--font-display);
+		font-size: 14pt;
+		font-weight: 600;
+		break-after: avoid;
+	}
+	.print-sheet h3 {
+		margin: 0;
+		font-family: var(--font-display);
+		font-size: 11pt;
+		font-weight: 600;
+		line-height: 1.25;
+		break-after: avoid;
+	}
+
+	/* Two columns: ingredients left, steps right. Floats fragment across pages in every browser. */
+	.ps-columns::after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.ps-col-ingredients {
+		float: left;
+		width: 36%;
+	}
+	.ps-col-steps {
+		margin-left: 40%;
+	}
+
+	.ps-photo {
+		display: block;
+		width: 6cm;
+		max-width: 100%;
+		height: auto;
+		margin: 0 0 4mm;
+		border-radius: 1.5mm;
+		break-inside: avoid;
+	}
+
+	.ps-ingredients,
+	.ps-steps {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.ps-ingredients li,
+	.ps-steps li {
+		display: flex;
+		align-items: flex-start;
+		gap: 2.5mm;
+		break-inside: avoid;
+	}
+	.ps-ingredients li {
+		margin: 0 0 2mm;
+	}
+	.ps-steps li {
+		margin: 0 0 3.5mm;
+	}
+	.ps-steps p {
+		margin: 0.5mm 0 0;
+	}
+	.ps-num {
+		font-variant-numeric: tabular-nums;
+	}
+
+	/* Empty squares to tick off with a pen, whatever the on-screen state is. */
+	.ps-box {
+		flex: none;
+		width: 3.6mm;
+		height: 3.6mm;
+		margin-top: 0.5mm;
+		border: 0.35mm solid #000;
+		border-radius: 0.5mm;
+		background: #fff !important;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.ps-foot {
+		display: flex;
+		align-items: center;
+		gap: 4mm;
+		clear: both;
+		margin-top: 6mm;
+		padding-top: 3mm;
+		border-top: 0.3mm solid #000;
+		font-size: 9pt;
+		break-inside: avoid;
+	}
+	.ps-foot p {
+		margin: 0;
+	}
+	.ps-qr {
+		flex: none;
+		width: 22mm;
+		height: 22mm;
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+	.ps-qr path {
+		fill: #000 !important;
+	}
+	.ps-qr rect {
+		fill: #fff !important;
+	}
+}
