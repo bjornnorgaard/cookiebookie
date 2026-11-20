@@ -40,7 +40,7 @@
 
 <div class="px-5 pt-4" role="group" aria-labelledby="portions-label">
 	<div class="flex items-center justify-between gap-4">
-		<span id="portions-label" class="text-sm font-semibold">Portioner</span>
+		<span id="portions-label" class="font-display text-xl font-semibold">Portioner</span>
 
 		<div class="flex items-center gap-1">
 			<button
