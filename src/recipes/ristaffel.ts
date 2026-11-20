@@ -10,7 +10,7 @@ export const ristaffel: Recipe = {
     prepTime: "PT10M",
     cookTime: "PT40M",
     totalTime: "PT50M",
-    cuisine: Cuisine.Indian,
+    cuisine: Cuisine.Danish,
     yield: 4,
     categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2023, Months.January, 12),

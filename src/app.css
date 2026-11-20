@@ -162,14 +162,14 @@ p { text-wrap: pretty; }
 
 /* Soft surface used by the ingredient + step cards. */
 .panel {
-	background: color-mix(in oklab, var(--panel-accent, var(--color-primary-500)) 10%, var(--color-surface-50-950));
-	border: 1px solid color-mix(in oklab, var(--panel-accent, var(--color-primary-500)) 38%, transparent);
-	box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 12px 32px -16px color-mix(in oklab, var(--panel-accent, var(--color-primary-500)) 55%, transparent);
+	background: color-mix(in oklab, var(--panel-accent, var(--color-primary-500)) var(--panel-tint, 18%), var(--color-surface-50-950));
+	border: 1px solid color-mix(in oklab, var(--panel-accent, var(--color-primary-500)) var(--panel-edge, 60%), transparent);
+	box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 12px 32px -16px color-mix(in oklab, var(--panel-accent, var(--color-primary-500)) var(--panel-glow, 70%), transparent);
 }
 
 .panel.step { position: relative; }
 .panel.step.is-current {
-	background: color-mix(in oklab, var(--color-secondary-500) 20%, var(--color-surface-50-950));
+	background: color-mix(in oklab, var(--color-secondary-500) 46%, var(--color-surface-50-950));
 	border-color: var(--color-secondary-500);
 	box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-secondary-500) 22%, transparent), 0 18px 40px -16px color-mix(in oklab, var(--color-secondary-500) 75%, transparent);
 	transform: translateX(6px);
