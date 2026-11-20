@@ -1,6 +1,9 @@
 <script lang="ts">
 	import '../app.css';
+	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
 	import { onNavigate } from '$app/navigation';
+	import { initWake, setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -13,6 +16,8 @@
 		{ href: 'https://www.linkedin.com/in/bjorn-norgaard', svg: '/icons/linkedin.svg', alt: 'LinkedIn' },
 		{ href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', svg: '/icons/youtube.svg', alt: 'YouTube' }
 	];
+
+	onMount(initWake);
 
 	// Cross-fade pages and morph shared elements (recipe photo + title) with the View Transitions API.
 	onNavigate((navigation) => {
@@ -40,10 +45,25 @@
 			<span class="inline-block transition-transform duration-500 ease-out group-hover:rotate-[-18deg] group-hover:scale-125" aria-hidden="true">🍪</span>
 			Cookie Bookie
 		</a>
-		<p class="m-0 hidden items-center gap-3 font-display text-base italic text-primary-700-300 sm:flex">
-			<span class="h-px w-8 bg-primary-500/60" aria-hidden="true"></span>
-			Rimelige opskrifter, uden reklamer
-		</p>
+		<div class="flex items-center gap-4">
+			{#if wake.supported && wake.enabled && wake.viewing}
+				<button
+					type="button"
+					class="awake-pill"
+					onclick={() => setKeepAwake(false)}
+					aria-label="Skærmen holdes tændt. Tryk for at slå fra"
+					transition:fly={{ y: -8, duration: 300 }}
+				>
+					<span class="dot" class:on={wake.active} aria-hidden="true"></span>
+					<span class="hidden sm:inline">Skærm tændt</span>
+					<span aria-hidden="true" class="opacity-60">✕</span>
+				</button>
+			{/if}
+			<p class="m-0 hidden items-center gap-3 font-display text-base italic text-primary-700-300 sm:flex">
+				<span class="h-px w-8 bg-primary-500/60" aria-hidden="true"></span>
+				Rimelige opskrifter, uden reklamer
+			</p>
+		</div>
 	</nav>
 </header>
 
@@ -72,3 +92,40 @@
 		</div>
 	</div>
 </footer>
+
+<style>
+	.awake-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.4rem 0.8rem;
+		border-radius: 9999px;
+		font-size: 0.8125rem;
+		font-weight: 600;
+		cursor: pointer;
+		color: var(--color-warning-900-100, inherit);
+		background: color-mix(in oklab, var(--color-warning-500) 26%, transparent);
+		border: 1px solid color-mix(in oklab, var(--color-warning-500) 55%, transparent);
+		transition: background-color 200ms, transform 200ms;
+	}
+	.awake-pill:hover {
+		background: color-mix(in oklab, var(--color-warning-500) 40%, transparent);
+	}
+	.awake-pill:active {
+		transform: scale(0.96);
+	}
+	.dot {
+		width: 0.55rem;
+		height: 0.55rem;
+		border-radius: 9999px;
+		background: color-mix(in oklab, var(--color-warning-500) 50%, transparent);
+	}
+	.dot.on {
+		background: var(--color-warning-500);
+		animation: glow 2.4s ease-in-out infinite;
+	}
+	@keyframes glow {
+		0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-warning-500) 60%, transparent); }
+		50% { box-shadow: 0 0 0 6px transparent; }
+	}
+</style>

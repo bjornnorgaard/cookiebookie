@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { scale } from 'svelte/transition';
+	import KeepAwake from '#lib/components/KeepAwake.svelte';
+	import { setViewingRecipe } from '#lib/stores/wakeLock.svelte.ts';
 	import { Progress } from '@skeletonlabs/skeleton-svelte';
 	import Head from '#lib/components/Head.svelte';
 	import RecipeImage from '#lib/components/RecipeImage.svelte';
@@ -8,6 +11,11 @@
 
 	let { data } = $props();
 	const recipe = $derived(data.recipe);
+
+	onMount(() => {
+		setViewingRecipe(true);
+		return () => setViewingRecipe(false);
+	});
 
 	let completedSteps: boolean[] = $state([]);
 	const doneCount = $derived(completedSteps.filter(Boolean).length);
@@ -131,7 +139,9 @@
 				<span class="mt-2 block h-1 w-12 rounded-full bg-secondary-500"></span>
 			</h2>
 
-			<p class="mt-3 text-sm opacity-70">Tryk på et trin, når du er færdig med det</p>
+			<div class="mt-5"><KeepAwake /></div>
+
+			<p class="mt-5 text-sm opacity-70">Tryk på et trin, når du er færdig med det</p>
 
 			<div class="mt-4">
 				<Progress value={doneCount} max={recipe.steps.length}>
