@@ -53,10 +53,7 @@ body {
 		light-dark(oklch(99.8% 0.006 88), color-mix(in oklab, var(--color-primary-500) 17%, oklch(30% 0.03 55))),
 		light-dark(oklch(96% 0.045 72), color-mix(in oklab, var(--color-primary-500) 5%, oklch(24% 0.025 55)))
 	);
-	border: 1px solid light-dark(
-		color-mix(in oklab, var(--color-primary-500) 30%, transparent),
-		color-mix(in oklab, var(--color-primary-500) 32%, transparent)
-	);
+	border: 0;
 	box-shadow:
 		inset 0 1px 0 light-dark(rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.08)),
 		0 1px 2px light-dark(rgb(120 70 20 / 0.06), transparent),
