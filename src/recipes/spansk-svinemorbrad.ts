@@ -66,6 +66,7 @@ export const svinemorbrad: Recipe = {
         {
             title: "Nu er svinet klar",
             desc: "Efter hvad der føles som uendligheder, der nok svarer til 30 min. burde svinet være klar. Dette kommer dog an på tykkelsen, stjernetegn og alt muligt brug derfor et stegetermometer, den skal være mindst 60 grader indeni og butterdejen gylden og sprød.",
+            timers: [{ label: "Bagning", minutes: 30 }],
         },
     ],
 };

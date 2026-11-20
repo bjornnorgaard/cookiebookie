@@ -33,9 +33,16 @@ export interface Ingredient {
     amount: string;
 }
 
+export interface StepTimer {
+    label?: string; // e.g. "Simre"; falls back to the step title
+    minutes: number;
+    maxMinutes?: number; // a range gets two chips (minutes and maxMinutes)
+}
+
 export interface Step {
     title: string;
     desc: string;
+    timers?: StepTimer[];
 }
 
 export enum Cuisine {

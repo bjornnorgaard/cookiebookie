@@ -42,6 +42,7 @@ export const brod: Recipe = {
         {
             title: "Hævetid er sovetid",
             desc: "Smid låg på. Det skal hvile i 12 til 24 timer, eller indtil det er fordoblet i størrelse. Tak for i dag - vi ses i morgen.",
+            timers: [{ label: "Hævning", minutes: 720, maxMinutes: 1440 }],
         },
         {
             title: "Den lever!",
@@ -54,10 +55,12 @@ export const brod: Recipe = {
         {
             title: "Bagetid",
             desc: "Du tænder ovnen på alt hvad den trække og forvarmer din støbejernsfætter. Vi mødes her igen om ~30 min.",
+            timers: [{ label: "Forvarm", minutes: 30 }],
         },
         {
             title: "Brænd nu ikke dine små dumme fingre",
             desc: "Sænk den så forsigtigt ned i din støbejernsgryde (pas nu på pølserne) og sprøjt den gavmildt til med vand. Sæt låg på og efterlad i ovnen i ca. 30 minutter før næste inspektion.",
+            timers: [{ label: "Bagning", minutes: 30 }],
         },
         {
             title: "Tjekketid",
@@ -66,6 +69,7 @@ export const brod: Recipe = {
         {
             title: "La' det lig'",
             desc: "I mindst en time før du fucker med brødet. Alt er spildt hvis du rør den før - det kan ikke diskuteres!",
+            timers: [{ label: "Afkøling", minutes: 60 }],
         },
         {
             title: "Skær den over på midten",

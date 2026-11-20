@@ -36,8 +36,8 @@ export const marryMeChickpeas: Recipe = {
         {name: "Salt og peber", amount: ""},
     ],
     steps: [
-        { title: "Hak og steg", desc: "Hak og steg løg, hvidløg og alle krydderier og lad det stege til det dufter himmmelsk. Tilføj derefter de soltørrede tomater og tomoatpuré og steg i yderligere 3 minutter." },
-        { title: "De våde sager", desc: "Tilføj vand, citronsaft, soya, boullionterninger og kokosmælk. Lad det simre i 10 minutter." },
+        { title: "Hak og steg", desc: "Hak og steg løg, hvidløg og alle krydderier og lad det stege til det dufter himmmelsk. Tilføj derefter de soltørrede tomater og tomoatpuré og steg i yderligere 3 minutter.", timers: [{ label: "Steg", minutes: 3 }] },
+        { title: "De våde sager", desc: "Tilføj vand, citronsaft, soya, boullionterninger og kokosmælk. Lad det simre i 10 minutter.", timers: [{ label: "Simre", minutes: 10 }] },
         { title: "Så trækker vi!", desc: "Tilføj kikærterne og lad det simre i minimum 10 mintter mere og gerne helt op til 45-60 minutter. Når du er klar til at spise, så husk også at koge pasta. Velbekomme!" },
     ],
 }

@@ -33,6 +33,7 @@ export const rasmusKlumpPandekager: Recipe = {
         {
             title: "Pandetid",
             desc: "Middel varme og en smule smør. Nu går vi på scenen! Find en behagelig plads og sæt din yndlingsplade på - her står du de næste 30 minutter.",
+            timers: [{ label: "Pandetid", minutes: 30 }],
         },
         {
             title: "Spisetid",

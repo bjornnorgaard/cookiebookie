@@ -1,6 +1,6 @@
 # 06 · Step timers
 
-Status: **spec, awaiting answers** · Size: **M** (about 4-6 h, plus authoring durations in the recipes) · Depends on: nothing (integrates with keep-awake and cook mode 08)
+Status: **Done** · Size: **M** (about 4-6 h, plus authoring durations in the recipes) · Depends on: nothing (integrates with keep-awake and cook mode 08)
 
 ## Summary
 
@@ -116,3 +116,44 @@ Phone
 3. Keep timers visible if the user navigates to another recipe (cooking two dishes), or reset per recipe?
 4. Sound on by default? A mute toggle in the dock?
 5. Is a system notification wanted at all (it adds a permission prompt)?
+
+## Implementation notes / deviations
+
+Decisions applied: durations authored per step; ranges get two chips; timers persist across recipes and show the recipe
+name; sound on by default with a mute switch in the dock; system notification supported, asked once with a one-line
+explanation after the first timer starts (never on load).
+
+Files: `src/lib/timerMath.ts` (pure: `formatRemaining`, `formatMinutes`, `remainingAt`, `progressAt`, `timerChoices`),
+`src/lib/stores/timers.svelte.ts`, `src/lib/components/StepTimers.svelte`, `TimerDock.svelte` (mounted in the layout).
+Tests: `tests/timer-math.spec.ts`, `tests/timers.spec.ts` (Playwright `page.clock`).
+
+Deviations and details:
+
+- The dock shows on every page (not only recipe pages) while a timer exists, so a timer from another recipe stays visible.
+- Cross-tab de-duplication uses the `storage` event plus a check-then-mark of `done` in localStorage before ringing (no
+  BroadcastChannel); a timer that ended while the page was closed shows as finished without sound.
+- Keep-awake is offered as a one-line yes/no row in the dock on the first timer, once per page load.
+- Ranges under 120 minutes are shown in minutes ("60 min"); longer ones as hours ("12 t.").
+- The live region (`aria-live="polite"`) announces start, one minute left and done only.
+- The dock lifts above the consent card on phones while it is open.
+
+Durations authored (seconds-level ambiguity left out):
+
+| Recipe | Step | Timer |
+| --- | --- | --- |
+| boller | 9 "Form dejen til en kugle" | Hvile 2-3 min |
+| boller | 12 "Dæk med et viskestykke" | Hævning 10-15 min |
+| boller | 14 "Bag bollerne" | Bagning 12 min |
+| brod | 4 "Hævetid er sovetid" | Hævning 12-24 t. |
+| brod | 7 "Bagetid" | Forvarm 30 min |
+| brod | 8 "Brænd nu ikke..." | Bagning 30 min |
+| brod | 10 "La' det lig'" | Afkøling 60 min |
+| lasagne | 4 "Simre, slumre, simmer" | Simre 45-60 min |
+| camillas-kikgryde | 1 | Steg 3 min |
+| camillas-kikgryde | 2 | Simre 10 min |
+| rasmus-klump-pandekager | 2 "Pandetid" | Pandetid 30 min |
+| sorens-pastaret | 3 "Ovnen klarer resten" | Ovn 45-60 min (prose also says "ikke mindre end 30") |
+| spansk-svinemorbrad | 8 "Nu er svinet klar" | Bagning 30 min |
+
+Left out as ambiguous or not a duration: camillas-kikgryde step 3 ("minimum 10 ... gerne 45-60"), ristaffel step 8
+("5-10 min efter forårsløgene"), lasagne "nogle minutter", brod step 3 ("omkring to minutter" of mixing), risotto.

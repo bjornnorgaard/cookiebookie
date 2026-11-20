@@ -3,6 +3,8 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { onNavigate } from '$app/navigation';
+	import TimerDock from '#lib/components/TimerDock.svelte';
+	import { timerState } from '#lib/stores/timers.svelte.ts';
 	import ConsentNotice from '#lib/components/ConsentNotice.svelte';
 	import { openConsent } from '#lib/stores/consent.svelte.ts';
 	import ThemeToggle from '#lib/components/ThemeToggle.svelte';
@@ -78,7 +80,7 @@
 	{@render children?.()}
 </main>
 
-<footer class="mt-24 border-t border-surface-300-700 pb-[max(2rem,env(safe-area-inset-bottom))] pt-10">
+<footer class="mt-24 border-t {timerState.list.length ? 'mb-56' : ''} border-surface-300-700 pb-[max(2rem,env(safe-area-inset-bottom))] pt-10">
 	<div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 text-center sm:flex-row sm:px-6 sm:text-left">
 		<p class="text-sm opacity-80">
 			<span class="font-display text-base font-semibold">Cookie Bookie</span><br />
@@ -104,6 +106,7 @@
 </footer>
 
 <ConsentNotice />
+<TimerDock />
 
 <style>
 	.awake-pill {
