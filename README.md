@@ -25,6 +25,13 @@ npm run images -- --force # genererer alt igen
 Det laver AVIF/WebP/JPEG i flere størrelser i `static/images/recipes/<slug>/` samt manifestet
 `src/lib/data/images.generated.json`. Commit de genererede filer. Opskrifter uden eget foto bruger `placeholder.jpg`.
 
+## Deploy
+
+Deploy sker lokalt og kun når det bliver bedt om. `scripts/deploy.sh` (se skill'en
+[deploy](.claude/skills/deploy/SKILL.md)) bygger Docker-imaget på din egen maskine, pusher det til GHCR og opdaterer
+image-tagget i [deploy/mimir/services.yaml](deploy/mimir/services.yaml), så klyngen henter den nye version. Vercel bygger
+`main` af sig selv ved push. GitHub-workflowet `Deploy` kører ikke længere automatisk; det kan kun startes manuelt.
+
 ## Lokal udvikling
 
 `npm run dev` starter på http://127.0.0.1:5173.

@@ -10,3 +10,4 @@ vite.config.ts.timestamp-*
 playwright-report
 test-results
 photos
+.claude/settings.local.json

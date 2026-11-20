@@ -1,8 +1,9 @@
 name: Deploy
 
+# Deploys are done locally with scripts/deploy.sh (see .claude/skills/deploy).
+# This workflow is only a manual fallback: gh workflow run Deploy
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
