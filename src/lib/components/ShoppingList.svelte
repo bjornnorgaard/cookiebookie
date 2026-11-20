@@ -22,11 +22,9 @@
 	const reduced = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const have = localStorageStore<string[]>('shopping_list', []);
 
-	// `order` lags behind `have` on purpose: ticked items drop to the bottom a moment later,
-	// so an accidental tap can be undone before things jump around.
+	// Ticked items move to the bottom straight away (the list animates the move).
 	const items = $derived(recipe.ingredients.map((ingredient, idx) => ({ ...ingredient, idx })));
 	let order = $state<number[]>([]);
-	let timer: ReturnType<typeof setTimeout> | undefined;
 
 	function sorted(): number[] {
 		const owned = (name: string) => $have.includes(name);
@@ -36,15 +34,13 @@
 	onMount(() => {
 		order = sorted();
 		return () => {
-			clearTimeout(timer);
 			clearTimeout(undoTimer);
 		};
 	});
 
 	function toggle(name: string) {
 		have.update((list) => (list.includes(name) ? list.filter((i) => i !== name) : [...list, name]));
-		clearTimeout(timer);
-		timer = setTimeout(() => (order = sorted()), 900);
+		order = sorted();
 	}
 
 	// Reset only this recipe's ingredients (the store is shared across recipes), with a short undo window.
@@ -56,7 +52,6 @@
 		const cleared = names.filter((n) => $have.includes(n));
 		if (!cleared.length) return;
 		have.update((list) => list.filter((n) => !names.includes(n)));
-		clearTimeout(timer);
 		order = sorted();
 		undo = cleared;
 		clearTimeout(undoTimer);
