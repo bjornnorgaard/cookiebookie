@@ -5,6 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
+		"qr": "node scripts/generate-qr.mjs",
+		"prebuild": "node scripts/generate-qr.mjs",
 		"build": "vite build",
 		"preview": "npm run build && vite preview",
 		"preview:serve": "vite preview --host 127.0.0.1 --port 4173",

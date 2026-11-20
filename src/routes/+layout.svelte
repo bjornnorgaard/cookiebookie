@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+	import '../print.css';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { onNavigate } from '$app/navigation';

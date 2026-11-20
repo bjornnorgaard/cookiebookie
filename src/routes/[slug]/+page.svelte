@@ -8,6 +8,8 @@
 	import RecipeImage from '#lib/components/RecipeImage.svelte';
 	import StepTimers from '#lib/components/StepTimers.svelte';
 	import ShoppingList from '#lib/components/ShoppingList.svelte';
+	import ShareActions from '#lib/components/ShareActions.svelte';
+	import PrintSheet from '#lib/components/PrintSheet.svelte';
 	import { formatDuration, isoDate, longDate } from '#lib/format.ts';
 	import { renderStepText } from '#lib/scale.ts';
 	import { Portions, setPortions } from '#lib/stores/portions.svelte.ts';
@@ -118,6 +120,11 @@
 			</div>
 		{/each}
 	</dl>
+
+	<div class="print-host">
+		<ShareActions {recipe} />
+		<PrintSheet {recipe} />
+	</div>
 
 	<div class="prose mx-auto mt-10 max-w-3xl dark:prose-invert sm:prose-lg">
 		<p class="lead text-xl! font-medium text-inherit!">{recipe.shortDesc}</p>
