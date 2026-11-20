@@ -21,7 +21,8 @@ There are two targets, both driven by what is on `main`:
 3. Validate: `npm run check` and `npm test`.
 4. Optional rehearsal that pushes nothing: `scripts/deploy.sh --dry-run`.
 5. Deploy: `scripts/deploy.sh`. It builds for `linux/amd64` (override with `PLATFORM=`), smoke-tests the container (`/`, `/lasagne`, `/sitemap.xml`, a 404), runs `docker push`, rewrites the tag and pushes a `[skip ci]` commit to `main`.
-6. Verify: Vercel deployment is green, the new tag is in `deploy/mimir/services.yaml`, and the cluster rolled out (needs access to the LAN cluster; `kubectl` context `admin@mimir`).
+6. Cleanup: `scripts/deploy.sh` runs `scripts/cleanup.sh` at the end (also runnable alone). It fast-forwards local `main` to `origin/main`, prunes stale remote refs and worktrees, deletes local branches whose upstream is gone and whose PR was merged (anything else is reported, never deleted), and removes old local copies of the deploy image (newest 2 kept). Also delete merged remote branches and stale worktrees you created yourself; confirm `git status` is clean and `main` matches `origin/main`.
+7. Verify: Vercel deployment is green, the new tag is in `deploy/mimir/services.yaml`, and the cluster rolled out (needs access to the LAN cluster; `kubectl` context `admin@mimir`).
 
 ## Notes
 

@@ -53,3 +53,5 @@ else
 	git push origin main
 fi
 echo "==> Deployed $SHA. Vercel builds main on push by itself."
+
+scripts/cleanup.sh
