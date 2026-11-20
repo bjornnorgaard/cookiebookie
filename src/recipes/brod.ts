@@ -17,10 +17,10 @@ export const brod: Recipe = {
     dateModified: new Date(2023, Months.March, 3),
     diets: ['vegan', 'lactoseFree'],
     ingredients: [
-        { name: "Hvedemel", amount: "400g" },
-        { name: "Salt", amount: "10g" },
-        { name: "Tørgær", amount: "½ pakke" },
-        { name: "Vand", amount: "300g" },
+        { name: "Hvedemel", amount: { qty: 400, unit: "g", display: "400g" } },
+        { name: "Salt", amount: { qty: 10, unit: "g", display: "10g" } },
+        { name: "Tørgær", amount: { qty: 0.5, unit: "pakke" } },
+        { name: "Vand", amount: { qty: 300, unit: "g", display: "300g" } },
     ],
     longDesc: "Efter at have konsulteret internettet lader dette til at være opskriften på sejr. Vi ælter ingenting, næsten, men tingene skal nu blandes alligevel - livet er hårdt. " +
         "Her finder du ingen mål i te- eller spiseskeer, som ved konventionel madlavning. Bagning er alkemi og har intet at gøre med madlavning - så her bruger vi gram og liter! " +

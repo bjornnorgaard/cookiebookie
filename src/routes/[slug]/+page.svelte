@@ -8,9 +8,12 @@
 	import RecipeImage from '#lib/components/RecipeImage.svelte';
 	import ShoppingList from '#lib/components/ShoppingList.svelte';
 	import { formatDuration, isoDate, longDate } from '#lib/format.ts';
+	import { renderStepText } from '#lib/scale.ts';
+	import { Portions, setPortions } from '#lib/stores/portions.svelte.ts';
 
 	let { data } = $props();
 	const recipe = $derived(data.recipe);
+	const portions = setPortions(new Portions(() => recipe));
 
 	onMount(() => {
 		setViewingRecipe(true);
@@ -64,7 +67,7 @@
 		{ label: 'Forberedelse', value: formatDuration(recipe.prepTime) },
 		{ label: 'Tilberedning', value: formatDuration(recipe.cookTime) },
 		{ label: 'I alt', value: formatDuration(recipe.totalTime) },
-		{ label: 'Portioner', value: String(recipe.yield) }
+		{ label: 'Portioner', value: String(portions.count) }
 	]);
 </script>
 
@@ -182,7 +185,7 @@
 									{/if}
 								</span>
 								<span class="font-display text-lg font-semibold leading-snug">{s.title}</span>
-								<span class="font-normal opacity-85">{s.desc}</span>
+								<span class="font-normal opacity-85">{renderStepText(s.desc, recipe.ingredients, portions.scaling)}</span>
 							</span>
 						</label>
 					</li>

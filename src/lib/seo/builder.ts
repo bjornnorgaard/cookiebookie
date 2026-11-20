@@ -10,6 +10,7 @@ import {
 	siteUrl
 } from '#lib/constants/site.ts';
 import { isoDate } from '#lib/format.ts';
+import { baseScaling, renderStepText, schemaIngredient } from '#lib/scale.ts';
 import { getPhoto } from '#lib/images.ts';
 
 const websiteId = `${siteUrl}/#website`;
@@ -138,7 +139,7 @@ export function buildRecipeHead(recipe: Recipe, rootUrl: string) {
 			: { estimatedCost: { '@type': 'MonetaryAmount', currency: 'DKK', value: recipe.estimatedCostDKK } }),
 		...(recipe.diets?.length ? { suitableForDiet: recipe.diets.map((d) => dietUrls[d]) } : {}),
 		...(recipe.nutrition ? { nutrition: buildNutrition(recipe.nutrition) } : {}),
-		recipeIngredient: recipe.ingredients.map((i) => (i.amount ? `${i.amount} ${i.name}` : i.name)),
+		recipeIngredient: recipe.ingredients.map((i) => schemaIngredient(i, recipe.yield)),
 		recipeInstructions: [
 			{
 				'@type': 'HowToSection',
@@ -147,7 +148,7 @@ export function buildRecipeHead(recipe: Recipe, rootUrl: string) {
 					'@type': 'HowToStep',
 					position: i + 1,
 					name: s.title,
-					text: s.desc,
+					text: renderStepText(s.desc, recipe.ingredients, baseScaling(recipe.yield)),
 					url: `${url}#step${i + 1}`
 				}))
 			}

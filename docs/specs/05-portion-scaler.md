@@ -1,6 +1,6 @@
 # 05 · Portion scaler
 
-Status: **spec, awaiting answers** · Size: **M-L** (about 5-8 h, most of it converting ingredient amounts to structured data) · Depends on: nothing (feeds timers/cook mode 08 and print 07)
+Status: **Done** · Size: **M-L** (about 5-8 h, most of it converting ingredient amounts to structured data) · Depends on: nothing (feeds timers/cook mode 08 and print 07)
 
 ## Summary
 
@@ -107,3 +107,23 @@ After tapping +  (4 → 6):
 3. Show metric conversions (dl ↔ ml)? **Recommendation:** no.
 4. Is it fine to rewrite the ingredient data format across all recipes (output identical, enforced by a test)?
 5. Should "per person" ingredients (e.g. bananas) be marked per serving rather than scaled from the total yield?
+
+## Implementation notes / deviations
+
+Decisions from the product owner: (1) step text amounts scale via tokens; (2) any count 1-24 plus presets 2/4/6/8/12; (3) no metric conversion; (4) data format rewritten for all recipes with a base-yield equality test; (5) "per person" ingredients scale per serving.
+
+**Data format.** `Ingredient.amount` is `{ qty, unit?, plural?, display? }` (measured; `qty` may be a `[min, max]` range) or `{ text, perServing? }` (prose). Items with no amount (salt, pepper, olive oil) simply have no `amount`; `scale` is `'linear' | 'fixed' | 'round-up'`; `note` renders as "(kan undværes)".
+
+**Legacy wording (`display`).** The old strings contain spellings the normalised formatter would never produce ("500g", "0.5 liter", "1tsk", "to dåser", "~200g"). To keep the output at the recipe's own yield byte-identical (and JSON-LD unchanged), those 16 amounts carry `display`, used only at base yield; any other count shows normalised output ("750 g", "1,5 l"). `tests/scale.spec.ts` asserts equality against `tests/fixtures/legacy-recipes.json`, captured from `feat/next-wave` before the conversion, for every ingredient, JSON-LD ingredient line and step.
+
+**Step tokens.** `{{Ingredient name}}` renders that ingredient's scaled amount; `{{Ingredient name|prose}}` shows `prose` at base yield and the scaled amount otherwise. Only one existing step quotes an amount (risotto, step 1: "{{Bouillon|en liter}}"). Steps and JSON-LD `HowToStep.text` resolve tokens at base yield.
+
+**Deviations from the draft.**
+- Fixed items show no amount, not "efter smag", because the old text was empty and output must stay identical.
+- `?p=` is read (and wins over the stored count) but the URL is not rewritten when the stepper changes; no history manipulation.
+- "Per person" items keep their sentence and gain a total when scaled: "mindst en pr. pers (6 i alt)".
+- Stepper presets: 2, 4, 6, 8, 12 plus the recipe's own yield; the input is a native number field (spinbutton), so typing works too.
+- Rounding table (final): g under 100 to 5, otherwise 10, from 1000 shown as kg to 0,05; kg to 0,05 (below 1 kg shown in g); ml under 100 to 5, otherwise 25, from 1000 as l; dl to ¼ (10 dl and up as l); l to 0,05 (below 0,1 l as dl); tsk. and spsk. to ½ (promote only when every end is a whole number of spoonfuls: 3 tsk. = 1 spsk.; under 1 spsk. shown as tsk.); counted items to ½ below 10, whole above; `round-up` always whole numbers upwards. Fractions ¼ ½ ¾ are used except for kg and for l at 1 or more (decimal comma).
+- The portions store is a per-page class shared through context (not a module singleton), to avoid state leaking between server requests.
+
+**Reusable API.** `src/lib/scale.ts`: `formatAmount(ingredient, scaling)`, `renderStepText(desc, ingredients, scaling)`, `schemaIngredient(ingredient, base)`, `scaleAmount`, `formatNumber`, `clampPortions`, `Scaling = { base, portions }`. `src/lib/stores/portions.svelte.ts`: `Portions` (`count`, `scaling`, `scaled`, `set`, `step`, `reset`), `setPortions` / `getPortions` context helpers. UI: `PortionStepper.svelte`.

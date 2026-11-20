@@ -1,5 +1,9 @@
 <script lang="ts">
-	import type { Recipe } from '#lib/types/recipe.ts';
+	import type { Ingredient, Recipe } from '#lib/types/recipe.ts';
+	import PortionStepper from '#lib/components/PortionStepper.svelte';
+	import { formatAmount } from '#lib/scale.ts';
+	import { getPortions } from '#lib/stores/portions.svelte.ts';
+	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import { flip } from 'svelte/animate';
 	import { cubicInOut } from 'svelte/easing';
@@ -11,6 +15,11 @@
 	}
 
 	let { recipe }: Props = $props();
+	const portions = getPortions();
+	// Amount text per ingredient at the chosen portion count. Ticks stay keyed by name, never by amount.
+	const amountText = (ingredient: Ingredient) => formatAmount(ingredient, portions.scaling);
+	// Brief fly-in for changed numbers; skipped for reduced motion.
+	const reduced = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const have = localStorageStore<string[]>('shopping_list', []);
 
 	// `order` lags behind `have` on purpose: ticked items drop to the bottom a moment later,
@@ -69,6 +78,8 @@
 	const doneCount = $derived(items.filter((i) => $have.includes(i.name)).length);
 </script>
 
+<PortionStepper />
+
 <div class="flex items-center justify-between gap-3 px-5 pt-4 text-sm">
 	<span class="opacity-70">Sæt kryds ved det, du allerede har</span>
 	<span class="flex items-center gap-2">
@@ -92,7 +103,12 @@
 							>
 				<input id="ing-{i.idx}" type="checkbox" class="tick" {checked} onchange={() => toggle(i.name)} />
 				<span class="grow transition-opacity duration-300" class:opacity-50={checked}>
-					<span class="font-semibold">{i.name}</span>{#if i.amount}<span class="opacity-75">, {i.amount}</span>{/if}
+					<span class="font-semibold">{i.name}</span>{#if amountText(i)}{#key amountText(i)}<span
+								class="amount opacity-75"
+								class:flash={portions.changed}
+								data-amount
+								in:fly={{ y: reduced() ? 0 : 8, duration: reduced() ? 0 : 220 }}>, {amountText(i)}</span
+							>{/key}{/if}
 				</span>
 			</label>
 		</li>
@@ -100,6 +116,20 @@
 </ul>
 
 <style>
+	/* Soft flash on amounts that just changed. The keyed span is recreated on every change, so it replays. */
+	.amount.flash {
+		animation: amount-flash 1100ms ease-out;
+		border-radius: 0.375rem;
+	}
+	@keyframes amount-flash {
+		from {
+			background: color-mix(in oklab, var(--color-primary-500) 35%, transparent);
+		}
+		to {
+			background: transparent;
+		}
+	}
+
 	.reset-btn {
 		font-size: 0.8125rem;
 		font-weight: 600;
