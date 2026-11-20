@@ -14,6 +14,7 @@ export const ristaffel: Recipe = {
     yield: 4,
     categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2023, Months.January, 12),
+    dateModified: new Date(2023, Months.March, 7),
     longDesc: "Det ender cirka den mængde jeg plejer at lave, så der også er morgenmad til næste dag. Så må du sjusse dig frem til en nogenlunde mængde.",
     ingredients: [
         { name: "Kylling", amount: "500 gram" },

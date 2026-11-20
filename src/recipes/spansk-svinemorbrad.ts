@@ -14,6 +14,7 @@ export const svinemorbrad: Recipe = {
     yield: 4,
     categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2023, Months.June, 14),
+    dateModified: new Date(2023, Months.June, 14),
     longDesc: "Dress to impress! Dette svin er svøbt i sine spanske artsfæller og derefter klædt på med butterdej. Aldrig mere vil du forbinde ordet tør med svinemørbrad. Advarsel, tilfælde af kronisk løbende mundvand er hændt efter indtagelse.",
     ingredients: [
         { name: "Svinemørbrad", amount: "1 stk." },

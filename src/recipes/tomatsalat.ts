@@ -14,6 +14,8 @@ export const tomatsalat: Recipe = {
     yield: 4,
     categories: [ Category.Sides, Category.Aftensmad ],
     datePublished: new Date(2023, Months.January, 11),
+    dateModified: new Date(2023, Months.March, 3),
+    diets: ['vegetarian'],
     longDesc: "Det kan være meget fristende at smide mere end ét rødløg i, men for første gang i historien skal vi lige tæmme følelserne og forholde os i ro. I denne opskrift smager det skidt virkelig igennem, så slap af med løgene.",
     ingredients: [
         { name: "Cherrytomater", amount: "600g" },

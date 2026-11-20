@@ -15,6 +15,8 @@ export const marryMeChickpeas: Recipe = {
     yield: 4,
     categories: [ Category.Hovedretter, Category.Aftensmad ],
     datePublished: new Date(2025, Months.December, 29),
+    dateModified: new Date(2025, Months.December, 29),
+    diets: ['vegetarian'],
     ingredients: [
         { name: "Løg", amount: "4 stk" },
         { name: "Hvidløg", amount: "4 fed" },

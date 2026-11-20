@@ -1,6 +1,6 @@
 # 04 · Richer structured data
 
-Status: **spec, awaiting answers** · Size: **S-M** (about 2-3 h of code; more if you want nutrition data) · Depends on: nothing (photos for placeholder recipes matter most, see below)
+Status: **Done** · Size: **S-M** (about 2-3 h of code; more if you want nutrition data) · Depends on: nothing (photos for placeholder recipes matter most, see below)
 
 ## Summary
 
@@ -83,3 +83,28 @@ All new fields optional; the builder omits anything missing.
 6. **Photos** for the five placeholder recipes (brod, tomatsalat, marry-me-chickpeas, spansk-svinemorbrad,
    rasmus-klump-pandekager) unlock `image` in rich results for them. This is the highest-value item and needs
    nothing but photos in `photos/`.
+
+## Implementation notes / deviations
+
+Implemented in full, including RSS (`/rss.xml` plus `<link rel="alternate">`), `max-image-preview:large`, `article:modified_time`,
+sitemap `lastmod` from `dateModified`, and the home `WebSite` + `Organization` + `ItemList`.
+
+- **Author URL**: `url` (https://bybear.dk) and `sameAs` are only emitted for recipes authored by the site owner. The two guest
+  authors (Camilla Bøgelund, Nikolaj Matzen) get a plain `Person`, since bybear.dk is not their profile.
+- **dateModified**: taken from the last content edit in git history (ignoring refactors/migrations); recipes with no later edit use
+  `datePublished`. Missing values fall back to `datePublished` in the builder.
+- **diets** set only where the ingredients are unambiguous: brod (vegan, lactose-free), tomatsalat, rasmus-klump-pandekager and
+  camillas-kikgryde (vegetarian). Others (e.g. risotto: unspecified bouillon) are left unset. `lactoseFree` maps to `LowLactoseDiet`.
+- **estimatedCost / nutrition** are implemented in the builder but no recipe has values, so nothing is emitted. No data was invented.
+- **Logo**: `static/logo.svg` and `static/logo.png` (512x512), drawn from the cookie on the error page on the theme's cream background.
+- **RSS**: items carry title, link, guid, date, description and (real photos only) `media:content`. No `enclosure` (needs a byte length).
+- The YouTube footer link is not in `sameAs` (it is a placeholder link). Tests: `tests/structured-data.spec.ts`.
+- Not done: step `image`, `video` (no such data), manual Rich Results Test run.
+
+### Data the owner still needs to supply
+
+- Estimated cost (DKK, total for the stated yield) per recipe: `estimatedCostDKK`.
+- Nutrition per serving (`nutrition.kcalPerServing`, optional protein/carbs/fat) per recipe, or approval to estimate.
+- Confirmation of diets for the unset recipes (e.g. risotto, lasagne) and whether camillas-kikgryde is vegan (bouillon and pasta type).
+- Social profiles for `sameAs` if more than GitHub and LinkedIn; a real logo if the generated one should be replaced.
+- Photos for the five placeholder recipes (unlocks `image` in rich results), and optional step photos/videos.

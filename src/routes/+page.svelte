@@ -9,7 +9,7 @@
 	const rest = $derived(data.recipes.slice(1));
 </script>
 
-<Head />
+<Head home />
 
 <div class="mx-auto max-w-6xl px-4 sm:px-6">
 	<section class="pb-8 pt-6 sm:pb-12 sm:pt-12">
