@@ -102,12 +102,12 @@
 				class:line-through={checked}
 							>
 				<input id="ing-{i.idx}" type="checkbox" class="tick" {checked} onchange={() => toggle(i.name)} />
-				<span class="grow transition-opacity duration-300" class:opacity-50={checked}>
+				<span class="flex grow items-baseline justify-between gap-3 transition-opacity duration-300" class:opacity-50={checked}>
 					<span class="font-semibold">{i.name}</span>{#if amountText(i)}{#key amountText(i)}<span
-								class="amount opacity-75"
+								class="amount whitespace-nowrap text-right tabular-nums opacity-75"
 								class:flash={portions.changed}
 								data-amount
-								in:fly={{ y: reduced() ? 0 : 8, duration: reduced() ? 0 : 220 }}>, {amountText(i)}</span
+								in:fly={{ y: reduced() ? 0 : 8, duration: reduced() ? 0 : 220 }}><span class="sr-only">,&nbsp;</span>{amountText(i)}</span
 							>{/key}{/if}
 				</span>
 			</label>
