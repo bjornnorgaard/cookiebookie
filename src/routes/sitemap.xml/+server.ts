@@ -22,7 +22,7 @@ export const GET: RequestHandler = () => {
 		...recipes.map((recipe) => ({
 			loc: `${siteUrl}/${recipe.slug}`,
 			lastmod: formatDate(recipe.datePublished),
-			image: getPhoto(recipe.slug).social['16x9'].src,
+			image: getPhoto(recipe.slug).isPlaceholder ? undefined : getPhoto(recipe.slug).social['16x9'].src,
 			title: recipe.title
 		}))
 	];

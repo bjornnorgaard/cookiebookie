@@ -36,12 +36,13 @@ export function buildBreadcrumbs(recipe: Recipe, rootUrl: string) {
 
 export function buildRecipeHead(recipe: Recipe, rootUrl: string) {
 	// Google asks for several aspect ratios of the same photo for rich results.
-	const { social } = getPhoto(recipe.slug);
+	const { social, isPlaceholder } = getPhoto(recipe.slug);
 	return {
 		'@context': 'https://schema.org/',
 		'@type': 'Recipe',
 		name: recipe.title,
-		image: [social['1x1'], social['4x3'], social['16x9']].map((v) => `${rootUrl}${v.src}`),
+		// A drawn placeholder is not a photo of the dish, so keep it out of rich-result data.
+		...(isPlaceholder ? {} : { image: [social['1x1'], social['4x3'], social['16x9']].map((v) => `${rootUrl}${v.src}`) }),
 		author: {
 			'@type': 'Person',
 			name: recipe.author

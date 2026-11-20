@@ -98,7 +98,9 @@
 				<span class="mt-2 block h-1 w-12 rounded-full bg-primary-500"></span>
 			</h2>
 			<div class="panel mt-5 overflow-hidden rounded-3xl" style="--panel-accent: var(--color-primary-500)">
-				<ShoppingList {recipe} />
+				{#key recipe.slug}
+					<ShoppingList {recipe} />
+				{/key}
 			</div>
 		</section>
 

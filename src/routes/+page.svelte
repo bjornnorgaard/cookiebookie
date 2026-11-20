@@ -28,7 +28,7 @@
 	<!-- Featured -->
 	<a
 		href="/{featured.slug}"
-		class="group reveal card preset-tonal grid overflow-hidden rounded-3xl no-underline shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-2xl lg:grid-cols-[1.35fr_1fr]"
+		class="group reveal tile grid overflow-hidden rounded-3xl no-underline shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-2xl lg:grid-cols-[1.35fr_1fr]"
 		style="--i:3"
 	>
 		<RecipeImage
@@ -63,7 +63,7 @@
 			<li class="contents">
 				<a
 					href="/{recipe.slug}"
-					class="group card preset-tonal flex flex-col overflow-hidden rounded-2xl no-underline shadow-sm transition duration-500 hover:-translate-y-1.5 hover:shadow-xl {i < 3 ? 'reveal' : 'reveal-on-scroll'}"
+					class="group tile flex flex-col overflow-hidden rounded-2xl no-underline shadow-sm transition duration-500 hover:-translate-y-1.5 hover:shadow-xl {i < 3 ? 'reveal' : 'reveal-on-scroll'}"
 					style="--i:{i + 4}"
 				>
 					<RecipeImage

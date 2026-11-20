@@ -73,9 +73,9 @@
 	<span class="opacity-70">Sæt kryds ved det, du allerede har</span>
 	<span class="flex items-center gap-2">
 		{#if undo}
-			<button type="button" class="reset-btn" onclick={restore} transition:fade={{ duration: 150 }}>↶ Fortryd</button>
+			<button type="button" class="reset-btn" onclick={restore} in:fade={{ duration: 150 }}>↶ Fortryd</button>
 		{:else if doneCount > 0}
-			<button type="button" class="reset-btn" onclick={reset} transition:fade={{ duration: 150 }}>Nulstil</button>
+			<button type="button" class="reset-btn" onclick={reset} in:fade={{ duration: 150 }}>Nulstil</button>
 		{/if}
 		<span class="badge preset-tonal-primary tabular-nums" aria-live="polite">{doneCount}/{items.length}</span>
 	</span>

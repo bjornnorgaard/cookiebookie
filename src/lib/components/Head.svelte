@@ -81,6 +81,6 @@
 	<meta name="twitter:image:alt" content={recipe ? recipe.title : siteName} />
 
 	{#each structuredData as data}
-		{@html `<script type="application/ld+json">${JSON.stringify(data)}</script>`}
+		{@html `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`}
 	{/each}
 </svelte:head>

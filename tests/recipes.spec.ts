@@ -76,5 +76,8 @@ test('recipe photos are responsive, modern formats and fall back to the placehol
 	await page.goto('/tomatsalat');
 	await expect(page.locator('.recipe-image').first()).toHaveAttribute('data-placeholder', 'true');
 	const ld = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent())!);
-	expect(ld.image).toHaveLength(3);
+	expect(ld.image).toBeUndefined();
+	await page.goto('/lasagne');
+	const real = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent())!);
+	expect(real.image).toHaveLength(3);
 });

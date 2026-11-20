@@ -86,7 +86,8 @@ async function build(file, slug, hash) {
 		['wide', WIDE_WIDTHS, width / height],
 		['card', CARD_WIDTHS, CARD_RATIO],
 	]) {
-		for (const w of widths.filter((x) => x <= width)) {
+		const usable = widths.filter((x) => x <= width);
+		for (const w of usable.length ? usable : [width]) {
 			const h = Math.round(w / ratio);
 			for (const [ext, encode] of Object.entries(FORMATS)) {
 				const name = `${kind}-${w}.${ext}`;
@@ -138,6 +139,11 @@ for (const f of files) {
 	}
 	console.log(`+ ${slug}  <-  ${f}`);
 	next[slug] = await build(path, slug, hash);
+}
+
+// Keep entries for photos that are not in this checkout's photos/ folder but were generated earlier.
+for (const [slug, entry] of Object.entries(manifest)) {
+	if (slug !== 'placeholder' && !next[slug] && existsSync(join(outRoot, slug))) next[slug] = entry;
 }
 
 // Wireframe placeholder for recipes without a photo: social crops only, rendered from scripts/placeholder.svg.

@@ -40,5 +40,5 @@ export function getPhoto(slug: string): RecipePhoto {
 
 export const srcset = (variants: Variant[]) => variants.map((v) => `${v.src} ${v.w}w`).join(', ');
 
-/** Largest JPEG of a set: the universal fallback for `<img src>`. */
+/** Mid-size variant used as the plain `<img src>` fallback (the srcset lets browsers pick better). */
 export const fallback = (variants: Variant[]) => variants[Math.min(variants.length - 1, 2)];
