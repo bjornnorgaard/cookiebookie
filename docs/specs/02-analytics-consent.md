@@ -1,6 +1,6 @@
 # 02 · Analytics notice and consent
 
-Status: **spec, awaiting answers** · Size: **M** (about 3-4 h, plus a short privacy page) · Depends on: nothing
+Status: **Done** · Size: **M** (about 3-4 h, plus a short privacy page) · Depends on: nothing
 
 ## Summary
 
@@ -105,3 +105,20 @@ else.
 2. Who is named as the data controller on `/privatliv` (you personally, "by Bear")? Contact e-mail to show?
 3. Auto-honour Global Privacy Control as "no"?
 4. Banner position: bottom-left card (recommended) or a slim full-width bar?
+
+## Implementation notes / deviations
+
+Decisions: keep Google Analytics (consent-gated); Global Privacy Control auto-counts as "no"; bottom-left card on
+desktop, bottom sheet on phone; 12-month re-ask.
+
+- Files: `src/lib/analytics.ts`, `src/lib/stores/consent.svelte.ts`, `ConsentNotice.svelte`, `ConsentButtons.svelte`,
+  `src/routes/privatliv/+page.svelte`, `tests/consent.spec.ts`; footer links and the notice mount in `+layout.svelte`.
+- GPC only applies while there is no stored choice: it is stored as "no" and the notice is not shown, but the visitor can
+  still say yes via "Privatlivsindstillinger" and that choice then sticks.
+- The notice calls `initConsent()` itself on mount (so returning visitors load analytics even before the layout finishes).
+- `Head.svelte` gained an optional `path` prop so `/privatliv` gets its own canonical URL. The sitemap lists it with priority 0.1.
+- Footer shows both "Privatliv" (page) and "Privatlivsindstillinger" (re-opens the card).
+- The after-choice "pill" is a short tick/cross "Gemt"; the aria-live message is a separate always-mounted status element.
+- Controller on `/privatliv` is "Bjørn Nørgaard (by Bear)" with the footer LinkedIn/GitHub links as contact; **no e-mail
+  address is shown yet** (open question 2). Legal wording not reviewed by a lawyer.
+- axe scan with the notice open is left to the quality-gates work (spec 03).
