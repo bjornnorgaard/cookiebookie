@@ -51,7 +51,7 @@
 					type="button"
 					class="awake-pill"
 					onclick={() => setKeepAwake(false)}
-					aria-label="Skærmen holdes tændt. Tryk for at slå fra"
+					aria-label="Skærm tændt. Tryk for at slå fra"
 					transition:fly={{ y: -8, duration: 300 }}
 				>
 					<span class="dot" class:on={wake.active} aria-hidden="true"></span>

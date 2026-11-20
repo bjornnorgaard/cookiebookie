@@ -28,7 +28,7 @@
 	<!-- Featured -->
 	<a
 		href="/{featured.slug}"
-		class="group reveal tile grid overflow-hidden rounded-3xl no-underline shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-2xl lg:grid-cols-[1.35fr_1fr]"
+		class="group reveal-move tile grid overflow-hidden rounded-3xl no-underline shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-2xl lg:grid-cols-[1.35fr_1fr]"
 		style="--i:3"
 	>
 		<RecipeImage
@@ -70,7 +70,7 @@
 						slug={recipe.slug}
 						alt={recipe.title}
 						sizes="(min-width: 1152px) 368px, (min-width: 640px) 45vw, 100vw"
-						priority={i < 2}
+						priority={false}
 						transitionName="hero-{recipe.slug}"
 					/>
 					<div class="flex flex-1 flex-col gap-2 p-5">
@@ -88,3 +88,17 @@
 		{/each}
 	</ul>
 </div>
+
+<style>
+	/* The featured card holds the LCP image: its entrance may slide but must never start from opacity 0. */
+	.reveal-move {
+		animation: rise-move 800ms var(--ease-out-expo) backwards;
+		animation-delay: calc(var(--i, 0) * 70ms);
+	}
+	@keyframes rise-move {
+		from { transform: translateY(18px); }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.reveal-move { animation: none; }
+	}
+</style>

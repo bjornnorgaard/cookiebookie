@@ -10,6 +10,7 @@ export default defineConfig({
 		preprocess: vitePreprocess(),
 		adapter: process.env.ADAPTER === "node" ? adapterNode() : adapterVercel({ runtime: 'nodejs24.x' }),
 		paths: { origin: "https://cookiebookie.dk" },
+		output: { bundleStrategy: "single" },
 		csp: {
 			mode: "auto",
 			directives: {

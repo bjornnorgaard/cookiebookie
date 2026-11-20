@@ -160,7 +160,7 @@
 					{@const done = completedSteps[i]}
 					<li
 						id={'step' + (i + 1)}
-						class="panel step scroll-mt-24 rounded-2xl transition duration-500 {done ? 'opacity-60' : 'hover:-translate-y-0.5'}"
+						class="panel step scroll-mt-24 rounded-2xl transition duration-500 {done ? 'opacity-85' : 'hover:-translate-y-0.5'}"
 						class:is-current={i === current}
 					>
 						<label for="step-check-{i}" class="flex cursor-pointer items-start gap-4 p-4 transition-opacity sm:p-5" class:line-through={done}>
@@ -173,7 +173,7 @@
 								style="--tick: var(--color-secondary-500)"
 							/>
 							<span class="flex min-w-0 flex-col gap-1">
-								<span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest {i === current ? 'text-secondary-700-300' : 'opacity-60'}">
+								<span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest {i === current ? 'text-secondary-950-300' : 'opacity-85'}">
 									Trin {i + 1}
 									{#if i === current}
 										<span class="badge preset-filled-secondary-500 normal-case tracking-normal" in:scale={{ start: 0.7, duration: 350 }}>

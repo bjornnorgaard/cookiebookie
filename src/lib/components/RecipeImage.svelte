@@ -21,7 +21,10 @@
 	const lead = $derived(fallback(base.jpg));
 
 	let img = $state<HTMLImageElement>();
-	let loaded = $state(false);
+	// Priority (LCP) images are server-rendered fully visible: waiting for hydration to fade them in
+	// cost over a second of render delay on phones. Lower images still fade in once loaded.
+	// svelte-ignore state_referenced_locally
+	let loaded = $state(priority);
 
 	// The image may finish loading before hydration, so onload alone is not enough.
 	$effect(() => {
