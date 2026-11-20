@@ -1,5 +1,9 @@
 <script lang="ts">
-	import type { Recipe } from '#lib/types/recipe.ts';
+	import type { Ingredient, Recipe } from '#lib/types/recipe.ts';
+	import PortionStepper from '#lib/components/PortionStepper.svelte';
+	import { formatAmount } from '#lib/scale.ts';
+	import { getPortions } from '#lib/stores/portions.svelte.ts';
+	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import { flip } from 'svelte/animate';
 	import { cubicInOut } from 'svelte/easing';
@@ -11,13 +15,16 @@
 	}
 
 	let { recipe }: Props = $props();
+	const portions = getPortions();
+	// Amount text per ingredient at the chosen portion count. Ticks stay keyed by name, never by amount.
+	const amountText = (ingredient: Ingredient) => formatAmount(ingredient, portions.scaling);
+	// Brief fly-in for changed numbers; skipped for reduced motion.
+	const reduced = () => typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 	const have = localStorageStore<string[]>('shopping_list', []);
 
-	// `order` lags behind `have` on purpose: ticked items drop to the bottom a moment later,
-	// so an accidental tap can be undone before things jump around.
+	// Ticked items move to the bottom straight away (the list animates the move).
 	const items = $derived(recipe.ingredients.map((ingredient, idx) => ({ ...ingredient, idx })));
 	let order = $state<number[]>([]);
-	let timer: ReturnType<typeof setTimeout> | undefined;
 
 	function sorted(): number[] {
 		const owned = (name: string) => $have.includes(name);
@@ -27,15 +34,13 @@
 	onMount(() => {
 		order = sorted();
 		return () => {
-			clearTimeout(timer);
 			clearTimeout(undoTimer);
 		};
 	});
 
 	function toggle(name: string) {
 		have.update((list) => (list.includes(name) ? list.filter((i) => i !== name) : [...list, name]));
-		clearTimeout(timer);
-		timer = setTimeout(() => (order = sorted()), 900);
+		order = sorted();
 	}
 
 	// Reset only this recipe's ingredients (the store is shared across recipes), with a short undo window.
@@ -47,7 +52,6 @@
 		const cleared = names.filter((n) => $have.includes(n));
 		if (!cleared.length) return;
 		have.update((list) => list.filter((n) => !names.includes(n)));
-		clearTimeout(timer);
 		order = sorted();
 		undo = cleared;
 		clearTimeout(undoTimer);
@@ -68,6 +72,8 @@
 	);
 	const doneCount = $derived(items.filter((i) => $have.includes(i.name)).length);
 </script>
+
+<PortionStepper />
 
 <div class="flex items-center justify-between gap-3 px-5 pt-4 text-sm">
 	<span class="opacity-70">Sæt kryds ved det, du allerede har</span>
@@ -91,8 +97,13 @@
 				class:line-through={checked}
 							>
 				<input id="ing-{i.idx}" type="checkbox" class="tick" {checked} onchange={() => toggle(i.name)} />
-				<span class="grow transition-opacity duration-300" class:opacity-50={checked}>
-					<span class="font-semibold">{i.name}</span>{#if i.amount}<span class="opacity-75">, {i.amount}</span>{/if}
+				<span class="flex grow items-baseline justify-between gap-3 transition-opacity duration-300" class:opacity-90={checked}>
+					<span class="font-semibold">{i.name}</span>{#if amountText(i)}{#key amountText(i)}<span
+								class="amount whitespace-nowrap text-right tabular-nums opacity-75"
+								class:flash={portions.changed}
+								data-amount
+								in:fly={{ y: reduced() ? 0 : 8, duration: reduced() ? 0 : 220 }}><span class="sr-only">,&nbsp;</span>{amountText(i)}</span
+							>{/key}{/if}
 				</span>
 			</label>
 		</li>
@@ -100,12 +111,26 @@
 </ul>
 
 <style>
+	/* Soft flash on amounts that just changed. The keyed span is recreated on every change, so it replays. */
+	.amount.flash {
+		animation: amount-flash 1100ms ease-out;
+		border-radius: 0.375rem;
+	}
+	@keyframes amount-flash {
+		from {
+			background: color-mix(in oklab, var(--color-primary-500) 35%, transparent);
+		}
+		to {
+			background: transparent;
+		}
+	}
+
 	.reset-btn {
 		font-size: 0.8125rem;
 		font-weight: 600;
 		padding: 0.25rem 0.6rem;
 		border-radius: 9999px;
-		color: var(--color-primary-700-300);
+		color: light-dark(var(--color-primary-950), var(--color-primary-300));
 		background: transparent;
 		cursor: pointer;
 		transition: background-color 200ms;

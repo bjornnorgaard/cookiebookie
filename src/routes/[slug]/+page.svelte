@@ -6,65 +6,65 @@
 	import { Progress } from '@skeletonlabs/skeleton-svelte';
 	import Head from '#lib/components/Head.svelte';
 	import RecipeImage from '#lib/components/RecipeImage.svelte';
+	import StepTimers from '#lib/components/StepTimers.svelte';
 	import ShoppingList from '#lib/components/ShoppingList.svelte';
+	import ShareActions from '#lib/components/ShareActions.svelte';
+	import PrintSheet from '#lib/components/PrintSheet.svelte';
 	import { formatDuration, isoDate, longDate } from '#lib/format.ts';
+	import { renderStepText } from '#lib/scale.ts';
+	import { Portions, setPortions } from '#lib/stores/portions.svelte.ts';
+	import { page } from '$app/state';
+	import { pushState } from '$app/navigation';
+	import { Steps, setSteps } from '#lib/stores/steps.svelte.ts';
 
 	let { data } = $props();
 	const recipe = $derived(data.recipe);
+	const portions = setPortions(new Portions(() => recipe));
 
 	onMount(() => {
 		setViewingRecipe(true);
 		return () => setViewingRecipe(false);
 	});
 
-	let completedSteps: boolean[] = $state([]);
-	const doneCount = $derived(completedSteps.filter(Boolean).length);
-	// First unchecked step = what to do next.
-	const current = $derived(Array.from({ length: recipe.steps.length }, (_, i) => completedSteps[i]).findIndex((c) => !c));
-	const allDone = $derived(doneCount === recipe.steps.length && doneCount > 0);
-
-	// Reset checks when navigating from one recipe to another.
-	$effect(() => {
-		recipe.slug;
-		rippleTimers.forEach(clearTimeout);
-		completedSteps = [];
-	});
-
-	// Ticking a step means everything before it is done; unticking means everything after it is not.
-	// The change ripples outwards one step at a time so the user sees what happened.
-	let rippleTimers: ReturnType<typeof setTimeout>[] = [];
+	const steps = setSteps(new Steps(() => recipe));
+	const doneCount = $derived(steps.doneCount);
+	const current = $derived(steps.current);
+	const allDone = $derived(steps.allDone);
 
 	function setStep(i: number, checked: boolean) {
-		rippleTimers.forEach(clearTimeout);
-		rippleTimers = [];
-		completedSteps[i] = checked;
-
-		const targets = checked
-			? Array.from({ length: i }, (_, k) => i - 1 - k) // i-1, i-2, ... 0
-			: Array.from({ length: recipe.steps.length - i - 1 }, (_, k) => i + 1 + k); // i+1 ... last
-		targets.forEach((idx, n) => {
-			if (!!completedSteps[idx] === checked) return;
-			rippleTimers.push(setTimeout(() => (completedSteps[idx] = checked), (n + 1) * 70));
-		});
-
+		steps.set(i, checked);
 		nudge(i);
 	}
 
 	// After ticking a step, bring the next one into view if it is below the fold.
 	function nudge(i: number) {
 		const next = document.getElementById(`step${i + 2}`);
-		if (!next || !completedSteps[i]) return;
+		if (!next || !steps.done[i]) return;
 		const rect = next.getBoundingClientRect();
 		if (rect.bottom > window.innerHeight - 24) {
 			next.scrollIntoView({ behavior: 'smooth', block: 'center' });
 		}
 	}
 
+	// Cook mode is code-split: the component is fetched the first time it is wanted. Open state lives in the
+	// shallow history entry (`#cook`), so the browser's Back button closes it.
+	let CookMode: typeof import('#lib/components/CookMode.svelte').default | undefined = $state();
+	const cookOpen = $derived(!!page.state.cook);
+
+	async function startCook() {
+		CookMode ??= (await import('#lib/components/CookMode.svelte')).default;
+		pushState('#cook', { cook: true });
+	}
+
+	function closeCook() {
+		if (page.state.cook) history.back();
+	}
+
 	const facts = $derived([
 		{ label: 'Forberedelse', value: formatDuration(recipe.prepTime) },
 		{ label: 'Tilberedning', value: formatDuration(recipe.cookTime) },
 		{ label: 'I alt', value: formatDuration(recipe.totalTime) },
-		{ label: 'Portioner', value: String(recipe.yield) }
+		{ label: 'Portioner', value: String(portions.count) }
 	]);
 </script>
 
@@ -106,7 +106,7 @@
 		transitionName="hero-{recipe.slug}"
 	/>
 
-	<dl class="reveal not-prose mx-auto -mt-8 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl bg-surface-300-700 shadow-xl ring-1 ring-surface-300-700 sm:grid-cols-4 relative" style="--i:4">
+	<dl class="reveal not-prose mx-auto -mt-8 grid w-[calc(100%-2rem)] max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-2xl bg-surface-300-700 shadow-xl ring-1 ring-surface-300-700 sm:grid-cols-4 relative" style="--i:4">
 		{#each facts as f}
 			<div class="bg-surface-50-950 px-4 py-4 text-center">
 				<dt class="text-xs uppercase tracking-wider opacity-60">{f.label}</dt>
@@ -115,9 +115,20 @@
 		{/each}
 	</dl>
 
+	<div class="print-host">
+		<ShareActions {recipe} />
+		<PrintSheet {recipe} />
+	</div>
+
 	<div class="prose mx-auto mt-10 max-w-3xl dark:prose-invert sm:prose-lg">
 		<p class="lead text-xl! font-medium text-inherit!">{recipe.shortDesc}</p>
 		<p class="text-inherit!">{recipe.longDesc}</p>
+	</div>
+
+	<div class="mt-10 text-center">
+		<button type="button" class="btn btn-lg preset-filled-primary-500" data-testid="start-cook" onclick={startCook}>
+			<span aria-hidden="true">🍳</span> Start madlavning
+		</button>
 	</div>
 
 	<div class="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
@@ -141,7 +152,6 @@
 
 			<div class="mt-5"><KeepAwake /></div>
 
-			<p class="mt-5 text-sm opacity-70">Tryk på et trin, når du er færdig med det</p>
 
 			<div class="mt-4">
 				<Progress value={doneCount} max={recipe.steps.length}>
@@ -157,10 +167,10 @@
 
 			<ol class="m-0 mt-5 flex list-none flex-col gap-3 p-0" style="--panel-accent: var(--color-secondary-500)">
 				{#each recipe.steps as s, i}
-					{@const done = completedSteps[i]}
+					{@const done = steps.done[i]}
 					<li
 						id={'step' + (i + 1)}
-						class="panel step scroll-mt-24 rounded-2xl transition duration-500 {done ? 'opacity-60' : 'hover:-translate-y-0.5'}"
+						class="panel step scroll-mt-24 rounded-2xl transition duration-500 {done ? 'opacity-85' : 'hover:-translate-y-0.5'}"
 						class:is-current={i === current}
 					>
 						<label for="step-check-{i}" class="flex cursor-pointer items-start gap-4 p-4 transition-opacity sm:p-5" class:line-through={done}>
@@ -173,7 +183,7 @@
 								style="--tick: var(--color-secondary-500)"
 							/>
 							<span class="flex min-w-0 flex-col gap-1">
-								<span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest {i === current ? 'text-secondary-700-300' : 'opacity-60'}">
+								<span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest {i === current ? 'text-secondary-950-300' : 'opacity-85'}">
 									Trin {i + 1}
 									{#if i === current}
 										<span class="badge preset-filled-secondary-500 normal-case tracking-normal" in:scale={{ start: 0.7, duration: 350 }}>
@@ -182,9 +192,12 @@
 									{/if}
 								</span>
 								<span class="font-display text-lg font-semibold leading-snug">{s.title}</span>
-								<span class="font-normal opacity-85">{s.desc}</span>
+								<span class="font-normal opacity-85">{renderStepText(s.desc, recipe.ingredients, portions.scaling)}</span>
 							</span>
 						</label>
+						{#if s.timers?.length}
+							<StepTimers {recipe} stepIndex={i} stepTitle={s.title} timers={s.timers} />
+						{/if}
 					</li>
 				{/each}
 			</ol>
@@ -205,3 +218,7 @@
 		<a href="/" class="btn preset-tonal no-underline transition duration-300 hover:-translate-x-1">← Flere opskrifter</a>
 	</div>
 </article>
+
+{#if CookMode && cookOpen}
+	<CookMode {recipe} onclose={closeCook} />
+{/if}

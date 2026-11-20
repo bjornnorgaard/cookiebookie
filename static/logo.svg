@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>Cookie Bookie</title>
+  <rect width="512" height="512" fill="#fdf9ef"/>
+  <g transform="translate(56 56) scale(3.3333)" fill="none">
+    <path d="M60 8a52 52 0 1 0 52 52 18 18 0 0 1-20-22 18 18 0 0 1-22-20A52 52 0 0 0 60 8Z" fill="#ee9b32" stroke="#b55912" stroke-width="4" stroke-linejoin="round"/>
+    <g fill="#7e2e0b">
+      <circle cx="40" cy="42" r="6"/>
+      <circle cx="72" cy="30" r="4.5"/>
+      <circle cx="30" cy="72" r="5"/>
+      <circle cx="62" cy="64" r="7"/>
+      <circle cx="86" cy="84" r="5.5"/>
+      <circle cx="50" cy="92" r="4.5"/>
+    </g>
+  </g>
+</svg>

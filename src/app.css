@@ -22,6 +22,16 @@
 	--color-surface-300: oklch(89.5% 0.055 76);
 }
 
+/* Light/dark: <html data-mode> is set by the inline script in app.html (and src/lib/stores/theme.svelte.ts).
+   It drives color-scheme, which in turn drives every light-dark() value. No data-mode (no JS) follows the device. */
+html { color-scheme: light dark; }
+html[data-mode='light'] { color-scheme: light; }
+html[data-mode='dark'] { color-scheme: dark; }
+@custom-variant dark {
+	&:where([data-mode='dark'], [data-mode='dark'] *) { @slot; }
+	@media (prefers-color-scheme: dark) { &:where(:root:not([data-mode]), :root:not([data-mode]) *) { @slot; } }
+}
+
 html {
 	scroll-behavior: smooth;
 	-webkit-text-size-adjust: 100%;
@@ -39,11 +49,10 @@ body {
 		radial-gradient(50rem 30rem at -10% 10%, color-mix(in oklab, var(--color-secondary-500) var(--glow-b, 10%), transparent), transparent);
 	background-repeat: no-repeat;
 }
-@media (prefers-color-scheme: light) {
-	body { --glow-a: 30%; --glow-b: 18%; }
-}
+body { --glow-a: 30%; --glow-b: 18%; }
+html[data-mode='dark'] body { --glow-a: 26%; --glow-b: 14%; }
 @media (prefers-color-scheme: dark) {
-	body { --glow-a: 26%; --glow-b: 14%; }
+	html:not([data-mode]) body { --glow-a: 26%; --glow-b: 14%; }
 }
 
 /* Recipe tiles: bright warm paper in light mode, the quiet tonal look in dark mode. */
@@ -197,6 +206,12 @@ p { text-wrap: pretty; }
 }
 
 .pop-in { animation: pop 500ms var(--ease-out-expo) both; }
+
+/* Theme switch: a circular reveal driven from theme.svelte.ts replaces the page cross-fade. */
+html.theme-vt::view-transition-old(root),
+html.theme-vt::view-transition-new(root) { animation: none; }
+html.theme-vt::view-transition-old(root) { z-index: 0; }
+html.theme-vt::view-transition-new(root) { z-index: 1; }
 
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }

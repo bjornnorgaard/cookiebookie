@@ -1,8 +1,16 @@
 <script lang="ts">
 	import '../app.css';
+	import '../print.css';
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { onNavigate } from '$app/navigation';
+	import TimerDock from '#lib/components/TimerDock.svelte';
+	import { timerState } from '#lib/stores/timers.svelte.ts';
+	import ConsentNotice from '#lib/components/ConsentNotice.svelte';
+	import { openConsent } from '#lib/stores/consent.svelte.ts';
+	import ThemeToggle from '#lib/components/ThemeToggle.svelte';
+	import ThemeFollowDevice from '#lib/components/ThemeFollowDevice.svelte';
+	import { initTheme } from '#lib/stores/theme.svelte.ts';
 	import { initWake, setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 
 	interface Props {
@@ -18,6 +26,7 @@
 	];
 
 	onMount(initWake);
+	onMount(initTheme);
 
 	// Cross-fade pages and morph shared elements (recipe photo + title) with the View Transitions API.
 	onNavigate((navigation) => {
@@ -51,7 +60,7 @@
 					type="button"
 					class="awake-pill"
 					onclick={() => setKeepAwake(false)}
-					aria-label="Skærmen holdes tændt. Tryk for at slå fra"
+					aria-label="Skærm tændt. Tryk for at slå fra"
 					transition:fly={{ y: -8, duration: 300 }}
 				>
 					<span class="dot" class:on={wake.active} aria-hidden="true"></span>
@@ -59,10 +68,11 @@
 					<span aria-hidden="true" class="opacity-60">✕</span>
 				</button>
 			{/if}
-			<p class="m-0 hidden items-center gap-3 font-display text-base italic text-primary-700-300 sm:flex">
+			<p class="m-0 hidden items-center gap-3 font-display text-base italic text-primary-800-200 sm:flex">
 				<span class="h-px w-8 bg-primary-500/60" aria-hidden="true"></span>
 				Rimelige opskrifter, uden reklamer
 			</p>
+			<ThemeToggle />
 		</div>
 	</nav>
 </header>
@@ -71,12 +81,15 @@
 	{@render children?.()}
 </main>
 
-<footer class="mt-24 border-t border-surface-300-700 pb-[max(2rem,env(safe-area-inset-bottom))] pt-10">
+<footer class="mt-24 border-t {timerState.list.length ? 'mb-56' : ''} border-surface-300-700 pb-[max(2rem,env(safe-area-inset-bottom))] pt-10">
 	<div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 text-center sm:flex-row sm:px-6 sm:text-left">
 		<p class="text-sm opacity-80">
 			<span class="font-display text-base font-semibold">Cookie Bookie</span><br />
-			Opskrifter by Bear · Rimelige opskrifter siden 2023
+			Opskrifter by Bear · Rimelige opskrifter siden 2023<br />
+			<a href="/privatliv" class="underline underline-offset-2">Privatliv</a> ·
+			<button type="button" class="underline underline-offset-2" onclick={openConsent}>Privatlivsindstillinger</button>
 		</p>
+		<ThemeFollowDevice />
 		<div class="flex items-center gap-2">
 			{#each footerLinks as link}
 				<a
@@ -92,6 +105,9 @@
 		</div>
 	</div>
 </footer>
+
+<ConsentNotice />
+<TimerDock />
 
 <style>
 	.awake-pill {

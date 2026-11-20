@@ -43,11 +43,19 @@ og `npm run build`. Browser-tests kører mod Node-adapterens produktionsserver:
 
 ```sh
 npx playwright install chromium
-npm test
-npm run audit:seo
+npm test                      # funktionstests, axe-tilgængelighed (tests/a11y.spec.ts) og billedbudgetter
+npm run audit:lighthouse      # Lighthouse CI, mobil og desktop (kræver Chrome)
+npm run images:check          # størrelsesbudgetter for de genererede billeder
 ```
 
-SEO-audit kræver Chrome. Hvis port 4173 er optaget, kan du vælge en anden med
-`LHCI_PORT=4175 npm run audit:seo`.
+`TEST_PORT=4202 npm test` vælger en anden port til testserveren. Lighthouse bygger selv med Node-adapteren og
+kører mod `/`, `/lasagne`, `/tomatsalat` og en 404-side; hvis port 4173 er optaget, vælg en anden med
+`LHCI_PORT=4211 npm run audit:lighthouse`. `LHCI_RUNS=1 npm run audit:lighthouse -- --no-build` giver en hurtig, mere
+støjende kørsel på et eksisterende build. `npm run audit:seo` er et alias. Grænseværdierne står i
+[lighthouserc.cjs](lighthouserc.cjs) og [budget.json](budget.json), begrundelsen i
+[docs/specs/03-quality-gates.md](docs/specs/03-quality-gates.md).
+
+Nye UI-tilstande (samtykke, timere, kogetilstand, deling) tilføjes som en post i `STATES` i `tests/a11y.spec.ts`, så
+axe scanner dem i lys og mørk på telefon og desktop.
 
 Se [dependency review](docs/dependency-review.md) for opgraderinger og kompatibilitetsbegrænsninger.

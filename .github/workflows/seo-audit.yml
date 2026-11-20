@@ -1,4 +1,4 @@
-name: SEO audit
+name: Lighthouse audit
 
 on:
   push:
@@ -20,16 +20,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build site
-        run: npm run build
-
-      - name: Run Lighthouse SEO audit
-        run: npm run audit:seo
+      # The audit script builds the production site (Node adapter) itself, then audits it on every push and PR.
+      - name: Run Lighthouse audit (mobile and desktop)
+        run: npm run audit:lighthouse
 
       - name: Upload Lighthouse reports
         if: always()
         uses: actions/upload-artifact@v7
         with:
-          name: lighthouse-seo-report
+          name: lighthouse-report
           path: .lighthouseci/
           retention-days: 14

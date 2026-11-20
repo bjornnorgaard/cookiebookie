@@ -1,0 +1,613 @@
+{
+ "boller": {
+  "file": "boller.ts",
+  "yield": 4,
+  "ingredients": [
+   [
+    "Mel",
+    "1200 gram"
+   ],
+   [
+    "Mælk",
+    "½ liter"
+   ],
+   [
+    "Gær",
+    "90 gram"
+   ],
+   [
+    "Sukker",
+    "48 gram"
+   ],
+   [
+    "Salt",
+    "3 tsk"
+   ],
+   [
+    "Fedtstof",
+    "120 gram"
+   ]
+  ],
+  "steps": [
+   "Ingen ide",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf",
+   "asdf"
+  ]
+ },
+ "brod": {
+  "file": "brod.ts",
+  "yield": 4,
+  "ingredients": [
+   [
+    "Hvedemel",
+    "400g"
+   ],
+   [
+    "Salt",
+    "10g"
+   ],
+   [
+    "Tørgær",
+    "½ pakke"
+   ],
+   [
+    "Vand",
+    "300g"
+   ]
+  ],
+  "steps": [
+   "Find din største stål, som forhåbentligt har et låg - ellers bruger du et viskestykke.",
+   "Der er ikke så meget andet at sige. Gær, salt, sukker og tempereret vand. Brug 10 sekunder og værdsæt at du næsten er færdig.",
+   "Bland det hele indtil det hænger sammen og der ikke meget mel på siderne af skålen. Tager omkring to minutter.",
+   "Smid låg på. Det skal hvile i 12 til 24 timer, eller indtil det er fordoblet i størrelse. Tak for i dag - vi ses i morgen.",
+   "Vores baby er nu (forhåbentligt) vokset til mindst dobbelt størrelse og har pruttet hele natten - hvilket gerne skulle kunne duftes.",
+   "Hæld lidt olivenolie ned i kanten af skålen (indersiden) og lidt på bordet. Så arbejdes dejen forsigtigt ud af skålen. Den skal ikke æltes, bare lige foldes. Gør det nogle gange indtil den ligner en pæn dej med en stram overflade. Nu skal den hvile under et viskestykke eller en skål.",
+   "Du tænder ovnen på alt hvad den trække og forvarmer din støbejernsfætter. Vi mødes her igen om ~30 min.",
+   "Sænk den så forsigtigt ned i din støbejernsgryde (pas nu på pølserne) og sprøjt den gavmildt til med vand. Sæt låg på og efterlad i ovnen i ca. 30 minutter før næste inspektion.",
+   "Kig til brødet. Hvis den ikke er færdig, sættes du den tilbage i ovnen. Hvis du er i tvivl spørger du en voksen.",
+   "I mindst en time før du fucker med brødet. Alt er spildt hvis du rør den før - det kan ikke diskuteres!",
+   "Når du har ventet i en time, må du skære den over på midten og sende et billede til mor - det er vigtigt. Husk tandsmør, ost i tykke skiver og lidt salt!"
+  ]
+ },
+ "frittata": {
+  "file": "frittata.ts",
+  "yield": 2,
+  "ingredients": [
+   [
+    "Kartofler",
+    "500 g"
+   ],
+   [
+    "Squash",
+    "1 stk"
+   ],
+   [
+    "Æg",
+    "8 stk"
+   ],
+   [
+    "Rødløg",
+    "1 stk"
+   ],
+   [
+    "Cherrytomater",
+    "250 g"
+   ],
+   [
+    "Mozzarellakugler",
+    "Ja"
+   ],
+   [
+    "Creme fraiche",
+    "250 ml"
+   ],
+   [
+    "Spinat",
+    "1 pose"
+   ]
+  ],
+  "steps": [
+   ""
+  ]
+ },
+ "lasagne": {
+  "file": "lasagne.ts",
+  "yield": 8,
+  "ingredients": [
+   [
+    "Løg",
+    "3 stk."
+   ],
+   [
+    "Hvidløg",
+    "1 stk."
+   ],
+   [
+    "Olivenolie",
+    "2 spsk."
+   ],
+   [
+    "Oregano",
+    "2 spsk."
+   ],
+   [
+    "Gulerødder",
+    "4 stk."
+   ],
+   [
+    "Bladselleri",
+    "5 stænger"
+   ],
+   [
+    "Squash (revet)",
+    "1 stk."
+   ],
+   [
+    "Aubergine (revet)",
+    "1 stk."
+   ],
+   [
+    "Tomatpuré",
+    "1 dl"
+   ],
+   [
+    "Hakkedetomater",
+    "3 dåser"
+   ],
+   [
+    "Rødvin",
+    "1 dl"
+   ],
+   [
+    "Hakketoksekød",
+    "500g"
+   ],
+   [
+    "Timian",
+    "1 tsk"
+   ],
+   [
+    "Basilikum",
+    "1tsk"
+   ],
+   [
+    "Oksebouillon",
+    "2 dl"
+   ],
+   [
+    "Ost",
+    "400g"
+   ],
+   [
+    "Rasp",
+    "1 pose"
+   ],
+   [
+    "Lasagneplader",
+    "500g"
+   ],
+   [
+    "Monaysauce",
+    "1000ml"
+   ],
+   [
+    "Peber og salt",
+    ""
+   ]
+  ],
+  "steps": [
+   "Først skal vi pille og hakke alle grønsagerne. Start med løg og hvidløg. Det skal være fint, og steges i lidt olivenolie. Kun let på en pande uden at det tager farve!",
+   "Tilsæt kødet og lad det stege med, til alt kødet har taget farve. Hæld rødvin ved og lad det boble med nogle minutter.",
+   "Tilsæt hakket tomat og oksefond. Rør det hele sammen. Bind dine krydderurterne sammen (du har nu lavet en bouquet garni) og læg dem ned i gryden.",
+   "Lad det hele simre til det det ikke er for flydende, og egner sig til lasagne (45-60 minutter).",
+   "Smag til med salt og peber - og evt. lidt chili hvis bedstemor ikke spiser med.",
+   "Du kan med fordel tilføje mørk balsamico eller en anden god eddike, hvis saucen mangler syre."
+  ]
+ },
+ "camillas-kikgryde": {
+  "file": "marry-me-chickpeas.ts",
+  "yield": 4,
+  "ingredients": [
+   [
+    "Løg",
+    "4 stk"
+   ],
+   [
+    "Hvidløg",
+    "4 fed"
+   ],
+   [
+    "Kikærter",
+    "2 dåser"
+   ],
+   [
+    "Kokosmælk",
+    "2 dåser"
+   ],
+   [
+    "Tomatpuré",
+    "1 dåse"
+   ],
+   [
+    "Vand",
+    "1,5 dl"
+   ],
+   [
+    "Soltørrede tomater",
+    "1/2 glas"
+   ],
+   [
+    "Pasta",
+    "400 g"
+   ],
+   [
+    "Frisk Basilikum",
+    ""
+   ],
+   [
+    "Chiliflager",
+    "1 tsk"
+   ],
+   [
+    "Citronsaft",
+    "2 spsk"
+   ],
+   [
+    "Soya",
+    "1 spsk"
+   ],
+   [
+    "Timian",
+    "1 tsk"
+   ],
+   [
+    "Oregano",
+    "1 tsk"
+   ],
+   [
+    "Boullionterning",
+    "2 stk"
+   ],
+   [
+    "Salt og peber",
+    ""
+   ]
+  ],
+  "steps": [
+   "Hak og steg løg, hvidløg og alle krydderier og lad det stege til det dufter himmmelsk. Tilføj derefter de soltørrede tomater og tomoatpuré og steg i yderligere 3 minutter.",
+   "Tilføj vand, citronsaft, soya, boullionterninger og kokosmælk. Lad det simre i 10 minutter.",
+   "Tilføj kikærterne og lad det simre i minimum 10 mintter mere og gerne helt op til 45-60 minutter. Når du er klar til at spise, så husk også at koge pasta. Velbekomme!"
+  ]
+ },
+ "rasmus-klump-pandekager": {
+  "file": "rasmus-klump-pandekager.ts",
+  "yield": 4,
+  "ingredients": [
+   [
+    "Hvedemel",
+    "200 gram"
+   ],
+   [
+    "Mælk",
+    "½ liter"
+   ],
+   [
+    "Æg",
+    "3 stk."
+   ],
+   [
+    "Sukker",
+    "1 spsk."
+   ],
+   [
+    "Salt",
+    "1 teske"
+   ],
+   [
+    "Smør",
+    ""
+   ]
+  ],
+  "steps": [
+   "Bland det hele i en skål og pisk det sammen - med undtagelse af smøret.",
+   "Middel varme og en smule smør. Nu går vi på scenen! Find en behagelig plads og sæt din yndlingsplade på - her står du de næste 30 minutter.",
+   "Tag nu et øjeblik, beundr dit hårde arbejde, som nu står perfekt stablet på en tallerken. Når alle om bordet har tilkendegivet deres værdsættelse, går I til fadet!"
+  ]
+ },
+ "risotto": {
+  "file": "risotto.ts",
+  "yield": 2,
+  "ingredients": [
+   [
+    "Grødris",
+    "200 gram"
+   ],
+   [
+    "Hvidvin",
+    "2 dl"
+   ],
+   [
+    "Ost",
+    "100 gram"
+   ],
+   [
+    "Løg",
+    "1-2 stk"
+   ],
+   [
+    "Smør",
+    "75 gram"
+   ],
+   [
+    "Bouillon",
+    "1 liter"
+   ],
+   [
+    "Champignon",
+    "250 gram"
+   ],
+   [
+    "Ærter",
+    "100 gram"
+   ],
+   [
+    "Hvidløg",
+    "1/2 hvidløg"
+   ],
+   [
+    "Olivenolie",
+    ""
+   ],
+   [
+    "Timian",
+    ""
+   ],
+   [
+    "Balsamicoeddike",
+    ""
+   ],
+   [
+    "Citronsaft",
+    ""
+   ],
+   [
+    "Peber og salt",
+    ""
+   ]
+  ],
+  "steps": [
+   "Hak løg og hvidløg - riv osten nu, hvis du laver det alene. Lav lige under en liter bouillon og sæt det ved komfuret.",
+   "Dæk bunden af din pande med olivenolie og giv løgene noget kærlighed. Når løgene er halvvejs, smides hvidløgene i - så undgår vi at brænde dem.",
+   "Når løgene spiller, tilføjes ris og timian. Risene skal præcis nå at blive lidt solbrune. Når det er blevet for sent til after-sun, skal hvidvinen i. Vi forsætter når den næsten er kogt væk.",
+   "Hemmeligheden er, kun at hælde mere bouillonvand i, når det begynder at sidde fast på panden. Start med den første tredjedel af bouillonvandet, og sørg for at skrabe bunden ren efter hver tankning. Gentag løbende med gradvist mere konservativ mængde. Smag på det og gå videre lige før risene er perfekte.",
+   "Jeg glemmer ofte helt at købe grønsager. Hvis du har været så forudseende, kan de enten steges lidt på en pande eller bare hakkes og smides i. Du er chefen.",
+   "Risene spiller, men fuglene synger ikke endnu. Tag grøden af varmen og rør smøret i. Gentag med osten - nu synger de små kræ.",
+   "Nu smager vi endeligt til. Tilføj langsomt citronsaft og balsamicoeddike - det skal ikke smage syret, men bare have et pift. Den mangler nok også peber, men træd varsomt med salten - ost og smør indeholder en del."
+  ]
+ },
+ "ristaffel": {
+  "file": "ristaffel.ts",
+  "yield": 4,
+  "ingredients": [
+   [
+    "Kylling",
+    "500 gram"
+   ],
+   [
+    "Creme Fraiche",
+    "0.5 liter"
+   ],
+   [
+    "Forårsløg",
+    "et bundt"
+   ],
+   [
+    "Kokosmælk (øko)",
+    "to dåser"
+   ],
+   [
+    "Bananer",
+    "mindst en pr. pers"
+   ],
+   [
+    "Mango Chutney",
+    ""
+   ],
+   [
+    "Et stort æble",
+    ""
+   ],
+   [
+    "Løg",
+    "1-100 stk"
+   ],
+   [
+    "Peanuts",
+    ""
+   ],
+   [
+    "Karry",
+    ""
+   ],
+   [
+    "Ris",
+    ""
+   ]
+  ],
+  "steps": [
+   "Smid noget fedtstof i en stor gryde og brus karryen af (mere karry end du tror).",
+   "Hak løg og smid dem i når karryen er blevet lidt mørk.",
+   "Hak æblet i stykker på cirka en kubikcentimeter (meget vigtigt) - og smid dem i når løgene er gule.",
+   "Kokosmælken hældes i. IKKE det hele, bare nok til at kyllingen har noget at koge i.",
+   "Kyllingen skæres i gode stykker og puttes i når kokosmælken ikke klumper mere. Smid kokosmælk i til konsistensen er smuk.",
+   "Når kyllingen ikke længere er rå, hældes creme fraisen i.",
+   "Hak forårsløgene i stykker og smid dem i. Husk at gemme nogle til toppings!",
+   "Nu mangler vi bare at smage det til med salt og peber. Cirka 5-10 min efter forårsløgene."
+  ]
+ },
+ "sorens-pastaret": {
+  "file": "sorens-pastaret.ts",
+  "yield": 2,
+  "ingredients": [
+   [
+    "Fyldt pasta",
+    "400g"
+   ],
+   [
+    "Hakkede tomater",
+    "2-3 dåser"
+   ],
+   [
+    "Løg",
+    "2-20 stk"
+   ],
+   [
+    "Fløde",
+    "1/4 liter fløde"
+   ],
+   [
+    "Havarti ost",
+    "200g"
+   ],
+   [
+    "Bacon",
+    "~200g"
+   ],
+   [
+    "Grønsager",
+    ""
+   ],
+   [
+    "Salt og peber",
+    ""
+   ]
+  ],
+  "steps": [
+   "Hak grønsager og riv osten. Bland grønsager og pasta. Gem osten til sidst. Hæld tomaterne i så det kun lige dækker.",
+   "Osten fordeles nøjsomt ovenpå. Når osten er fordelt, smider du fingerne i fadet og begynder skødesløst at blande det hele.",
+   "Det skal næppe have mindre end 30 minutter, lander normalt et sted omkring 45-60 min. Kig på den hver 20. minut og tænk dig om.",
+   "Nu skal den bare have til du ikke tør mere. I stræberversionen kan man også røre i den under inspektionerne."
+  ]
+ },
+ "svinemorbrad": {
+  "file": "spansk-svinemorbrad.ts",
+  "yield": 4,
+  "ingredients": [
+   [
+    "Svinemørbrad",
+    "1 stk."
+   ],
+   [
+    "Butterdej",
+    "1 rulle"
+   ],
+   [
+    "Ost",
+    "120 gram"
+   ],
+   [
+    "Løg",
+    "2 stk."
+   ],
+   [
+    "Svampe",
+    "250 gram"
+   ],
+   [
+    "Jamon iberico",
+    "100 gram"
+   ],
+   [
+    "Dijonsennep",
+    "2-3 spsk."
+   ],
+   [
+    "Æg",
+    "1 (kan undværes)"
+   ],
+   [
+    "Øl",
+    "2 stk."
+   ],
+   [
+    "Olivenolie",
+    ""
+   ],
+   [
+    "Timian",
+    ""
+   ],
+   [
+    "Salt og peber",
+    ""
+   ]
+  ],
+  "steps": [
+   "Put øl i køleskabet. Hak løg og svampe i ca. 0,732 cm tykke skiver - riv osten.",
+   "Brun svinemørbrad på en pande med olie på alle sider ved høj varme. Tag den af panden, krydr den med salt og peber og smør den nænsomt i sennep.",
+   "Giv panden mere olie og steg løgene til de er klare, sæt dem til side og steg derefter svampene.",
+   "Nu kommer det svære. Placer film på køkkenbordet og læg nøjsomt jamon iberico ud så der ligger skiver side om side og fylder en firkant så bred som dit svin. Fordel herefter svampe og løg ensartet på firkanten. Til sidst drysses ost jævnt udover.",
+   "Anbring svinet på firkanten og beundr dit arbejde hidtil, indse derefter at du har for meget fyld og at den næppe kan lukke om svinet. Vær ligeglad og rul herligheden så godt du kan om svinet og læg det i køleskabet med film og det hele.",
+   "Sæt dig ned og drik en kold øl, derefter tænder du ovnen 200 grader almindelig ovn (lad et ovnfast fad blive i ovnen). Tag butterdej ud af køleskabet. Drik en øl mere, mens du pisker et æg.",
+   "Rul butterdej ud. Tag dit svøbte svin ud af ovnen og placer svinet midtpå. Fjern filmen med en rullende bevægelse og rul derefter butterdej om svin og luk den ved at pensle med lidt pisket æg og presse dejen sammen.",
+   "Tag det ovnfaste fad ud og placer dit svøbte svin i fadet med lukningen nedad. Pensl herefter butterdejen med det resterende piskede æg og put det hele tilbage i ovnen.",
+   "Efter hvad der føles som uendligheder, der nok svarer til 30 min. burde svinet være klar. Dette kommer dog an på tykkelsen, stjernetegn og alt muligt brug derfor et stegetermometer, den skal være mindst 60 grader indeni og butterdejen gylden og sprød."
+  ]
+ },
+ "tomatsalat": {
+  "file": "tomatsalat.ts",
+  "yield": 4,
+  "ingredients": [
+   [
+    "Cherrytomater",
+    "600g"
+   ],
+   [
+    "Mozzarrella",
+    "300g"
+   ],
+   [
+    "Rødløg",
+    "1 stk."
+   ],
+   [
+    "Fetaost",
+    "200g"
+   ],
+   [
+    "Frisk basilikum",
+    ""
+   ],
+   [
+    "Olivenolie",
+    ""
+   ],
+   [
+    "Balsamico eddike",
+    ""
+   ],
+   [
+    "Citronsaft",
+    ""
+   ],
+   [
+    "Peber og salt",
+    ""
+   ]
+  ],
+  "steps": [
+   "Det skal blandes. Du kan godt."
+  ]
+ }
+}

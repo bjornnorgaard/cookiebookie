@@ -14,11 +14,13 @@ export const brod: Recipe = {
     yield: 4,
     categories: [ Category.Bagning ],
     datePublished: new Date(2023, Months.January, 12),
+    dateModified: new Date(2023, Months.March, 3),
+    diets: ['vegan', 'lactoseFree'],
     ingredients: [
-        { name: "Hvedemel", amount: "400g" },
-        { name: "Salt", amount: "10g" },
-        { name: "Tørgær", amount: "½ pakke" },
-        { name: "Vand", amount: "300g" },
+        { name: "Hvedemel", amount: { qty: 400, unit: "g", display: "400g" } },
+        { name: "Salt", amount: { qty: 10, unit: "g", display: "10g" } },
+        { name: "Tørgær", amount: { qty: 0.5, unit: "pakke" } },
+        { name: "Vand", amount: { qty: 300, unit: "g", display: "300g" } },
     ],
     longDesc: "Efter at have konsulteret internettet lader dette til at være opskriften på sejr. Vi ælter ingenting, næsten, men tingene skal nu blandes alligevel - livet er hårdt. " +
         "Her finder du ingen mål i te- eller spiseskeer, som ved konventionel madlavning. Bagning er alkemi og har intet at gøre med madlavning - så her bruger vi gram og liter! " +
@@ -40,6 +42,7 @@ export const brod: Recipe = {
         {
             title: "Hævetid er sovetid",
             desc: "Smid låg på. Det skal hvile i 12 til 24 timer, eller indtil det er fordoblet i størrelse. Tak for i dag - vi ses i morgen.",
+            timers: [{ label: "Hævning", minutes: 720, maxMinutes: 1440 }],
         },
         {
             title: "Den lever!",
@@ -52,10 +55,12 @@ export const brod: Recipe = {
         {
             title: "Bagetid",
             desc: "Du tænder ovnen på alt hvad den trække og forvarmer din støbejernsfætter. Vi mødes her igen om ~30 min.",
+            timers: [{ label: "Forvarm", minutes: 30 }],
         },
         {
             title: "Brænd nu ikke dine små dumme fingre",
             desc: "Sænk den så forsigtigt ned i din støbejernsgryde (pas nu på pølserne) og sprøjt den gavmildt til med vand. Sæt låg på og efterlad i ovnen i ca. 30 minutter før næste inspektion.",
+            timers: [{ label: "Bagning", minutes: 30 }],
         },
         {
             title: "Tjekketid",
@@ -64,6 +69,7 @@ export const brod: Recipe = {
         {
             title: "La' det lig'",
             desc: "I mindst en time før du fucker med brødet. Alt er spildt hvis du rør den før - det kan ikke diskuteres!",
+            timers: [{ label: "Afkøling", minutes: 60 }],
         },
         {
             title: "Skær den over på midten",
