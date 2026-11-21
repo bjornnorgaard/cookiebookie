@@ -5,6 +5,7 @@
 	import { onMount, tick } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import type { Recipe } from '#lib/types/recipe.ts';
+	import Icon from '#lib/components/Icon.svelte';
 	import PortionStepper from '#lib/components/PortionStepper.svelte';
 	import StepTimers from '#lib/components/StepTimers.svelte';
 	import { formatAmount, renderStepText } from '#lib/scale.ts';
@@ -181,10 +182,10 @@
 		</div>
 		{#if !wide}
 			<button type="button" class="ctl" title="Ingredienser" aria-expanded={drawer} aria-controls="cook-ingredients" onclick={() => (drawer = !drawer)} data-testid="cook-drawer-toggle">
-				<span aria-hidden="true">🧺</span> <span class="sr-only sm:not-sr-only">Ingredienser</span>
+				<Icon name="basket" size="1.25rem" /> <span class="sr-only sm:not-sr-only">Ingredienser</span>
 			</button>
 		{/if}
-		<button type="button" class="ctl" title="Luk madlavning" aria-label="Luk madlavning" onclick={onclose} data-testid="cook-close">✕</button>
+		<button type="button" class="ctl" title="Luk madlavning" aria-label="Luk madlavning" onclick={onclose} data-testid="cook-close"><Icon name="close" size="1.25rem" /></button>
 	</header>
 
 	<div class="dots" role="group" aria-label="Trin">

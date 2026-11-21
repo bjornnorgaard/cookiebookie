@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { consent } from '#lib/stores/consent.svelte.ts';
+	import Icon from '#lib/components/Icon.svelte';
 	import { setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 	import { TITLE_DONE, addMinute, answerNotify, initTimers, pauseTimer, removeTimer, resumeTimer, setMuted, timerState } from '#lib/stores/timers.svelte.ts';
 	import { formatRemaining, isLastMinute, progressAt, remainingAt, timerStatus } from '#lib/timerMath.ts';
@@ -48,91 +48,101 @@
 <p class="sr-only" aria-live="polite" data-testid="timer-announcer">{timerState.announcement}</p>
 
 {#if timerState.list.length > 0}
-	<div class="dock" class:lifted={consent.open} class:calm={reduced} role="region" aria-label="Timere" data-testid="timer-dock">
-		{#if timerState.askNotify}
-			<div class="ask">
-				<p>Vil du have en besked, når en timer er færdig, også hvis du er i en anden fane?</p>
-				<button type="button" class="btn-sm" onclick={() => answerNotify(true)}>Ja tak</button>
-				<button type="button" class="btn-sm quiet" onclick={() => answerNotify(false)}>Nej tak</button>
-			</div>
-		{/if}
-
-		<ul class="rows">
-			{#each visible as t (t.id)}
-				{@const status = timerStatus(t)}
-				{@const left = remainingAt(t, timerState.now)}
-				<li class="row" class:done={status === 'done'} class:last={isLastMinute(t, timerState.now)} data-testid="timer-row" data-status={status}>
-					<a class="name" href="/{t.recipeSlug}#step{t.stepIndex + 1}">
-						<span class="label">{t.label}</span>
-						<span class="sub">{t.recipeTitle} · trin {t.stepIndex + 1}</span>
-					</a>
-					<time class="remaining tabular-nums" datetime="PT{Math.ceil(left / 1000)}S">
-						{status === 'done' ? 'Færdig!' : formatRemaining(left)}
-					</time>
-					{#if status !== 'done'}
-						<button type="button" class="ctl" title="{status === 'running' ? 'Pause' : 'Genoptag'}" aria-label="{status === 'running' ? 'Pause' : 'Genoptag'} {t.label}" onclick={() => (status === 'running' ? pauseTimer(t.id) : resumeTimer(t.id))}>
-							<span aria-hidden="true">{status === 'running' ? '⏸' : '▶'}</span>
-						</button>
-						<button type="button" class="ctl" title="Læg et minut til" aria-label="+1 minut, {t.label}" onclick={() => addMinute(t.id)}>+1</button>
-					{/if}
-					<button type="button" class="ctl" title="Fjern timer" aria-label="Fjern timer {t.label}" onclick={() => removeTimer(t.id)}><span aria-hidden="true">✕</span></button>
-					<span class="bar" aria-hidden="true"><span style="width: {Math.round(progressAt(t, timerState.now) * 100)}%"></span></span>
-				</li>
-			{/each}
-		</ul>
-
-		{#if hidden > 0 || (expanded && sorted.length > MAX_ROWS)}
-			<div class="more">
-				{#if hidden > 0}
-					<button type="button" class="btn-sm quiet" onclick={() => (expanded = true)}>+{hidden} mere</button>
-				{:else}
-					<button type="button" class="btn-sm quiet" onclick={() => (expanded = false)}>Vis færre</button>
-				{/if}
-			</div>
-		{/if}
-
-		<div class="opts">
-			{#if wake.supported}
-				<button type="button" class="opt" role="switch" aria-checked={wake.enabled} onclick={() => setKeepAwake(!wake.enabled)}>
-					<span class="sw" aria-hidden="true"><span class="knob"></span></span>
-					Hold skærmen tændt
-				</button>
+	<div class="dock" class:calm={reduced} role="region" aria-label="Timere" data-testid="timer-dock">
+		<div class="inner">
+			{#if timerState.askNotify}
+				<div class="ask">
+					<p>Vil du have en besked, når en timer er færdig, også hvis du er i en anden fane?</p>
+					<button type="button" class="btn-sm" onclick={() => answerNotify(true)}>Ja tak</button>
+					<button type="button" class="btn-sm quiet" onclick={() => answerNotify(false)}>Nej tak</button>
+				</div>
 			{/if}
-			<button type="button" class="opt" role="switch" aria-checked={!timerState.muted} onclick={() => setMuted(!timerState.muted)}>
-				<span class="sw" aria-hidden="true"><span class="knob"></span></span>
-				Lyd
-			</button>
+
+			<ul class="rows">
+				{#each visible as t (t.id)}
+					{@const status = timerStatus(t)}
+					{@const left = remainingAt(t, timerState.now)}
+					<li class="row" class:done={status === 'done'} class:last={isLastMinute(t, timerState.now)} data-testid="timer-row" data-status={status}>
+						<a class="name" href="/{t.recipeSlug}#step{t.stepIndex + 1}">
+							<span class="label">{t.label}</span>
+							<span class="sub">{t.recipeTitle} · trin {t.stepIndex + 1}</span>
+						</a>
+						<time class="remaining tabular-nums" datetime="PT{Math.ceil(left / 1000)}S">
+							{#if status === 'done'}<Icon name="check" />{/if}
+							{status === 'done' ? 'Færdig!' : formatRemaining(left)}
+						</time>
+						{#if status !== 'done'}
+							<button type="button" class="ctl" title="{status === 'running' ? 'Pause' : 'Genoptag'}" aria-label="{status === 'running' ? 'Pause' : 'Genoptag'} {t.label}" onclick={() => (status === 'running' ? pauseTimer(t.id) : resumeTimer(t.id))}>
+								<Icon name={status === 'running' ? 'pause' : 'play'} size="1.15rem" />
+							</button>
+							<button type="button" class="ctl" title="Læg et minut til" aria-label="+1 minut, {t.label}" onclick={() => addMinute(t.id)}>+1</button>
+						{/if}
+						<button type="button" class="ctl" title="Fjern timer" aria-label="Fjern timer {t.label}" onclick={() => removeTimer(t.id)}><Icon name="close" size="1.15rem" /></button>
+						<span class="bar" aria-hidden="true"><span style="width: {Math.round(progressAt(t, timerState.now) * 100)}%"></span></span>
+					</li>
+				{/each}
+			</ul>
+
+			{#if hidden > 0 || (expanded && sorted.length > MAX_ROWS)}
+				<div class="more">
+					{#if hidden > 0}
+						<button type="button" class="btn-sm quiet" onclick={() => (expanded = true)}>+{hidden} mere</button>
+					{:else}
+						<button type="button" class="btn-sm quiet" onclick={() => (expanded = false)}>Vis færre</button>
+					{/if}
+				</div>
+			{/if}
+
+			<div class="opts">
+				{#if wake.supported}
+					<button type="button" class="opt" role="switch" aria-checked={wake.enabled} onclick={() => setKeepAwake(!wake.enabled)}>
+						<span class="sw" aria-hidden="true"><span class="knob"></span></span>
+						Hold skærmen tændt
+					</button>
+				{/if}
+				<button type="button" class="opt" role="switch" aria-checked={!timerState.muted} onclick={() => setMuted(!timerState.muted)}>
+					<span class="sw" aria-hidden="true"><span class="knob"></span></span>
+					Lyd
+				</button>
+			</div>
 		</div>
 	</div>
 {/if}
 
 <style>
+	/* Phones: a strip under the sticky nav, in document flow so content is pushed down, and sticky with the header so timers stay visible. */
 	.dock {
-		position: fixed;
-		z-index: 70; /* floats above everything on the page: sticky header (50), progress bar (60), consent card (40) */
-		left: max(0.75rem, env(safe-area-inset-left));
-		right: max(0.75rem, env(safe-area-inset-right));
-		bottom: max(0.75rem, env(safe-area-inset-bottom));
-		padding: 0.5rem 0.75rem;
-		border-radius: 1.25rem;
-		max-height: 60vh;
-		overflow-y: auto;
-		/* A solid, lighter surface so it reads as a layer above the step cards, not part of them. */
+		position: relative; /* above the absolute header backdrop */
+		border-top: 1px solid light-dark(color-mix(in oklab, var(--color-secondary-500) 35%, transparent), oklch(52% 0.03 70));
+		/* Solid surface so it reads as its own strip, not part of the page behind the sticky header. */
 		background: light-dark(oklch(99.5% 0.006 88), oklch(34% 0.018 60));
 		color: light-dark(oklch(25% 0.02 55), oklch(96% 0.01 85));
-		border: 1px solid light-dark(color-mix(in oklab, var(--color-secondary-500) 45%, transparent), oklch(52% 0.03 70));
-		box-shadow: 0 24px 60px -12px rgb(0 0 0 / 0.55), 0 8px 20px -8px rgb(0 0 0 / 0.4);
+		box-shadow: 0 10px 28px -18px rgb(0 0 0 / 0.45);
+		max-height: min(42vh, 20rem);
+		overflow-y: auto;
 	}
+	.inner {
+		margin-inline: auto;
+		max-width: 72rem; /* match header max-w-6xl */
+		padding: 0.5rem max(1rem, env(safe-area-inset-left)) 0.65rem max(1rem, env(safe-area-inset-right));
+	}
+	/* sm and up: a floating card in the bottom-right corner, out of the header's flow so the header does not grow. */
 	@media (min-width: 640px) {
 		.dock {
-			left: auto;
+			position: fixed;
+			z-index: 70; /* above the progress bar (60) and consent card (40); inside the header's stacking context it still clears page content */
+			right: max(0.75rem, env(safe-area-inset-right));
+			bottom: max(0.75rem, env(safe-area-inset-bottom));
 			width: 400px;
+			max-width: calc(100vw - 1.5rem);
+			max-height: 60vh;
+			border: 1px solid light-dark(color-mix(in oklab, var(--color-secondary-500) 45%, transparent), oklch(52% 0.03 70));
+			border-radius: 1.25rem;
+			box-shadow: 0 24px 60px -12px rgb(0 0 0 / 0.55), 0 8px 20px -8px rgb(0 0 0 / 0.4);
 		}
-	}
-	/* The consent card owns the bottom edge on phones; sit above it while it is open. */
-	@media (max-width: 639px) {
-		.dock.lifted {
-			bottom: calc(max(0.75rem, env(safe-area-inset-bottom)) + 12rem);
+		.inner {
+			max-width: none;
+			padding: 0.5rem 0.75rem;
 		}
 	}
 	.rows {
@@ -146,9 +156,6 @@
 		align-items: center;
 		gap: 0.35rem;
 		padding: 0.5rem 0 0.7rem;
-	}
-	.row + .row {
-		border-top: 1px solid color-mix(in oklab, currentColor 12%, transparent);
 	}
 	.name {
 		display: flex;
@@ -189,6 +196,8 @@
 		cursor: pointer;
 		color: inherit;
 		background: color-mix(in oklab, currentColor 10%, transparent);
+		display: inline-grid;
+		place-items: center;
 	}
 	.ctl:hover {
 		background: color-mix(in oklab, currentColor 20%, transparent);
@@ -226,9 +235,6 @@
 		padding-inline: 0.5rem;
 		animation: pulse 1.6s ease-in-out infinite;
 	}
-	.row.done .remaining::before {
-		content: '✓ ';
-	}
 	@keyframes pulse {
 		50% {
 			background: color-mix(in oklab, var(--color-success-500) 32%, transparent);
@@ -263,7 +269,6 @@
 		justify-content: space-between;
 		gap: 0.75rem;
 		padding-top: 0.5rem;
-		border-top: 1px solid color-mix(in oklab, currentColor 14%, transparent);
 	}
 	.opt {
 		display: inline-flex;

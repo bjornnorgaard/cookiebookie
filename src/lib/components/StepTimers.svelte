@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Icon from '#lib/components/Icon.svelte';
 	import type { Recipe, StepTimer } from '#lib/types/recipe.ts';
 	import { addMinute, pauseTimer, removeTimer, resumeTimer, startTimer, timerKey, timerState } from '#lib/stores/timers.svelte.ts';
 	import { formatMinutes, formatRemaining, isLastMinute, remainingAt, timerChoices, timerStatus } from '#lib/timerMath.ts';
@@ -36,12 +37,12 @@
 				aria-label="Start {formatMinutes(chip.minutes)}, {chip.label}"
 				onclick={() => startTimer({ recipeSlug: recipe.slug, recipeTitle: recipe.title, stepIndex, stepTitle, label: chip.label, minutes: chip.minutes })}
 			>
-				<span aria-hidden="true">⏱</span> Start {formatMinutes(chip.minutes)}
+				<Icon name="timer" size="1.1em" /> Start {formatMinutes(chip.minutes)}
 			</button>
 		{:else}
 			{@const status = timerStatus(live)}
 			<span class="chip live" class:last={isLastMinute(live, timerState.now)} class:done={status === 'done'} data-testid="timer-chip">
-				<span aria-hidden="true">{status === 'done' ? '✓' : '⏱'}</span>
+				<Icon name={status === 'done' ? 'check' : 'timer'} size="1.1em" />
 				<time class="tabular-nums" datetime="PT{Math.ceil(remainingAt(live, timerState.now) / 1000)}S">
 					{status === 'done' ? 'Færdig!' : formatRemaining(remainingAt(live, timerState.now))}
 				</time>
@@ -52,12 +53,12 @@
 						aria-label="{status === 'running' ? 'Pause' : 'Genoptag'} {chip.label}"
 						onclick={() => (status === 'running' ? pauseTimer(live.id) : resumeTimer(live.id))}
 					>
-						{status === 'running' ? '⏸' : '▶'}
+						<Icon name={status === 'running' ? 'pause' : 'play'} size="1.1rem" />
 					</button>
 					<button type="button" class="mini" aria-label="+1 minut, {chip.label}" onclick={() => addMinute(live.id)}>+1</button>
 				{/if}
 				<button type="button" class="mini" aria-label="{status === 'done' ? 'Fjern' : 'Nulstil'} timer {chip.label}" onclick={() => removeTimer(live.id)}>
-					{status === 'done' ? '✕' : '↺'}
+					<Icon name={status === 'done' ? 'close' : 'reset'} size="1.1rem" />
 				</button>
 			</span>
 		{/if}
@@ -127,6 +128,8 @@
 		min-width: 2rem;
 		min-height: 2rem;
 		padding: 0 0.4rem;
+		display: inline-grid;
+		place-items: center;
 		border-radius: 9999px;
 		font-size: 0.8125rem;
 		font-weight: 700;

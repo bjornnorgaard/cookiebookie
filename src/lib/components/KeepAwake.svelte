@@ -1,10 +1,11 @@
 <script lang="ts">
+	import Icon from '#lib/components/Icon.svelte';
 	import { setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 </script>
 
 {#if wake.supported}
 	<div class="panel flex items-center gap-4 rounded-2xl p-4" style="--panel-accent: var(--color-warning-500)">
-		<span class="text-2xl" aria-hidden="true">{wake.enabled ? '☀️' : '🌙'}</span>
+		<Icon name={wake.enabled ? 'sun' : 'moon'} size="1.75rem" />
 		<div class="min-w-0 grow">
 			<p class="m-0 font-semibold" id="keep-awake-label">Hold skærmen tændt</p>
 			<p class="m-0 text-sm opacity-70">Så den ikke slukker, mens du står med mel til albuerne.</p>

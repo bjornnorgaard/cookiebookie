@@ -212,6 +212,11 @@ html.theme-vt::view-transition-old(root),
 html.theme-vt::view-transition-new(root) { animation: none; }
 html.theme-vt::view-transition-old(root) { z-index: 0; }
 html.theme-vt::view-transition-new(root) { z-index: 1; }
+/* The shared-element names (recipe photos, titles) exist for page navigation only. During a theme switch they would
+   pull those elements out of the root snapshot into their own groups: such groups ignore the parent's rounded
+   clipping (square corners) and are stacked above the whole root layer (photo covers the stats bar). Strip them so
+   everything is part of the single root reveal. Needs !important to beat the inline style on the elements. */
+html.theme-vt * { view-transition-name: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }

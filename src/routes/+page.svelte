@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Icon from '#lib/components/Icon.svelte';
 	import Head from '#lib/components/Head.svelte';
 	import RecipeImage from '#lib/components/RecipeImage.svelte';
 	import { formatDuration } from '#lib/format.ts';
@@ -46,7 +47,7 @@
 			</h2>
 			<p class="line-clamp-3 opacity-80">{featured.shortDesc}</p>
 			<div class="flex flex-wrap gap-2">
-				<span class="badge preset-tonal-primary">⏱ {formatDuration(featured.totalTime)}</span>
+				<span class="badge preset-tonal-primary"><Icon name="timer" /> {formatDuration(featured.totalTime)}</span>
 				<span class="badge preset-tonal">{featured.cuisine}</span>
 				<span class="badge preset-tonal">{featured.yield} portioner</span>
 			</div>
@@ -79,7 +80,7 @@
 						</h2>
 						<p class="line-clamp-2 text-sm opacity-75">{recipe.shortDesc}</p>
 						<div class="mt-auto flex flex-wrap gap-2 pt-3">
-							<span class="badge preset-tonal-primary">⏱ {formatDuration(recipe.totalTime)}</span>
+							<span class="badge preset-tonal-primary"><Icon name="timer" /> {formatDuration(recipe.totalTime)}</span>
 							<span class="badge preset-tonal">{recipe.cuisine}</span>
 						</div>
 					</div>

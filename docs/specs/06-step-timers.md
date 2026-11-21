@@ -55,13 +55,23 @@ approve (about a dozen steps).
 
 ### Timer dock
 
-Fixed at the bottom of the screen on recipe pages while at least one timer exists:
+Shown while at least one timer exists. Responsive layout:
+
+- **Mobile (< 640px):** a strip under the sticky nav (part of the sticky header), so it pushes page content down
+  and leaves the bottom free for scrolling.
+- **Desktop (sm and up):** a floating card (`position: fixed`, bottom-right, 400px wide, rounded, shadowed) that does
+  not affect the header's height. The footer gets extra bottom margin (`sm:mb-56`) while timers exist so the card
+  never covers content.
 
 ```
 Phone
 ┌─────────────────────────────────────────┐
-│ ⏱ Simre            38:12   [⏸] [+1] [✕] │
+│ Cookie Bookie                      ☀   │  ← sticky nav
+├─────────────────────────────────────────┤
+│ ⏱ Simre            38:12   [⏸] [+1] [✕] │  ← timer strip (pushes content)
 │ ⏱ Ris              11:40   [⏸] [+1] [✕] │
+├─────────────────────────────────────────┤
+│ … recipe content …                      │
 └─────────────────────────────────────────┘   (stacks, max 3 visible, then "+2 mere")
 ```
 

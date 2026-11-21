@@ -4,13 +4,14 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { onNavigate } from '$app/navigation';
+	import Icon from '#lib/components/Icon.svelte';
 	import TimerDock from '#lib/components/TimerDock.svelte';
-	import { timerState } from '#lib/stores/timers.svelte.ts';
 	import ConsentNotice from '#lib/components/ConsentNotice.svelte';
 	import { openConsent } from '#lib/stores/consent.svelte.ts';
 	import ThemeToggle from '#lib/components/ThemeToggle.svelte';
 	import ThemeFollowDevice from '#lib/components/ThemeFollowDevice.svelte';
 	import { initTheme } from '#lib/stores/theme.svelte.ts';
+	import { timerState } from '#lib/stores/timers.svelte.ts';
 	import { initWake, setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 
 	interface Props {
@@ -65,7 +66,7 @@
 				>
 					<span class="dot" class:on={wake.active} aria-hidden="true"></span>
 					<span class="hidden sm:inline">Skærm tændt</span>
-					<span aria-hidden="true" class="opacity-60">✕</span>
+					<Icon name="close" class="opacity-60" size="0.9em" />
 				</button>
 			{/if}
 			<p class="m-0 hidden items-center gap-3 font-display text-base italic text-primary-800-200 sm:flex">
@@ -75,13 +76,15 @@
 			<ThemeToggle />
 		</div>
 	</nav>
+	<!-- Phones: timers sit under the nav inside the sticky header and push content down. sm+: the dock is position: fixed (bottom-right), so it does not affect the header's height. -->
+	<TimerDock />
 </header>
 
 <main class="min-h-[70vh]">
 	{@render children?.()}
 </main>
 
-<footer class="mt-24 border-t {timerState.list.length ? 'mb-56' : ''} border-surface-300-700 pb-[max(2rem,env(safe-area-inset-bottom))] pt-10">
+<footer class="mt-24 border-t {timerState.list.length ? 'sm:mb-56' : ''} border-surface-300-700 pb-[max(2rem,env(safe-area-inset-bottom))] pt-10">
 	<div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 text-center sm:flex-row sm:px-6 sm:text-left">
 		<p class="text-sm opacity-80">
 			<span class="font-display text-base font-semibold">Cookie Bookie</span><br />
@@ -91,7 +94,7 @@
 		</p>
 		<ThemeFollowDevice />
 		<div class="flex items-center gap-2">
-			{#each footerLinks as link}
+			{#each footerLinks as link (link.href)}
 				<a
 					href={link.href}
 					rel="noopener noreferrer nofollow external"
@@ -107,7 +110,6 @@
 </footer>
 
 <ConsentNotice />
-<TimerDock />
 
 <style>
 	.awake-pill {
