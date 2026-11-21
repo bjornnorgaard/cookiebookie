@@ -70,11 +70,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
-		padding: 0 1rem 1rem 3.75rem;
+		padding: 0 1rem 1rem;
 	}
 	@media (min-width: 640px) {
 		.step-timers {
-			padding: 0 1.25rem 1.25rem 4rem;
+			padding: 0 1.25rem 1.25rem;
 		}
 	}
 	.step-timers.large {

@@ -173,27 +173,29 @@
 						class="panel step scroll-mt-24 rounded-2xl transition duration-500 {done ? 'opacity-85' : 'hover:-translate-y-0.5'}"
 						class:is-current={i === current}
 					>
-						<label for="step-check-{i}" class="flex cursor-pointer items-start gap-4 p-4 transition-opacity sm:p-5" class:line-through={done}>
-							<input
-								id="step-check-{i}"
-								type="checkbox"
-								checked={!!done}
-								onchange={(e) => setStep(i, e.currentTarget.checked)}
-								class="tick round mt-0.5"
-								style="--tick: var(--color-secondary-500)"
-							/>
-							<span class="flex min-w-0 flex-col gap-1">
-								<span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest {i === current ? 'text-secondary-950-300' : 'opacity-85'}">
-									Trin {i + 1}
-									{#if i === current}
-										<span class="badge preset-filled-secondary-500 normal-case tracking-normal" in:scale={{ start: 0.7, duration: 350 }}>
-											{doneCount === 0 ? 'Start her' : 'Næste'}
-										</span>
-									{/if}
+						<label for="step-check-{i}" class="flex cursor-pointer flex-col gap-2 p-4 transition-opacity sm:p-5" class:line-through={done}>
+							<span class="flex items-center gap-4">
+								<input
+									id="step-check-{i}"
+									type="checkbox"
+									checked={!!done}
+									onchange={(e) => setStep(i, e.currentTarget.checked)}
+									class="tick round shrink-0"
+									style="--tick: var(--color-secondary-500)"
+								/>
+								<span class="flex min-w-0 flex-col gap-0.5">
+									<span class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-widest leading-none {i === current ? 'text-secondary-950-300' : 'opacity-85'}">
+										Trin {i + 1}
+										{#if i === current}
+											<span class="badge preset-filled-secondary-500 normal-case tracking-normal" in:scale={{ start: 0.7, duration: 350 }}>
+												{doneCount === 0 ? 'Start her' : 'Næste'}
+											</span>
+										{/if}
+									</span>
+									<span class="font-display text-lg font-semibold leading-snug">{s.title}</span>
 								</span>
-								<span class="font-display text-lg font-semibold leading-snug">{s.title}</span>
-								<span class="font-normal opacity-85">{renderStepText(s.desc, recipe.ingredients, portions.scaling)}</span>
 							</span>
+							<span class="block font-normal opacity-85">{renderStepText(s.desc, recipe.ingredients, portions.scaling)}</span>
 						</label>
 						{#if s.timers?.length}
 							<StepTimers {recipe} stepIndex={i} stepTitle={s.title} timers={s.timers} />
