@@ -114,7 +114,7 @@ test('survives a reload with an absolute end time', async ({ page }) => {
 	await expect(rows(page).first().locator('time')).toHaveText('34:00');
 });
 
-test('finish: chime twice, vibration, notification, title, done row; dismiss restores the title', async ({ page }) => {
+test('finish: chime three times, vibration, notification, title, done row; dismiss restores the title', async ({ page }) => {
 	await open(page, 'camillas-kikgryde', 'granted');
 	const title = await page.title();
 	await page.locator('#step2').getByRole('button', { name: /Start 10 min, Simre/ }).click();
@@ -128,7 +128,7 @@ test('finish: chime twice, vibration, notification, title, done row; dismiss res
 	await expect(rows(page).first()).toContainText('Færdig!');
 	await expect(page).toHaveTitle('⏰ Færdig · Cookie Bookie');
 	const a = await alerts(page);
-	expect(a.chimes).toBe(4); // two chimes of two notes
+	expect(a.chimes).toBe(6); // three chimes of two notes
 	expect(a.vibrations).toHaveLength(1);
 	expect(a.notifications).toEqual(['Simre er færdig']);
 	await expect(page.getByTestId('timer-announcer')).toContainText('Simre er færdig');
@@ -204,5 +204,5 @@ test('a second tab does not ring again', async ({ context, page }) => {
 	await expect(other.getByTestId('timer-row').first()).toHaveAttribute('data-status', 'done');
 	const a = await alerts(page);
 	const b = await alerts(other);
-	expect(a.chimes + b.chimes).toBe(4);
+	expect(a.chimes + b.chimes).toBe(6);
 });

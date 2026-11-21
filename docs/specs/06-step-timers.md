@@ -81,7 +81,7 @@ Phone
 
 ### When a timer finishes
 
-- A short, pleasant chime (generated with the Web Audio API, no audio files) repeated twice; stops when dismissed.
+- A short, pleasant chime (generated with the Web Audio API, no audio files) repeated three times; stops when dismissed.
 - `navigator.vibrate` pattern on supporting phones.
 - The row turns green with "Færdig! ✕" and pulses gently; the dock stays until dismissed.
 - Browser title shows `⏰ Færdig · Cookie Bookie` while any timer is done.

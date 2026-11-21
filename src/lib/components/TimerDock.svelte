@@ -124,7 +124,8 @@
 	.inner {
 		margin-inline: auto;
 		max-width: 72rem; /* match header max-w-6xl */
-		padding: 0.5rem max(1rem, env(safe-area-inset-left)) 0.65rem max(1rem, env(safe-area-inset-right));
+		/* Horizontal padding lives on children so finished rows can paint edge-to-edge. */
+		padding: 0;
 	}
 	/* sm and up: a floating card in the bottom-right corner, out of the header's flow so the header does not grow. */
 	@media (min-width: 640px) {
@@ -139,10 +140,10 @@
 			border: 1px solid light-dark(color-mix(in oklab, var(--color-secondary-500) 45%, transparent), oklch(52% 0.03 70));
 			border-radius: 1.25rem;
 			box-shadow: 0 24px 60px -12px rgb(0 0 0 / 0.55), 0 8px 20px -8px rgb(0 0 0 / 0.4);
+			overflow: hidden; /* clip full-bleed done rows to the card's rounded corners */
 		}
 		.inner {
 			max-width: none;
-			padding: 0.5rem 0.75rem;
 		}
 	}
 	.rows {
@@ -155,7 +156,12 @@
 		display: flex;
 		align-items: center;
 		gap: 0.35rem;
-		padding: 0.5rem 0 0.7rem;
+		padding: 0.5rem max(1rem, env(safe-area-inset-left)) 0.7rem max(1rem, env(safe-area-inset-right));
+	}
+	@media (min-width: 640px) {
+		.row {
+			padding-inline: 0.75rem;
+		}
 	}
 	.name {
 		display: flex;
@@ -204,13 +210,19 @@
 	}
 	.bar {
 		position: absolute;
-		left: 0;
-		right: 0;
+		left: max(1rem, env(safe-area-inset-left));
+		right: max(1rem, env(safe-area-inset-right));
 		bottom: 0.25rem;
 		height: 3px;
 		border-radius: 9999px;
 		background: color-mix(in oklab, currentColor 12%, transparent);
 		overflow: hidden;
+	}
+	@media (min-width: 640px) {
+		.bar {
+			left: 0.75rem;
+			right: 0.75rem;
+		}
 	}
 	.bar span {
 		display: block;
@@ -230,10 +242,15 @@
 		background: var(--color-success-500);
 	}
 	.row.done {
+		/* Full-bleed within the dock: green wash reaches the card edges (and top corners when this is the first row). */
 		background: color-mix(in oklab, var(--color-success-500) 18%, transparent);
-		border-radius: 0.75rem;
-		padding-inline: 0.5rem;
 		animation: pulse 1.6s ease-in-out infinite;
+	}
+	.row.done .bar {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border-radius: 0;
 	}
 	@keyframes pulse {
 		50% {
@@ -250,9 +267,14 @@
 		flex-wrap: wrap;
 		align-items: center;
 		gap: 0.5rem;
-		padding: 0.4rem 0 0.6rem;
+		padding: 0.5rem max(1rem, env(safe-area-inset-left)) 0.6rem max(1rem, env(safe-area-inset-right));
 		font-size: 0.8125rem;
 		border-bottom: 1px solid color-mix(in oklab, currentColor 12%, transparent);
+	}
+	@media (min-width: 640px) {
+		.ask {
+			padding-inline: 0.75rem;
+		}
 	}
 	.ask p {
 		margin: 0;
@@ -261,14 +283,24 @@
 	.more {
 		display: flex;
 		justify-content: center;
-		padding-bottom: 0.25rem;
+		padding: 0.25rem max(1rem, env(safe-area-inset-left)) 0.25rem max(1rem, env(safe-area-inset-right));
+	}
+	@media (min-width: 640px) {
+		.more {
+			padding-inline: 0.75rem;
+		}
 	}
 	.opts {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 0.75rem;
-		padding-top: 0.5rem;
+		padding: 0.5rem max(1rem, env(safe-area-inset-left)) 0.65rem max(1rem, env(safe-area-inset-right));
+	}
+	@media (min-width: 640px) {
+		.opts {
+			padding-inline: 0.75rem;
+		}
 	}
 	.opt {
 		display: inline-flex;

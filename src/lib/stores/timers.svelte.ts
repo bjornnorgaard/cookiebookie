@@ -265,14 +265,15 @@ function unlockAudio() {
 	}
 }
 
-/** Two soft two-note chimes, generated here so there are no audio files. */
+/** Soft two-note chimes, generated here so there are no audio files. Three pairs. */
 function chime() {
 	unlockAudio(); // a tab that did not start the timer has no context yet; allowed after any earlier interaction
 	if (!audio) return;
 	try {
 		void audio.resume?.();
 		const start = audio.currentTime + 0.05;
-		[0, 0.9].forEach((offset) => {
+		const offsets = [0, 0.9, 1.8];
+		offsets.forEach((offset) => {
 			[659.25, 880].forEach((freq, i) => {
 				const osc = audio!.createOscillator();
 				const gain = audio!.createGain();
