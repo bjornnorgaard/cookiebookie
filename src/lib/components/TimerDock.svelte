@@ -3,18 +3,20 @@
 	import Icon from '#lib/components/Icon.svelte';
 	import { setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 	import { TITLE_DONE, addMinute, answerNotify, initTimers, pauseTimer, removeTimer, resumeTimer, setMuted, timerState } from '#lib/stores/timers.svelte.ts';
-	import { formatRemaining, isLastMinute, progressAt, remainingAt, timerStatus } from '#lib/timerMath.ts';
+	import { finishedAt, formatDoneAgo, formatRemaining, isLastMinute, progressAt, remainingAt, timerStatus } from '#lib/timerMath.ts';
 
 	const MAX_ROWS = 3;
 	let expanded = $state(false);
 
 	onMount(initTimers);
 
-	// Running first (soonest to ring on top), finished ones stay on top so they cannot be missed.
+	// Finished first (most recently done on top), then running soonest-to-ring.
 	const sorted = $derived(
 		[...timerState.list].sort((a, b) => {
 			const rank = (t: typeof a) => (t.done ? 0 : 1);
-			return rank(a) - rank(b) || remainingAt(a, timerState.now) - remainingAt(b, timerState.now);
+			if (rank(a) !== rank(b)) return rank(a) - rank(b);
+			if (a.done && b.done) return (finishedAt(b) ?? 0) - (finishedAt(a) ?? 0);
+			return remainingAt(a, timerState.now) - remainingAt(b, timerState.now);
 		})
 	);
 	const visible = $derived(expanded ? sorted : sorted.slice(0, MAX_ROWS));
@@ -62,14 +64,19 @@
 				{#each visible as t (t.id)}
 					{@const status = timerStatus(t)}
 					{@const left = remainingAt(t, timerState.now)}
+					{@const doneAt = finishedAt(t)}
+					{@const doneLabel = status === 'done' ? (doneAt !== null ? formatDoneAgo(doneAt, timerState.now) : 'Færdig!') : null}
 					<li class="row" class:done={status === 'done'} class:last={isLastMinute(t, timerState.now)} data-testid="timer-row" data-status={status}>
 						<a class="name" href="/{t.recipeSlug}#step{t.stepIndex + 1}">
 							<span class="label">{t.label}</span>
 							<span class="sub">{t.recipeTitle} · trin {t.stepIndex + 1}</span>
 						</a>
-						<time class="remaining tabular-nums" datetime="PT{Math.ceil(left / 1000)}S">
+						<time
+							class="remaining tabular-nums"
+							datetime={status === 'done' && doneAt !== null ? new Date(doneAt).toISOString() : `PT${Math.ceil(left / 1000)}S`}
+						>
 							{#if status === 'done'}<Icon name="check" />{/if}
-							{status === 'done' ? 'Færdig!' : formatRemaining(left)}
+							{doneLabel ?? formatRemaining(left)}
 						</time>
 						{#if status !== 'done'}
 							<button type="button" class="ctl" title="{status === 'running' ? 'Pause' : 'Genoptag'}" aria-label="{status === 'running' ? 'Pause' : 'Genoptag'} {t.label}" onclick={() => (status === 'running' ? pauseTimer(t.id) : resumeTimer(t.id))}>
@@ -192,6 +199,13 @@
 		font-size: 1.25rem;
 		font-weight: 600;
 		padding: 0 0.25rem;
+		flex: 0 1 auto;
+		text-align: right;
+	}
+	.row.done .remaining {
+		font-size: 0.95rem;
+		line-height: 1.2;
+		max-width: 12rem;
 	}
 	.ctl {
 		min-width: 2.5rem;

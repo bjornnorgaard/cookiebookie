@@ -2,7 +2,7 @@
 	import Icon from '#lib/components/Icon.svelte';
 	import type { Recipe, StepTimer } from '#lib/types/recipe.ts';
 	import { addMinute, pauseTimer, removeTimer, resumeTimer, startTimer, timerKey, timerState } from '#lib/stores/timers.svelte.ts';
-	import { formatMinutes, formatRemaining, isLastMinute, remainingAt, timerChoices, timerStatus } from '#lib/timerMath.ts';
+	import { finishedAt, formatDoneAgo, formatMinutes, formatRemaining, isLastMinute, remainingAt, timerChoices, timerStatus } from '#lib/timerMath.ts';
 
 	interface Props {
 		recipe: Pick<Recipe, 'slug' | 'title'>;
@@ -41,10 +41,18 @@
 			</button>
 		{:else}
 			{@const status = timerStatus(live)}
+			{@const doneAt = finishedAt(live)}
 			<span class="chip live" class:last={isLastMinute(live, timerState.now)} class:done={status === 'done'} data-testid="timer-chip">
 				<Icon name={status === 'done' ? 'check' : 'timer'} size="1.1em" />
-				<time class="tabular-nums" datetime="PT{Math.ceil(remainingAt(live, timerState.now) / 1000)}S">
-					{status === 'done' ? 'Færdig!' : formatRemaining(remainingAt(live, timerState.now))}
+				<time
+					class="tabular-nums"
+					datetime={status === 'done' && doneAt !== null ? new Date(doneAt).toISOString() : `PT${Math.ceil(remainingAt(live, timerState.now) / 1000)}S`}
+				>
+					{status === 'done'
+						? doneAt !== null
+							? formatDoneAgo(doneAt, timerState.now)
+							: 'Færdig!'
+						: formatRemaining(remainingAt(live, timerState.now))}
 				</time>
 				{#if status !== 'done'}
 					<button

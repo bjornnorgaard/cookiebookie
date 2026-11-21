@@ -114,6 +114,47 @@ test('survives a reload with an absolute end time', async ({ page }) => {
 	await expect(rows(page).first().locator('time')).toHaveText('34:00');
 });
 
+test('finished while closed: restores as done with how long ago; drops after a day', async ({ page }) => {
+	await open(page, 'camillas-kikgryde');
+	// Write a timer that already ended while away, then reload so init marks it done without ringing.
+	await page.evaluate(() => {
+		const endsAt = Date.now() - 2 * 60_000;
+		localStorage.setItem(
+			'timers',
+			JSON.stringify({
+				v: 1,
+				muted: false,
+				list: [
+					{
+						id: 'away',
+						key: 'camillas-kikgryde:1:10',
+						recipeSlug: 'camillas-kikgryde',
+						recipeTitle: 'Kikærtegryde',
+						stepIndex: 1,
+						stepTitle: 'Simre',
+						label: 'Simre',
+						totalMs: 10 * 60_000,
+						endsAt,
+						remainingMs: null,
+						done: false,
+						warned: true
+					}
+				]
+			})
+		);
+	});
+	await page.reload();
+	await expect(rows(page).first()).toHaveAttribute('data-status', 'done');
+	await expect(rows(page).first().locator('time')).toContainText(/for 2 min siden/);
+	expect((await alerts(page)).chimes).toBe(0);
+
+	await page.clock.runFor(3 * 60 * 60_000);
+	await expect(rows(page).first().locator('time')).toContainText(/for 3 t\./);
+
+	await page.clock.runFor(22 * 60 * 60_000);
+	await expect(dock(page)).toHaveCount(0);
+});
+
 test('finish: chime three times, vibration, notification, title, done row; dismiss restores the title', async ({ page }) => {
 	await open(page, 'camillas-kikgryde', 'granted');
 	const title = await page.title();
@@ -132,6 +173,9 @@ test('finish: chime three times, vibration, notification, title, done row; dismi
 	expect(a.vibrations).toHaveLength(1);
 	expect(a.notifications).toEqual(['Simre er færdig']);
 	await expect(page.getByTestId('timer-announcer')).toContainText('Simre er færdig');
+
+	await page.clock.runFor(90_000);
+	await expect(rows(page).first().locator('time')).toContainText(/for 1 min siden/);
 
 	await rows(page).first().getByRole('button', { name: 'Fjern timer Simre' }).click();
 	await expect(page).toHaveTitle(title);

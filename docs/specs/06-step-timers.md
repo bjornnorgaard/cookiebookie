@@ -83,7 +83,9 @@ Phone
 
 - A short, pleasant chime (generated with the Web Audio API, no audio files) repeated three times; stops when dismissed.
 - `navigator.vibrate` pattern on supporting phones.
-- The row turns green with "Færdig! ✕" and pulses gently; the dock stays until dismissed.
+- The row turns green with "Færdig!" (then "Færdig · for X siden" after a few seconds) and pulses gently; the dock
+  stays until dismissed. Absolute `endsAt` is kept so a reload or return after hours still shows how long ago it
+  expired. Finished timers older than 24 hours are dropped automatically.
 - Browser title shows `⏰ Færdig · Cookie Bookie` while any timer is done.
 - If notification permission was granted: a system notification "Simre er færdig" (works when the tab is in the
   background). Permission is requested only on the first timer start, with a one-line explanation, never on load.
@@ -141,7 +143,8 @@ Deviations and details:
 
 - The dock shows on every page (not only recipe pages) while a timer exists, so a timer from another recipe stays visible.
 - Cross-tab de-duplication uses the `storage` event plus a check-then-mark of `done` in localStorage before ringing (no
-  BroadcastChannel); a timer that ended while the page was closed shows as finished without sound.
+  BroadcastChannel); a timer that ended while the page was closed shows as finished without sound, with "for X siden"
+  derived from the preserved `endsAt`. Done timers older than a day are pruned on load and on each tick.
 - Keep-awake is offered as a one-line yes/no row in the dock on the first timer, once per page load.
 - Ranges under 120 minutes are shown in minutes ("60 min"); longer ones as hours ("12 t.").
 - The live region (`aria-live="polite"`) announces start, one minute left and done only.

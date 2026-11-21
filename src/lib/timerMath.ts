@@ -14,7 +14,10 @@ export interface StepTimerState {
 	stepTitle: string;
 	label: string;
 	totalMs: number;
-	/** Epoch ms when it rings; null while paused or done. */
+	/**
+	 * Absolute epoch ms when the timer rings (or rang). Kept after finish so we can show how long ago it
+	 * expired; null only while paused. Legacy done rows may still have null.
+	 */
 	endsAt: number | null;
 	/** Time left while paused; null while running or done. */
 	remainingMs: number | null;
@@ -25,6 +28,8 @@ export interface StepTimerState {
 
 export const MINUTE = 60_000;
 export const LAST_MINUTE_MS = MINUTE;
+/** Finished timers older than this are dropped on load / tick (user is assumed to have moved on). */
+export const DONE_KEEP_MS = 24 * 60 * MINUTE;
 
 /** 2712000 -> "45:12", 3725000 -> "1:02:05". Rounds up to whole seconds so it never shows 00:00 before it is done. */
 export function formatRemaining(ms: number): string {
@@ -44,6 +49,27 @@ export function formatMinutes(minutes: number): string {
 	return [h ? `${h} t.` : '', m || !h ? `${m} min` : ''].filter(Boolean).join(' ');
 }
 
+/**
+ * Relative Danish "ago" text for a finished timer. Under ~5 s → "Færdig!"; otherwise
+ * "Færdig · for 3 min siden". Callers should prune past {@link DONE_KEEP_MS}.
+ */
+export function formatDoneAgo(finishedAt: number, now: number): string {
+	const ago = Math.max(0, now - finishedAt);
+	if (ago < 5_000) return 'Færdig!';
+	const sec = Math.floor(ago / 1000);
+	if (sec < 60) return `Færdig · for ${sec} sek siden`;
+	const min = Math.floor(sec / 60);
+	if (min < 60) return `Færdig · for ${min} min siden`;
+	const h = Math.floor(min / 60);
+	const m = min % 60;
+	return m ? `Færdig · for ${h} t. ${m} min siden` : `Færdig · for ${h} t. siden`;
+}
+
+/** Epoch when a done timer finished; null if unknown (legacy) or still running/paused. */
+export function finishedAt(t: StepTimerState): number | null {
+	return t.done ? t.endsAt : null;
+}
+
 export function timerStatus(t: StepTimerState): 'running' | 'paused' | 'done' {
 	return t.done ? 'done' : t.endsAt !== null ? 'running' : 'paused';
 }
@@ -53,6 +79,12 @@ export function remainingAt(t: StepTimerState, now: number): number {
 	if (t.done) return 0;
 	if (t.endsAt !== null) return Math.max(0, t.endsAt - now);
 	return Math.max(0, t.remainingMs ?? 0);
+}
+
+/** True when a finished timer is older than {@link DONE_KEEP_MS} and should be dropped. */
+export function isStaleDone(t: StepTimerState, now: number): boolean {
+	if (!t.done || t.endsAt === null) return false;
+	return now - t.endsAt > DONE_KEEP_MS;
 }
 
 /** Elapsed share, 0..1. */

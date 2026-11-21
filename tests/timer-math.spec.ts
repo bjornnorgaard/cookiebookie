@@ -1,5 +1,17 @@
 import { expect, test } from '@playwright/test';
-import { formatMinutes, formatRemaining, progressAt, remainingAt, timerChoices, timerStatus, type StepTimerState } from '../src/lib/timerMath.ts';
+import {
+	DONE_KEEP_MS,
+	finishedAt,
+	formatDoneAgo,
+	formatMinutes,
+	formatRemaining,
+	isStaleDone,
+	progressAt,
+	remainingAt,
+	timerChoices,
+	timerStatus,
+	type StepTimerState
+} from '../src/lib/timerMath.ts';
 
 const base: StepTimerState = {
 	id: 'a', key: 'k', recipeSlug: 's', recipeTitle: 'S', stepIndex: 0, stepTitle: 'T', label: 'T',
@@ -42,4 +54,20 @@ test('timerChoices: a range gives two chips', () => {
 	expect(timerChoices({ minutes: 45, maxMinutes: 60 })).toEqual([45, 60]);
 	expect(timerChoices({ minutes: 30 })).toEqual([30]);
 	expect(timerChoices({ minutes: 30, maxMinutes: 30 })).toEqual([30]);
+});
+
+test('formatDoneAgo and stale prune window', () => {
+	const end = 1_000_000;
+	expect(formatDoneAgo(end, end + 2_000)).toBe('Færdig!');
+	expect(formatDoneAgo(end, end + 12_000)).toBe('Færdig · for 12 sek siden');
+	expect(formatDoneAgo(end, end + 3 * 60_000)).toBe('Færdig · for 3 min siden');
+	expect(formatDoneAgo(end, end + 2 * 60 * 60_000)).toBe('Færdig · for 2 t. siden');
+	expect(formatDoneAgo(end, end + 2 * 60 * 60_000 + 15 * 60_000)).toBe('Færdig · for 2 t. 15 min siden');
+
+	const done = { ...base, done: true, endsAt: end };
+	expect(finishedAt(done)).toBe(end);
+	expect(isStaleDone(done, end + DONE_KEEP_MS)).toBe(false);
+	expect(isStaleDone(done, end + DONE_KEEP_MS + 1)).toBe(true);
+	expect(isStaleDone({ ...base, done: true, endsAt: null }, end + DONE_KEEP_MS * 2)).toBe(false); // legacy: keep until dismissed
+	expect(finishedAt(base)).toBeNull();
 });

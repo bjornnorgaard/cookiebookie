@@ -1,4 +1,4 @@
-import { LAST_MINUTE_MS, MINUTE, formatMinutes, remainingAt, type StepTimerState } from '#lib/timerMath.ts';
+import { LAST_MINUTE_MS, MINUTE, formatMinutes, isStaleDone, remainingAt, type StepTimerState } from '#lib/timerMath.ts';
 import { setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
 
 /**
@@ -7,6 +7,8 @@ import { setKeepAwake, wake } from '#lib/stores/wakeLock.svelte.ts';
  *
  * Persistence: localStorage `timers` = { v, list, muted }. Other tabs pick changes up through the `storage` event. The tab
  * that first sees a timer end marks it `done` in storage before ringing, so other tabs only sync and stay quiet.
+ *
+ * Finished timers keep their `endsAt` so the dock can show how long ago they expired. Ones older than a day are dropped.
  */
 const browser = typeof window !== 'undefined';
 const KEY = 'timers';
@@ -76,13 +78,14 @@ export function initTimers() {
 	ready = true;
 	const stored = load();
 	if (stored) adopt(stored);
-	// Timers that ended while the page was closed: show them as finished (no sound; there is no gesture to play it).
-	let changed = false;
+	const now = Date.now();
+	timerState.now = now;
+	// Drop finished timers older than a day; mark anything that ended while closed as done (no sound — no gesture).
+	let changed = pruneStale(now);
 	for (const t of timerState.list) {
-		if (!t.done && t.endsAt !== null && t.endsAt <= Date.now()) {
+		if (!t.done && t.endsAt !== null && t.endsAt <= now) {
 			t.done = true;
-			t.endsAt = null;
-			t.remainingMs = null;
+			t.remainingMs = null; // keep endsAt = when it was due
 			changed = true;
 		}
 	}
@@ -101,6 +104,13 @@ export function initTimers() {
 	schedule();
 }
 
+/** Remove done timers past DONE_KEEP_MS. Returns whether the list changed. */
+function pruneStale(now: number): boolean {
+	const before = timerState.list.length;
+	timerState.list = timerState.list.filter((t) => !isStaleDone(t, now));
+	return timerState.list.length !== before;
+}
+
 /** Run a 1 s interval while anything is on screen, plus an exact timeout for the next ring. */
 function schedule() {
 	if (!browser) return;
@@ -111,14 +121,14 @@ function schedule() {
 		interval = undefined;
 	}
 	clearTimeout(timeout);
-	const next = timerState.list.filter((t) => t.endsAt !== null).map((t) => t.endsAt as number);
+	const next = timerState.list.filter((t) => !t.done && t.endsAt !== null).map((t) => t.endsAt as number);
 	if (next.length) timeout = setTimeout(tick, Math.max(0, Math.min(...next) - Date.now()) + 20);
 }
 
 function tick() {
 	const now = Date.now();
 	timerState.now = now;
-	let changed = false;
+	let changed = pruneStale(now);
 	for (const t of timerState.list) {
 		if (t.done || t.endsAt === null) continue;
 		const left = t.endsAt - now;
@@ -129,8 +139,7 @@ function tick() {
 				Object.assign(t, stored);
 			} else {
 				t.done = true;
-				t.endsAt = null;
-				t.remainingMs = null;
+				t.remainingMs = null; // keep endsAt so "for X siden" stays accurate
 				persist();
 				alarm(t);
 			}
