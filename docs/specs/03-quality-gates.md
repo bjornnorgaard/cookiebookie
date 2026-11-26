@@ -71,6 +71,33 @@ uncompressed HTML, a 227 kB stylesheet, unused JS and oversized card photos.
   FCP to 0.9 s but raised LCP by about 150 ms (they take bandwidth from the photo); `inlineStyleThreshold` made no
   difference. Revisit split bundles if Lighthouse CI ever runs over HTTP/2.
 
+### After the second production report (2026-11-26, evening)
+
+Production Lighthouse (cookiebookie.bybear.dk, 3 runs each, median): mobile `/` perf 99, LCP 1.98 s; mobile
+`/lasagne` 99, LCP 1.95 s; desktop 100 everywhere, but desktop `/` had CLS 0.017 from the web-font swap. Local
+results after these changes:
+
+| Page | Device | Perf | LCP | CLS | Notes |
+| --- | --- | --- | --- | --- | --- |
+| `/` | mobile | 98 | **2.37 s** (was 2.45 s) | 0 | |
+| `/lasagne` | mobile | 99 | 2.08 s (was 2.27 s) | 0 | |
+| `/` | desktop | 100 | 0.51 s | **0** (was 0.017) | |
+
+- **Print photo no longer downloaded on screen.** The print sheet's `<img>` was `loading="eager"`, so every recipe
+  page fetched a second copy of the hero (`card-640.jpg`, 32 kB). It is now lazy (never fetched while the sheet is
+  `display: none`); the Udskriv button waits for it before `window.print()`, and `beforeprint` nudges it for Ctrl+P
+  (`src/lib/print.ts`).
+- **Fonts 115 kB to 83 kB.** `npm run fonts` (`scripts/subset-fonts.mjs`, needs `pip install fonttools brotli`) cuts
+  each font to the characters Danish pages use (`CORE`), keeping every axis (Fraunces keeps optical size) and feature.
+  The rest of Latin and Latin Extended stay on the Fontsource files under disjoint unicode-ranges, downloaded only if a
+  page has such a character.
+- **No layout shift from the font swap.** The same script writes metric-matched fallback faces (Georgia / Times New
+  Roman and Liberation Serif / Noto Serif for Fraunces, Arial and Liberation Sans / Roboto for Inter; regular and bold
+  bands) with `size-adjust` and ascent/descent/line-gap overrides, from `@capsizecss/metrics`.
+- **Current-step pulse is composited.** It animated `box-shadow` forever (a repaint every frame); now a disc behind
+  the checkbox scales and fades (`transform`, `opacity`).
+- **`LCP_MOBILE_MS` is now 2500**, the spec target (home page median 2.37 s).
+
 ## Goals
 
 - CI fails when performance, accessibility, best practices or SEO regress past a threshold.
@@ -150,8 +177,8 @@ CLS and on LCP; performance score and TBT only **warn**; Lighthouse runs on ever
   3 runs, median aggregation, mobile and desktop via `scripts/audit-lighthouse.mjs` (`npm run audit:lighthouse`,
   `audit:seo` is an alias). `budget.json`: script 120 kB, fonts 130 kB, total 500 kB. It serves the Node-adapter build
   (precompressed, so transfer sizes are realistic) and blocks the Google tag URLs, matching the consent-gated default.
-- **Deviation: mobile LCP fails at 3.0 s, not 2.5 s.** The home page measures about 2.9 s locally, so a 2.5 s hard
-  gate would be red on day one. Tighten `LCP_MOBILE_MS` in `lighthouserc.cjs` to 2500 once the numbers allow it.
+- **Mobile LCP fails at 2.5 s** (`LCP_MOBILE_MS` in `lighthouserc.cjs`). It was 3.0 s until the home page measured
+  comfortably under 2.5 s (2.37 s, 2026-11-26).
 - **axe.** `tests/a11y.spec.ts` (`@axe-core/playwright`, WCAG 2.0-2.2 A/AA): home, photo recipe, placeholder recipe and
   404, light and dark, phone and desktop, plus keep-awake on and steps/ingredients partly ticked. Add states to the
   `STATES` array; accepted violations go in `ACCEPTED` with a reason.
@@ -166,8 +193,8 @@ CLS and on LCP; performance score and TBT only **warn**; Lighthouse runs on ever
   visible text "Skærm tændt" (WCAG 2.5.3, label now "Skærm tændt. Tryk for at slå fra").
 
 ### Not done / ideas
-- Fraunces `wght` files instead of `standard` would save about 30 kB (loses optical-size axis; visual change).
-- Tighten `LCP_MOBILE_MS` to 2500: the home page now measures 2.45 s, too little headroom for run-to-run noise yet.
+- Fraunces `wght` files instead of the `standard` core subset would save about 15 kB more (loses the optical-size
+  axis the headings use; visual change).
 - Real-user Core Web Vitals monitoring (open question 4) is still open.
 
 ## Open questions

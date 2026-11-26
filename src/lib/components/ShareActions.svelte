@@ -4,6 +4,7 @@
 	import { siteUrl } from '#lib/constants/site.ts';
 	import { formatAmount } from '#lib/scale.ts';
 	import { getPortions } from '#lib/stores/portions.svelte.ts';
+	import { printWithPhotos } from '#lib/print.ts';
 
 	let { recipe }: { recipe: Recipe } = $props();
 	const portions = getPortions();
@@ -118,7 +119,7 @@
 
 	function onPrint() {
 		track('print');
-		window.print();
+		void printWithPhotos();
 	}
 
 	const mailto = $derived(`mailto:?subject=${encodeURIComponent(recipe.title)}&body=${encodeURIComponent(`${text}\n${url}`)}`);

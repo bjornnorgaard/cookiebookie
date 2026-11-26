@@ -6,6 +6,7 @@
 	import { getPhoto } from '#lib/images.ts';
 	import { formatAmount, renderStepText } from '#lib/scale.ts';
 	import { getPortions } from '#lib/stores/portions.svelte.ts';
+	import { loadPrintPhotos } from '#lib/print.ts';
 
 	let { recipe }: { recipe: Recipe } = $props();
 
@@ -18,6 +19,9 @@
 	const shortUrl = $derived(url.replace(/^https?:\/\//, ''));
 	const noun = $derived(portions.count === 1 ? 'portion' : 'portioner');
 </script>
+
+<!-- Ctrl/Cmd+P: start the lazy print photo (see #lib/print.ts). -->
+<svelte:window onbeforeprint={loadPrintPhotos} />
 
 <!-- Print-only. Hidden on screen (see src/print.css); the screen layout is hidden when printing. -->
 <section class="print-sheet" aria-label="Udskrift" data-nosnippet>
@@ -36,7 +40,7 @@
 	<div class="ps-columns">
 		<div class="ps-col-ingredients">
 			{#if photoSrc}
-				<img class="ps-photo" src={photoSrc.src} width={photoSrc.w} height={photoSrc.h} alt="" loading="eager" decoding="async" fetchpriority="low" />
+				<img class="ps-photo" src={photoSrc.src} width={photoSrc.w} height={photoSrc.h} alt="" loading="lazy" decoding="async" />
 			{/if}
 			<h2>Indkøb</h2>
 			<ul class="ps-ingredients">

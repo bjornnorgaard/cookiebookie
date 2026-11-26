@@ -212,7 +212,27 @@ test.describe('print', () => {
 		});
 		await page.goto('/ristaffel');
 		await page.getByTestId('print-button').click();
-		expect(await page.evaluate(() => (window as unknown as { __printed: number }).__printed)).toBe(1);
+		await expect.poll(() => page.evaluate(() => (window as unknown as { __printed: number }).__printed)).toBe(1);
+	});
+
+	test('the print photo is not downloaded on screen, and the Udskriv button loads it before printing', async ({ page }) => {
+		const photoRequests: string[] = [];
+		page.on('request', (r) => r.url().includes('/images/') && photoRequests.push(r.url()));
+		await page.addInitScript(() => {
+			(window as unknown as { __photoReady: boolean | null }).__photoReady = null;
+			window.print = () => {
+				const img = document.querySelector<HTMLImageElement>('.ps-photo');
+				(window as unknown as { __photoReady: boolean }).__photoReady = !!img && img.complete && img.naturalWidth > 0;
+			};
+		});
+		await page.goto('/lasagne');
+		await page.waitForLoadState('networkidle');
+		const printSrc = await page.locator('.ps-photo').getAttribute('src');
+		expect(printSrc).toBeTruthy();
+		expect(photoRequests.some((u) => u.endsWith(printSrc!))).toBe(false);
+
+		await page.getByTestId('print-button').click();
+		await expect.poll(() => page.evaluate(() => (window as unknown as { __photoReady: boolean | null }).__photoReady)).toBe(true);
 	});
 
 	test('every recipe has a generated QR code (run `npm run qr` after adding a recipe)', () => {
@@ -224,7 +244,8 @@ test.describe('print', () => {
 		test(`${slug} fits on two A4 pages`, async ({ page }) => {
 			await page.goto(`/${slug}`);
 			await page.evaluate(() => document.fonts.ready);
-			// Make sure the photo is there before the PDF is cut.
+			// The print photo is lazy and hidden on screen: show the print layout so it loads before the PDF is cut.
+			await page.emulateMedia({ media: 'print' });
 			await page.waitForFunction(() => [...document.querySelectorAll<HTMLImageElement>('.ps-photo')].every((i) => i.complete));
 			const pdf = await page.pdf({ format: 'A4', preferCSSPageSize: true, printBackground: false });
 			// Chrome writes an uncompressed page tree: "/Count N" on the /Pages node.

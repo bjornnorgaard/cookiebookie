@@ -25,6 +25,12 @@ npm run images -- --force # genererer alt igen
 Det laver AVIF/WebP/JPEG i flere størrelser i `static/images/recipes/<slug>/` samt manifestet
 `src/lib/data/images.generated.json`. Commit de genererede filer. Opskrifter uden eget foto bruger `placeholder.jpg`.
 
+## Skrifttyper
+
+`npm run fonts` skærer Fraunces og Inter ned til de tegn, siderne bruger, og skriver `src/lib/fonts/` (woff2-filer og
+`fonts.css` med fallback-skrifter, der fylder det samme, så teksten ikke hopper). Kræver `pip install fonttools brotli`
+(eller `PYFTSUBSET=/sti/til/pyftsubset`). Ret tegnlisten `CORE` i `scripts/subset-fonts.mjs` og commit resultatet.
+
 ## Deploy
 
 Deploy sker lokalt og kun når det bliver bedt om. `scripts/deploy.sh` (se skill'en

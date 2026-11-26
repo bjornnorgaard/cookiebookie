@@ -7,8 +7,9 @@
 @import './lib/fonts/fonts.css';
 
 @theme {
-	--font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-	--font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
+	/* The "Fallback" faces are system fonts scaled to the web font's metrics (src/lib/fonts/fonts.css), so the swap does not shift layout. */
+	--font-sans: 'Inter Variable', 'Inter Fallback Arial', 'Inter Fallback Roboto', ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'Fraunces Variable', 'Fraunces Fallback Georgia', 'Fraunces Fallback Times', 'Fraunces Fallback Noto', ui-serif, Georgia, serif;
 	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -196,11 +197,23 @@ p { text-wrap: pretty; }
 }
 .panel.step.is-current .tick:not(:checked) {
 	border-color: var(--color-secondary-500);
+}
+/* The current step's pulse: a disc behind the checkbox that grows and fades. Only transform and opacity animate,
+   so it runs on the compositor instead of repainting every frame (box-shadow would). 1.72 = (28px + 2 * 10px) / 28px. */
+.tick-wrap { position: relative; display: inline-flex; flex: none; isolation: isolate; }
+.panel.step.is-current .tick-wrap.pending::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	border-radius: 9999px;
+	background: color-mix(in oklab, var(--color-secondary-500) 55%, transparent);
+	pointer-events: none;
 	animation: ring 2.2s ease-out infinite;
 }
 @keyframes ring {
-	0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--color-secondary-500) 55%, transparent); }
-	70%, 100% { box-shadow: 0 0 0 10px transparent; }
+	0% { transform: scale(1); opacity: 1; }
+	70%, 100% { transform: scale(1.72); opacity: 0; }
 }
 
 .pop-in { animation: pop 500ms var(--ease-out-expo) both; }

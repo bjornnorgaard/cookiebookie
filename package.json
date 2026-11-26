@@ -16,10 +16,12 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig tsconfig.json --watch",
 		"test": "playwright test",
 		"images": "node scripts/optimize-images.mjs",
-		"images:check": "node scripts/check-image-budgets.mjs"
+		"images:check": "node scripts/check-image-budgets.mjs",
+		"fonts": "node scripts/subset-fonts.mjs"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.14.0",
+		"@capsizecss/metrics": "^4.5.0",
 		"@lhci/cli": "^0.16.1",
 		"@playwright/test": "^1.64.0",
 		"@skeletonlabs/skeleton": "^5.0.1",

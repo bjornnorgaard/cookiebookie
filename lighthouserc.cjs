@@ -11,10 +11,9 @@ const NOT_FOUND = '/missing-page';
 // Analytics is consent-gated and off by default, so the budgets below describe what a visitor gets before consenting.
 const BLOCKED = ['*googletagmanager.com*', '*google-analytics.com*'];
 
-// Spec target is 2500 ms. The home page measures about 2.45 s in Lighthouse's simulated slow-4G run against this
-// plain HTTP/1.1 server (2.9 s before the 2026-11-26 pass, 5.3 s originally); the fail line stays at 3000 ms until
-// there is more headroom for run-to-run noise.
-const LCP_MOBILE_MS = 3000;
+// The spec target. The home page measures about 2.37 s in Lighthouse's simulated slow-4G run against this plain
+// HTTP/1.1 server (2.9 s before the 2026-11-26 passes, 5.3 s originally); median of 3 runs absorbs single outliers.
+const LCP_MOBILE_MS = 2500;
 
 /** Assertions every page must meet. */
 const common = {

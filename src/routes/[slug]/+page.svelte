@@ -185,14 +185,17 @@
 					>
 						<label for="step-check-{i}" class="flex cursor-pointer flex-col gap-2 p-4 transition-opacity sm:p-5" class:line-through={done}>
 							<span class="flex items-center gap-4">
-								<input
-									id="step-check-{i}"
-									type="checkbox"
-									checked={!!done}
-									onchange={(e) => setStep(i, e.currentTarget.checked)}
-									class="tick round shrink-0"
-									style="--tick: var(--color-secondary-500)"
-								/>
+								<!-- The wrapper carries the current step's pulse (a pseudo-element; inputs cannot have one in every browser). -->
+								<span class="tick-wrap" class:pending={!done}>
+									<input
+										id="step-check-{i}"
+										type="checkbox"
+										checked={!!done}
+										onchange={(e) => setStep(i, e.currentTarget.checked)}
+										class="tick round shrink-0"
+										style="--tick: var(--color-secondary-500)"
+									/>
+								</span>
 								<span class="flex min-w-0 flex-col gap-0.5">
 									<span class="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-widest leading-none {i === current ? 'text-secondary-950-300' : 'opacity-85'}">
 										Trin {i + 1}
