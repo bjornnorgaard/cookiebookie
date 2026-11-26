@@ -33,10 +33,12 @@ Det laver AVIF/WebP/JPEG i flere størrelser i `static/images/recipes/<slug>/` s
 
 ## Deploy
 
-Deploy sker lokalt og kun når det bliver bedt om. `scripts/deploy.sh` (se skill'en
-[deploy](.claude/skills/deploy/SKILL.md)) bygger Docker-imaget på din egen maskine, pusher det til GHCR og opdaterer
-image-tagget i [deploy/mimir/services.yaml](deploy/mimir/services.yaml), så klyngen henter den nye version. Efter deploy ryddes der op med `scripts/cleanup.sh` (lokal `main` opdateres, mergede branches, worktrees og gamle images fjernes). Vercel bygger
-`main` af sig selv ved push. GitHub-workflowet `Deploy` kører ikke længere automatisk; det kan kun startes manuelt.
+Push til `main` er et produktionsdeploy: GitHub-workflowet `Deploy` bygger Docker-imaget, pusher det til GHCR og
+opdaterer image-tagget i [deploy/mimir/services.yaml](deploy/mimir/services.yaml), så klyngen henter den nye version.
+Vercel bygger også `main` ved push. Bagefter sættes testmiljøet
+([deploy/mimir/services.test.yaml](deploy/mimir/services.test.yaml)) til samme tag, så test og produktion er ens.
+`scripts/deploy-test.sh <branch|tag|sha>` deployer noget andet til test, og `scripts/deploy.sh` er den lokale
+nødløsning, hvis Actions ikke kører. Se skill'en [deploy](.claude/skills/deploy/SKILL.md).
 
 ## Lokal udvikling
 

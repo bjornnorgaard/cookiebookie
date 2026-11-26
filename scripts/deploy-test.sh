@@ -12,7 +12,8 @@
 # The ref is built from a temporary worktree, so your working tree and current branch are
 # left alone. The tag bump is committed to deploy/mimir/services.test.yaml on origin/main
 # (Argo watches main for manifests); production's services.yaml is not changed.
-# Production deploys stay on scripts/deploy.sh, from main.
+# Production deploys happen on push to main (Deploy workflow); after each one, test is
+# synced to the same tag (see the deploy skill).
 #
 # Env: PLATFORM (default linux/amd64, what the cluster runs), IMAGE.
 set -euo pipefail

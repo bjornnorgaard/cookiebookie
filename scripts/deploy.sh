@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 #
-# Local deploy: build the Docker image on this machine, push it to GHCR and
-# point the Mimir cluster at it. No remote CI involved.
+# Local FALLBACK for production deploys. Normally pushing to main deploys through the
+# Deploy GitHub workflow; use this only when Actions is unavailable, and not while the
+# workflow is deploying the same commit. Builds the image on this machine, pushes it to
+# GHCR and points the Mimir cluster at it. Afterwards sync test (see the deploy skill).
 #
 #   scripts/deploy.sh             build, smoke-test, push, bump tag, push commit
 #   scripts/deploy.sh --dry-run   build + smoke-test only; push nothing
