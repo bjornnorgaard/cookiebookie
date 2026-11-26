@@ -19,6 +19,7 @@ const recipesDir = join(root, 'static', 'images', 'recipes');
 const AVIF_KB = {
 	'card-400': 25,
 	'card-640': 40,
+	'card-800': 55,
 	'card-960': 70,
 	'wide-480': 25,
 	'wide-800': 50,

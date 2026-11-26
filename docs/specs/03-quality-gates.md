@@ -46,6 +46,31 @@ The photo is painted from the server HTML (real, unthrottled LCP is about 0.1 s)
 bandwidth: Lighthouse's slow-4G model shares 1.6 Mbit/s between the HTML, one JS and one CSS file, two web fonts
 (116 kB) and four card photos. The next levers are listed under "Not done / ideas" below.
 
+### After the production-report pass (local Lighthouse 13, same method, 2026-11-26)
+
+Driven by a production Lighthouse report (mobile `/`: perf 95, FCP 2.1 s, LCP 2.6 s) that flagged uncached photos,
+uncompressed HTML, a 227 kB stylesheet, unused JS and oversized card photos.
+
+| Page | Device | Perf | FCP | LCP | Notes |
+| --- | --- | --- | --- | --- | --- |
+| `/` | mobile | **97** (was 95) | 1.4 s (was 1.6 s) | **2.45 s** (was 2.9 s) | under the 2.5 s target for the first time |
+| `/lasagne` | mobile | 98 (was 95) | 1.4 s (was 1.7 s) | 2.27 s (was 2.7 s) | |
+| `/` | desktop | 100 | 0.33 s | 0.49 s (was 0.58 s) | |
+
+- **Photo caching.** Every photo URL in the manifest carries a content hash (`?v=…`, from `npm run images`), and
+  `server.js` (the Node entry, wraps adapter-node's server) serves versioned photos with
+  `Cache-Control: public, max-age=31536000, immutable`.
+- **HTML compression.** `src/hooks.server.ts` brotli/gzip-compresses SSR responses on the Node build (home HTML 34.6 kB
+  to 7 kB). Off on Vercel, which compresses at its edge.
+- **CSS 227 kB to 124 kB** (21 kB compressed): dropped `@skeletonlabs/skeleton-svelte`, whose stylesheet carried every
+  Zag component; its one use, the step progress bar, is now plain markup with `role="progressbar"`. Fonts declare only
+  the Latin and Latin Extended subsets (`src/lib/fonts/fonts.css`).
+- **Card photos** gained an 800 px size, so a ~380 px card at 2x no longer fetches the 960.
+- **Tried and rejected** (measured, mobile `/`): `bundleStrategy: "split"` cut unused JS to 0 but raised LCP to 3.08 s,
+  because ~20 module requests compete with the photo on the local HTTP/1.1 server; preloading the two Latin fonts cut
+  FCP to 0.9 s but raised LCP by about 150 ms (they take bandwidth from the photo); `inlineStyleThreshold` made no
+  difference. Revisit split bundles if Lighthouse CI ever runs over HTTP/2.
+
 ## Goals
 
 - CI fails when performance, accessibility, best practices or SEO regress past a threshold.
@@ -141,7 +166,8 @@ CLS and on LCP; performance score and TBT only **warn**; Lighthouse runs on ever
   visible text "Skærm tændt" (WCAG 2.5.3, label now "Skærm tændt. Tryk for at slå fra").
 
 ### Not done / ideas
-- Fraunces `wght.css` instead of `standard.css` would save about 30 kB (loses optical-size axis; visual change).
+- Fraunces `wght` files instead of `standard` would save about 30 kB (loses optical-size axis; visual change).
+- Tighten `LCP_MOBILE_MS` to 2500: the home page now measures 2.45 s, too little headroom for run-to-run noise yet.
 - Real-user Core Web Vitals monitoring (open question 4) is still open.
 
 ## Open questions

@@ -14,6 +14,9 @@
  *   card-<w>   3:2 smart crop (cards + hero on phones)
  *   og-*       fixed crops for social previews + Recipe structured data
  *
+ * Every src in the manifest ends in `?v=<content hash>`, so server.js can serve photos with a year-long
+ * immutable cache and a re-encoded file still gets a new URL.
+ *
  * Run: npm run images            (skips photos that have not changed)
  *      npm run images -- --force (rebuild everything)
  */
@@ -31,7 +34,8 @@ const manifestPath = join(root, 'src', 'lib', 'data', 'images.generated.json');
 const force = process.argv.includes('--force');
 
 const WIDE_WIDTHS = [480, 800, 1200, 1600, 2400];
-const CARD_WIDTHS = [400, 640, 960];
+// 800 covers a ~380 px phone card at 2x density; without it those phones fetch the 960.
+const CARD_WIDTHS = [400, 640, 800, 960];
 const CARD_RATIO = 3 / 2;
 const SOCIAL = [
 	{ name: 'og', w: 1200, h: 630 }, // Facebook / LinkedIn / X large card
@@ -159,6 +163,18 @@ for (const [slug, entry] of Object.entries(manifest)) {
 	}
 	next.placeholder = { placeholder: true, social };
 	console.log('+ placeholder (drawn)');
+}
+
+// Content-hash every generated file into its URL (cache busting for the immutable cache in server.js).
+async function versioned(variant) {
+	const path = variant.src.split('?')[0];
+	const digest = createHash('sha1').update(await readFile(join(root, 'static', path))).digest('hex').slice(0, 10);
+	variant.src = `${path}?v=${digest}`;
+}
+for (const entry of Object.values(next)) {
+	const variants = [...Object.values(entry.social ?? {})];
+	for (const kind of ['wide', 'card']) for (const list of Object.values(entry[kind] ?? {})) variants.push(...list);
+	await Promise.all(variants.map(versioned));
 }
 
 await mkdir(dirname(manifestPath), { recursive: true });

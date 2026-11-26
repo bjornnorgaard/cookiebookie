@@ -115,6 +115,8 @@ const STATES: State[] = [
 		on: ['photo'],
 		act: async page => {
 			await page.getByRole('button', { name: /Start madlavning/ }).click();
+			// Cook mode is its own chunk: wait for it before deciding whether the toggle exists.
+			await expect(page.getByTestId('cook-mode')).toBeVisible();
 			// On wide screens the ingredients are always shown (two columns), so there is no toggle.
 			const toggle = page.getByTestId('cook-drawer-toggle');
 			if (await toggle.isVisible()) await toggle.click();

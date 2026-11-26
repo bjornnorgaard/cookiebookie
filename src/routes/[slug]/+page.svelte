@@ -3,7 +3,6 @@
 	import { scale } from 'svelte/transition';
 	import KeepAwake from '#lib/components/KeepAwake.svelte';
 	import { setViewingRecipe } from '#lib/stores/wakeLock.svelte.ts';
-	import { Progress } from '@skeletonlabs/skeleton-svelte';
 	import Head from '#lib/components/Head.svelte';
 	import RecipeImage from '#lib/components/RecipeImage.svelte';
 	import StepTimers from '#lib/components/StepTimers.svelte';
@@ -154,15 +153,26 @@
 
 
 			<div class="mt-4">
-				<Progress value={doneCount} max={recipe.steps.length}>
+				<div class="flex flex-col gap-2">
 					<div class="mb-2 flex justify-between text-sm opacity-75">
-						<Progress.Label>Fremgang</Progress.Label>
+						<span id="progress-label" class="whitespace-nowrap">Fremgang</span>
 						<span aria-live="polite">{doneCount} af {recipe.steps.length} trin</span>
 					</div>
-					<Progress.Track class="h-2 overflow-hidden rounded-full">
-						<Progress.Range class="bg-secondary-500 transition-[width] duration-700 ease-out" />
-					</Progress.Track>
-				</Progress>
+					<div
+						role="progressbar"
+						aria-labelledby="progress-label"
+						aria-valuemin={0}
+						aria-valuemax={recipe.steps.length}
+						aria-valuenow={doneCount}
+						aria-valuetext="{doneCount} af {recipe.steps.length} trin"
+						class="h-2 w-full overflow-hidden rounded-full bg-surface-200-800"
+					>
+						<div
+							class="h-full rounded-base bg-secondary-500 transition-[width] duration-700 ease-out"
+							style:width="{recipe.steps.length ? (doneCount / recipe.steps.length) * 100 : 0}%"
+						></div>
+					</div>
+				</div>
 			</div>
 
 			<ol class="m-0 mt-5 flex list-none flex-col gap-3 p-0" style="--panel-accent: var(--color-secondary-500)">

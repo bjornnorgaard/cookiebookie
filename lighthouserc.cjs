@@ -11,8 +11,9 @@ const NOT_FOUND = '/missing-page';
 // Analytics is consent-gated and off by default, so the budgets below describe what a visitor gets before consenting.
 const BLOCKED = ['*googletagmanager.com*', '*google-analytics.com*'];
 
-// Spec target is 2500 ms. After the LCP fix the home page measures about 2.9 s in Lighthouse's simulated slow-4G
-// run against this plain HTTP/1.1 server (was 5.3 s), so the fail line sits at 3000 ms until it is tightened.
+// Spec target is 2500 ms. The home page measures about 2.45 s in Lighthouse's simulated slow-4G run against this
+// plain HTTP/1.1 server (2.9 s before the 2026-11-26 pass, 5.3 s originally); the fail line stays at 3000 ms until
+// there is more headroom for run-to-run noise.
 const LCP_MOBILE_MS = 3000;
 
 /** Assertions every page must meet. */
@@ -31,7 +32,7 @@ const common = {
 module.exports = {
 	ci: {
 		collect: {
-			startServerCommand: `HOST=127.0.0.1 PORT=${port} node build`,
+			startServerCommand: `HOST=127.0.0.1 PORT=${port} node server.js`,
 			startServerReadyPattern: 'Listening',
 			url: [`${base}/`, `${base}/lasagne`, `${base}/tomatsalat`, `${base}${NOT_FOUND}`],
 			numberOfRuns: Number(process.env.LHCI_RUNS || 3),

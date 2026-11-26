@@ -48,6 +48,9 @@ npm run audit:lighthouse      # Lighthouse CI, mobil og desktop (kræver Chrome)
 npm run images:check          # størrelsesbudgetter for de genererede billeder
 ```
 
+Produktionsserveren startes med `node server.js` efter `ADAPTER=node npm run build`. Den pakker adapter-nodes server
+ind og giver billeder med `?v=<hash>` i URL'en et års cache.
+
 `TEST_PORT=4202 npm test` vælger en anden port til testserveren. Lighthouse bygger selv med Node-adapteren og
 kører mod `/`, `/lasagne`, `/tomatsalat` og en 404-side; hvis port 4173 er optaget, vælg en anden med
 `LHCI_PORT=4211 npm run audit:lighthouse`. `LHCI_RUNS=1 npm run audit:lighthouse -- --no-build` giver en hurtig, mere
