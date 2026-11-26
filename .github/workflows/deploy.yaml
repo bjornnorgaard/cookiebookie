@@ -1,9 +1,20 @@
 name: Deploy
 
-# Deploys are done locally with scripts/deploy.sh (see .claude/skills/deploy).
-# This workflow is only a manual fallback: gh workflow run Deploy
+# PRODUCTION deploy. Whatever lands on main goes to cookiebookie.bybear.dk, mirroring
+# Vercel (which also publishes main). Test is separate and explicit:
+# scripts/deploy-test.sh <branch|tag|sha>. scripts/deploy.sh is the local fallback
+# if Actions is unavailable. Manual run: gh workflow run Deploy
 on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "deploy/mimir/**" # tag bumps (ours, prod and test) must not retrigger a deploy
   workflow_dispatch:
+
+# One deploy at a time, in order; never cancel one mid-push.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -38,8 +49,9 @@ jobs:
 
       - name: Commit and push tag bump
         run: |
+          git pull -q --rebase origin main
           git config user.name github-actions[bot]
           git config user.email github-actions[bot]@users.noreply.github.com
           git add deploy/mimir/services.yaml
-          git diff --staged --quiet || git commit -m "chore: bump web image tag to ${{ github.sha }} [skip ci]"
+          git diff --staged --quiet || git commit -m "chore: bump web image tag (production) to ${{ github.sha }} [skip ci]"
           git push
